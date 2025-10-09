@@ -2,12 +2,12 @@
 
 Python bindings for [`arrowspace-rs`](https://github.com/Mec-iS/arrowspace-rs). This is experimental software meant for research at current state.
 
-This is the starting repository for `pyarrowspace`, it is made public as a showcase for the Python interface, to collect feedback and make public some results of the tests run. To run needs the `arrowspace-rs` Rust module in a sibling directory.
+This is the starting repository for `arrowspace`, it is made public as a showcase for the Python interface, to collect feedback and make public some results of the tests run. To run needs the `arrowspace-rs` Rust module in a sibling directory.
 
 ## Installation
 From PyPi:
 ```
-pip install pyarrowspace
+pip install arrowspace
 ```
 or any other way of installing a Python library.
 
@@ -32,7 +32,7 @@ There are other tests but they require downloadin a dataset separately or fine-t
 
 ```python
 import numpy as np
-from pyarrowspace import ArrowSpaceBuilder, GraphLaplacian
+from arrowspace import ArrowSpaceBuilder, GraphLaplacian
 
 items = np.array([[0.1, 0.2, 0.3],
                   [0.0, 0.5, 0.1],

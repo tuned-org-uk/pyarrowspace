@@ -7,7 +7,7 @@ from sentence_transformers import SentenceTransformer
 from sklearn.preprocessing import normalize
 from collections import defaultdict
 
-from pyarrowspace import ArrowSpaceBuilder, set_debug
+from arrowspace import ArrowSpaceBuilder, set_debug
 
 set_debug(True)  # optional: Rust-side debug prints to stderr
 

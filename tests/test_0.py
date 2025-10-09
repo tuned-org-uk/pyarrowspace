@@ -1,5 +1,5 @@
 import numpy as np
-from pyarrowspace import ArrowSpaceBuilder, GraphLaplacian
+from arrowspace import ArrowSpaceBuilder, GraphLaplacian
 
 items = np.array([
 [0.82,0.11,0.43,0.28,0.64,0.32,0.55,0.48,0.19,0.73,0.07,0.36,0.58,0.23,0.44,0.31,0.52,0.16,0.61,0.40,0.27,0.49,0.35,0.29],

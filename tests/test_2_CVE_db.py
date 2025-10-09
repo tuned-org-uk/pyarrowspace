@@ -16,7 +16,7 @@ import os, json, glob
 import numpy as np
 from tqdm import tqdm
 from sentence_transformers import SentenceTransformer
-from pyarrowspace import ArrowSpaceBuilder, set_debug
+from arrowspace import ArrowSpaceBuilder, set_debug
 
 set_debug(True)  # optional: Rust-side debug prints to stderr
 

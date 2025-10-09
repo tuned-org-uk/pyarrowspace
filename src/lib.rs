@@ -5,9 +5,9 @@ use pyo3::types::PyDict;
 
 use numpy::{PyArray, PyArray1, PyArray2, PyReadonlyArray1, PyReadonlyArray2};
 
-use arrowspace::builder::ArrowSpaceBuilder as RustBuilder;
-use arrowspace::core::{ArrowItem, ArrowSpace};
-use arrowspace::graph::GraphLaplacian;
+use ::arrowspace::builder::ArrowSpaceBuilder as RustBuilder;
+use ::arrowspace::core::{ArrowItem, ArrowSpace};
+use ::arrowspace::graph::GraphLaplacian;
 
 use std::sync::atomic::{AtomicBool, Ordering};
 static DEBUG: AtomicBool = AtomicBool::new(false);
@@ -317,7 +317,7 @@ impl PyArrowSpaceBuilder {
 }
 
 #[pymodule]
-pub fn pyarrowspace(_py: Python, m: &PyModule) -> PyResult<()> {
+pub fn arrowspace(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_class::<PyArrowSpaceBuilder>()?;
     m.add_class::<PyArrowSpace>()?;
     m.add_class::<PyGraphLaplacian>()?;

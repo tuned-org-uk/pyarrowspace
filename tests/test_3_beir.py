@@ -8,7 +8,7 @@ from sklearn.preprocessing import normalize
 from collections import defaultdict
 import json
 
-from pyarrowspace import ArrowSpaceBuilder, set_debug
+from arrowspace import ArrowSpaceBuilder, set_debug
 
 set_debug(True)  # optional: Rust-side debug prints to stderr
 

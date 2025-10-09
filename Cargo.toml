@@ -4,7 +4,7 @@ version = "0.13.1"
 edition = "2024"
 
 [lib]
-name = "pyarrowspace"
+name = "arrowspace"
 # "cdylib" is necessary to produce a shared library for Python to import from.
 #
 # Downstream Rust code (including code in `bin/`, `examples/`, and `tests/`) will not be able
