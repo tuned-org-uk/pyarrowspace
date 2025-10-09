@@ -1,0 +1,10 @@
+numpy
+scikit-learn
+datasets
+sentence-transformers
+beir
+tqdm
+matplotlib
+seaborn
+nltk
+transformers[torch]
