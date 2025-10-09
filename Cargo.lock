@@ -92,7 +92,7 @@ dependencies = [
 
 [[package]]
 name = "arrowspace"
-version = "0.13.1"
+version = "0.13.2"
 dependencies = [
  "approx 0.5.1",
  "dashmap",
@@ -513,7 +513,7 @@ dependencies = [
 
 [[package]]
 name = "pyarrowspace"
-version = "0.13.1"
+version = "0.13.2"
 dependencies = [
  "arrowspace",
  "numpy",
