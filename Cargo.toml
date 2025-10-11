@@ -1,6 +1,6 @@
 [package]
 name = "pyarrowspace"
-version = "0.13.3"
+version = "0.15.0"
 edition = "2024"
 
 [lib]
@@ -13,6 +13,6 @@ name = "arrowspace"
 crate-type = ["cdylib"]
 
 [dependencies]
-arrowspace = "0.13.3"
+arrowspace = "0.15.0"
 pyo3 = { version = "*", features = ["extension-module"] }
 numpy = "0.19"

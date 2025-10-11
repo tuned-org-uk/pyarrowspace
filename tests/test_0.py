@@ -24,6 +24,7 @@ aspace, gl = ArrowSpaceBuilder.build(graph_params, items)
 query1 = np.array(items[2] * 1.05, dtype=np.float64)
 hits = aspace.search(query1, gl, 1.0)  # list[(idx, score)]
 
+
 print(hits)
 assert(len(hits) == 3)
 assert(hits[0][0] == 2)
@@ -37,8 +38,8 @@ hits = aspace.search(query2, gl, 0.9)  # list[(idx, score)]
 print(hits)
 assert(len(hits) == 3)
 assert(hits[0][0] == 1)
-assert(hits[1][0] == 4)
-assert(hits[2][0] == 2)
+assert(hits[1][0] == 2)
+assert(hits[2][0] == 0)
 
 # Search comparable items (defaults: k = nitems, alpha = 0.6, beta = 0.4)
 query3 = np.array(items[2] * 1.05, dtype=np.float64)
@@ -47,8 +48,8 @@ hits = aspace.search(query3, gl, 0.6)  # list[(idx, score)]
 print(hits)
 assert(len(hits) == 3)
 assert(hits[0][0] == 1)
-assert(hits[1][0] == 4)
-assert(hits[2][0] == 0)
+assert(hits[1][0] == 3)
+assert(hits[2][0] == 2)
 
 query4 = np.array(items[2] * 1.05, dtype=np.float64)
 hits = aspace.search(query4, gl, 0.55)  # list[(idx, score)]
@@ -56,5 +57,5 @@ hits = aspace.search(query4, gl, 0.55)  # list[(idx, score)]
 print(hits)
 assert(len(hits) == 3)
 assert(hits[0][0] == 1)
-assert(hits[1][0] == 4)
-assert(hits[2][0] == 0)
+assert(hits[1][0] == 3)
+assert(hits[2][0] == 2)

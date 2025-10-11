@@ -20,8 +20,8 @@ from arrowspace import ArrowSpaceBuilder, set_debug
 
 set_debug(True)  # optional: Rust-side debug prints to stderr
 
-START_YEAR = 2020
-END_YEAR = 2020
+START_YEAR = 1999
+END_YEAR = 1999
 
 def iter_cve_json(root_dir, start=START_YEAR, end=END_YEAR):
     for path in glob.glob(os.path.join(root_dir, "**", "*.json"), recursive=True):
