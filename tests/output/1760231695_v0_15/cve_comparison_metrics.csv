@@ -1,0 +1,4 @@
+query_id,query_text,min_length,spearman_cosine_hybrid,spearman_cosine_taumode,spearman_hybrid_taumode,kendall_cosine_hybrid,kendall_cosine_taumode,kendall_hybrid_taumode,ndcg_hybrid_vs_cosine,ndcg_taumode_vs_cosine,ndcg_taumode_vs_hybrid
+1,authenticated arbitrary file read path traversal,10,0.983333,0.916667,0.975758,0.944444,0.833333,0.911111,0.999398,0.996884,0.998755
+2,remote code execution in ERP web component,10,0.975758,0.816667,0.850000,0.911111,0.611111,0.666667,0.998138,0.971695,0.974491
+3,SQL injection in login endpoint,10,0.987879,0.816667,0.883333,0.955556,0.722222,0.777778,0.998977,0.991901,0.994823
