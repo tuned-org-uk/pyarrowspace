@@ -299,6 +299,7 @@ impl PyArrowSpaceBuilder {
             builder = builder
                 .with_lambda_graph(eps, k, topk, p, sigma)
                 .with_dims_reduction(true, None)
+                .with_spectral(true)
                 .with_sparsity_check(false);
         }
         dbg_println("Building from rows");

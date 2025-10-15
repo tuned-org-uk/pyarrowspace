@@ -1,0 +1,257 @@
+Loading CVE JSON files...
+313841it [01:31, 3422.16it/s]
+Loaded 313841 CVEs
+Generating embeddings...
+Model loaded from: ./domain_adapted_model
+Batches: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 9808/9808 [06:18<00:00, 25.94it/s]
+Embeddings shape: (313841, 384), sample: [-0.05824158  0.14389703  0.05094884  0.04408186 -0.01066008]...
+Building ArrowSpace...
+[pyarrowspace] Convert pyarray2 and Vec<Vec>
+[pyarrowspace] items shape: (313841, 384)
+[pyarrowspace] items[0][:5]: [-0.582415834069252, 1.4389702677726746, 0.5094883963465691, 0.44081855565309525, -0.10660076513886452]
+[pyarrowspace] NaNs: 0, Infs: 0
+[pyarrowspace] Building from rows
+sparsity 0.9939759036144579
+[pyarrowspace] built ArrowSpace: nitems=313841, nfeatures=384, lambdas_len=313841
+Build time: 1695.10s
+
+Searching 3 queries...
+Model loaded from: ./domain_adapted_model
+Batches: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00, 23.56it/s]
+Embeddings shape: (3, 384), sample: [-0.0122127   0.05706869 -0.01711867 -0.07662857 -0.11884194]...
+
+======================================================================
+Query 1: authenticated arbitrary file read path traversal
+======================================================================
+[pyarrowspace] search: qlen=384, lambda_q=0.008972
+[pyarrowspace] search: qlen=384, lambda_q=0.008972
+[pyarrowspace] search: qlen=384, lambda_q=0.008972
+Results: cosine=10, hybrid=10, taumode=10, using min=10
+
+Cosine (τ=1.0)
+----------------------------------------------------------------------
+ 1. CVE-2004-2290      (no title)                               [0.7329]
+ 2. CVE-2002-1345      (no title)                               [0.7120]
+ 3. CVE-2009-4053      (no title)                               [0.7115]
+ 4. CVE-2009-4957      (no title)                               [0.7112]
+ 5. CVE-2002-0347      (no title)                               [0.7082]
+ 6. CVE-2024-22050     Iodine Static File Server Path Traversal Vulnerability [0.7005]
+ 7. CVE-2009-1314      (no title)                               [0.6968]
+ 8. CVE-2007-4842      (no title)                               [0.6966]
+ 9. CVE-2008-6785      (no title)                               [0.6936]
+10. CVE-2008-4319      (no title)                               [0.6896]
+
+Hybrid (τ=0.8)
+----------------------------------------------------------------------
+ 1. CVE-2004-2290      (no title)                               [0.7845]
+ 2. CVE-2002-1345      (no title)                               [0.7678]
+ 3. CVE-2009-4053      (no title)                               [0.7674]
+ 4. CVE-2009-4957      (no title)                               [0.7671]
+ 5. CVE-2002-0347      (no title)                               [0.7648]
+ 6. CVE-2024-22050     Iodine Static File Server Path Traversal Vulnerability [0.7586]
+ 7. CVE-2009-1314      (no title)                               [0.7557]
+ 8. CVE-2007-4842      (no title)                               [0.7555]
+ 9. CVE-2008-6785      (no title)                               [0.7530]
+10. CVE-2008-4319      (no title)                               [0.7499]
+
+Taumode (τ=0.62)
+----------------------------------------------------------------------
+ 1. CVE-2004-2290      (no title)                               [0.8310]
+ 2. CVE-2002-1345      (no title)                               [0.8180]
+ 3. CVE-2009-4053      (no title)                               [0.8177]
+ 4. CVE-2009-4957      (no title)                               [0.8175]
+ 5. CVE-2002-0347      (no title)                               [0.8157]
+ 6. CVE-2024-22050     Iodine Static File Server Path Traversal Vulnerability [0.8109]
+ 7. CVE-2009-1314      (no title)                               [0.8086]
+ 8. CVE-2007-4842      (no title)                               [0.8085]
+ 9. CVE-2008-6785      (no title)                               [0.8066]
+10. CVE-2008-4319      (no title)                               [0.8041]
+
+Correlations:
+  Cosine vs Hybrid:   ρ=1.000, τ=1.000
+  Cosine vs Taumode:  ρ=1.000, τ=1.000
+  Hybrid vs Taumode:  ρ=1.000, τ=1.000
+
+NDCG@10:
+  Hybrid vs Cosine:   1.0000
+  Taumode vs Cosine:  1.0000
+  Taumode vs Hybrid:  1.0000
+
+Tail Quality (Ranks 4-10):
+  Cosine (τ=1.0):
+    T/H ratio: 0.9731
+    CV: 0.0103
+  Hybrid (τ=0.8):
+    T/H ratio: 0.9800
+    CV: 0.0076
+  Taumode (τ=0.62):
+    T/H ratio: 0.9854
+    CV: 0.0055
+
+======================================================================
+Query 2: remote code execution in ERP web component
+======================================================================
+[pyarrowspace] search: qlen=384, lambda_q=0.006798
+[pyarrowspace] search: qlen=384, lambda_q=0.006798
+[pyarrowspace] search: qlen=384, lambda_q=0.006798
+Results: cosine=10, hybrid=10, taumode=10, using min=10
+
+Cosine (τ=1.0)
+----------------------------------------------------------------------
+ 1. CVE-2012-0980      (no title)                               [0.6630]
+ 2. CVE-2008-6260      (no title)                               [0.6590]
+ 3. CVE-2008-5223      (no title)                               [0.6548]
+ 4. CVE-2002-0233      (no title)                               [0.6481]
+ 5. CVE-2008-2792      (no title)                               [0.6392]
+ 6. CVE-2006-0821      (no title)                               [0.6390]
+ 7. CVE-2008-1407      (no title)                               [0.6379]
+ 8. CVE-2025-26186     (no title)                               [0.6362]
+ 9. CVE-2008-5269      (no title)                               [0.6358]
+10. CVE-2009-1323      (no title)                               [0.6339]
+
+Hybrid (τ=0.8)
+----------------------------------------------------------------------
+ 1. CVE-2012-0980      (no title)                               [0.7291]
+ 2. CVE-2008-6260      (no title)                               [0.7259]
+ 3. CVE-2008-5223      (no title)                               [0.7225]
+ 4. CVE-2002-0233      (no title)                               [0.7172]
+ 5. CVE-2008-2792      (no title)                               [0.7100]
+ 6. CVE-2006-0821      (no title)                               [0.7099]
+ 7. CVE-2008-1407      (no title)                               [0.7089]
+ 8. CVE-2025-26186     (no title)                               [0.7076]
+ 9. CVE-2008-5269      (no title)                               [0.7073]
+10. CVE-2009-1323      (no title)                               [0.7057]
+
+Taumode (τ=0.62)
+----------------------------------------------------------------------
+ 1. CVE-2012-0980      (no title)                               [0.7885]
+ 2. CVE-2008-6260      (no title)                               [0.7860]
+ 3. CVE-2008-5223      (no title)                               [0.7834]
+ 4. CVE-2002-0233      (no title)                               [0.7793]
+ 5. CVE-2008-2792      (no title)                               [0.7737]
+ 6. CVE-2006-0821      (no title)                               [0.7736]
+ 7. CVE-2008-1407      (no title)                               [0.7729]
+ 8. CVE-2025-26186     (no title)                               [0.7719]
+ 9. CVE-2008-5269      (no title)                               [0.7716]
+10. CVE-2009-1323      (no title)                               [0.7704]
+
+Correlations:
+  Cosine vs Hybrid:   ρ=1.000, τ=1.000
+  Cosine vs Taumode:  ρ=1.000, τ=1.000
+  Hybrid vs Taumode:  ρ=1.000, τ=1.000
+
+NDCG@10:
+  Hybrid vs Cosine:   1.0000
+  Taumode vs Cosine:  1.0000
+  Taumode vs Hybrid:  1.0000
+
+Tail Quality (Ranks 4-10):
+  Cosine (τ=1.0):
+    T/H ratio: 0.9691
+    CV: 0.0067
+  Hybrid (τ=0.8):
+    T/H ratio: 0.9775
+    CV: 0.0048
+  Taumode (τ=0.62):
+    T/H ratio: 0.9839
+    CV: 0.0034
+
+======================================================================
+Query 3: SQL injection in login endpoint
+======================================================================
+[pyarrowspace] search: qlen=384, lambda_q=0.007950
+[pyarrowspace] search: qlen=384, lambda_q=0.007950
+[pyarrowspace] search: qlen=384, lambda_q=0.007950
+Results: cosine=10, hybrid=10, taumode=10, using min=10
+
+Cosine (τ=1.0)
+----------------------------------------------------------------------
+ 1. CVE-2007-5916      (no title)                               [0.7630]
+ 2. CVE-2009-3430      (no title)                               [0.7353]
+ 3. CVE-2014-1466      (no title)                               [0.7338]
+ 4. CVE-2008-1631      (no title)                               [0.7311]
+ 5. CVE-2008-5573      (no title)                               [0.7261]
+ 6. CVE-2008-6582      (no title)                               [0.7244]
+ 7. CVE-2008-6941      (no title)                               [0.7220]
+ 8. CVE-2009-0738      (no title)                               [0.7220]
+ 9. CVE-2006-0192      (no title)                               [0.7212]
+10. CVE-2008-6332      (no title)                               [0.7211]
+
+Hybrid (τ=0.8)
+----------------------------------------------------------------------
+ 1. CVE-2007-5916      (no title)                               [0.8088]
+ 2. CVE-2009-3430      (no title)                               [0.7866]
+ 3. CVE-2014-1466      (no title)                               [0.7855]
+ 4. CVE-2008-1631      (no title)                               [0.7833]
+ 5. CVE-2008-5573      (no title)                               [0.7793]
+ 6. CVE-2008-6582      (no title)                               [0.7779]
+ 7. CVE-2008-6941      (no title)                               [0.7760]
+ 8. CVE-2009-0738      (no title)                               [0.7760]
+ 9. CVE-2006-0192      (no title)                               [0.7754]
+10. CVE-2008-6332      (no title)                               [0.7753]
+
+Taumode (τ=0.62)
+----------------------------------------------------------------------
+ 1. CVE-2007-5916      (no title)                               [0.8500]
+ 2. CVE-2009-3430      (no title)                               [0.8328]
+ 3. CVE-2014-1466      (no title)                               [0.8319]
+ 4. CVE-2008-1631      (no title)                               [0.8302]
+ 5. CVE-2008-5573      (no title)                               [0.8272]
+ 6. CVE-2008-6582      (no title)                               [0.8261]
+ 7. CVE-2008-6941      (no title)                               [0.8246]
+ 8. CVE-2009-0738      (no title)                               [0.8246]
+ 9. CVE-2006-0192      (no title)                               [0.8241]
+10. CVE-2008-6332      (no title)                               [0.8241]
+
+Correlations:
+  Cosine vs Hybrid:   ρ=1.000, τ=1.000
+  Cosine vs Taumode:  ρ=1.000, τ=1.000
+  Hybrid vs Taumode:  ρ=1.000, τ=1.000
+
+NDCG@10:
+  Hybrid vs Cosine:   1.0000
+  Taumode vs Cosine:  1.0000
+  Taumode vs Hybrid:  1.0000
+
+Tail Quality (Ranks 4-10):
+  Cosine (τ=1.0):
+    T/H ratio: 0.9731
+    CV: 0.0046
+  Hybrid (τ=0.8):
+    T/H ratio: 0.9798
+    CV: 0.0034
+  Taumode (τ=0.62):
+    T/H ratio: 0.9852
+    CV: 0.0025
+Top-10 plot saved to cve_top10_comparison.png
+/datadisk/publish/pyarrowspace/tests/test_2_CVE_db.py:439: MatplotlibDeprecationWarning: The 'labels' parameter of boxplot() has been renamed 'tick_labels' since Matplotlib 3.9; support for the old name will be dropped in 3.11.
+  bp = ax3.boxplot(tail_data, labels=['Cosine', 'Hybrid', 'Taumode'],
+/datadisk/publish/pyarrowspace/tests/test_2_CVE_db.py:439: MatplotlibDeprecationWarning: The 'labels' parameter of boxplot() has been renamed 'tick_labels' since Matplotlib 3.9; support for the old name will be dropped in 3.11.
+  bp = ax3.boxplot(tail_data, labels=['Cosine', 'Hybrid', 'Taumode'],
+/datadisk/publish/pyarrowspace/tests/test_2_CVE_db.py:439: MatplotlibDeprecationWarning: The 'labels' parameter of boxplot() has been renamed 'tick_labels' since Matplotlib 3.9; support for the old name will be dropped in 3.11.
+  bp = ax3.boxplot(tail_data, labels=['Cosine', 'Hybrid', 'Taumode'],
+Tail analysis plot saved to cve_tail_analysis.png
+
+======================================================================
+EXPORTING RESULTS TO CSV
+======================================================================
+Search results saved to cve_search_results.csv
+Comparison metrics saved to cve_comparison_metrics.csv
+Tail metrics saved to cve_tail_metrics.csv
+Summary statistics saved to cve_summary.csv
+
+======================================================================
+SUMMARY
+======================================================================
+
+Average NDCG@10:
+  Hybrid vs Cosine:   1.0000
+  Taumode vs Cosine:  1.0000
+
+Average Tail/Head Ratios:
+  Cosine (τ=1.0): 0.9718 ± 0.0019
+  Hybrid (τ=0.8): 0.9791 ± 0.0011
+  Taumode (τ=0.62): 0.9848 ± 0.0007
+
+→ Higher T/H ratio = Better long-tail quality
+→ ArrowSpace (τ<1.0) maintains higher tail scores
