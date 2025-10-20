@@ -21,12 +21,47 @@ from sklearn.metrics import ndcg_score
 set_debug(True)
 
 # Configuration
-START_YEAR = 1999
-END_YEAR = 2025
+START_YEAR = 2001
+END_YEAR = 2001
 TAU_COSINE = 1.0    # Pure cosine similarity
 TAU_HYBRID = 0.8    # Hybrid: mostly cosine, some spectral
 TAU_TAUMODE = 0.62  # Spectral-aware (taumode)
 K_TAIL_MAX = 20     # Analyze tail up to rank 20
+
+
+# Build ArrowSpace
+graph_params = {
+    "eps": 1.0,
+    "k": 10,
+    "topk": 10,
+    "p": 2.0,
+    "sigma": None
+}
+
+
+# # Scale × Magnitude Matrix
+# Combined effect on effective bandwidth:
+# ----------------------------------------
+# n_items  |  avg=0.1  |  avg=0.7  |  avg=2.0  |  avg=10.0
+# ---------+-----------+-----------+-----------+----------
+# 1K       |  0.8      |  5.8      |  16.5     |  82.7    
+# 10K      |  1.9      |  13.2     |  37.7     |  188.6   
+# 100K     |  4.2      |  29.6     |  84.7     |  423.3   
+# 1M       |  9.4      |  65.7     |  187.7    |  938.4   
+# 10M      |  20.6     |  144.2    |  411.9    |  2059.6  
+#
+# # Impact of Data Magnitude
+# For n=10,000 items with f_dimensions=512:
+# avg_value  |  eps     |  scaling  |  sigma   |  eff_bw  |  magnitude_factor  |  Needs Rescaling?
+# -----------+----------+-----------+----------+----------+--------------------+------------------
+# 0.01       |  0.016   |  12.00    |  0.014   |  0.19    |  0.014             |  ⚠️ YES          
+# 0.10       |  0.157   |  12.00    |  0.143   |  1.89    |  0.143             |  ✓ No            
+# 0.70       |  1.100   |  12.00    |  1.000   |  13.20   |  1.000             |  ✓ No            
+# 1.00       |  1.571   |  12.00    |  1.429   |  18.86   |  1.429             |  ✓ No            
+# 2.00       |  3.143   |  12.00    |  2.857   |  37.71   |  2.857             |  ✓ No            
+# 5.00       |  7.857   |  12.00    |  7.143   |  94.29   |  7.143             |  ✓ No            
+# 10.00      |  15.714  |  12.00    |  14.286  |  188.57  |  14.286            |  ✓ No            
+# 50.00      |  78.571  |  12.00    |  71.429  |  942.86  |  71.429            |  ⚠️ YES          
 
 # ============================================================================
 # Data Loading
@@ -95,8 +130,10 @@ def build_embeddings(texts, model_path="./domain_adapted_model"):
     model = SentenceTransformer(model_path)
     print(f"Model loaded from: {model_path}")
     X = model.encode(texts, convert_to_numpy=True, show_progress_bar=True)
+    # if len(X) > 3:
+    #     np.savetxt(f"cve{START_YEAR}-{END_YEAR}.csv", X, delimiter=",")
     print(f"Embeddings shape: {X.shape}, sample: {X[0][:5]}...")
-    return X.astype(np.float64) * 1e1
+    return X.astype(np.float64) * 1.2e1
 
 # ============================================================================
 # Metrics
@@ -501,15 +538,6 @@ def main(dataset_root):
     # Build embeddings
     print("Generating embeddings...")
     emb = build_embeddings(docs)
-
-    # Build ArrowSpace
-    graph_params = {
-        "eps": 0.5,
-        "k": 10,
-        "topk": 10,
-        "p": 2.0,
-        "sigma": 0.25
-    }
 
     print("Building ArrowSpace...")
     start = time.perf_counter()

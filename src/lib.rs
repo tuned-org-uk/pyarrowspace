@@ -298,8 +298,10 @@ impl PyArrowSpaceBuilder {
         if let Some((eps, k, topk, p, sigma)) = parse_graph_params(graph_params).unwrap() {
             builder = builder
                 .with_lambda_graph(eps, k, topk, p, sigma)
-                .with_dims_reduction(true, None)
-                .with_spectral(true)
+                .with_dims_reduction(true, Some(eps))
+                .with_seed(42)
+                //.with_inline_sampling(None)
+                //.with_spectral(true)
                 .with_sparsity_check(false);
         }
         dbg_println("Building from rows");

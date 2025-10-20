@@ -8,3 +8,5 @@ matplotlib
 seaborn
 nltk
 transformers[torch]
+pandas
+pyarrow

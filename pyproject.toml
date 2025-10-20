@@ -13,3 +13,11 @@ classifiers = [
 dynamic = ["version"]
 [tool.maturin]
 features = ["pyo3/extension-module"]
+
+exclude = [
+    "tests/",           # Exclude the entire 'tests' directory
+    ".github/",            # Exclude the 'docs' directory
+    "**/*.pyc",         # Exclude all compiled Python files
+    "*.md",
+    ".gitignore"
+]

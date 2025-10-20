@@ -12,7 +12,7 @@ from arrowspace import ArrowSpaceBuilder, set_debug
 
 set_debug(True)  # optional: Rust-side debug prints to stderr
 
-ALPHA = 0.6
+ALPHA = 0.62
 
 # 1) Load MS MARCO dataset from BEIR
 try:
@@ -37,8 +37,8 @@ queries = []
 query_id_to_idx = {}
 positives = defaultdict(set)  # query_idx -> set of relevant passage indices
 
-CORPUS_SIZE = 1024
-SAMPLE = 1024
+CORPUS_SIZE = 31000
+SAMPLE = 30000
 
 # Process corpus (passages)
 if 'corpus_ds' in locals():
