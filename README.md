@@ -31,14 +31,15 @@ There are other tests but they require downloadin a dataset separately or fine-t
 ## Simplest Example
 
 ```python
+from arrowspace import ArrowSpaceBuilder
 import numpy as np
-from arrowspace import ArrowSpaceBuilder, GraphLaplacian
 
-items = np.array([[0.1, 0.2, 0.3],
-                  [0.0, 0.5, 0.1],
-                  [0.9, 0.1, 0.0]], dtype=np.float64)
+items: np.array = np.array(
+    [[0.1, 0.2, 0.3], [0.0, 0.5, 0.1], [0.9, 0.1, 0.0]],
+    dtype = np.float64
+)
 
-graph_params = {
+graph_params: dict = {
     "eps": 1.0,
     "k": 6,
     "topk": 3,
@@ -46,12 +47,24 @@ graph_params = {
     "sigma": 1.0,
 }
 
-# Returns an ArrowSpace with computed signal graph and lambdas
-aspace = ArrowSpaceBuilder.build(graph_params, items)
+# Create an ArrowSpace instance, returning the computed
+# signal graph and lambdas
+aspace, gl = ArrowSpaceBuilder.build(graph_params, items)
 
-# Search comparable items (defaults: k = nitems, alpha = 0.9, beta = 0.1)
-query = np.array([0.05, 0.2, 0.25], dtype=np.float64)
-hits = aspace.search(query)  # list[(idx, score)]
+# Search comparable items
+# defaults: k = nitems, alpha = 0.9, beta = 0.1
+query: np.array = np.array(
+    [0.05, 0.2, 0.25],
+    dtype = np.float64
+)
+
+tau: float = 1.0
+hits: list = aspace.search(query, gl, tau)
+
+# Search returns a list of `(index, score`) tuples, where
+# expected value from the code above show the first index
+# having the top score, i.e., being nearest.
 
 print(hits)
+# [ (0, 0.989743318610787), (1, 0.7565344158360029), (2, 0.22151940739207396) ]
 ```
