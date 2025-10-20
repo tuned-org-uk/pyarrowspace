@@ -21,8 +21,8 @@ from sklearn.metrics import ndcg_score
 set_debug(True)
 
 # Configuration
-START_YEAR = 2001
-END_YEAR = 2001
+START_YEAR = 1999
+END_YEAR = 2025
 TAU_COSINE = 1.0    # Pure cosine similarity
 TAU_HYBRID = 0.8    # Hybrid: mostly cosine, some spectral
 TAU_TAUMODE = 0.62  # Spectral-aware (taumode)
@@ -37,6 +37,8 @@ graph_params = {
     "p": 2.0,
     "sigma": None
 }
+
+print(f"Graph parameters: {graph_params}")
 
 
 # # Scale × Magnitude Matrix
@@ -125,13 +127,29 @@ def extract_text(j):
     )
     return cve_id or "(unknown)", title or "(no title)", text
 
+def save_parquet(array, filename):
+    import pyarrow as pa
+    import pyarrow.parquet as pq
+    # Convert the NumPy array columns into PyArrow arrays
+    #    .T transposes the array so we can iterate over columns
+    arrow_arrays = [pa.array(col) for col in array.T]
+
+    # Create a PyArrow Table from the arrays
+    #    You must name your columns for the Parquet format
+    column_names = [f'col_{i}' for i in range(array.shape[1])]
+    pa_table = pa.Table.from_arrays(arrow_arrays, names=column_names)
+
+    # Write the PyArrow Table to a Parquet file with zlib compression
+    #    The `compression` parameter is set to 'gzip' for zlib
+    pq.write_table(pa_table, f"{filename}.parquet", compression='gzip')
+
 def build_embeddings(texts, model_path="./domain_adapted_model"):
     """Generate embeddings using fine-tuned model."""
     model = SentenceTransformer(model_path)
     print(f"Model loaded from: {model_path}")
     X = model.encode(texts, convert_to_numpy=True, show_progress_bar=True)
-    # if len(X) > 3:
-    #     np.savetxt(f"cve{START_YEAR}-{END_YEAR}.csv", X, delimiter=",")
+    if len(X) > 3:
+        save_parquet(X.astype(np.float64), f"cve{START_YEAR}-{END_YEAR}")
     print(f"Embeddings shape: {X.shape}, sample: {X[0][:5]}...")
     return X.astype(np.float64) * 1.2e1
 

@@ -3,8 +3,8 @@
 checkpoints
 domain_adapted_model
 domain_adapted_model_old
-cve_*.png
-cve_*.csv
+./cve_*.png
+./cve_*.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
