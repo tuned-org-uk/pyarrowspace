@@ -31,11 +31,11 @@ K_TAIL_MAX = 20     # Analyze tail up to rank 20
 
 # Build ArrowSpace
 graph_params = {
-    "eps": 1.0,
-    "k": 10,
-    "topk": 10,
+    "eps": 1.31,
+    "k": 25,
+    "topk": 15,
     "p": 2.0,
-    "sigma": None
+    "sigma": 0.535
 }
 
 print(f"Graph parameters: {graph_params}")
@@ -148,8 +148,8 @@ def build_embeddings(texts, model_path="./domain_adapted_model"):
     model = SentenceTransformer(model_path)
     print(f"Model loaded from: {model_path}")
     X = model.encode(texts, convert_to_numpy=True, show_progress_bar=True)
-    if len(X) > 3:
-        save_parquet(X.astype(np.float64), f"cve{START_YEAR}-{END_YEAR}")
+    # if len(X) > 3:
+    #     save_parquet(X.astype(np.float64), f"cve{START_YEAR}-{END_YEAR}")
     print(f"Embeddings shape: {X.shape}, sample: {X[0][:5]}...")
     return X.astype(np.float64) * 1.2e1
 

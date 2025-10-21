@@ -1,0 +1,136 @@
+query_id,query_text,tau_method,rank,cve_id,title,score
+1,authenticated arbitrary file read path traversal,Cosine,1,CVE-2004-2290,(no title),0.732930
+1,authenticated arbitrary file read path traversal,Cosine,2,CVE-2002-1345,(no title),0.712015
+1,authenticated arbitrary file read path traversal,Cosine,3,CVE-2009-4053,(no title),0.711535
+1,authenticated arbitrary file read path traversal,Cosine,4,CVE-2009-4957,(no title),0.711151
+1,authenticated arbitrary file read path traversal,Cosine,5,CVE-2002-0347,(no title),0.708238
+1,authenticated arbitrary file read path traversal,Cosine,6,CVE-2024-22050,Iodine Static File Server Path Traversal Vulnerability,0.700541
+1,authenticated arbitrary file read path traversal,Cosine,7,CVE-2009-1314,(no title),0.696821
+1,authenticated arbitrary file read path traversal,Cosine,8,CVE-2007-4842,(no title),0.696573
+1,authenticated arbitrary file read path traversal,Cosine,9,CVE-2008-6785,(no title),0.693550
+1,authenticated arbitrary file read path traversal,Cosine,10,CVE-2008-4319,(no title),0.689600
+1,authenticated arbitrary file read path traversal,Cosine,11,CVE-2007-4546,(no title),0.689322
+1,authenticated arbitrary file read path traversal,Cosine,12,CVE-2006-6757,(no title),0.688741
+1,authenticated arbitrary file read path traversal,Cosine,13,CVE-2015-2780,(no title),0.686817
+1,authenticated arbitrary file read path traversal,Cosine,14,CVE-2003-0839,(no title),0.686451
+1,authenticated arbitrary file read path traversal,Cosine,15,CVE-2004-1376,(no title),0.685377
+1,authenticated arbitrary file read path traversal,Hybrid,1,CVE-2004-2290,(no title),0.784906
+1,authenticated arbitrary file read path traversal,Hybrid,2,CVE-2002-1345,(no title),0.769524
+1,authenticated arbitrary file read path traversal,Hybrid,3,CVE-2009-4957,(no title),0.768876
+1,authenticated arbitrary file read path traversal,Hybrid,4,CVE-2009-4053,(no title),0.768586
+1,authenticated arbitrary file read path traversal,Hybrid,5,CVE-2002-0347,(no title),0.766383
+1,authenticated arbitrary file read path traversal,Hybrid,6,CVE-2007-4842,(no title),0.753989
+1,authenticated arbitrary file read path traversal,Hybrid,7,CVE-2024-22050,Iodine Static File Server Path Traversal Vulnerability,0.753139
+1,authenticated arbitrary file read path traversal,Hybrid,8,CVE-2008-6785,(no title),0.752624
+1,authenticated arbitrary file read path traversal,Hybrid,9,CVE-2009-1314,(no title),0.752165
+1,authenticated arbitrary file read path traversal,Hybrid,10,CVE-2007-4546,(no title),0.751449
+1,authenticated arbitrary file read path traversal,Hybrid,11,CVE-2003-0839,(no title),0.749144
+1,authenticated arbitrary file read path traversal,Hybrid,12,CVE-2015-2780,(no title),0.748941
+1,authenticated arbitrary file read path traversal,Hybrid,13,CVE-2007-3075,(no title),0.747968
+1,authenticated arbitrary file read path traversal,Hybrid,14,CVE-2006-6757,(no title),0.744463
+1,authenticated arbitrary file read path traversal,Hybrid,15,CVE-2004-1376,(no title),0.743614
+1,authenticated arbitrary file read path traversal,Taumode,1,CVE-2004-2290,(no title),0.831685
+1,authenticated arbitrary file read path traversal,Taumode,2,CVE-2002-1345,(no title),0.821283
+1,authenticated arbitrary file read path traversal,Taumode,3,CVE-2009-4957,(no title),0.820828
+1,authenticated arbitrary file read path traversal,Taumode,4,CVE-2009-4053,(no title),0.819931
+1,authenticated arbitrary file read path traversal,Taumode,5,CVE-2002-0347,(no title),0.818713
+1,authenticated arbitrary file read path traversal,Taumode,6,CVE-2007-4546,(no title),0.807364
+1,authenticated arbitrary file read path traversal,Taumode,7,CVE-2008-6785,(no title),0.805789
+1,authenticated arbitrary file read path traversal,Taumode,8,CVE-2007-4842,(no title),0.805664
+1,authenticated arbitrary file read path traversal,Taumode,9,CVE-2003-0839,(no title),0.805567
+1,authenticated arbitrary file read path traversal,Taumode,10,CVE-2015-2780,(no title),0.804853
+1,authenticated arbitrary file read path traversal,Taumode,11,CVE-2007-3075,(no title),0.804505
+1,authenticated arbitrary file read path traversal,Taumode,12,CVE-2009-1314,(no title),0.801974
+1,authenticated arbitrary file read path traversal,Taumode,13,CVE-2024-22050,Iodine Static File Server Path Traversal Vulnerability,0.800478
+1,authenticated arbitrary file read path traversal,Taumode,14,CVE-2021-20651,(no title),0.798657
+1,authenticated arbitrary file read path traversal,Taumode,15,CVE-2006-3611,(no title),0.798427
+2,remote code execution in ERP web component,Cosine,1,CVE-2012-0980,(no title),0.663014
+2,remote code execution in ERP web component,Cosine,2,CVE-2008-6260,(no title),0.659049
+2,remote code execution in ERP web component,Cosine,3,CVE-2008-5223,(no title),0.654827
+2,remote code execution in ERP web component,Cosine,4,CVE-2002-0233,(no title),0.648148
+2,remote code execution in ERP web component,Cosine,5,CVE-2008-2792,(no title),0.639237
+2,remote code execution in ERP web component,Cosine,6,CVE-2006-0821,(no title),0.639022
+2,remote code execution in ERP web component,Cosine,7,CVE-2008-1407,(no title),0.637867
+2,remote code execution in ERP web component,Cosine,8,CVE-2025-26186,(no title),0.636208
+2,remote code execution in ERP web component,Cosine,9,CVE-2008-5269,(no title),0.635772
+2,remote code execution in ERP web component,Cosine,10,CVE-2009-1323,(no title),0.633862
+2,remote code execution in ERP web component,Cosine,11,CVE-2009-1500,(no title),0.633740
+2,remote code execution in ERP web component,Cosine,12,CVE-2005-3407,(no title),0.632479
+2,remote code execution in ERP web component,Cosine,13,CVE-2014-8366,(no title),0.632059
+2,remote code execution in ERP web component,Cosine,14,CVE-2008-1858,(no title),0.630856
+2,remote code execution in ERP web component,Cosine,15,CVE-2009-1766,(no title),0.630828
+2,remote code execution in ERP web component,Hybrid,1,CVE-2012-0980,(no title),0.730273
+2,remote code execution in ERP web component,Hybrid,2,CVE-2008-6260,(no title),0.727105
+2,remote code execution in ERP web component,Hybrid,3,CVE-2008-5223,(no title),0.723676
+2,remote code execution in ERP web component,Hybrid,4,CVE-2002-0233,(no title),0.715059
+2,remote code execution in ERP web component,Hybrid,5,CVE-2008-2792,(no title),0.711181
+2,remote code execution in ERP web component,Hybrid,6,CVE-2006-0821,(no title),0.711042
+2,remote code execution in ERP web component,Hybrid,7,CVE-2008-1407,(no title),0.710210
+2,remote code execution in ERP web component,Hybrid,8,CVE-2025-26186,(no title),0.708962
+2,remote code execution in ERP web component,Hybrid,9,CVE-2008-5269,(no title),0.708363
+2,remote code execution in ERP web component,Hybrid,10,CVE-2009-1500,(no title),0.706802
+2,remote code execution in ERP web component,Hybrid,11,CVE-2005-3407,(no title),0.705784
+2,remote code execution in ERP web component,Hybrid,12,CVE-2008-1858,(no title),0.704660
+2,remote code execution in ERP web component,Hybrid,13,CVE-2009-1766,(no title),0.704657
+2,remote code execution in ERP web component,Hybrid,14,CVE-2015-6852,(no title),0.703420
+2,remote code execution in ERP web component,Hybrid,15,CVE-2009-0330,(no title),0.702630
+2,remote code execution in ERP web component,Taumode,1,CVE-2012-0980,(no title),0.790806
+2,remote code execution in ERP web component,Taumode,2,CVE-2008-6260,(no title),0.788354
+2,remote code execution in ERP web component,Taumode,3,CVE-2008-5223,(no title),0.785641
+2,remote code execution in ERP web component,Taumode,4,CVE-2008-2792,(no title),0.775931
+2,remote code execution in ERP web component,Taumode,5,CVE-2006-0821,(no title),0.775859
+2,remote code execution in ERP web component,Taumode,6,CVE-2008-1407,(no title),0.775318
+2,remote code execution in ERP web component,Taumode,7,CVE-2002-0233,(no title),0.775279
+2,remote code execution in ERP web component,Taumode,8,CVE-2025-26186,(no title),0.774440
+2,remote code execution in ERP web component,Taumode,9,CVE-2008-5269,(no title),0.773694
+2,remote code execution in ERP web component,Taumode,10,CVE-2009-1500,(no title),0.772557
+2,remote code execution in ERP web component,Taumode,11,CVE-2005-3407,(no title),0.771759
+2,remote code execution in ERP web component,Taumode,12,CVE-2009-1766,(no title),0.771103
+2,remote code execution in ERP web component,Taumode,13,CVE-2008-1858,(no title),0.771084
+2,remote code execution in ERP web component,Taumode,14,CVE-2015-6852,(no title),0.770033
+2,remote code execution in ERP web component,Taumode,15,CVE-2009-0330,(no title),0.769308
+3,SQL injection in login endpoint,Cosine,1,CVE-2007-5916,(no title),0.762977
+3,SQL injection in login endpoint,Cosine,2,CVE-2009-3430,(no title),0.735255
+3,SQL injection in login endpoint,Cosine,3,CVE-2014-1466,(no title),0.733803
+3,SQL injection in login endpoint,Cosine,4,CVE-2008-1631,(no title),0.731077
+3,SQL injection in login endpoint,Cosine,5,CVE-2008-5573,(no title),0.726091
+3,SQL injection in login endpoint,Cosine,6,CVE-2008-6582,(no title),0.724368
+3,SQL injection in login endpoint,Cosine,7,CVE-2008-6941,(no title),0.721983
+3,SQL injection in login endpoint,Cosine,8,CVE-2009-0738,(no title),0.721961
+3,SQL injection in login endpoint,Cosine,9,CVE-2006-0192,(no title),0.721240
+3,SQL injection in login endpoint,Cosine,10,CVE-2008-6332,(no title),0.721124
+3,SQL injection in login endpoint,Cosine,11,CVE-2009-2354,(no title),0.720950
+3,SQL injection in login endpoint,Cosine,12,CVE-2005-2012,(no title),0.718151
+3,SQL injection in login endpoint,Cosine,13,CVE-2005-3046,(no title),0.717447
+3,SQL injection in login endpoint,Cosine,14,CVE-2006-3190,(no title),0.716731
+3,SQL injection in login endpoint,Cosine,15,CVE-2008-6220,(no title),0.714687
+3,SQL injection in login endpoint,Hybrid,1,CVE-2007-5916,(no title),0.804587
+3,SQL injection in login endpoint,Hybrid,2,CVE-2009-3430,(no title),0.788097
+3,SQL injection in login endpoint,Hybrid,3,CVE-2008-1631,(no title),0.782602
+3,SQL injection in login endpoint,Hybrid,4,CVE-2008-6582,(no title),0.779258
+3,SQL injection in login endpoint,Hybrid,5,CVE-2014-1466,(no title),0.778317
+3,SQL injection in login endpoint,Hybrid,6,CVE-2009-0738,(no title),0.777527
+3,SQL injection in login endpoint,Hybrid,7,CVE-2008-6332,(no title),0.772666
+3,SQL injection in login endpoint,Hybrid,8,CVE-2005-3046,(no title),0.772416
+3,SQL injection in login endpoint,Hybrid,9,CVE-2006-3190,(no title),0.772142
+3,SQL injection in login endpoint,Hybrid,10,CVE-2006-0192,(no title),0.771834
+3,SQL injection in login endpoint,Hybrid,11,CVE-2008-6220,(no title),0.771741
+3,SQL injection in login endpoint,Hybrid,12,CVE-2009-2354,(no title),0.770276
+3,SQL injection in login endpoint,Hybrid,13,CVE-2005-2012,(no title),0.770004
+3,SQL injection in login endpoint,Hybrid,14,CVE-2008-5573,(no title),0.769759
+3,SQL injection in login endpoint,Hybrid,15,CVE-2008-6941,(no title),0.769383
+3,SQL injection in login endpoint,Taumode,1,CVE-2007-5916,(no title),0.842036
+3,SQL injection in login endpoint,Taumode,2,CVE-2009-3430,(no title),0.835655
+3,SQL injection in login endpoint,Taumode,3,CVE-2008-1631,(no title),0.828974
+3,SQL injection in login endpoint,Taumode,4,CVE-2008-6582,(no title),0.828658
+3,SQL injection in login endpoint,Taumode,5,CVE-2009-0738,(no title),0.827536
+3,SQL injection in login endpoint,Taumode,6,CVE-2008-6220,(no title),0.823089
+3,SQL injection in login endpoint,Taumode,7,CVE-2006-3190,(no title),0.822012
+3,SQL injection in login endpoint,Taumode,8,CVE-2005-3046,(no title),0.821887
+3,SQL injection in login endpoint,Taumode,9,CVE-2008-6332,(no title),0.819054
+3,SQL injection in login endpoint,Taumode,10,CVE-2014-1466,(no title),0.818381
+3,SQL injection in login endpoint,Taumode,11,CVE-2009-3543,(no title),0.817618
+3,SQL injection in login endpoint,Taumode,12,CVE-2006-0192,(no title),0.817369
+3,SQL injection in login endpoint,Taumode,13,CVE-2007-3534,(no title),0.816977
+3,SQL injection in login endpoint,Taumode,14,CVE-2005-2012,(no title),0.816671
+3,SQL injection in login endpoint,Taumode,15,CVE-2024-51327,(no title),0.814922
