@@ -1,0 +1,23 @@
+{
+  "dataset": "MS MARCO (BeIR)",
+  "dataset_size": 81039,
+  "num_queries": 50,
+  "tau": 0.62,
+  "metrics": {
+    "cosine": {
+      "recall@10": 0.91,
+      "mrr": 0.5119880952380952,
+      "ndcg@10": 0.6027276004058828
+    },
+    "lambda_aware": {
+      "recall@10": 0.91,
+      "mrr": 0.5241190476190475,
+      "ndcg@10": 0.6134569301593517
+    },
+    "improvements": {
+      "recall@10_pct": 0.0,
+      "mrr_pct": 2.3693817285558008,
+      "ndcg@10_pct": 1.7801291572251898
+    }
+  }
+}

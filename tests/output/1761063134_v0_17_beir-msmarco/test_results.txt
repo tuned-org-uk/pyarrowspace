@@ -1,0 +1,131 @@
+EPS = 10.0
+SCALING = 1e2
+TAU = 0.62
+
+Error loading BeIR dataset: Dataset scripts are no longer supported, but found msmarco.py
+Falling back to huggingface MS MARCO dataset...
+Loaded MS MARCO validation: 10047 samples
+Total passages: 81039
+Total queries: 10047
+Queries with positives: 9706
+Loading embedding model: sentence-transformers/all-mpnet-base-v2
+Embedding corpus...
+Query embeddings shape: (10047, 768)
+Dataset size: 81039 | Evaluation queries: 50
+Building ArrowSpace on corpus subset...
+Sample embedding shape: (768,)
+Sample normalized embedding: [ 3.4251354  -0.18750563  0.08075494  3.9714859  -2.1901624 ]
+Build space
+[pyarrowspace] Convert pyarray2 and Vec<Vec>
+[pyarrowspace] items shape: (81039, 768)
+[pyarrowspace] items[0][:5]: [3.425135374069214, -0.18750563263893127, 0.08075494319200516, 3.9714858531951904, -2.190162420272827]
+[pyarrowspace] NaNs: 0, Infs: 0
+[pyarrowspace] Building from rows
+[pyarrowspace] built ArrowSpace: nitems=81039, nfeatures=768, lambdas_len=81039
+Execution time: 335.433526 seconds
+Running evaluation...
+Processed 0/50 queries
+[pyarrowspace] search: qlen=768, lambda_q=0.042140
+[pyarrowspace] search: qlen=768, lambda_q=0.018548
+[pyarrowspace] search: qlen=768, lambda_q=0.045517
+[pyarrowspace] search: qlen=768, lambda_q=0.006736
+[pyarrowspace] search: qlen=768, lambda_q=0.017445
+[pyarrowspace] search: qlen=768, lambda_q=0.052358
+[pyarrowspace] search: qlen=768, lambda_q=0.007671
+[pyarrowspace] search: qlen=768, lambda_q=0.052311
+[pyarrowspace] search: qlen=768, lambda_q=0.006145
+[pyarrowspace] search: qlen=768, lambda_q=0.007733
+Processed 10/50 queries
+[pyarrowspace] search: qlen=768, lambda_q=0.007978
+[pyarrowspace] search: qlen=768, lambda_q=0.007712
+[pyarrowspace] search: qlen=768, lambda_q=0.060891
+[pyarrowspace] search: qlen=768, lambda_q=0.007425
+[pyarrowspace] search: qlen=768, lambda_q=0.006416
+[pyarrowspace] search: qlen=768, lambda_q=0.018864
+[pyarrowspace] search: qlen=768, lambda_q=0.022279
+[pyarrowspace] search: qlen=768, lambda_q=0.016042
+[pyarrowspace] search: qlen=768, lambda_q=0.071276
+[pyarrowspace] search: qlen=768, lambda_q=0.008963
+Processed 20/50 queries
+[pyarrowspace] search: qlen=768, lambda_q=0.006200
+[pyarrowspace] search: qlen=768, lambda_q=0.045114
+[pyarrowspace] search: qlen=768, lambda_q=0.007895
+[pyarrowspace] search: qlen=768, lambda_q=0.033988
+[pyarrowspace] search: qlen=768, lambda_q=0.006842
+[pyarrowspace] search: qlen=768, lambda_q=0.007517
+[pyarrowspace] search: qlen=768, lambda_q=0.039837
+[pyarrowspace] search: qlen=768, lambda_q=0.048413
+[pyarrowspace] search: qlen=768, lambda_q=0.016673
+[pyarrowspace] search: qlen=768, lambda_q=0.006973
+Processed 30/50 queries
+[pyarrowspace] search: qlen=768, lambda_q=0.009413
+[pyarrowspace] search: qlen=768, lambda_q=0.035989
+[pyarrowspace] search: qlen=768, lambda_q=0.013728
+[pyarrowspace] search: qlen=768, lambda_q=0.020039
+[pyarrowspace] search: qlen=768, lambda_q=0.016144
+[pyarrowspace] search: qlen=768, lambda_q=0.006238
+[pyarrowspace] search: qlen=768, lambda_q=0.038948
+[pyarrowspace] search: qlen=768, lambda_q=0.008186
+[pyarrowspace] search: qlen=768, lambda_q=0.007058
+[pyarrowspace] search: qlen=768, lambda_q=0.007282
+Processed 40/50 queries
+[pyarrowspace] search: qlen=768, lambda_q=0.038731
+[pyarrowspace] search: qlen=768, lambda_q=0.033319
+[pyarrowspace] search: qlen=768, lambda_q=0.006908
+[pyarrowspace] search: qlen=768, lambda_q=0.030212
+[pyarrowspace] search: qlen=768, lambda_q=0.013138
+[pyarrowspace] search: qlen=768, lambda_q=0.006100
+[pyarrowspace] search: qlen=768, lambda_q=0.008018
+[pyarrowspace] search: qlen=768, lambda_q=0.007193
+[pyarrowspace] search: qlen=768, lambda_q=0.015649
+[pyarrowspace] search: qlen=768, lambda_q=0.006615
+
+============================================================
+EVALUATION RESULTS (MS MARCO)
+============================================================
+Evaluated queries: 50
+Dataset size: 81039
+Tau parameter: 0.62
+
+Method                    Recall@10    MRR          nDCG@10     
+------------------------------------------------------------
+Cosine Similarity         0.9100       0.5120       0.6027      
+Lambda-aware (ArrowSpace) 0.9100       0.5241       0.6135      
+------------------------------------------------------------
+Improvement                     +0.00%       +2.37%       +1.78%
+============================================================
+
+Statistical Significance (paired t-test):
+------------------------------------------------------------
+Recall@10:
+  t-statistic:      nan  |  p-value: nan
+  Significant: ✗ No
+MRR:
+  t-statistic:   0.8359  |  p-value: 0.407252
+  Significant: ✗ No
+nDCG@10:
+  t-statistic:   1.0087  |  p-value: 0.318062
+  Significant: ✗ No
+============================================================
+
+Per-Query Performance Analysis:
+------------------------------------------------------------
+
+Top 3 Improvements (Lambda vs Cosine):
+  1. Query 1899: nDCG improvement = +0.3691
+     Cosine: 0.6309 → Lambda: 1.0000
+  2. Query 2321: nDCG improvement = +0.2441
+     Cosine: 0.3869 → Lambda: 0.6309
+  3. Query 829: nDCG improvement = +0.1309
+     Cosine: 0.5000 → Lambda: 0.6309
+
+Top 3 Degradations:
+  1. Query 6840: nDCG change = -0.1497
+     Cosine: 0.3869 → Lambda: 0.2372
+  2. Query 5690: nDCG change = -0.1309
+     Cosine: 0.6309 → Lambda: 0.5000
+  3. Query 7266: nDCG change = -0.0745
+     Cosine: 0.4307 → Lambda: 0.3562
+============================================================
+
+✓ Results saved to: beir_evaluation_results.json

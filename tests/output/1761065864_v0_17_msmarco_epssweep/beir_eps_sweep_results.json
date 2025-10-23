@@ -1,0 +1,71 @@
+{
+  "dataset": "MS MARCO (BeIR)",
+  "dataset_size": 81039,
+  "num_queries": 50,
+  "tau": 0.62,
+  "scaling": 100.0,
+  "eps_sweep": {
+    "base_eps": 10.0,
+    "tested_values": [
+      5.0,
+      10.0,
+      15.0
+    ],
+    "successful_values": [
+      5.0,
+      10.0,
+      15.0
+    ],
+    "failed_values": []
+  },
+  "results_by_eps": {
+    "5.0": {
+      "eps": 5.0,
+      "build_status": "SUCCESS",
+      "build_time": 339.18096926400176,
+      "metrics": {
+        "recall@10": 0.89,
+        "mrr": 0.5082375957375957,
+        "ndcg@10": 0.5954652065239461
+      }
+    },
+    "10.0": {
+      "eps": 10.0,
+      "build_status": "SUCCESS",
+      "build_time": 329.65426268100055,
+      "metrics": {
+        "recall@10": 0.91,
+        "mrr": 0.5059042624042625,
+        "ndcg@10": 0.598611700730456
+      }
+    },
+    "15.0": {
+      "eps": 15.0,
+      "build_status": "SUCCESS",
+      "build_time": 330.2731708350002,
+      "metrics": {
+        "recall@10": 0.89,
+        "mrr": 0.5142375957375956,
+        "ndcg@10": 0.5997180225593326
+      }
+    }
+  },
+  "best_configs": {
+    "best_recall": {
+      "eps": 10.0,
+      "value": 0.91
+    },
+    "best_mrr": {
+      "eps": 15.0,
+      "value": 0.5142375957375956
+    },
+    "best_ndcg": {
+      "eps": 15.0,
+      "value": 0.5997180225593326
+    },
+    "fastest_build": {
+      "eps": 10.0,
+      "time": 329.65426268100055
+    }
+  }
+}

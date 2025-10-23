@@ -1,0 +1,53 @@
+{
+  "dataset": "MS MARCO (BeIR)",
+  "dataset_size": 81039,
+  "num_queries": 50,
+  "graph_params": {
+    "eps": 10.0,
+    "k": 25,
+    "topk": 15,
+    "p": 2.0,
+    "sigma": null
+  },
+  "tau_modes": {
+    "cosine": 1.0,
+    "taumode": 0.62,
+    "extra-taumode": 0.42
+  },
+  "results_by_mode": {
+    "cosine": {
+      "tau": 1.0,
+      "metrics": {
+        "recall@10": 0.91,
+        "mrr": 0.5107380952380952,
+        "ndcg@10": 0.6027276004058828
+      }
+    },
+    "taumode": {
+      "tau": 0.62,
+      "metrics": {
+        "recall@10": 0.89,
+        "mrr": 0.5132375957375956,
+        "ndcg@10": 0.5988415475425557
+      },
+      "improvements_vs_cosine": {
+        "recall@10_pct": -2.1978021978021998,
+        "mrr_pct": 0.48938986983832,
+        "ndcg@10_pct": -0.6447444684315432
+      }
+    },
+    "extra-taumode": {
+      "tau": 0.42,
+      "metrics": {
+        "recall@10": 0.86,
+        "mrr": 0.5006185481185481,
+        "ndcg@10": 0.5790276043937586
+      },
+      "improvements_vs_cosine": {
+        "recall@10_pct": -5.494505494505499,
+        "mrr_pct": -1.9813574146705433,
+        "ndcg@10_pct": -3.9321238974562363
+      }
+    }
+  }
+}

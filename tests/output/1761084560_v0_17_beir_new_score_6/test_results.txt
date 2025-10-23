@@ -1,0 +1,105 @@
+Loading MS MARCO dataset...
+Error: Dataset scripts are no longer supported, but found msmarco.py. Using fallback dataset...
+Loaded MS MARCO validation: 10047 samples
+Processing fallback dataset...
+  Processed 0/90000 samples
+  Processed 10000/90000 samples
+Corpus: 81039 | Queries: 10047 | Relevant pairs: 10783
+Loading model: sentence-transformers/all-mpnet-base-v2
+Embedding corpus in batches of 256...
+Concatenating query embeddings...
+Query embeddings: (10047, 768)
+Finding valid evaluation queries...
+Dataset size: 10000 | Eval queries: 10
+Extracting corpus subset...
+Building ArrowSpace...
+[pyarrowspace] Convert pyarray2 and Vec<Vec>
+[pyarrowspace] items shape: (10000, 768)
+[pyarrowspace] items[0][:5]: [6.0137715339660645, -6.58039665222168, -5.753068923950195, -5.657812118530273, 0.32298803329467773]
+[pyarrowspace] NaNs: 0, Infs: 0
+[pyarrowspace] Building from rows
+[pyarrowspace] built ArrowSpace: nitems=10000, nfeatures=768, lambdas_len=10000
+ArrowSpace built in 85.27s
+Building kNN graph for topology metrics...
+Graph: 10000 nodes, 102906 edges
+Detecting communities...
+Detected 9 communities
+
+=====================================================================================
+RUNNING EVALUATION ON 10 QUERIES
+=====================================================================================
+
+Query 1/10: q_idx=3458
+[pyarrowspace] search: qlen=768, lambda_q=0.030851
+  Cosine  → G-RBP=0.0363 | TD-nDCG=1.0000 | IT-ERR=0.1209 | MRR-Topo=0.3627 | SQI=0.3425
+  Lambda  → G-RBP=0.0363 | TD-nDCG=1.0000 | IT-ERR=0.1209 | MRR-Topo=0.3627 | SQI=0.3849
+  RBO-S = 0.7592
+
+Query 2/10: q_idx=2303
+[pyarrowspace] search: qlen=768, lambda_q=0.068138
+  Cosine  → G-RBP=0.0363 | TD-nDCG=0.9563 | IT-ERR=0.1211 | MRR-Topo=0.3634 | SQI=0.4395
+  Lambda  → G-RBP=0.0363 | TD-nDCG=0.9503 | IT-ERR=0.1211 | MRR-Topo=0.3634 | SQI=0.4852
+  RBO-S = 0.7552
+
+Query 3/10: q_idx=5078
+[pyarrowspace] search: qlen=768, lambda_q=0.061567
+  Cosine  → G-RBP=0.0307 | TD-nDCG=0.5930 | IT-ERR=0.0569 | MRR-Topo=0.1707 | SQI=0.3718
+  Lambda  → G-RBP=0.0307 | TD-nDCG=0.5930 | IT-ERR=0.0569 | MRR-Topo=0.1707 | SQI=0.3718
+  RBO-S = 0.7802
+
+Query 4/10: q_idx=434
+[pyarrowspace] search: qlen=768, lambda_q=0.007373
+  Cosine  → G-RBP=0.0300 | TD-nDCG=0.5802 | IT-ERR=0.0556 | MRR-Topo=0.1669 | SQI=0.4271
+  Lambda  → G-RBP=0.0300 | TD-nDCG=0.5802 | IT-ERR=0.0556 | MRR-Topo=0.1669 | SQI=0.4468
+  RBO-S = 0.6946
+
+Query 5/10: q_idx=9408
+[pyarrowspace] search: qlen=768, lambda_q=0.023031
+  Cosine  → G-RBP=0.0150 | TD-nDCG=0.2880 | IT-ERR=0.0278 | MRR-Topo=0.0835 | SQI=0.2704
+  Lambda  → G-RBP=0.0150 | TD-nDCG=0.2880 | IT-ERR=0.0278 | MRR-Topo=0.0835 | SQI=0.2876
+  RBO-S = 0.7519
+
+Query 6/10: q_idx=2708
+[pyarrowspace] search: qlen=768, lambda_q=0.018976
+  Cosine  → G-RBP=0.0364 | TD-nDCG=0.9742 | IT-ERR=0.1213 | MRR-Topo=0.3640 | SQI=0.4169
+  Lambda  → G-RBP=0.0364 | TD-nDCG=0.9742 | IT-ERR=0.1213 | MRR-Topo=0.3640 | SQI=0.4169
+  RBO-S = 0.7727
+
+Query 7/10: q_idx=1737
+[pyarrowspace] search: qlen=768, lambda_q=0.008907
+  Cosine  → G-RBP=0.0365 | TD-nDCG=0.8941 | IT-ERR=0.1217 | MRR-Topo=0.3651 | SQI=0.5282
+  Lambda  → G-RBP=0.0365 | TD-nDCG=0.8900 | IT-ERR=0.1217 | MRR-Topo=0.3651 | SQI=0.5291
+  RBO-S = 0.7497
+
+Query 8/10: q_idx=7681
+[pyarrowspace] search: qlen=768, lambda_q=0.028079
+  Cosine  → G-RBP=0.0362 | TD-nDCG=1.0000 | IT-ERR=0.1208 | MRR-Topo=0.3624 | SQI=0.3244
+  Lambda  → G-RBP=0.0362 | TD-nDCG=0.9848 | IT-ERR=0.1208 | MRR-Topo=0.3624 | SQI=0.3187
+  RBO-S = 0.7489
+
+Query 9/10: q_idx=6637
+[pyarrowspace] search: qlen=768, lambda_q=0.055181
+  Cosine  → G-RBP=0.0154 | TD-nDCG=0.2847 | IT-ERR=0.0133 | MRR-Topo=0.0398 | SQI=0.5027
+  Lambda  → G-RBP=0.0154 | TD-nDCG=0.2838 | IT-ERR=0.0133 | MRR-Topo=0.0398 | SQI=0.5049
+  RBO-S = 0.7512
+
+Query 10/10: q_idx=6433
+[pyarrowspace] search: qlen=768, lambda_q=0.013718
+  Cosine  → G-RBP=0.0364 | TD-nDCG=1.0000 | IT-ERR=0.1213 | MRR-Topo=0.3639 | SQI=0.4346
+  Lambda  → G-RBP=0.0364 | TD-nDCG=1.0000 | IT-ERR=0.1213 | MRR-Topo=0.3639 | SQI=0.4346
+  RBO-S = 0.7453
+
+
+===============================================================================================
+SUMMARY: TOPOLOGY-AWARE METRICS (Mean over 10 queries)
+===============================================================================================
+
+Method                    G-RBP        TD-nDCG      IT-ERR       MRR-Topo     SQI@k        RBO-S       
+-----------------------------------------------------------------------------------------------
+Cosine Similarity         0.0309       0.7570       0.0881       0.2642       0.4058       0.7509      
+Lambda-aware (ArrowSpace) 0.0309       0.7544       0.0881       0.2642       0.4181       0.7509      
+-----------------------------------------------------------------------------------------------
+Improvement (%)           +0.00%       -0.34%       +0.00%       +0.00%       +3.02%       +0.00% 
+===============================================================================================
+
+✓ Results saved to: topology_aware_evaluation.json

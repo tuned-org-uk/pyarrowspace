@@ -1,0 +1,305 @@
+(.venv) lorenzo@lorenzo-tuxedo:/datadisk/publish/pyarrowspace$ python tests/test_5_msmarco_eps_sweep.py 
+EPS sweep values: [5.0, 10.0, 15.0]
+Error loading BeIR dataset: Dataset scripts are no longer supported, but found msmarco.py
+Loaded MS MARCO validation: 10047 samples
+Total passages: 81039
+Total queries: 10047
+Queries with positives: 9706
+Loading embedding model: sentence-transformers/all-mpnet-base-v2
+Embedding corpus...
+Corpus embeddings shape: (81039, 768)
+Embedding queries...
+Batches: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 314/314 [00:07<00:00, 41.47it/s]
+Query embeddings shape: (10047, 768)
+Dataset size: 81039 | Evaluation queries: 50
+
+================================================================================
+BUILDING ARROWSPACE WITH EPS SWEEP
+================================================================================
+
+================================================================================
+Testing EPS = 5.0
+================================================================================
+[pyarrowspace] Convert pyarray2 and Vec<Vec>
+[pyarrowspace] items shape: (81039, 768)
+[pyarrowspace] items[0][:5]: [3.425135374069214, -0.18750563263893127, 0.08075494319200516, 3.9714858531951904, -2.190162420272827]
+[pyarrowspace] NaNs: 0, Infs: 0
+[pyarrowspace] Building from rows
+[pyarrowspace] built ArrowSpace: nitems=81039, nfeatures=768, lambdas_len=81039
+✓ Build successful in 339.18s
+
+================================================================================
+Testing EPS = 10.0
+================================================================================
+[pyarrowspace] Convert pyarray2 and Vec<Vec>
+[pyarrowspace] items shape: (81039, 768)
+[pyarrowspace] items[0][:5]: [3.425135374069214, -0.18750563263893127, 0.08075494319200516, 3.9714858531951904, -2.190162420272827]
+[pyarrowspace] NaNs: 0, Infs: 0
+[pyarrowspace] Building from rows
+[pyarrowspace] built ArrowSpace: nitems=81039, nfeatures=768, lambdas_len=81039
+✓ Build successful in 329.65s
+
+================================================================================
+Testing EPS = 15.0
+================================================================================
+[pyarrowspace] Convert pyarray2 and Vec<Vec>
+[pyarrowspace] items shape: (81039, 768)
+[pyarrowspace] items[0][:5]: [3.425135374069214, -0.18750563263893127, 0.08075494319200516, 3.9714858531951904, -2.190162420272827]
+[pyarrowspace] NaNs: 0, Infs: 0
+[pyarrowspace] Building from rows
+[pyarrowspace] built ArrowSpace: nitems=81039, nfeatures=768, lambdas_len=81039
+✓ Build successful in 330.27s
+
+================================================================================
+BUILD SUMMARY
+================================================================================
+EPS        Status          Build Time (s) 
+--------------------------------------------------------------------------------
+5.000      SUCCESS         339.18         
+10.000     SUCCESS         329.65         
+15.000     SUCCESS         330.27         
+================================================================================
+
+✓ 3/3 EPS values built successfully
+  Successful EPS: [5.0, 10.0, 15.0]
+
+================================================================================
+RUNNING EVALUATION FOR ALL SUCCESSFUL EPS VALUES
+================================================================================
+
+================================================================================
+Evaluating EPS = 5.0 (tau=0.62)
+================================================================================
+Running 50 queries...
+  Processed 0/50 queries
+[pyarrowspace] search: qlen=768, lambda_q=0.013059
+[pyarrowspace] search: qlen=768, lambda_q=0.008375
+[pyarrowspace] search: qlen=768, lambda_q=0.007387
+[pyarrowspace] search: qlen=768, lambda_q=0.062603
+[pyarrowspace] search: qlen=768, lambda_q=0.098638
+[pyarrowspace] search: qlen=768, lambda_q=0.012496
+[pyarrowspace] search: qlen=768, lambda_q=0.006299
+[pyarrowspace] search: qlen=768, lambda_q=0.006313
+[pyarrowspace] search: qlen=768, lambda_q=0.006788
+[pyarrowspace] search: qlen=768, lambda_q=0.007876
+  Processed 10/50 queries
+[pyarrowspace] search: qlen=768, lambda_q=0.031656
+[pyarrowspace] search: qlen=768, lambda_q=0.039240
+[pyarrowspace] search: qlen=768, lambda_q=0.007244
+[pyarrowspace] search: qlen=768, lambda_q=0.032950
+[pyarrowspace] search: qlen=768, lambda_q=0.007036
+[pyarrowspace] search: qlen=768, lambda_q=0.007308
+[pyarrowspace] search: qlen=768, lambda_q=0.014206
+[pyarrowspace] search: qlen=768, lambda_q=0.007078
+[pyarrowspace] search: qlen=768, lambda_q=0.093130
+[pyarrowspace] search: qlen=768, lambda_q=0.008005
+  Processed 20/50 queries
+[pyarrowspace] search: qlen=768, lambda_q=0.029276
+[pyarrowspace] search: qlen=768, lambda_q=0.005876
+[pyarrowspace] search: qlen=768, lambda_q=0.017393
+[pyarrowspace] search: qlen=768, lambda_q=0.071022
+[pyarrowspace] search: qlen=768, lambda_q=0.006925
+[pyarrowspace] search: qlen=768, lambda_q=0.042682
+[pyarrowspace] search: qlen=768, lambda_q=0.074479
+[pyarrowspace] search: qlen=768, lambda_q=0.008276
+[pyarrowspace] search: qlen=768, lambda_q=0.006287
+[pyarrowspace] search: qlen=768, lambda_q=0.042588
+  Processed 30/50 queries
+[pyarrowspace] search: qlen=768, lambda_q=0.006585
+[pyarrowspace] search: qlen=768, lambda_q=0.074518
+[pyarrowspace] search: qlen=768, lambda_q=0.006638
+[pyarrowspace] search: qlen=768, lambda_q=0.006954
+[pyarrowspace] search: qlen=768, lambda_q=0.080031
+[pyarrowspace] search: qlen=768, lambda_q=0.006298
+[pyarrowspace] search: qlen=768, lambda_q=0.009349
+[pyarrowspace] search: qlen=768, lambda_q=0.006521
+[pyarrowspace] search: qlen=768, lambda_q=0.008387
+[pyarrowspace] search: qlen=768, lambda_q=0.007212
+  Processed 40/50 queries
+[pyarrowspace] search: qlen=768, lambda_q=0.006637
+[pyarrowspace] search: qlen=768, lambda_q=0.006593
+[pyarrowspace] search: qlen=768, lambda_q=0.007015
+[pyarrowspace] search: qlen=768, lambda_q=0.008300
+[pyarrowspace] search: qlen=768, lambda_q=0.023567
+[pyarrowspace] search: qlen=768, lambda_q=0.006246
+[pyarrowspace] search: qlen=768, lambda_q=0.026357
+[pyarrowspace] search: qlen=768, lambda_q=0.007181
+[pyarrowspace] search: qlen=768, lambda_q=0.029747
+[pyarrowspace] search: qlen=768, lambda_q=0.007601
+
+Results for EPS = 5.0:
+  Build time: 339.18s
+  Recall@10:  0.8900
+  MRR:        0.5082
+  nDCG@10:    0.5955
+
+================================================================================
+Evaluating EPS = 10.0 (tau=0.62)
+================================================================================
+Running 50 queries...
+  Processed 0/50 queries
+[pyarrowspace] search: qlen=768, lambda_q=0.015370
+[pyarrowspace] search: qlen=768, lambda_q=0.036228
+[pyarrowspace] search: qlen=768, lambda_q=0.037114
+[pyarrowspace] search: qlen=768, lambda_q=0.022384
+[pyarrowspace] search: qlen=768, lambda_q=0.006744
+[pyarrowspace] search: qlen=768, lambda_q=0.007503
+[pyarrowspace] search: qlen=768, lambda_q=0.017153
+[pyarrowspace] search: qlen=768, lambda_q=0.006461
+[pyarrowspace] search: qlen=768, lambda_q=0.051714
+[pyarrowspace] search: qlen=768, lambda_q=0.006504
+  Processed 10/50 queries
+[pyarrowspace] search: qlen=768, lambda_q=0.027942
+[pyarrowspace] search: qlen=768, lambda_q=0.006447
+[pyarrowspace] search: qlen=768, lambda_q=0.007970
+[pyarrowspace] search: qlen=768, lambda_q=0.020727
+[pyarrowspace] search: qlen=768, lambda_q=0.027778
+[pyarrowspace] search: qlen=768, lambda_q=0.039162
+[pyarrowspace] search: qlen=768, lambda_q=0.009090
+[pyarrowspace] search: qlen=768, lambda_q=0.084613
+[pyarrowspace] search: qlen=768, lambda_q=0.008401
+[pyarrowspace] search: qlen=768, lambda_q=0.060792
+  Processed 20/50 queries
+[pyarrowspace] search: qlen=768, lambda_q=0.055049
+[pyarrowspace] search: qlen=768, lambda_q=0.006597
+[pyarrowspace] search: qlen=768, lambda_q=0.007660
+[pyarrowspace] search: qlen=768, lambda_q=0.026212
+[pyarrowspace] search: qlen=768, lambda_q=0.071449
+[pyarrowspace] search: qlen=768, lambda_q=0.006586
+[pyarrowspace] search: qlen=768, lambda_q=0.006637
+[pyarrowspace] search: qlen=768, lambda_q=0.044443
+[pyarrowspace] search: qlen=768, lambda_q=0.007943
+[pyarrowspace] search: qlen=768, lambda_q=0.094255
+  Processed 30/50 queries
+[pyarrowspace] search: qlen=768, lambda_q=0.006304
+[pyarrowspace] search: qlen=768, lambda_q=0.009059
+[pyarrowspace] search: qlen=768, lambda_q=0.038761
+[pyarrowspace] search: qlen=768, lambda_q=0.093780
+[pyarrowspace] search: qlen=768, lambda_q=0.033788
+[pyarrowspace] search: qlen=768, lambda_q=0.008890
+[pyarrowspace] search: qlen=768, lambda_q=0.007297
+[pyarrowspace] search: qlen=768, lambda_q=0.007196
+[pyarrowspace] search: qlen=768, lambda_q=0.027231
+[pyarrowspace] search: qlen=768, lambda_q=0.096478
+  Processed 40/50 queries
+[pyarrowspace] search: qlen=768, lambda_q=0.007055
+[pyarrowspace] search: qlen=768, lambda_q=0.006929
+[pyarrowspace] search: qlen=768, lambda_q=0.007570
+[pyarrowspace] search: qlen=768, lambda_q=0.039820
+[pyarrowspace] search: qlen=768, lambda_q=0.007838
+[pyarrowspace] search: qlen=768, lambda_q=0.020798
+[pyarrowspace] search: qlen=768, lambda_q=0.007851
+[pyarrowspace] search: qlen=768, lambda_q=0.037382
+[pyarrowspace] search: qlen=768, lambda_q=0.009578
+[pyarrowspace] search: qlen=768, lambda_q=0.056982
+
+Results for EPS = 10.0:
+  Build time: 329.65s
+  Recall@10:  0.9100
+  MRR:        0.5059
+  nDCG@10:    0.5986
+
+================================================================================
+Evaluating EPS = 15.0 (tau=0.62)
+================================================================================
+Running 50 queries...
+  Processed 0/50 queries
+[pyarrowspace] search: qlen=768, lambda_q=0.026763
+[pyarrowspace] search: qlen=768, lambda_q=0.007225
+[pyarrowspace] search: qlen=768, lambda_q=0.006745
+[pyarrowspace] search: qlen=768, lambda_q=0.006444
+[pyarrowspace] search: qlen=768, lambda_q=0.060987
+[pyarrowspace] search: qlen=768, lambda_q=0.007409
+[pyarrowspace] search: qlen=768, lambda_q=0.020048
+[pyarrowspace] search: qlen=768, lambda_q=0.007581
+[pyarrowspace] search: qlen=768, lambda_q=0.006915
+[pyarrowspace] search: qlen=768, lambda_q=0.007127
+  Processed 10/50 queries
+[pyarrowspace] search: qlen=768, lambda_q=0.041208
+[pyarrowspace] search: qlen=768, lambda_q=0.005866
+[pyarrowspace] search: qlen=768, lambda_q=0.006431
+[pyarrowspace] search: qlen=768, lambda_q=0.006890
+[pyarrowspace] search: qlen=768, lambda_q=0.007155
+[pyarrowspace] search: qlen=768, lambda_q=0.006595
+[pyarrowspace] search: qlen=768, lambda_q=0.008775
+[pyarrowspace] search: qlen=768, lambda_q=0.006225
+[pyarrowspace] search: qlen=768, lambda_q=0.005873
+[pyarrowspace] search: qlen=768, lambda_q=0.006667
+  Processed 20/50 queries
+[pyarrowspace] search: qlen=768, lambda_q=0.006707
+[pyarrowspace] search: qlen=768, lambda_q=0.028082
+[pyarrowspace] search: qlen=768, lambda_q=0.010750
+[pyarrowspace] search: qlen=768, lambda_q=0.007098
+[pyarrowspace] search: qlen=768, lambda_q=0.055193
+[pyarrowspace] search: qlen=768, lambda_q=0.007025
+[pyarrowspace] search: qlen=768, lambda_q=0.018737
+[pyarrowspace] search: qlen=768, lambda_q=0.006259
+[pyarrowspace] search: qlen=768, lambda_q=0.006886
+[pyarrowspace] search: qlen=768, lambda_q=0.050057
+  Processed 30/50 queries
+[pyarrowspace] search: qlen=768, lambda_q=0.007476
+[pyarrowspace] search: qlen=768, lambda_q=0.008926
+[pyarrowspace] search: qlen=768, lambda_q=0.050152
+[pyarrowspace] search: qlen=768, lambda_q=0.006506
+[pyarrowspace] search: qlen=768, lambda_q=0.008588
+[pyarrowspace] search: qlen=768, lambda_q=0.019320
+[pyarrowspace] search: qlen=768, lambda_q=0.010074
+[pyarrowspace] search: qlen=768, lambda_q=0.008416
+[pyarrowspace] search: qlen=768, lambda_q=0.036835
+[pyarrowspace] search: qlen=768, lambda_q=0.042634
+  Processed 40/50 queries
+[pyarrowspace] search: qlen=768, lambda_q=0.013851
+[pyarrowspace] search: qlen=768, lambda_q=0.006237
+[pyarrowspace] search: qlen=768, lambda_q=0.070283
+[pyarrowspace] search: qlen=768, lambda_q=0.032108
+[pyarrowspace] search: qlen=768, lambda_q=0.006860
+[pyarrowspace] search: qlen=768, lambda_q=0.013219
+[pyarrowspace] search: qlen=768, lambda_q=0.018621
+[pyarrowspace] search: qlen=768, lambda_q=0.029104
+[pyarrowspace] search: qlen=768, lambda_q=0.026514
+[pyarrowspace] search: qlen=768, lambda_q=0.007206
+
+Results for EPS = 15.0:
+  Build time: 330.27s
+  Recall@10:  0.8900
+  MRR:        0.5142
+  nDCG@10:    0.5997
+
+================================================================================
+COMPARATIVE RESULTS - EPS SWEEP
+================================================================================
+Dataset: MS MARCO (BeIR)
+Dataset size: 81039
+Evaluated queries: 50
+Tau: 0.62
+
+EPS        Build (s)    Recall@10    MRR          nDCG@10     
+--------------------------------------------------------------------------------
+5.000      339.18       0.8900       0.5082       0.5955      
+10.000     329.65       0.9100       0.5059       0.5986      
+15.000     330.27       0.8900       0.5142       0.5997      
+================================================================================
+
+================================================================================
+BEST EPS VALUE PER METRIC
+================================================================================
+Recall@10:   EPS = 10.000 → 0.9100
+MRR:         EPS = 15.000 → 0.5142
+nDCG@10:     EPS = 15.000 → 0.5997
+Fastest:     EPS = 10.000 → 329.65s
+================================================================================
+
+================================================================================
+EPS SENSITIVITY ANALYSIS
+================================================================================
+Metric variance across EPS values:
+  Recall@10 std: 0.0094 (1.1%)
+  MRR std:       0.0035 (0.7%)
+  nDCG@10 std:   0.0018 (0.3%)
+
+Recommendation:
+  Low sensitivity: Results are stable across EPS values
+  → Use fastest build: EPS = 10.000
+================================================================================
+
+✓ Results saved to: beir_eps_sweep_results.json

@@ -1,0 +1,95 @@
+Loading CVE JSON files...
+313841it [01:28, 3549.05it/s]
+Loaded 313841 CVEs
+Generating embeddings...
+Model loaded from: ./domain_adapted_model
+Batches: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 9808/9808 [06:19<00:00, 25.85it/s]
+Embeddings shape: (313841, 384), sample: [-0.05824158  0.14389703  0.05094884  0.04408186 -0.01066008]...
+
+Generating query embeddings...
+Model loaded from: ./domain_adapted_model
+Batches: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00, 68.48it/s]
+Embeddings shape: (3, 384), sample: [-0.0122127   0.05706869 -0.01711867 -0.07662857 -0.11884194]...
+
+======================================================================
+DIFFUSION PARAMETER SWEEP
+======================================================================
+
+======================================================================
+Building BASELINE standard index...
+======================================================================
+[pyarrowspace] Convert pyarray2 and Vec<Vec>
+[pyarrowspace] items shape: (313841, 384)
+[pyarrowspace] items[0][:5]: [-0.6988990008831024, 1.7267643213272095, 0.6113860756158829, 0.5289822667837143, -0.12792091816663742]
+[pyarrowspace] NaNs: 0, Infs: 0
+[pyarrowspace] Building from rows
+[pyarrowspace] built ArrowSpace: nitems=313841, nfeatures=384, lambdas_len=313841
+Standard build time: 733.72s
+[pyarrowspace] search: qlen=384, lambda_q=0.006833
+[pyarrowspace] search: qlen=384, lambda_q=0.048861
+[pyarrowspace] search: qlen=384, lambda_q=0.011861
+
+======================================================================
+Testing: η=0.05, steps=4
+======================================================================
+Building energy index: η=0.05, steps=4, optical_tokens=40
+[pyarrowspace] build_energy: Converting pyarray2 to Vec<Vec>
+[pyarrowspace] items shape: (313841, 384)
+[pyarrowspace] items[0][:5]: [-0.6988990008831024, 1.7267643213272095, 0.6113860756158829, 0.5289822667837143, -0.12792091816663742]
+[pyarrowspace] NaNs: 0, Infs: 0
+[pyarrowspace] build_energy: optical_tokens=Some(40), w_λ=1.00, w_G=0.50, w_D=0.25
+[pyarrowspace] build_energy: Starting energy pipeline
+[pyarrowspace] build_energy complete: nitems=313841, nfeatures=384, graph_nodes=120, lambdas_len=313841
+Energy build time: 741.26s
+
+Query 1: authenticated arbitrary file read path traversal...
+[pyarrowspace] search_energy: qlen=384, k=20, w_λ=1.00, w_D=0.50
+  MRR: 1.0000
+  MAP@20: 0.3267
+  Recall@10: 0.3000
+  Recall@20: 0.4000
+  NDCG@10: 1.0000
+
+Query 2: remote code execution in ERP web component...
+[pyarrowspace] search_energy: qlen=384, k=20, w_λ=1.00, w_D=0.50
+  MRR: 0.0000
+  MAP@20: 0.0000
+  Recall@10: 0.0000
+  Recall@20: 0.0000
+  NDCG@10: 0.0000
+
+Query 3: SQL injection in login endpoint...
+[pyarrowspace] search_energy: qlen=384, k=20, w_λ=1.00, w_D=0.50
+  MRR: 1.0000
+  MAP@20: 0.3500
+  Recall@10: 0.4000
+  Recall@20: 0.4000
+  NDCG@10: 0.9932
+
+Aggregated metrics:
+  Avg MRR: 0.6667
+  Avg MAP: 0.2256
+  Avg NDCG@10: 0.6644
+  Avg Recall@10: 0.2333
+
+======================================================================
+BEST CONFIGURATIONS
+======================================================================
+
+Best MRR: η=0.05, steps=4
+  MRR: 0.6667
+  MAP: 0.2256
+  NDCG: 0.6644
+
+Best MAP: η=0.05, steps=4
+  MRR: 0.6667
+  MAP: 0.2256
+  NDCG: 0.6644
+Sweep heatmaps saved to diffusion_sweep_heatmaps.png
+Sweep results saved to diffusion_sweep_results.csv
+
+======================================================================
+ANALYSIS COMPLETE
+======================================================================
+Standard build time: 733.72s
+Energy builds tested: 1/1
