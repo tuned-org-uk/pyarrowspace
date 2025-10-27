@@ -1,11 +1,11 @@
 #![allow(non_local_definitions)]
+use ::arrowspace::energymaps::{EnergyMaps, EnergyMapsBuilder};
+use ::arrowspace::sampling::SamplerType;
 use pyo3::exceptions::PyValueError;
 use pyo3::prelude::*;
 use pyo3::types::PyDict;
 
-use numpy::{PyArray1, PyReadonlyArray1, PyReadonlyArray2};
-use ::arrowspace::energymaps::{EnergyMaps, EnergyMapsBuilder};
-
+use numpy::{PyArray1, PyArray2, PyArrayMethods, PyReadonlyArray1, PyReadonlyArray2};
 use ::arrowspace::builder::ArrowSpaceBuilder as RustBuilder;
 use ::arrowspace::core::{ArrowItem, ArrowSpace};
 use ::arrowspace::graph::GraphLaplacian;
@@ -21,7 +21,6 @@ mod tests;
 #[cfg(test)]
 mod tests_python;
 
-
 // ------------ Py wrappers ------------
 #[pyclass(name = "GraphLaplacian")]
 pub struct PyGraphLaplacian {
@@ -33,7 +32,7 @@ impl PyGraphLaplacian {
     #[new]
     fn py_new() -> PyResult<Self> {
         Err(PyValueError::new_err(
-            "GraphLaplacian cannot be constructed directly; use ArrowSpaceBuilder.build_with_graph",
+            "GraphLaplacian cannot be constructed directly; use ArrowSpaceBuilder.build",
         ))
     }
 
@@ -47,8 +46,8 @@ impl PyGraphLaplacian {
     }
 
     #[getter]
-    fn graph_params<'py>(&self, py: Python<'py>) -> PyResult<&'py PyDict> {
-        let dict = PyDict::new(py); // This returns Bound<'py, PyDict>
+    fn graph_params<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyDict>> {
+        let dict = PyDict::new(py);
         let params = &self.inner.graph_params;
 
         dict.set_item("eps", params.eps)?;
@@ -85,58 +84,54 @@ impl PyArrowSpace {
         self.inner.nfeatures
     }
 
-    // inner.data exposes &Vec<Vec<f64>>
-    // property: ArrowSpace.data -> numpy.ndarray (float64, 2D)
-    // #[getter]
-    // fn data<'py>(&self, py: Python<'py>) -> PyResult<&'py PyArray2<f64>> {
-    //     // Assume ArrowSpace::data() -> &Vec<Vec<f64>>
-    //     let rows: &Vec<Vec<f64>> = &self.inner.data_to_vec();
-    //     // from_vec2 checks that all rows have the same length; map its error to a ValueError
-    //     PyArray::from_vec2(py, rows)
-    //         .map_err(|e| PyValueError::new_err(format!("non-rectangular data: {e}")))
-    // }
-
     /// Return (features: np.ndarray[float64], lambda: float) for item at idx.
-    fn get_item<'py>(&self, py: Python<'py>, idx: usize) -> PyResult<(&'py PyArray1<f64>, f64)> {
+    fn get_item<'py>(&self, py: Python<'py>, idx: usize) -> PyResult<(Bound<'py, PyArray1<f64>>, f64)> {
         if idx >= self.inner.nitems {
-            // choose one of ValueError or IndexError depending on API preference
             return Err(PyValueError::new_err(format!(
                 "index {} out of range [0, {})",
                 idx, self.inner.nitems
             )));
         }
 
-        // Obtain the ArrowItem from the Rust space.
         let it: ArrowItem = self.inner.get_item(idx);
-
-        // Example with getters; change as needed:
         let feats_vec = it.item.to_vec();
         let lam = it.lambda;
 
-        // Materialize as NumPy array owned by Python
         let feats = PyArray1::from_vec(py, feats_vec);
 
         Ok((feats, lam))
     }
 
-    fn lambdas<'py>(&self, py: Python<'py>) -> &'py PyArray1<f64> {
-        PyArray1::from_vec(py, self.inner.lambdas().to_vec())
+    fn lambdas<'py>(&self, py: Python<'py>) -> Bound<'py, PyArray1<f64>> {
+        PyArray1::from_slice(py, self.inner.lambdas())
     }
 
-    /// Search using lambda-aware similarity.
-    /// Parameters:
-    ///   - item: query vector (must match nfeatures)
-    ///   - gl: GraphLaplacian object (required for computing synthetic lambda)
-    ///   - tau: optional tau value for similarity weighting (default: 0.9)
-    ///   - k: number of results to return (default: 3)
+    /// Get all data as 2D numpy array
+    fn get_all_items<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyArray2<f64>>> {
+        // Collect all items into a flat vector
+        let nitems = self.inner.nitems;
+        let nfeatures = self.inner.nfeatures;
+        
+        let mut flat: Vec<f64> = Vec::with_capacity(nitems * nfeatures);
+        for i in 0..nitems {
+            let item = self.inner.get_item(i);
+            flat.extend_from_slice(&item.item);
+        }
+        
+        let arr = PyArray1::from_vec(py, flat);
+        let shape = (nitems, nfeatures);
+        
+        Ok(arr.reshape(shape)?)
+    }
+
     fn search(
         &self,
-        py: Python<'_>,
         item: PyReadonlyArray1<f64>,
-        gl: Py<PyGraphLaplacian>,
+        gl: &PyGraphLaplacian,
         tau: f64,
     ) -> PyResult<Vec<(usize, f64)>> {
-        let v = item.as_slice()?.to_vec();
+        let v = item.as_slice()?;
+        
         if v.len() != self.inner.nfeatures {
             return Err(PyValueError::new_err(format!(
                 "query length {} must match nfeatures {}",
@@ -145,48 +140,70 @@ impl PyArrowSpace {
             )));
         }
 
-        // Extract the inner GraphLaplacian from the Python wrapper
-        let gl_ref = gl.borrow(py);
-        let graph_laplacian = &gl_ref.inner;
+        let graph_laplacian = &gl.inner;
+        let lambda_q = self.inner.prepare_query_item(v, graph_laplacian);
 
-        // Compute synthetic lambda for the query using prepare_query_item
-        // This uses the ArrowSpace's configured TauMode
-        let lambda_q = self.inner.prepare_query_item(&v, graph_laplacian);
+        if lambda_q == 0.0 {
+            return Err(PyValueError::new_err(
+                "Lambda is zero - check item magnitude and eps parameter"
+            ));
+        }
 
-        assert_ne!(
-            lambda_q, 0.0,
-            "The lambdas are zero, check the magnitude of items and eps."
-        );
+        dbg_println(format!("search: qlen={}, lambda_q={:.6}", v.len(), lambda_q));
 
-        dbg_println(format!(
-            "search: qlen={}, lambda_q={:.6}",
-            v.len(),
-            lambda_q
-        ));
-
-        // Create query item with computed lambda
-        let query = ArrowItem::new(v, lambda_q);
+        let query = ArrowItem::new(v.to_vec(), lambda_q);
         let k = graph_laplacian.graph_params.topk;
 
-        // Perform lambda-aware search
-        // tau_weight controls feature similarity weight, (1-tau_weight) controls lambda proximity weight
         Ok(self.inner.search_lambda_aware(&query, k, tau))
     }
 
-    /// Search using lambda-aware similarity.
-    /// Parameters:
-    ///   - item: query vector (must match nfeatures)
-    ///   - gl: GraphLaplacian object (required for computing synthetic lambda)
-    ///   - tau: optional tau value for similarity weighting (default: 0.9)
-    ///   - k: number of results to return (default: 3)
+    fn search_batch(
+        &self,
+        items: PyReadonlyArray2<f64>,
+        gl: &PyGraphLaplacian,
+        tau: f64,
+    ) -> PyResult<Vec<Vec<(usize, f64)>>> {
+        let arr = items.as_array();
+        let (nqueries, nfeatures) = (arr.shape()[0], arr.shape()[1]);
+        
+        if nfeatures != self.inner.nfeatures {
+            return Err(PyValueError::new_err(format!(
+                "query features {} must match nfeatures {}",
+                nfeatures, self.inner.nfeatures
+            )));
+        }
+
+        let graph_laplacian = &gl.inner;
+        let k = graph_laplacian.graph_params.topk;
+        
+        let mut results = Vec::with_capacity(nqueries);
+        
+        for i in 0..nqueries {
+            let row = arr.row(i);
+            let v = row.to_slice().unwrap();
+            
+            let lambda_q = self.inner.prepare_query_item(v, graph_laplacian);
+            if lambda_q == 0.0 {
+                return Err(PyValueError::new_err(format!(
+                    "Lambda is zero for query {} - check item magnitude and eps", i
+                )));
+            }
+            
+            let query = ArrowItem::new(v.to_vec(), lambda_q);
+            results.push(self.inner.search_lambda_aware(&query, k, tau));
+        }
+        
+        Ok(results)
+    }
+
     fn search_hybrid(
         &self,
-        py: Python<'_>,
         item: PyReadonlyArray1<f64>,
-        gl: Py<PyGraphLaplacian>,
+        gl: &PyGraphLaplacian,
         tau: f64,
     ) -> PyResult<Vec<(usize, f64)>> {
-        let v = item.as_slice()?.to_vec();
+        let v = item.as_slice()?;
+        
         if v.len() != self.inner.nfeatures {
             return Err(PyValueError::new_err(format!(
                 "query length {} must match nfeatures {}",
@@ -195,70 +212,33 @@ impl PyArrowSpace {
             )));
         }
 
-        // Extract the inner GraphLaplacian from the Python wrapper
-        let gl_ref = gl.borrow(py);
-        let graph_laplacian = &gl_ref.inner;
+        let graph_laplacian = &gl.inner;
+        let lambda_q = self.inner.prepare_query_item(v, graph_laplacian);
 
-        // Compute synthetic lambda for the query using prepare_query_item
-        // This uses the ArrowSpace's configured TauMode
-        let lambda_q = self.inner.prepare_query_item(&v, graph_laplacian);
+        dbg_println(format!("search_hybrid: qlen={}, lambda_q={:.6}", v.len(), lambda_q));
 
-        dbg_println(format!(
-            "search: qlen={}, lambda_q={:.6}",
-            v.len(),
-            lambda_q
-        ));
-
-        // Create query item with computed lambda
-        let query = ArrowItem::new(v, lambda_q);
+        let query = ArrowItem::new(v.to_vec(), lambda_q);
         let k = graph_laplacian.graph_params.topk;
 
-        // Perform lambda-aware search
-        // tau_weight controls feature similarity weight, (1-tau_weight) controls lambda proximity weight
         Ok(self.inner.search_lambda_aware_hybrid(&query, k, tau))
     }
 
-    /// Energy-only search (no cosine similarity).
-    /// 
-    /// Parameters:
-    ///   - item: query vector (must match nfeatures)
-    ///   - gl: GraphLaplacian object (energy-based graph from build_energy)
-    ///   - k: number of results to return
-    ///   - w_lambda: weight for lambda proximity term (default: 1.0)
-    ///   - w_dirichlet: weight for Rayleigh-Dirichlet term (default: 0.5)
-    /// 
-    /// Returns:
-    ///   List of (index, score) tuples sorted by descending score
     fn search_energy(
         &self,
-        py: Python<'_>,
         item: PyReadonlyArray1<f64>,
-        gl: Py<PyGraphLaplacian>,
+        gl: &PyGraphLaplacian,
         k: usize,
-        w_lambda: Option<f64>,
-        w_dirichlet: Option<f64>,
     ) -> PyResult<Vec<(usize, f64)>> {
-        let v = item.as_slice()?.to_vec();
-        if v.len() != self.inner.nfeatures {
-            return Err(PyValueError::new_err(format!(
-                "query length {} must match nfeatures {}",
-                v.len(),
-                self.inner.nfeatures
-            )));
-        }
+        let v = item.as_slice()?;
 
-        let gl_ref = gl.borrow(py);
-        let graph_laplacian = &gl_ref.inner;
-
-        let w_l = w_lambda.unwrap_or(1.0);
-        let w_d = w_dirichlet.unwrap_or(0.5);
+        let graph_laplacian = &gl.inner;
 
         dbg_println(format!(
-            "search_energy: qlen={}, k={}, w_λ={:.2}, w_D={:.2}",
-            v.len(), k, w_l, w_d
+            "search_energy: qlen={}, k={}",
+            v.len(), k,
         ));
 
-        Ok(self.inner.search_energy(&v, graph_laplacian, k, w_l, w_d))
+        Ok(self.inner.search_energy(v, graph_laplacian, k))
     }
 }
 
@@ -270,74 +250,73 @@ impl PyArrowSpaceBuilder {
     #[staticmethod]
     pub fn build(
         py: Python<'_>,
-        graph_params: Option<&PyDict>,
+        graph_params: Option<&Bound<'_, PyDict>>,
         items: PyReadonlyArray2<f64>,
-    ) -> (Py<PyArrowSpace>, Py<PyGraphLaplacian>) {
-        dbg_println("Convert pyarray2 and Vec<Vec>");
-        let rows = pyarray2_to_vecvec(items).unwrap();
+    ) -> PyResult<(Py<PyArrowSpace>, Py<PyGraphLaplacian>)> {
+        dbg_println("build: Converting numpy array to internal format");
+        
+        let arr = items.as_array();
+        let (nrows, ncols) = (arr.shape()[0], arr.shape()[1]);
+        
+        let rows: Vec<Vec<f64>> = if nrows > 1000 {
+            use rayon::prelude::*;
+            (0..nrows)
+                .into_par_iter()
+                .map(|i| arr.row(i).to_owned().to_vec())
+                .collect()
+        } else {
+            (0..nrows)
+                .map(|i| arr.row(i).to_owned().to_vec())
+                .collect()
+        };
+
         let mut builder = RustBuilder::new();
-        if let Some((eps, k, topk, p, sigma)) = parse_graph_params(graph_params).unwrap() {
+        
+        if let Some((eps, k, topk, p, sigma)) = parse_graph_params(graph_params)? {
             builder = builder
                 .with_lambda_graph(eps, k, topk, p, sigma)
                 .with_dims_reduction(true, Some(eps))
                 .with_seed(42)
-                //.with_inline_sampling(None)
-                //.with_spectral(true)
                 .with_sparsity_check(false);
         }
-        dbg_println("Building from rows");
+
+        dbg_println(format!("build: Processing {} rows × {} cols", nrows, ncols));
         let (aspace, gl) = builder.build(rows);
+        
         dbg_println(format!(
-            "built ArrowSpace: nitems={}, nfeatures={}, lambdas_len={}",
-            aspace.nitems,
-            aspace.nfeatures,
-            aspace.lambdas().len()
+            "build complete: nitems={}, nfeatures={}, lambdas={}",
+            aspace.nitems, aspace.nfeatures, aspace.lambdas().len()
         ));
-        (
-            Py::new(py, PyArrowSpace { inner: aspace }).unwrap(),
-            Py::new(py, PyGraphLaplacian { inner: gl }).unwrap(),
-        )
+
+        Ok((
+            Py::new(py, PyArrowSpace { inner: aspace })?,
+            Py::new(py, PyGraphLaplacian { inner: gl })?,
+        ))
     }
 
-
-    /// Build ArrowSpace using energy-only pipeline (no cosine similarity).
-    /// 
-    /// This constructs a graph where edges are weighted purely by energy features:
-    /// lambda proximity, dispersion, and Dirichlet smoothness. The pipeline removes
-    /// all cosine similarity dependence from both construction and search.
-    /// 
-    /// Parameters:
-    ///   - items: 2D numpy array (N × F) of input vectors
-    ///   - energy_params: optional dict with keys:
-    ///       - optical_tokens: int, target centroids after compression (default: None)
-    ///       - trim_quantile: float, fraction to trim per bin (default: 0.1)
-    ///       - eta: float, diffusion step size (default: 0.1)
-    ///       - steps: int, diffusion iterations (default: 4)
-    ///       - split_quantile: float, dispersion split threshold (default: 0.9)
-    ///       - neighbor_k: int, neighborhood size (default: 8)
-    ///       - split_tau: float, split offset magnitude (default: 0.15)
-    ///       - w_lambda: float, lambda weight in distance (default: 1.0)
-    ///       - w_disp: float, dispersion weight (default: 0.5)
-    ///       - w_dirichlet: float, Dirichlet weight (default: 0.25)
-    ///       - candidate_m: int, candidate pool size (default: 32)
-    ///   - graph_params: optional dict with standard graph params (eps, k, topk, p, sigma)
-    ///       Used for configuring builder defaults; most are overridden by energy pipeline
-    /// 
-    /// Returns:
-    ///   Tuple of (PyArrowSpace, PyGraphLaplacian) with energy-based graph
-    /// 
-    /// Note:
-    ///   Dimensionality reduction is automatically enabled (required for energy pipeline).
-    ///   Build time is 2-3× slower than standard build() due to diffusion and splitting.
     #[staticmethod]
     pub fn build_energy(
         py: Python<'_>,
         items: PyReadonlyArray2<f64>,
-        energy_params: Option<&PyDict>,
-        graph_params: Option<&PyDict>,
+        energy_params: Option<&Bound<'_, PyDict>>,
+        graph_params: Option<&Bound<'_, PyDict>>,
     ) -> PyResult<(Py<PyArrowSpace>, Py<PyGraphLaplacian>)> {
-        dbg_println("build_energy: Converting pyarray2 to Vec<Vec>");
-        let rows = pyarray2_to_vecvec(items)?;
+        dbg_println("build_energy: Converting numpy array");
+        
+        let arr = items.as_array();
+        let (nrows, ncols) = (arr.shape()[0], arr.shape()[1]);
+        
+        let rows: Vec<Vec<f64>> = if nrows > 1000 {
+            use rayon::prelude::*;
+            (0..nrows)
+                .into_par_iter()
+                .map(|i| arr.row(i).to_owned().to_vec())
+                .collect()
+        } else {
+            (0..nrows)
+                .map(|i| arr.row(i).to_owned().to_vec())
+                .collect()
+        };
         
         let e_params = parse_energy_params(energy_params)?;
         dbg_println(format!(
@@ -347,26 +326,24 @@ impl PyArrowSpaceBuilder {
 
         let mut builder = RustBuilder::new();
         
-        // Apply graph params if provided (used for builder configuration)
         if let Some((eps, k, topk, p, sigma)) = parse_graph_params(graph_params)? {
             builder = builder
                 .with_lambda_graph(eps, k, topk, p, sigma)
-                .with_seed(42)
+                .with_dims_reduction(true, Some(eps))
+                .with_seed(999)
+                .with_inline_sampling(Some(SamplerType::Simple(0.6)))
+                .with_spectral(false)
                 .with_sparsity_check(false);
         }
         
-        // Enable dims reduction (required for energy pipeline)
-        builder = builder.with_dims_reduction(true, Some(0.35));
-        
-        dbg_println("build_energy: Starting energy pipeline");
-        let (aspace, gl_energy) = builder.build_energy(rows, e_params);
+        dbg_println(format!("build_energy: Processing {} rows × {} cols", nrows, ncols));
+        let (aspace, gl_energy) = py.allow_threads(|| {
+            builder.build_energy(rows, e_params)
+        });
         
         dbg_println(format!(
-            "build_energy complete: nitems={}, nfeatures={}, graph_nodes={}, lambdas_len={}",
-            aspace.nitems,
-            aspace.nfeatures,
-            gl_energy.nnodes,
-            aspace.lambdas().len()
+            "build_energy complete: nitems={}, nfeatures={}, graph_nodes={}, lambdas={}",
+            aspace.nitems, aspace.nfeatures, gl_energy.nnodes, aspace.lambdas().len()
         ));
 
         Ok((
@@ -377,7 +354,7 @@ impl PyArrowSpaceBuilder {
 }
 
 #[pymodule]
-pub fn arrowspace(_py: Python, m: &PyModule) -> PyResult<()> {
+pub fn arrowspace(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<PyArrowSpaceBuilder>()?;
     m.add_class::<PyArrowSpace>()?;
     m.add_class::<PyGraphLaplacian>()?;

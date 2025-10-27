@@ -21,15 +21,15 @@ from sklearn.metrics import ndcg_score
 set_debug(True)
 
 # Configuration
-START_YEAR = 1999
+START_YEAR = 2018
 END_YEAR = 2025
 K_RESULTS = 20
 K_TAIL_MAX = 20
 
 # Energy parameters for sweep
-ETA_VALUES = [0.05, 0.15, 0.25]
+ETA_VALUES = [0.15, 0.25]
 STEPS_VALUES = [4, 6, 8]
-OPTICAL_TOKENS = 40
+OPTICAL_TOKENS = 30
 
 # Standard graph params (used for both standard and energy builds)
 graph_params = {
@@ -209,6 +209,8 @@ def sweep_diffusion_params(emb, qemb, queries, ids, titles):
         results = aspace_std.search(qemb[qi], gl_std, tau=0.7)
         baseline_results.append(results)
     
+    del aspace_std, gl_std
+    
     # Sweep diffusion parameters
     for eta in ETA_VALUES:
         for steps in STEPS_VALUES:
@@ -289,6 +291,8 @@ def sweep_diffusion_params(emb, qemb, queries, ids, titles):
                 print(f"  Avg MAP: {avg_map:.4f}")
                 print(f"  Avg NDCG@10: {avg_ndcg:.4f}")
                 print(f"  Avg Recall@10: {avg_recall10:.4f}")
+
+                del aspace_energy, gl_energy
                 
             except Exception as e:
                 print(f"ERROR: Failed for η={eta}, steps={steps}: {e}")

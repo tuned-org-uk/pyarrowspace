@@ -23,21 +23,20 @@ set_debug(True)
 # Configuration
 START_YEAR = 1999
 END_YEAR = 2025
-K_RESULTS = 20
-K_TAIL_MAX = 20
+K_RESULTS = 25
+K_TAIL_MAX = 25
 
 # Energy parameters for sweep
-ETA_VALUES = [0.05, ]
-STEPS_VALUES = [4]
-OPTICAL_TOKENS = 40
+ETA_VALUES = [0.22, 0.25, 0.5, 0.75]
+STEPS_VALUES = [2, 4, 6]
 
 # Standard graph params (used for both standard and energy builds)
 graph_params = {
-    "eps": 1.31,
+    "eps": 1.31,   # eps for 100K
     "k": 25,
     "topk": 15,
     "p": 2.0,
-    "sigma": 0.535
+    "sigma": 0.535  # sigma for 100K
 }
 
 # ============================================================================
@@ -162,7 +161,7 @@ def compute_recall_at_k(results, relevant_set, k=20):
 def build_energy_index(emb, eta, steps, optical_tokens=None):
     """Build energy-only index with specified diffusion parameters."""
     energy_params = {
-        "optical_tokens": optical_tokens,
+        "optical_tokens": None, # ← Rust computes 2√N automatically
         "trim_quantile": 0.1,
         "eta": eta,
         "steps": steps,
@@ -209,6 +208,8 @@ def sweep_diffusion_params(emb, qemb, queries, ids, titles):
         results = aspace_std.search(qemb[qi], gl_std, tau=0.7)
         baseline_results.append(results)
     
+    del aspace_std, gl_std
+    
     # Sweep diffusion parameters
     for eta in ETA_VALUES:
         for steps in STEPS_VALUES:
@@ -219,7 +220,7 @@ def sweep_diffusion_params(emb, qemb, queries, ids, titles):
             
             try:
                 aspace_energy, gl_energy, build_time = build_energy_index(
-                    emb, eta, steps, OPTICAL_TOKENS
+                    emb, eta, steps
                 )
                 
                 # Test queries
@@ -229,8 +230,7 @@ def sweep_diffusion_params(emb, qemb, queries, ids, titles):
                     
                     # Energy search
                     results_energy = aspace_energy.search_energy(
-                        qemb[qi], gl_energy, k=K_RESULTS, 
-                        w_lambda=1.0, w_dirichlet=0.5
+                        qemb[qi], gl_energy, k=K_RESULTS
                     )
                     
                     # Define relevant set as top-10 from baseline
@@ -289,7 +289,8 @@ def sweep_diffusion_params(emb, qemb, queries, ids, titles):
                 print(f"  Avg MAP: {avg_map:.4f}")
                 print(f"  Avg NDCG@10: {avg_ndcg:.4f}")
                 print(f"  Avg Recall@10: {avg_recall10:.4f}")
-                
+
+                del aspace_energy, gl_energy 
             except Exception as e:
                 print(f"ERROR: Failed for η={eta}, steps={steps}: {e}")
                 results_sweep[config_key] = None
