@@ -2,6 +2,28 @@
 name = "pyarrowspace"
 version = "0.21.0"
 edition = "2024"
+description = "Spectral vector search with taumode (λτ) indexing"
+authors = ["Lorenzo <tunedconsulting@gmail.com>"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/tuned-org-uk/pyarrowspace"
+homepage = "https://github.com/tuned-org-uk/pyarrowspace"
+documentation = "https://github.com/tuned-org-uk/pyarrowspace"
+readme = "README.md"
+keywords = ["vector-search", "spectral-analysis", "graph-signal", "similarity-search", "machine-learning"]
+categories = ["algorithms", "mathematics", "science"]
+exclude = [
+    "target/*",
+    "Cargo.lock",
+    ".git/*",
+    ".github/*",
+    "*.tmp",
+    "*.md",
+    "*.bib",
+    "*.cff",
+    "test_data/*",
+    "examples/*"
+]
+
 
 [lib]
 name = "arrowspace"
