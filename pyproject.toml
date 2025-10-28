@@ -4,11 +4,34 @@ build-backend = "maturin"
 
 [project]
 name = "arrowspace"
-requires-python = ">=3.8"
+readme = "README.md"
+description = "Python bindings for ArrowSpace (Rust) providing graph-based similarity search, signal graphs, and spectral methods for vector data."
+license = "MIT OR Apache-2.0"
+license-files = ["LICENSE"]
+requires-python = ">=3.12"
+keywords = ["vector-search", "spectral-analysis", "graph-signal", "similarity-search", "machine-learning"]
 classifiers = [
     "Programming Language :: Rust",
     "Programming Language :: Python :: Implementation :: CPython",
     "Programming Language :: Python :: Implementation :: PyPy",
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Database :: Front-Ends",  # for vector DB/search integrations
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Rust",  # valid trove classifier via trove-classifiers set
+    "Operating System :: OS Independent",
 ]
 dynamic = ["version"]
 

@@ -1,0 +1,538 @@
+Loading CVE JSON files...
+313841it [01:48, 2902.96it/s]
+Loaded 313841 CVEs
+Generating embeddings...
+Model loaded from: ./domain_adapted_model
+Batches: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 9808/9808 [06:21<00:00, 25.70it/s]
+Embeddings shape: (313841, 384), sample: [-0.05824158  0.14389703  0.05094884  0.04408186 -0.01066008]...
+
+Generating query embeddings...
+Model loaded from: ./domain_adapted_model
+Batches: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00, 151.20it/s]
+Embeddings shape: (3, 384), sample: [-0.0122127   0.05706869 -0.01711867 -0.07662857 -0.11884194]...
+
+======================================================================
+DIFFUSION PARAMETER SWEEP
+======================================================================
+
+======================================================================
+Building BASELINE standard index...
+======================================================================
+Standard build time: 80.91s
+
+======================================================================
+Testing: η=0.22, steps=2
+======================================================================
+Building energy index: η=0.22, steps=2, optical_tokens=None
+Energy build time: 77.06s
+
+Query 1: authenticated arbitrary file read path traversal...
+  MRR: 0.0000
+  MAP@25: 0.0000
+  Recall@10: 0.0000
+  Recall@20: 0.0000
+  NDCG@10: 0.0000
+
+Query 2: remote code execution in ERP web component...
+  MRR: 0.0000
+  MAP@25: 0.0000
+  Recall@10: 0.0000
+  Recall@20: 0.0000
+  NDCG@10: 0.0000
+
+Query 3: SQL injection in login endpoint...
+  MRR: 0.0000
+  MAP@25: 0.0000
+  Recall@10: 0.0000
+  Recall@20: 0.0000
+  NDCG@10: 0.0000
+
+Aggregated metrics:
+  Avg MRR: 0.0000
+  Avg MAP: 0.0000
+  Avg NDCG@10: 0.0000
+  Avg Recall@10: 0.0000
+
+======================================================================
+Testing: η=0.22, steps=4
+======================================================================
+Building energy index: η=0.22, steps=4, optical_tokens=None
+Energy build time: 80.33s
+
+Query 1: authenticated arbitrary file read path traversal...
+  MRR: 1.0000
+  MAP@25: 0.1000
+  Recall@10: 0.1000
+  Recall@20: 0.1000
+  NDCG@10: 0.2891
+
+Query 2: remote code execution in ERP web component...
+  MRR: 0.0000
+  MAP@25: 0.0000
+  Recall@10: 0.0000
+  Recall@20: 0.0000
+  NDCG@10: 0.0000
+
+Query 3: SQL injection in login endpoint...
+  MRR: 0.0000
+  MAP@25: 0.0000
+  Recall@10: 0.0000
+  Recall@20: 0.0000
+  NDCG@10: 0.0000
+
+Aggregated metrics:
+  Avg MRR: 0.3333
+  Avg MAP: 0.0333
+  Avg NDCG@10: 0.0964
+  Avg Recall@10: 0.0333
+
+======================================================================
+Testing: η=0.22, steps=6
+======================================================================
+Building energy index: η=0.22, steps=6, optical_tokens=None
+Energy build time: 76.25s
+
+Query 1: authenticated arbitrary file read path traversal...
+  MRR: 1.0000
+  MAP@25: 0.6586
+  Recall@10: 0.6000
+  Recall@20: 0.7000
+  NDCG@10: 0.5228
+
+Query 2: remote code execution in ERP web component...
+  MRR: 0.2500
+  MAP@25: 0.1405
+  Recall@10: 0.3000
+  Recall@20: 0.4000
+  NDCG@10: 0.6568
+
+Query 3: SQL injection in login endpoint...
+  MRR: 1.0000
+  MAP@25: 0.3188
+  Recall@10: 0.3000
+  Recall@20: 0.7000
+  NDCG@10: 0.6832
+
+Aggregated metrics:
+  Avg MRR: 0.7500
+  Avg MAP: 0.3726
+  Avg NDCG@10: 0.6209
+  Avg Recall@10: 0.4000
+
+======================================================================
+Testing: η=0.22, steps=8
+======================================================================
+Building energy index: η=0.22, steps=8, optical_tokens=None
+Energy build time: 80.51s
+
+Query 1: authenticated arbitrary file read path traversal...
+  MRR: 1.0000
+  MAP@25: 0.6586
+  Recall@10: 0.6000
+  Recall@20: 0.7000
+  NDCG@10: 0.5228
+
+Query 2: remote code execution in ERP web component...
+  MRR: 0.2500
+  MAP@25: 0.0931
+  Recall@10: 0.2000
+  Recall@20: 0.4000
+  NDCG@10: 0.8996
+
+Query 3: SQL injection in login endpoint...
+  MRR: 1.0000
+  MAP@25: 0.3569
+  Recall@10: 0.3000
+  Recall@20: 0.7000
+  NDCG@10: 0.6832
+
+Aggregated metrics:
+  Avg MRR: 0.7500
+  Avg MAP: 0.3695
+  Avg NDCG@10: 0.7019
+  Avg Recall@10: 0.3667
+
+======================================================================
+Testing: η=0.22, steps=10
+======================================================================
+Building energy index: η=0.22, steps=10, optical_tokens=None
+Energy build time: 81.04s
+
+Query 1: authenticated arbitrary file read path traversal...
+  MRR: 1.0000
+  MAP@25: 0.6586
+  Recall@10: 0.6000
+  Recall@20: 0.7000
+  NDCG@10: 0.5228
+
+Query 2: remote code execution in ERP web component...
+  MRR: 0.2500
+  MAP@25: 0.0931
+  Recall@10: 0.2000
+  Recall@20: 0.4000
+  NDCG@10: 0.8996
+
+Query 3: SQL injection in login endpoint...
+  MRR: 1.0000
+  MAP@25: 0.3569
+  Recall@10: 0.3000
+  Recall@20: 0.7000
+  NDCG@10: 0.6832
+
+Aggregated metrics:
+  Avg MRR: 0.7500
+  Avg MAP: 0.3695
+  Avg NDCG@10: 0.7019
+  Avg Recall@10: 0.3667
+
+======================================================================
+Testing: η=0.5, steps=2
+======================================================================
+Building energy index: η=0.5, steps=2, optical_tokens=None
+Energy build time: 76.19s
+
+Query 1: authenticated arbitrary file read path traversal...
+  MRR: 1.0000
+  MAP@25: 0.3561
+  Recall@10: 0.3000
+  Recall@20: 0.5000
+  NDCG@10: 0.4104
+
+Query 2: remote code execution in ERP web component...
+  MRR: 0.2500
+  MAP@25: 0.0931
+  Recall@10: 0.2000
+  Recall@20: 0.4000
+  NDCG@10: 0.8996
+
+Query 3: SQL injection in login endpoint...
+  MRR: 1.0000
+  MAP@25: 0.3569
+  Recall@10: 0.3000
+  Recall@20: 0.7000
+  NDCG@10: 0.6832
+
+Aggregated metrics:
+  Avg MRR: 0.7500
+  Avg MAP: 0.2687
+  Avg NDCG@10: 0.6644
+  Avg Recall@10: 0.2667
+
+======================================================================
+Testing: η=0.5, steps=4
+======================================================================
+Building energy index: η=0.5, steps=4, optical_tokens=None
+Energy build time: 78.26s
+
+Query 1: authenticated arbitrary file read path traversal...
+  MRR: 1.0000
+  MAP@25: 0.6586
+  Recall@10: 0.6000
+  Recall@20: 0.7000
+  NDCG@10: 0.5228
+
+Query 2: remote code execution in ERP web component...
+  MRR: 0.2500
+  MAP@25: 0.0931
+  Recall@10: 0.2000
+  Recall@20: 0.4000
+  NDCG@10: 0.8996
+
+Query 3: SQL injection in login endpoint...
+  MRR: 1.0000
+  MAP@25: 0.3569
+  Recall@10: 0.3000
+  Recall@20: 0.7000
+  NDCG@10: 0.6832
+
+Aggregated metrics:
+  Avg MRR: 0.7500
+  Avg MAP: 0.3695
+  Avg NDCG@10: 0.7019
+  Avg Recall@10: 0.3667
+
+======================================================================
+Testing: η=0.5, steps=6
+======================================================================
+Building energy index: η=0.5, steps=6, optical_tokens=None
+Energy build time: 76.71s
+
+Query 1: authenticated arbitrary file read path traversal...
+  MRR: 1.0000
+  MAP@25: 0.6586
+  Recall@10: 0.6000
+  Recall@20: 0.7000
+  NDCG@10: 0.5228
+
+Query 2: remote code execution in ERP web component...
+  MRR: 0.2500
+  MAP@25: 0.0931
+  Recall@10: 0.2000
+  Recall@20: 0.4000
+  NDCG@10: 0.8996
+
+Query 3: SQL injection in login endpoint...
+  MRR: 1.0000
+  MAP@25: 0.3569
+  Recall@10: 0.3000
+  Recall@20: 0.7000
+  NDCG@10: 0.6832
+
+Aggregated metrics:
+  Avg MRR: 0.7500
+  Avg MAP: 0.3695
+  Avg NDCG@10: 0.7019
+  Avg Recall@10: 0.3667
+
+======================================================================
+Testing: η=0.5, steps=8
+======================================================================
+Building energy index: η=0.5, steps=8, optical_tokens=None
+Energy build time: 79.19s
+
+Query 1: authenticated arbitrary file read path traversal...
+  MRR: 1.0000
+  MAP@25: 0.6586
+  Recall@10: 0.6000
+  Recall@20: 0.7000
+  NDCG@10: 0.5228
+
+Query 2: remote code execution in ERP web component...
+  MRR: 0.2500
+  MAP@25: 0.0931
+  Recall@10: 0.2000
+  Recall@20: 0.4000
+  NDCG@10: 0.8996
+
+Query 3: SQL injection in login endpoint...
+  MRR: 1.0000
+  MAP@25: 0.3569
+  Recall@10: 0.3000
+  Recall@20: 0.7000
+  NDCG@10: 0.6832
+
+Aggregated metrics:
+  Avg MRR: 0.7500
+  Avg MAP: 0.3695
+  Avg NDCG@10: 0.7019
+  Avg Recall@10: 0.3667
+
+======================================================================
+Testing: η=0.5, steps=10
+======================================================================
+Building energy index: η=0.5, steps=10, optical_tokens=None
+Energy build time: 82.66s
+
+Query 1: authenticated arbitrary file read path traversal...
+  MRR: 1.0000
+  MAP@25: 0.6586
+  Recall@10: 0.6000
+  Recall@20: 0.7000
+  NDCG@10: 0.5228
+
+Query 2: remote code execution in ERP web component...
+  MRR: 0.2500
+  MAP@25: 0.0931
+  Recall@10: 0.2000
+  Recall@20: 0.4000
+  NDCG@10: 0.8996
+
+Query 3: SQL injection in login endpoint...
+  MRR: 1.0000
+  MAP@25: 0.3569
+  Recall@10: 0.3000
+  Recall@20: 0.7000
+  NDCG@10: 0.6832
+
+Aggregated metrics:
+  Avg MRR: 0.7500
+  Avg MAP: 0.3695
+  Avg NDCG@10: 0.7019
+  Avg Recall@10: 0.3667
+
+======================================================================
+Testing: η=1.0, steps=2
+======================================================================
+Building energy index: η=1.0, steps=2, optical_tokens=None
+Energy build time: 76.41s
+
+Query 1: authenticated arbitrary file read path traversal...
+  MRR: 1.0000
+  MAP@25: 0.6586
+  Recall@10: 0.6000
+  Recall@20: 0.7000
+  NDCG@10: 0.5228
+
+Query 2: remote code execution in ERP web component...
+  MRR: 0.2500
+  MAP@25: 0.0931
+  Recall@10: 0.2000
+  Recall@20: 0.4000
+  NDCG@10: 0.8996
+
+Query 3: SQL injection in login endpoint...
+  MRR: 1.0000
+  MAP@25: 0.3569
+  Recall@10: 0.3000
+  Recall@20: 0.7000
+  NDCG@10: 0.6832
+
+Aggregated metrics:
+  Avg MRR: 0.7500
+  Avg MAP: 0.3695
+  Avg NDCG@10: 0.7019
+  Avg Recall@10: 0.3667
+
+======================================================================
+Testing: η=1.0, steps=4
+======================================================================
+Building energy index: η=1.0, steps=4, optical_tokens=None
+Energy build time: 76.07s
+
+Query 1: authenticated arbitrary file read path traversal...
+  MRR: 1.0000
+  MAP@25: 0.6586
+  Recall@10: 0.6000
+  Recall@20: 0.7000
+  NDCG@10: 0.5228
+
+Query 2: remote code execution in ERP web component...
+  MRR: 0.2500
+  MAP@25: 0.0931
+  Recall@10: 0.2000
+  Recall@20: 0.4000
+  NDCG@10: 0.8996
+
+Query 3: SQL injection in login endpoint...
+  MRR: 1.0000
+  MAP@25: 0.3569
+  Recall@10: 0.3000
+  Recall@20: 0.7000
+  NDCG@10: 0.6832
+
+Aggregated metrics:
+  Avg MRR: 0.7500
+  Avg MAP: 0.3695
+  Avg NDCG@10: 0.7019
+  Avg Recall@10: 0.3667
+
+======================================================================
+Testing: η=1.0, steps=6
+======================================================================
+Building energy index: η=1.0, steps=6, optical_tokens=None
+Energy build time: 78.24s
+
+Query 1: authenticated arbitrary file read path traversal...
+  MRR: 1.0000
+  MAP@25: 0.6586
+  Recall@10: 0.6000
+  Recall@20: 0.7000
+  NDCG@10: 0.5228
+
+Query 2: remote code execution in ERP web component...
+  MRR: 0.2500
+  MAP@25: 0.0931
+  Recall@10: 0.2000
+  Recall@20: 0.4000
+  NDCG@10: 0.8996
+
+Query 3: SQL injection in login endpoint...
+  MRR: 1.0000
+  MAP@25: 0.3569
+  Recall@10: 0.3000
+  Recall@20: 0.7000
+  NDCG@10: 0.6832
+
+Aggregated metrics:
+  Avg MRR: 0.7500
+  Avg MAP: 0.3695
+  Avg NDCG@10: 0.7019
+  Avg Recall@10: 0.3667
+
+======================================================================
+Testing: η=1.0, steps=8
+======================================================================
+Building energy index: η=1.0, steps=8, optical_tokens=None
+Energy build time: 76.53s
+
+Query 1: authenticated arbitrary file read path traversal...
+  MRR: 1.0000
+  MAP@25: 0.6586
+  Recall@10: 0.6000
+  Recall@20: 0.7000
+  NDCG@10: 0.5228
+
+Query 2: remote code execution in ERP web component...
+  MRR: 0.2500
+  MAP@25: 0.0931
+  Recall@10: 0.2000
+  Recall@20: 0.4000
+  NDCG@10: 0.8996
+
+Query 3: SQL injection in login endpoint...
+  MRR: 1.0000
+  MAP@25: 0.3569
+  Recall@10: 0.3000
+  Recall@20: 0.7000
+  NDCG@10: 0.6832
+
+Aggregated metrics:
+  Avg MRR: 0.7500
+  Avg MAP: 0.3695
+  Avg NDCG@10: 0.7019
+  Avg Recall@10: 0.3667
+
+======================================================================
+Testing: η=1.0, steps=10
+======================================================================
+Building energy index: η=1.0, steps=10, optical_tokens=None
+Energy build time: 78.92s
+
+Query 1: authenticated arbitrary file read path traversal...
+  MRR: 1.0000
+  MAP@25: 0.6586
+  Recall@10: 0.6000
+  Recall@20: 0.7000
+  NDCG@10: 0.5228
+
+Query 2: remote code execution in ERP web component...
+  MRR: 0.2500
+  MAP@25: 0.0931
+  Recall@10: 0.2000
+  Recall@20: 0.4000
+  NDCG@10: 0.8996
+
+Query 3: SQL injection in login endpoint...
+  MRR: 1.0000
+  MAP@25: 0.3569
+  Recall@10: 0.3000
+  Recall@20: 0.7000
+  NDCG@10: 0.6832
+
+Aggregated metrics:
+  Avg MRR: 0.7500
+  Avg MAP: 0.3695
+  Avg NDCG@10: 0.7019
+  Avg Recall@10: 0.3667
+
+======================================================================
+BEST CONFIGURATIONS
+======================================================================
+
+Best MRR: η=0.22, steps=6
+  MRR: 0.7500
+  MAP: 0.3726
+  NDCG: 0.6209
+
+Best MAP: η=0.22, steps=6
+  MRR: 0.7500
+  MAP: 0.3726
+  NDCG: 0.6209
+Sweep heatmaps saved to diffusion_sweep_heatmaps.png
+Sweep results saved to diffusion_sweep_results.csv
+
+======================================================================
+ANALYSIS COMPLETE
+======================================================================
+Standard build time: 80.91s
+Energy builds tested: 15/15

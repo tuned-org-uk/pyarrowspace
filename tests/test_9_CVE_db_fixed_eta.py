@@ -27,8 +27,8 @@ K_RESULTS = 25
 K_TAIL_MAX = 25
 
 # Energy parameters for sweep
-ETA_VALUES = [0.22, 0.25, 0.5, 0.75]
-STEPS_VALUES = [2, 4, 6]
+ETA_VALUES = [0.22, 0.535, 1.0]
+STEPS_VALUES = [2, 4, 6, 8, 10]
 
 # Standard graph params (used for both standard and energy builds)
 graph_params = {
