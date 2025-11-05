@@ -12,9 +12,11 @@ use ::arrowspace::graph::GraphLaplacian;
 
 mod helpers;
 mod energyparams;
+mod sorted_index;
 
 use crate::helpers::*;
 use crate::energyparams::*;
+use crate::sorted_index::*;
 
 #[cfg(test)]
 mod tests;
@@ -102,8 +104,14 @@ impl PyArrowSpace {
         Ok((feats, lam))
     }
 
+    /// return computed lambdas
     fn lambdas<'py>(&self, py: Python<'py>) -> Bound<'py, PyArray1<f64>> {
         PyArray1::from_slice(py, self.inner.lambdas())
+    }
+
+    /// Iterate over (lambda: float, idx: int) in ascending lambda; ties stable by id.
+    pub fn lambdas_sorted(&self) -> Vec<(f64, usize)> {
+        self.inner.lambdas_sorted.to_vec()
     }
 
     /// Get all data as 2D numpy array
@@ -124,6 +132,7 @@ impl PyArrowSpace {
         Ok(arr.reshape(shape)?)
     }
 
+    /// taumode search using eigenmaps (use build)
     fn search(
         &self,
         item: PyReadonlyArray1<f64>,
@@ -196,6 +205,7 @@ impl PyArrowSpace {
         Ok(results)
     }
 
+    /// taumode hybrid search using eigenmaps (use build): cosine + energy
     fn search_hybrid(
         &self,
         item: PyReadonlyArray1<f64>,
@@ -223,6 +233,7 @@ impl PyArrowSpace {
         Ok(self.inner.search_lambda_aware_hybrid(&query, k, tau))
     }
 
+    /// taumode energy search using energymaps (use build_energy)
     fn search_energy(
         &self,
         item: PyReadonlyArray1<f64>,
@@ -239,6 +250,25 @@ impl PyArrowSpace {
         ));
 
         Ok(self.inner.search_energy(v, graph_laplacian, k))
+    }
+
+    /// taumode search using sorted taumode (can be used with both builders)
+    fn search_linear_sorted(
+        &self,
+        item: PyReadonlyArray1<f64>,
+        gl: &PyGraphLaplacian,
+        k: usize,
+    ) -> PyResult<Vec<(usize, f64)>> {
+        let v = item.as_slice()?;
+
+        let graph_laplacian = &gl.inner;
+
+        dbg_println(format!(
+            "search_linear_sorted: qlen={}, k={}",
+            v.len(), k,
+        ));
+
+        Ok(self.inner.search_linear_sorted(v, graph_laplacian, k))
     }
 }
 
@@ -358,6 +388,7 @@ pub fn arrowspace(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<PyArrowSpaceBuilder>()?;
     m.add_class::<PyArrowSpace>()?;
     m.add_class::<PyGraphLaplacian>()?;
+    m.add_class::<PyLambdasSortedIter>()?;
     m.add_function(wrap_pyfunction!(set_debug, m)?)?;
     Ok(())
 }
