@@ -1,0 +1,136 @@
+query_id,query_text,tau_method,rank,cve_id,title,score
+1,authenticated arbitrary file read path traversal,Cosine,1,CVE-2024-22050,Iodine Static File Server Path Traversal Vulnerability,0.700541
+1,authenticated arbitrary file read path traversal,Cosine,2,CVE-2024-4388,CAS <= 1.0.0 - Unauthenticated Arbitrary File Access,0.684958
+1,authenticated arbitrary file read path traversal,Cosine,3,CVE-2024-57248,(no title),0.660872
+1,authenticated arbitrary file read path traversal,Cosine,4,CVE-2023-46988,(no title),0.647988
+1,authenticated arbitrary file read path traversal,Cosine,5,CVE-2024-29368,(no title),0.647960
+1,authenticated arbitrary file read path traversal,Cosine,6,CVE-2023-35843,(no title),0.646616
+1,authenticated arbitrary file read path traversal,Cosine,7,CVE-2023-50090,(no title),0.646449
+1,authenticated arbitrary file read path traversal,Cosine,8,CVE-2025-26137,(no title),0.639870
+1,authenticated arbitrary file read path traversal,Cosine,9,CVE-2024-51058,(no title),0.635298
+1,authenticated arbitrary file read path traversal,Cosine,10,CVE-2024-51135,(no title),0.629845
+1,authenticated arbitrary file read path traversal,Cosine,11,CVE-2023-49031,(no title),0.628347
+1,authenticated arbitrary file read path traversal,Cosine,12,CVE-2024-53586,(no title),0.627641
+1,authenticated arbitrary file read path traversal,Cosine,13,CVE-2024-51163,(no title),0.627600
+1,authenticated arbitrary file read path traversal,Cosine,14,CVE-2022-25401,(no title),0.626372
+1,authenticated arbitrary file read path traversal,Cosine,15,CVE-2023-26563,(no title),0.625138
+1,authenticated arbitrary file read path traversal,Hybrid,1,CVE-2024-29368,(no title),0.715196
+1,authenticated arbitrary file read path traversal,Hybrid,2,CVE-2024-4388,CAS <= 1.0.0 - Unauthenticated Arbitrary File Access,0.711218
+1,authenticated arbitrary file read path traversal,Hybrid,3,CVE-2025-26137,(no title),0.707414
+1,authenticated arbitrary file read path traversal,Hybrid,4,CVE-2023-50090,(no title),0.700879
+1,authenticated arbitrary file read path traversal,Hybrid,5,CVE-2024-51058,(no title),0.699698
+1,authenticated arbitrary file read path traversal,Hybrid,6,CVE-2023-46988,(no title),0.695097
+1,authenticated arbitrary file read path traversal,Hybrid,7,CVE-2024-51135,(no title),0.694591
+1,authenticated arbitrary file read path traversal,Hybrid,8,CVE-2023-49031,(no title),0.692741
+1,authenticated arbitrary file read path traversal,Hybrid,9,CVE-2023-26563,(no title),0.691793
+1,authenticated arbitrary file read path traversal,Hybrid,10,CVE-2024-51163,(no title),0.690903
+1,authenticated arbitrary file read path traversal,Hybrid,11,CVE-2023-35843,(no title),0.688053
+1,authenticated arbitrary file read path traversal,Hybrid,12,CVE-2024-57248,(no title),0.685434
+1,authenticated arbitrary file read path traversal,Hybrid,13,CVE-2024-57727,(no title),0.684725
+1,authenticated arbitrary file read path traversal,Hybrid,14,CVE-2024-22050,Iodine Static File Server Path Traversal Vulnerability,0.682983
+1,authenticated arbitrary file read path traversal,Hybrid,15,CVE-2022-28397,(no title),0.682274
+1,authenticated arbitrary file read path traversal,Taumode,1,CVE-2024-29368,(no title),0.775709
+1,authenticated arbitrary file read path traversal,Taumode,2,CVE-2025-26137,(no title),0.768203
+1,authenticated arbitrary file read path traversal,Taumode,3,CVE-2024-51058,(no title),0.757659
+1,authenticated arbitrary file read path traversal,Taumode,4,CVE-2024-51135,(no title),0.752863
+1,authenticated arbitrary file read path traversal,Taumode,5,CVE-2023-26563,(no title),0.751782
+1,authenticated arbitrary file read path traversal,Taumode,6,CVE-2023-49031,(no title),0.750695
+1,authenticated arbitrary file read path traversal,Taumode,7,CVE-2023-50090,(no title),0.749865
+1,authenticated arbitrary file read path traversal,Taumode,8,CVE-2024-57727,(no title),0.748112
+1,authenticated arbitrary file read path traversal,Taumode,9,CVE-2024-51163,(no title),0.747877
+1,authenticated arbitrary file read path traversal,Taumode,10,CVE-2023-33253,(no title),0.745105
+1,authenticated arbitrary file read path traversal,Taumode,11,CVE-2024-33383,(no title),0.743633
+1,authenticated arbitrary file read path traversal,Taumode,12,CVE-2022-28397,(no title),0.740625
+1,authenticated arbitrary file read path traversal,Taumode,13,CVE-2022-32271,(no title),0.739582
+1,authenticated arbitrary file read path traversal,Taumode,14,CVE-2024-57426,(no title),0.738815
+1,authenticated arbitrary file read path traversal,Taumode,15,CVE-2023-27903,(no title),0.737561
+2,remote code execution in ERP web component,Cosine,1,CVE-2025-26186,(no title),0.636208
+2,remote code execution in ERP web component,Cosine,2,CVE-2025-46109,(no title),0.615603
+2,remote code execution in ERP web component,Cosine,3,CVE-2022-24232,(no title),0.611357
+2,remote code execution in ERP web component,Cosine,4,CVE-2023-41543,(no title),0.604951
+2,remote code execution in ERP web component,Cosine,5,CVE-2024-22923,(no title),0.604418
+2,remote code execution in ERP web component,Cosine,6,CVE-2024-50965,(no title),0.602421
+2,remote code execution in ERP web component,Cosine,7,CVE-2024-33335,(no title),0.601078
+2,remote code execution in ERP web component,Cosine,8,CVE-2024-39332,(no title),0.598409
+2,remote code execution in ERP web component,Cosine,9,CVE-2024-28521,(no title),0.596248
+2,remote code execution in ERP web component,Cosine,10,CVE-2024-28558,(no title),0.593838
+2,remote code execution in ERP web component,Cosine,11,CVE-2022-28959,(no title),0.592416
+2,remote code execution in ERP web component,Cosine,12,CVE-2022-46764,(no title),0.588248
+2,remote code execution in ERP web component,Cosine,13,CVE-2025-25914,(no title),0.587350
+2,remote code execution in ERP web component,Cosine,14,CVE-2022-48152,(no title),0.586252
+2,remote code execution in ERP web component,Cosine,15,CVE-2023-44075,(no title),0.585625
+2,remote code execution in ERP web component,Hybrid,1,CVE-2024-39332,(no title),0.670666
+2,remote code execution in ERP web component,Hybrid,2,CVE-2024-28558,(no title),0.663093
+2,remote code execution in ERP web component,Hybrid,3,CVE-2024-28521,(no title),0.649023
+2,remote code execution in ERP web component,Hybrid,4,CVE-2022-46764,(no title),0.648226
+2,remote code execution in ERP web component,Hybrid,5,CVE-2024-50965,(no title),0.646533
+2,remote code execution in ERP web component,Hybrid,6,CVE-2022-24232,(no title),0.644840
+2,remote code execution in ERP web component,Hybrid,7,CVE-2025-26186,(no title),0.643963
+2,remote code execution in ERP web component,Hybrid,8,CVE-2022-28959,(no title),0.640805
+2,remote code execution in ERP web component,Hybrid,9,CVE-2025-25914,(no title),0.638192
+2,remote code execution in ERP web component,Hybrid,10,CVE-2023-27067,(no title),0.636694
+2,remote code execution in ERP web component,Hybrid,11,CVE-2024-33335,(no title),0.634569
+2,remote code execution in ERP web component,Hybrid,12,CVE-2022-28997,(no title),0.633587
+2,remote code execution in ERP web component,Hybrid,13,CVE-2023-46502,(no title),0.633572
+2,remote code execution in ERP web component,Hybrid,14,CVE-2022-41441,(no title),0.632378
+2,remote code execution in ERP web component,Hybrid,15,CVE-2024-55971,(no title),0.629963
+2,remote code execution in ERP web component,Taumode,1,CVE-2024-39332,(no title),0.735697
+2,remote code execution in ERP web component,Taumode,2,CVE-2024-28558,(no title),0.725423
+2,remote code execution in ERP web component,Taumode,3,CVE-2023-27067,(no title),0.711757
+2,remote code execution in ERP web component,Taumode,4,CVE-2022-41441,(no title),0.710367
+2,remote code execution in ERP web component,Taumode,5,CVE-2024-55971,(no title),0.708539
+2,remote code execution in ERP web component,Taumode,6,CVE-2022-45771,(no title),0.707129
+2,remote code execution in ERP web component,Taumode,7,CVE-2023-33367,(no title),0.705613
+2,remote code execution in ERP web component,Taumode,8,CVE-2022-42064,(no title),0.704998
+2,remote code execution in ERP web component,Taumode,9,CVE-2022-38844,(no title),0.704634
+2,remote code execution in ERP web component,Taumode,10,CVE-2024-25168,(no title),0.703247
+2,remote code execution in ERP web component,Taumode,11,CVE-2022-46764,(no title),0.702207
+2,remote code execution in ERP web component,Taumode,12,CVE-2022-28997,(no title),0.700750
+2,remote code execution in ERP web component,Taumode,13,CVE-2023-47032,(no title),0.699488
+2,remote code execution in ERP web component,Taumode,14,CVE-2022-25591,(no title),0.699479
+2,remote code execution in ERP web component,Taumode,15,CVE-2024-28521,(no title),0.696521
+3,SQL injection in login endpoint,Cosine,1,CVE-2024-51327,(no title),0.712003
+3,SQL injection in login endpoint,Cosine,2,CVE-2023-41594,(no title),0.706745
+3,SQL injection in login endpoint,Cosine,3,CVE-2022-38637,(no title),0.698748
+3,SQL injection in login endpoint,Cosine,4,CVE-2024-40486,(no title),0.697988
+3,SQL injection in login endpoint,Cosine,5,CVE-2024-54811,(no title),0.683861
+3,SQL injection in login endpoint,Cosine,6,CVE-2024-24139,(no title),0.682647
+3,SQL injection in login endpoint,Cosine,7,CVE-2024-41236,(no title),0.679293
+3,SQL injection in login endpoint,Cosine,8,CVE-2023-50035,(no title),0.676106
+3,SQL injection in login endpoint,Cosine,9,CVE-2023-37069,(no title),0.673455
+3,SQL injection in login endpoint,Cosine,10,CVE-2022-24571,(no title),0.672837
+3,SQL injection in login endpoint,Cosine,11,CVE-2024-44349,(no title),0.670299
+3,SQL injection in login endpoint,Cosine,12,CVE-2022-37138,(no title),0.668483
+3,SQL injection in login endpoint,Cosine,13,CVE-2024-41238,(no title),0.667763
+3,SQL injection in login endpoint,Cosine,14,CVE-2023-41503,(no title),0.666698
+3,SQL injection in login endpoint,Cosine,15,CVE-2023-26856,(no title),0.666545
+3,SQL injection in login endpoint,Hybrid,1,CVE-2024-51327,(no title),0.769500
+3,SQL injection in login endpoint,Hybrid,2,CVE-2023-41594,(no title),0.754565
+3,SQL injection in login endpoint,Hybrid,3,CVE-2024-54811,(no title),0.743319
+3,SQL injection in login endpoint,Hybrid,4,CVE-2024-41236,(no title),0.740082
+3,SQL injection in login endpoint,Hybrid,5,CVE-2022-38637,(no title),0.725593
+3,SQL injection in login endpoint,Hybrid,6,CVE-2024-25325,(no title),0.725573
+3,SQL injection in login endpoint,Hybrid,7,CVE-2023-37069,(no title),0.724544
+3,SQL injection in login endpoint,Hybrid,8,CVE-2022-28110,(no title),0.724273
+3,SQL injection in login endpoint,Hybrid,9,CVE-2022-37138,(no title),0.714964
+3,SQL injection in login endpoint,Hybrid,10,CVE-2023-26856,(no title),0.714130
+3,SQL injection in login endpoint,Hybrid,11,CVE-2024-44349,(no title),0.710551
+3,SQL injection in login endpoint,Hybrid,12,CVE-2024-24139,(no title),0.709430
+3,SQL injection in login endpoint,Hybrid,13,CVE-2022-30496,(no title),0.709168
+3,SQL injection in login endpoint,Hybrid,14,CVE-2023-50035,(no title),0.707042
+3,SQL injection in login endpoint,Hybrid,15,CVE-2025-45885,(no title),0.706352
+3,SQL injection in login endpoint,Taumode,1,CVE-2024-51327,(no title),0.821248
+3,SQL injection in login endpoint,Taumode,2,CVE-2023-41594,(no title),0.797604
+3,SQL injection in login endpoint,Taumode,3,CVE-2024-54811,(no title),0.796831
+3,SQL injection in login endpoint,Taumode,4,CVE-2024-41236,(no title),0.794793
+3,SQL injection in login endpoint,Taumode,5,CVE-2024-25325,(no title),0.784757
+3,SQL injection in login endpoint,Taumode,6,CVE-2022-28110,(no title),0.777277
+3,SQL injection in login endpoint,Taumode,7,CVE-2023-37069,(no title),0.770524
+3,SQL injection in login endpoint,Taumode,8,CVE-2022-30496,(no title),0.769021
+3,SQL injection in login endpoint,Taumode,9,CVE-2022-34949,(no title),0.763296
+3,SQL injection in login endpoint,Taumode,10,CVE-2025-45885,(no title),0.762439
+3,SQL injection in login endpoint,Taumode,11,CVE-2024-40502,(no title),0.760484
+3,SQL injection in login endpoint,Taumode,12,CVE-2024-22719,(no title),0.757336
+3,SQL injection in login endpoint,Taumode,13,CVE-2023-26856,(no title),0.756956
+3,SQL injection in login endpoint,Taumode,14,CVE-2022-37138,(no title),0.756796
+3,SQL injection in login endpoint,Taumode,15,CVE-2024-48579,(no title),0.753352

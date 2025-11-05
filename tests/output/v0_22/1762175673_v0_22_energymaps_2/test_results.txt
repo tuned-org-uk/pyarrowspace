@@ -1,0 +1,243 @@
+Loaded 125764 CVEs
+Generating embeddings...
+Model loaded from: ./domain_adapted_model
+Batches: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 3931/3931 [03:13<00:00, 20.33it/s]
+Embeddings shape: (125764, 384), sample: [-0.02660436  0.07302935  0.02346342 -0.05955964 -0.04822144]...
+Building ArrowSpace...
+build: Converting numpy array to internal format
+build: Processing 125764 rows × 384 cols
+build complete: nitems=125764, nfeatures=384, lambdas=125764
+Build time: 370.14s
+
+Searching 3 queries...
+Model loaded from: ./domain_adapted_model
+Batches: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00, 206.40it/s]
+Embeddings shape: (3, 384), sample: [-0.0122127   0.05706869 -0.01711867 -0.07662857 -0.11884194]...
+
+======================================================================
+Query 1: authenticated arbitrary file read path traversal
+======================================================================
+search: qlen=384, lambda_q=0.076287
+search: qlen=384, lambda_q=0.076287
+search: qlen=384, lambda_q=0.076287
+Results: cosine=15, hybrid=15, taumode=15, using min=15
+
+Cosine (τ=1.0)
+----------------------------------------------------------------------
+ 1. CVE-2024-22050     Iodine Static File Server Path Traversal Vulnerability [0.7005]
+ 2. CVE-2024-4388      CAS <= 1.0.0 - Unauthenticated Arbitrary File Access [0.6850]
+ 3. CVE-2024-57248     (no title)                               [0.6609]
+ 4. CVE-2023-46988     (no title)                               [0.6480]
+ 5. CVE-2024-29368     (no title)                               [0.6480]
+ 6. CVE-2023-35843     (no title)                               [0.6466]
+ 7. CVE-2023-50090     (no title)                               [0.6464]
+ 8. CVE-2025-26137     (no title)                               [0.6399]
+ 9. CVE-2024-51058     (no title)                               [0.6353]
+10. CVE-2024-51135     (no title)                               [0.6298]
+
+Hybrid (τ=0.8)
+----------------------------------------------------------------------
+ 1. CVE-2024-29368     (no title)                               [0.7152]
+ 2. CVE-2024-4388      CAS <= 1.0.0 - Unauthenticated Arbitrary File Access [0.7112]
+ 3. CVE-2025-26137     (no title)                               [0.7074]
+ 4. CVE-2023-50090     (no title)                               [0.7009]
+ 5. CVE-2024-51058     (no title)                               [0.6997]
+ 6. CVE-2023-46988     (no title)                               [0.6951]
+ 7. CVE-2024-51135     (no title)                               [0.6946]
+ 8. CVE-2023-49031     (no title)                               [0.6927]
+ 9. CVE-2023-26563     (no title)                               [0.6918]
+10. CVE-2024-51163     (no title)                               [0.6909]
+
+Taumode (τ=0.62)
+----------------------------------------------------------------------
+ 1. CVE-2024-29368     (no title)                               [0.7757]
+ 2. CVE-2025-26137     (no title)                               [0.7682]
+ 3. CVE-2024-51058     (no title)                               [0.7577]
+ 4. CVE-2024-51135     (no title)                               [0.7529]
+ 5. CVE-2023-26563     (no title)                               [0.7518]
+ 6. CVE-2023-49031     (no title)                               [0.7507]
+ 7. CVE-2023-50090     (no title)                               [0.7499]
+ 8. CVE-2024-57727     (no title)                               [0.7481]
+ 9. CVE-2024-51163     (no title)                               [0.7479]
+10. CVE-2023-33253     (no title)                               [0.7451]
+
+Correlations:
+  Cosine vs Hybrid:   ρ=0.016, τ=0.077
+  Cosine vs Taumode:  ρ=0.548, τ=0.500
+  Hybrid vs Taumode:  ρ=0.855, τ=0.733
+
+NDCG@10:
+  Hybrid vs Cosine:   0.9094
+  Taumode vs Cosine:  0.9454
+  Taumode vs Hybrid:  0.9805
+
+Tail Quality (Ranks 4-15):
+  Cosine (τ=1.0):
+    T/H ratio: 0.9320
+    CV: 0.0141
+  Hybrid (τ=0.8):
+    T/H ratio: 0.9712
+    CV: 0.0086
+  Taumode (τ=0.62):
+    T/H ratio: 0.9718
+    CV: 0.0070
+
+======================================================================
+Query 2: remote code execution in ERP web component
+======================================================================
+search: qlen=384, lambda_q=0.340116
+search: qlen=384, lambda_q=0.340116
+search: qlen=384, lambda_q=0.340116
+Results: cosine=15, hybrid=15, taumode=15, using min=15
+
+Cosine (τ=1.0)
+----------------------------------------------------------------------
+ 1. CVE-2025-26186     (no title)                               [0.6362]
+ 2. CVE-2025-46109     (no title)                               [0.6156]
+ 3. CVE-2022-24232     (no title)                               [0.6114]
+ 4. CVE-2023-41543     (no title)                               [0.6050]
+ 5. CVE-2024-22923     (no title)                               [0.6044]
+ 6. CVE-2024-50965     (no title)                               [0.6024]
+ 7. CVE-2024-33335     (no title)                               [0.6011]
+ 8. CVE-2024-39332     (no title)                               [0.5984]
+ 9. CVE-2024-28521     (no title)                               [0.5962]
+10. CVE-2024-28558     (no title)                               [0.5938]
+
+Hybrid (τ=0.8)
+----------------------------------------------------------------------
+ 1. CVE-2024-39332     (no title)                               [0.6707]
+ 2. CVE-2024-28558     (no title)                               [0.6631]
+ 3. CVE-2024-28521     (no title)                               [0.6490]
+ 4. CVE-2022-46764     (no title)                               [0.6482]
+ 5. CVE-2024-50965     (no title)                               [0.6465]
+ 6. CVE-2022-24232     (no title)                               [0.6448]
+ 7. CVE-2025-26186     (no title)                               [0.6440]
+ 8. CVE-2022-28959     (no title)                               [0.6408]
+ 9. CVE-2025-25914     (no title)                               [0.6382]
+10. CVE-2023-27067     (no title)                               [0.6367]
+
+Taumode (τ=0.62)
+----------------------------------------------------------------------
+ 1. CVE-2024-39332     (no title)                               [0.7357]
+ 2. CVE-2024-28558     (no title)                               [0.7254]
+ 3. CVE-2023-27067     (no title)                               [0.7118]
+ 4. CVE-2022-41441     (no title)                               [0.7104]
+ 5. CVE-2024-55971     (no title)                               [0.7085]
+ 6. CVE-2022-45771     (no title)                               [0.7071]
+ 7. CVE-2023-33367     (no title)                               [0.7056]
+ 8. CVE-2022-42064     (no title)                               [0.7050]
+ 9. CVE-2022-38844     (no title)                               [0.7046]
+10. CVE-2024-25168     (no title)                               [0.7032]
+
+Correlations:
+  Cosine vs Hybrid:   ρ=-0.018, τ=-0.022
+  Cosine vs Taumode:  ρ=0.400, τ=0.333
+  Hybrid vs Taumode:  ρ=0.381, τ=0.286
+
+NDCG@10:
+  Hybrid vs Cosine:   0.6384
+  Taumode vs Cosine:  1.0000
+  Taumode vs Hybrid:  1.0000
+
+Tail Quality (Ranks 4-15):
+  Cosine (τ=1.0):
+    T/H ratio: 0.9582
+    CV: 0.0116
+  Hybrid (τ=0.8):
+    T/H ratio: 0.9662
+    CV: 0.0092
+  Taumode (τ=0.62):
+    T/H ratio: 0.9714
+    CV: 0.0056
+
+======================================================================
+Query 3: SQL injection in login endpoint
+======================================================================
+search: qlen=384, lambda_q=0.194874
+search: qlen=384, lambda_q=0.194874
+search: qlen=384, lambda_q=0.194874
+Results: cosine=15, hybrid=15, taumode=15, using min=15
+
+Cosine (τ=1.0)
+----------------------------------------------------------------------
+ 1. CVE-2024-51327     (no title)                               [0.7120]
+ 2. CVE-2023-41594     (no title)                               [0.7067]
+ 3. CVE-2022-38637     (no title)                               [0.6987]
+ 4. CVE-2024-40486     (no title)                               [0.6980]
+ 5. CVE-2024-54811     (no title)                               [0.6839]
+ 6. CVE-2024-24139     (no title)                               [0.6826]
+ 7. CVE-2024-41236     (no title)                               [0.6793]
+ 8. CVE-2023-50035     (no title)                               [0.6761]
+ 9. CVE-2023-37069     (no title)                               [0.6735]
+10. CVE-2022-24571     (no title)                               [0.6728]
+
+Hybrid (τ=0.8)
+----------------------------------------------------------------------
+ 1. CVE-2024-51327     (no title)                               [0.7695]
+ 2. CVE-2023-41594     (no title)                               [0.7546]
+ 3. CVE-2024-54811     (no title)                               [0.7433]
+ 4. CVE-2024-41236     (no title)                               [0.7401]
+ 5. CVE-2022-38637     (no title)                               [0.7256]
+ 6. CVE-2024-25325     (no title)                               [0.7256]
+ 7. CVE-2023-37069     (no title)                               [0.7245]
+ 8. CVE-2022-28110     (no title)                               [0.7243]
+ 9. CVE-2022-37138     (no title)                               [0.7150]
+10. CVE-2023-26856     (no title)                               [0.7141]
+
+Taumode (τ=0.62)
+----------------------------------------------------------------------
+ 1. CVE-2024-51327     (no title)                               [0.8212]
+ 2. CVE-2023-41594     (no title)                               [0.7976]
+ 3. CVE-2024-54811     (no title)                               [0.7968]
+ 4. CVE-2024-41236     (no title)                               [0.7948]
+ 5. CVE-2024-25325     (no title)                               [0.7848]
+ 6. CVE-2022-28110     (no title)                               [0.7773]
+ 7. CVE-2023-37069     (no title)                               [0.7705]
+ 8. CVE-2022-30496     (no title)                               [0.7690]
+ 9. CVE-2022-34949     (no title)                               [0.7633]
+10. CVE-2025-45885     (no title)                               [0.7624]
+
+Correlations:
+  Cosine vs Hybrid:   ρ=0.673, τ=0.527
+  Cosine vs Taumode:  ρ=0.964, τ=0.905
+  Hybrid vs Taumode:  ρ=0.909, τ=0.782
+
+NDCG@10:
+  Hybrid vs Cosine:   0.9853
+  Taumode vs Cosine:  0.9949
+  Taumode vs Hybrid:  0.9992
+
+Tail Quality (Ranks 4-15):
+  Cosine (τ=1.0):
+    T/H ratio: 0.9570
+    CV: 0.0131
+  Hybrid (τ=0.8):
+    T/H ratio: 0.9495
+    CV: 0.0138
+  Taumode (τ=0.62):
+    T/H ratio: 0.9528
+    CV: 0.0158
+
+======================================================================
+EXPORTING RESULTS TO CSV
+======================================================================
+Search results saved to cve_search_results.csv
+Comparison metrics saved to cve_comparison_metrics.csv
+Tail metrics saved to cve_tail_metrics.csv
+Summary statistics saved to cve_summary.csv
+
+======================================================================
+SUMMARY
+======================================================================
+
+Average NDCG@10:
+  Hybrid vs Cosine:   0.8444
+  Taumode vs Cosine:  0.9801
+
+Average Tail/Head Ratios:
+  Cosine (τ=1.0): 0.9491 ± 0.0121
+  Hybrid (τ=0.8): 0.9623 ± 0.0093
+  Taumode (τ=0.62): 0.9653 ± 0.0088
+
+→ Higher T/H ratio = Better long-tail quality
+→ ArrowSpace (τ<1.0) maintains higher tail scores

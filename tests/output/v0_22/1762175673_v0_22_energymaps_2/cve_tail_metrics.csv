@@ -1,0 +1,10 @@
+query_id,query_text,tau_method,head_mean,tail_mean,tail_std,tail_to_head_ratio,tail_cv,tail_decay_rate,n_tail_items,total_items
+1,authenticated arbitrary file read path traversal,Cosine (τ=1.0),0.682124,0.635760,0.008995,0.932031,0.014149,0.001904,12,15
+1,authenticated arbitrary file read path traversal,Hybrid (τ=0.8),0.711276,0.690764,0.005954,0.971162,0.008619,0.001550,12,15
+1,authenticated arbitrary file read path traversal,Taumode (τ=0.62),0.767190,0.745543,0.005183,0.971784,0.006951,0.001275,12,15
+2,remote code execution in ERP web component,Cosine (τ=1.0),0.621056,0.595104,0.006888,0.958214,0.011575,0.001610,12,15
+2,remote code execution in ERP web component,Hybrid (τ=0.8),0.660928,0.638610,0.005859,0.966233,0.009174,0.001522,12,15
+2,remote code execution in ERP web component,Taumode (τ=0.62),0.724292,0.703581,0.003915,0.971405,0.005564,0.001154,12,15
+3,SQL injection in login endpoint,Cosine (τ=1.0),0.705832,0.675498,0.008881,0.957024,0.013148,0.002620,12,15
+3,SQL injection in login endpoint,Hybrid (τ=0.8),0.755795,0.717642,0.009875,0.949519,0.013760,0.002811,12,15
+3,SQL injection in login endpoint,Taumode (τ=0.62),0.805228,0.767253,0.012147,0.952839,0.015832,0.003453,12,15

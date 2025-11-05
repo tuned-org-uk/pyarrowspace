@@ -1,12 +1,12 @@
-"""CVE semantic search with energy-only pipeline + energy clustered search - Diffusion parameter sweep with MRR
+"""CVE semantic search with energy-only pipeline + sorted linear search - Diffusion parameter sweep with MRR
 Requirements:
     pip install sentence-transformers numpy matplotlib scipy scikit-learn tqdm
 Usage:
     python tests/test_cve_energy.py --dataset <dataset_dir>
 
-**********************
-Energymaps with sweeps of energy parameters and search_energy
-*********************
+********************
+This tries to mix energy maps with linear sorted index: Very low compliance with cosine similarity
+********************
 """
 import os
 import json
@@ -31,8 +31,8 @@ K_RESULTS = 25
 K_TAIL_MAX = 25
 
 # Energy parameters for sweep
-ETA_VALUES = [0.22, 0.535, 1.0]
-STEPS_VALUES = [2, 4, 6, 8, 10]
+ETA_VALUES = [0.535, 0.82]
+STEPS_VALUES = [4, 6]
 
 # Standard graph params (used for both standard and energy builds)
 graph_params = {
@@ -203,6 +203,7 @@ def sweep_diffusion_params(emb, qemb, queries, ids, titles):
     print("="*70)
     start = time.perf_counter()
     aspace_std, gl_std = ArrowSpaceBuilder.build(graph_params, emb)
+    assert(len(aspace_std.lambdas_sorted()) != 0)
     std_build_time = time.perf_counter() - start
     print(f"Standard build time: {std_build_time:.2f}s")
     
@@ -226,6 +227,7 @@ def sweep_diffusion_params(emb, qemb, queries, ids, titles):
                 aspace_energy, gl_energy, build_time = build_energy_index(
                     emb, eta, steps
                 )
+                assert(len(aspace_energy.lambdas_sorted()) != 0)
                 
                 # Test queries
                 query_metrics = []
@@ -233,7 +235,7 @@ def sweep_diffusion_params(emb, qemb, queries, ids, titles):
                     print(f"\nQuery {qi+1}: {q[:50]}...")
                     
                     # Energy search
-                    results_energy = aspace_energy.search_energy(
+                    results_energy = aspace_energy.search_linear_sorted(
                         qemb[qi], gl_energy, k=K_RESULTS
                     )
                     
