@@ -46,6 +46,8 @@ exclude = [
     "tests/",           # Exclude the entire 'tests' directory
     ".github/",            # Exclude the 'docs' directory
     "**/*.pyc",         # Exclude all compiled Python files
-    "*.md",
+    "TAUMODE.md",
+    "NORMALISATION.md",
+    "GRAPH_VARIABLES.md",
     ".gitignore"
 ]

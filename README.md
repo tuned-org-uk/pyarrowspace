@@ -4,6 +4,8 @@ Python bindings for [`arrowspace-rs`](https://github.com/Mec-iS/arrowspace-rs). 
 
 This is the starting repository for `arrowspace`, it is made public as a showcase for the Python interface, to collect feedback and make public some results of the tests run. To run needs the `arrowspace-rs` Rust module in a sibling directory.
 
+For labs and tests please see [tests/](https://github.com/tuned-org-uk/pyarrowspace/tree/main/tests)
+
 ## Installation
 From PyPi:
 ```
