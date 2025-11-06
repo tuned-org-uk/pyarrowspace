@@ -93,6 +93,8 @@ dependencies = [
 [[package]]
 name = "arrowspace"
 version = "0.22.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "33715d859895f74a782e9fff3b5bd9d8843d16fe3e220e3015fa87bc56b48fc4"
 dependencies = [
  "approx 0.5.1",
  "dashmap",
