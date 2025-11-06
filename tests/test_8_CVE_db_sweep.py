@@ -3,6 +3,10 @@ Requirements:
     pip install sentence-transformers numpy matplotlib scipy scikit-learn tqdm
 Usage:
     python tests/test_cve_energy.py --dataset <dataset_dir>
+
+******************
+Energymaps without energy parameters sweeping
+******************
 """
 import os
 import json

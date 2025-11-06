@@ -1,0 +1,649 @@
+Loading CVE JSON files...
+1681it [00:00, 2123.11it/s]
+Loaded 1681 CVEs
+Generating embeddings...
+Model loaded from: ./domain_adapted_model
+Batches: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 53/53 [00:01<00:00, 46.15it/s]
+Embeddings shape: (1681, 384), sample: [ 0.09512987  0.10447408  0.10577734  0.03425939 -0.02108146]...
+
+Generating query embeddings...
+Model loaded from: ./domain_adapted_model
+Batches: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00, 120.40it/s]
+Embeddings shape: (3, 384), sample: [-0.0122127   0.05706869 -0.01711867 -0.07662857 -0.11884194]...
+
+======================================================================
+DIFFUSION PARAMETER SWEEP
+======================================================================
+
+======================================================================
+Building BASELINE standard index...
+======================================================================
+build: Converting numpy array to internal format
+build: Processing 1681 rows × 384 cols
+build complete: nitems=1681, nfeatures=384, lambdas=1681
+Standard build time: 159.46s
+search: qlen=384, lambda_q=0.141021
+search: qlen=384, lambda_q=0.480132
+search: qlen=384, lambda_q=0.392969
+
+======================================================================
+Testing: η=0.22, steps=2
+======================================================================
+Building energy index: η=0.22, steps=2, optical_tokens=None
+build_energy: Converting numpy array
+build_energy: optical_tokens=None, w_λ=1.00, w_G=0.50, w_D=0.25
+build_energy: Processing 1681 rows × 384 cols
+build_energy complete: nitems=1681, nfeatures=384, graph_nodes=17, lambdas=1681
+Energy build time: 157.78s
+
+Query 1: authenticated arbitrary file read path traversal...
+search_energy: qlen=384, k=25
+  MRR: 1.0000
+  MAP@25: 0.4625
+  Recall@10: 0.5000
+  Recall@20: 0.5000
+  NDCG@10: 0.4657
+
+Query 2: remote code execution in ERP web component...
+search_energy: qlen=384, k=25
+  MRR: 1.0000
+  MAP@25: 0.2486
+  Recall@10: 0.4000
+  Recall@20: 0.4000
+  NDCG@10: 0.5371
+
+Query 3: SQL injection in login endpoint...
+search_energy: qlen=384, k=25
+  MRR: 0.1111
+  MAP@25: 0.0111
+  Recall@10: 0.1000
+  Recall@20: 0.1000
+  NDCG@10: 0.7103
+
+Aggregated metrics:
+  Avg MRR: 0.7037
+  Avg MAP: 0.2407
+  Avg NDCG@10: 0.5710
+  Avg Recall@10: 0.3333
+
+======================================================================
+Testing: η=0.22, steps=4
+======================================================================
+Building energy index: η=0.22, steps=4, optical_tokens=None
+build_energy: Converting numpy array
+build_energy: optical_tokens=None, w_λ=1.00, w_G=0.50, w_D=0.25
+build_energy: Processing 1681 rows × 384 cols
+build_energy complete: nitems=1681, nfeatures=384, graph_nodes=17, lambdas=1681
+Energy build time: 148.73s
+
+Query 1: authenticated arbitrary file read path traversal...
+search_energy: qlen=384, k=25
+  MRR: 0.0000
+  MAP@25: 0.0000
+  Recall@10: 0.0000
+  Recall@20: 0.0000
+  NDCG@10: 0.0000
+
+Query 2: remote code execution in ERP web component...
+search_energy: qlen=384, k=25
+  MRR: 0.0000
+  MAP@25: 0.0000
+  Recall@10: 0.0000
+  Recall@20: 0.0000
+  NDCG@10: 0.0000
+
+Query 3: SQL injection in login endpoint...
+search_energy: qlen=384, k=25
+  MRR: 0.0000
+  MAP@25: 0.0000
+  Recall@10: 0.0000
+  Recall@20: 0.0000
+  NDCG@10: 0.0000
+
+Aggregated metrics:
+  Avg MRR: 0.0000
+  Avg MAP: 0.0000
+  Avg NDCG@10: 0.0000
+  Avg Recall@10: 0.0000
+
+======================================================================
+Testing: η=0.22, steps=6
+======================================================================
+Building energy index: η=0.22, steps=6, optical_tokens=None
+build_energy: Converting numpy array
+build_energy: optical_tokens=None, w_λ=1.00, w_G=0.50, w_D=0.25
+build_energy: Processing 1681 rows × 384 cols
+build_energy complete: nitems=1681, nfeatures=384, graph_nodes=17, lambdas=1681
+Energy build time: 156.62s
+
+Query 1: authenticated arbitrary file read path traversal...
+search_energy: qlen=384, k=25
+  MRR: 0.5000
+  MAP@25: 0.0500
+  Recall@10: 0.1000
+  Recall@20: 0.1000
+  NDCG@10: 0.3010
+
+Query 2: remote code execution in ERP web component...
+search_energy: qlen=384, k=25
+  MRR: 1.0000
+  MAP@25: 0.2858
+  Recall@10: 0.4000
+  Recall@20: 0.5000
+  NDCG@10: 0.5005
+
+Query 3: SQL injection in login endpoint...
+search_energy: qlen=384, k=25
+  MRR: 1.0000
+  MAP@25: 0.3667
+  Recall@10: 0.4000
+  Recall@20: 0.4000
+  NDCG@10: 0.4748
+
+Aggregated metrics:
+  Avg MRR: 0.8333
+  Avg MAP: 0.2342
+  Avg NDCG@10: 0.4254
+  Avg Recall@10: 0.3000
+
+======================================================================
+Testing: η=0.22, steps=8
+======================================================================
+Building energy index: η=0.22, steps=8, optical_tokens=None
+build_energy: Converting numpy array
+build_energy: optical_tokens=None, w_λ=1.00, w_G=0.50, w_D=0.25
+build_energy: Processing 1681 rows × 384 cols
+build_energy complete: nitems=1681, nfeatures=384, graph_nodes=17, lambdas=1681
+Energy build time: 156.28s
+
+Query 1: authenticated arbitrary file read path traversal...
+search_energy: qlen=384, k=25
+  MRR: 0.0000
+  MAP@25: 0.0000
+  Recall@10: 0.0000
+  Recall@20: 0.0000
+  NDCG@10: 0.0000
+
+Query 2: remote code execution in ERP web component...
+search_energy: qlen=384, k=25
+  MRR: 0.0000
+  MAP@25: 0.0000
+  Recall@10: 0.0000
+  Recall@20: 0.0000
+  NDCG@10: 0.0000
+
+Query 3: SQL injection in login endpoint...
+search_energy: qlen=384, k=25
+  MRR: 0.0000
+  MAP@25: 0.0000
+  Recall@10: 0.0000
+  Recall@20: 0.0000
+  NDCG@10: 0.0000
+
+Aggregated metrics:
+  Avg MRR: 0.0000
+  Avg MAP: 0.0000
+  Avg NDCG@10: 0.0000
+  Avg Recall@10: 0.0000
+
+======================================================================
+Testing: η=0.22, steps=10
+======================================================================
+Building energy index: η=0.22, steps=10, optical_tokens=None
+build_energy: Converting numpy array
+build_energy: optical_tokens=None, w_λ=1.00, w_G=0.50, w_D=0.25
+build_energy: Processing 1681 rows × 384 cols
+build_energy complete: nitems=1681, nfeatures=384, graph_nodes=17, lambdas=1681
+Energy build time: 151.16s
+
+Query 1: authenticated arbitrary file read path traversal...
+search_energy: qlen=384, k=25
+  MRR: 1.0000
+  MAP@25: 0.8817
+  Recall@10: 0.8000
+  Recall@20: 0.9000
+  NDCG@10: 0.6168
+
+Query 2: remote code execution in ERP web component...
+search_energy: qlen=384, k=25
+  MRR: 0.5000
+  MAP@25: 0.4302
+  Recall@10: 0.4000
+  Recall@20: 0.8000
+  NDCG@10: 0.4793
+
+Query 3: SQL injection in login endpoint...
+search_energy: qlen=384, k=25
+  MRR: 0.0000
+  MAP@25: 0.0000
+  Recall@10: 0.0000
+  Recall@20: 0.0000
+  NDCG@10: 0.0000
+
+Aggregated metrics:
+  Avg MRR: 0.5000
+  Avg MAP: 0.4373
+  Avg NDCG@10: 0.3654
+  Avg Recall@10: 0.4000
+
+======================================================================
+Testing: η=0.535, steps=2
+======================================================================
+Building energy index: η=0.535, steps=2, optical_tokens=None
+build_energy: Converting numpy array
+build_energy: optical_tokens=None, w_λ=1.00, w_G=0.50, w_D=0.25
+build_energy: Processing 1681 rows × 384 cols
+build_energy complete: nitems=1681, nfeatures=384, graph_nodes=17, lambdas=1681
+Energy build time: 149.39s
+
+Query 1: authenticated arbitrary file read path traversal...
+search_energy: qlen=384, k=25
+  MRR: 0.0000
+  MAP@25: 0.0000
+  Recall@10: 0.0000
+  Recall@20: 0.0000
+  NDCG@10: 0.0000
+
+Query 2: remote code execution in ERP web component...
+search_energy: qlen=384, k=25
+  MRR: 0.0000
+  MAP@25: 0.0000
+  Recall@10: 0.0000
+  Recall@20: 0.0000
+  NDCG@10: 0.0000
+
+Query 3: SQL injection in login endpoint...
+search_energy: qlen=384, k=25
+  MRR: 0.0000
+  MAP@25: 0.0000
+  Recall@10: 0.0000
+  Recall@20: 0.0000
+  NDCG@10: 0.0000
+
+Aggregated metrics:
+  Avg MRR: 0.0000
+  Avg MAP: 0.0000
+  Avg NDCG@10: 0.0000
+  Avg Recall@10: 0.0000
+
+======================================================================
+Testing: η=0.535, steps=4
+======================================================================
+Building energy index: η=0.535, steps=4, optical_tokens=None
+build_energy: Converting numpy array
+build_energy: optical_tokens=None, w_λ=1.00, w_G=0.50, w_D=0.25
+build_energy: Processing 1681 rows × 384 cols
+build_energy complete: nitems=1681, nfeatures=384, graph_nodes=17, lambdas=1681
+Energy build time: 158.17s
+
+Query 1: authenticated arbitrary file read path traversal...
+search_energy: qlen=384, k=25
+  MRR: 1.0000
+  MAP@25: 0.1667
+  Recall@10: 0.2000
+  Recall@20: 0.2000
+  NDCG@10: 0.3127
+
+Query 2: remote code execution in ERP web component...
+search_energy: qlen=384, k=25
+  MRR: 0.5000
+  MAP@25: 0.1048
+  Recall@10: 0.2000
+  Recall@20: 0.3000
+  NDCG@10: 0.3607
+
+Query 3: SQL injection in login endpoint...
+search_energy: qlen=384, k=25
+  MRR: 1.0000
+  MAP@25: 0.5383
+  Recall@10: 0.6000
+  Recall@20: 0.6000
+  NDCG@10: 0.4966
+
+Aggregated metrics:
+  Avg MRR: 0.8333
+  Avg MAP: 0.2699
+  Avg NDCG@10: 0.3900
+  Avg Recall@10: 0.3333
+
+======================================================================
+Testing: η=0.535, steps=6
+======================================================================
+Building energy index: η=0.535, steps=6, optical_tokens=None
+build_energy: Converting numpy array
+build_energy: optical_tokens=None, w_λ=1.00, w_G=0.50, w_D=0.25
+build_energy: Processing 1681 rows × 384 cols
+build_energy complete: nitems=1681, nfeatures=384, graph_nodes=17, lambdas=1681
+Energy build time: 158.12s
+
+Query 1: authenticated arbitrary file read path traversal...
+search_energy: qlen=384, k=25
+  MRR: 1.0000
+  MAP@25: 0.8800
+  Recall@10: 0.8000
+  Recall@20: 0.9000
+  NDCG@10: 0.6168
+
+Query 2: remote code execution in ERP web component...
+search_energy: qlen=384, k=25
+  MRR: 0.5000
+  MAP@25: 0.4739
+  Recall@10: 0.5000
+  Recall@20: 0.9000
+  NDCG@10: 0.5913
+
+Query 3: SQL injection in login endpoint...
+search_energy: qlen=384, k=25
+  MRR: 1.0000
+  MAP@25: 0.8364
+  Recall@10: 0.7000
+  Recall@20: 1.0000
+  NDCG@10: 0.6327
+
+Aggregated metrics:
+  Avg MRR: 0.8333
+  Avg MAP: 0.7301
+  Avg NDCG@10: 0.6136
+  Avg Recall@10: 0.6667
+
+======================================================================
+Testing: η=0.535, steps=8
+======================================================================
+Building energy index: η=0.535, steps=8, optical_tokens=None
+build_energy: Converting numpy array
+build_energy: optical_tokens=None, w_λ=1.00, w_G=0.50, w_D=0.25
+build_energy: Processing 1681 rows × 384 cols
+build_energy complete: nitems=1681, nfeatures=384, graph_nodes=17, lambdas=1681
+Energy build time: 154.64s
+
+Query 1: authenticated arbitrary file read path traversal...
+search_energy: qlen=384, k=25
+  MRR: 1.0000
+  MAP@25: 0.8800
+  Recall@10: 0.8000
+  Recall@20: 0.9000
+  NDCG@10: 0.6168
+
+Query 2: remote code execution in ERP web component...
+search_energy: qlen=384, k=25
+  MRR: 0.5000
+  MAP@25: 0.4739
+  Recall@10: 0.5000
+  Recall@20: 0.9000
+  NDCG@10: 0.5913
+
+Query 3: SQL injection in login endpoint...
+search_energy: qlen=384, k=25
+  MRR: 1.0000
+  MAP@25: 0.8364
+  Recall@10: 0.7000
+  Recall@20: 1.0000
+  NDCG@10: 0.6327
+
+Aggregated metrics:
+  Avg MRR: 0.8333
+  Avg MAP: 0.7301
+  Avg NDCG@10: 0.6136
+  Avg Recall@10: 0.6667
+
+======================================================================
+Testing: η=0.535, steps=10
+======================================================================
+Building energy index: η=0.535, steps=10, optical_tokens=None
+build_energy: Converting numpy array
+build_energy: optical_tokens=None, w_λ=1.00, w_G=0.50, w_D=0.25
+build_energy: Processing 1681 rows × 384 cols
+build_energy complete: nitems=1681, nfeatures=384, graph_nodes=17, lambdas=1681
+Energy build time: 154.56s
+
+Query 1: authenticated arbitrary file read path traversal...
+search_energy: qlen=384, k=25
+  MRR: 1.0000
+  MAP@25: 0.8800
+  Recall@10: 0.8000
+  Recall@20: 0.9000
+  NDCG@10: 0.6168
+
+Query 2: remote code execution in ERP web component...
+search_energy: qlen=384, k=25
+  MRR: 0.5000
+  MAP@25: 0.4739
+  Recall@10: 0.5000
+  Recall@20: 0.9000
+  NDCG@10: 0.5913
+
+Query 3: SQL injection in login endpoint...
+search_energy: qlen=384, k=25
+  MRR: 1.0000
+  MAP@25: 0.8364
+  Recall@10: 0.7000
+  Recall@20: 1.0000
+  NDCG@10: 0.6327
+
+Aggregated metrics:
+  Avg MRR: 0.8333
+  Avg MAP: 0.7301
+  Avg NDCG@10: 0.6136
+  Avg Recall@10: 0.6667
+
+======================================================================
+Testing: η=1.0, steps=2
+======================================================================
+Building energy index: η=1.0, steps=2, optical_tokens=None
+build_energy: Converting numpy array
+build_energy: optical_tokens=None, w_λ=1.00, w_G=0.50, w_D=0.25
+build_energy: Processing 1681 rows × 384 cols
+build_energy complete: nitems=1681, nfeatures=384, graph_nodes=17, lambdas=1681
+Energy build time: 157.86s
+
+Query 1: authenticated arbitrary file read path traversal...
+search_energy: qlen=384, k=25
+  MRR: 1.0000
+  MAP@25: 0.8800
+  Recall@10: 0.8000
+  Recall@20: 0.9000
+  NDCG@10: 0.6168
+
+Query 2: remote code execution in ERP web component...
+search_energy: qlen=384, k=25
+  MRR: 0.5000
+  MAP@25: 0.4739
+  Recall@10: 0.5000
+  Recall@20: 0.9000
+  NDCG@10: 0.5913
+
+Query 3: SQL injection in login endpoint...
+search_energy: qlen=384, k=25
+  MRR: 1.0000
+  MAP@25: 0.7694
+  Recall@10: 0.7000
+  Recall@20: 0.9000
+  NDCG@10: 0.6327
+
+Aggregated metrics:
+  Avg MRR: 0.8333
+  Avg MAP: 0.7078
+  Avg NDCG@10: 0.6136
+  Avg Recall@10: 0.6667
+
+======================================================================
+Testing: η=1.0, steps=4
+======================================================================
+Building energy index: η=1.0, steps=4, optical_tokens=None
+build_energy: Converting numpy array
+build_energy: optical_tokens=None, w_λ=1.00, w_G=0.50, w_D=0.25
+build_energy: Processing 1681 rows × 384 cols
+build_energy complete: nitems=1681, nfeatures=384, graph_nodes=17, lambdas=1681
+Energy build time: 164.30s
+
+Query 1: authenticated arbitrary file read path traversal...
+search_energy: qlen=384, k=25
+  MRR: 1.0000
+  MAP@25: 0.8800
+  Recall@10: 0.8000
+  Recall@20: 0.9000
+  NDCG@10: 0.6168
+
+Query 2: remote code execution in ERP web component...
+search_energy: qlen=384, k=25
+  MRR: 0.5000
+  MAP@25: 0.4739
+  Recall@10: 0.5000
+  Recall@20: 0.9000
+  NDCG@10: 0.5913
+
+Query 3: SQL injection in login endpoint...
+search_energy: qlen=384, k=25
+  MRR: 1.0000
+  MAP@25: 0.8364
+  Recall@10: 0.7000
+  Recall@20: 1.0000
+  NDCG@10: 0.6327
+
+Aggregated metrics:
+  Avg MRR: 0.8333
+  Avg MAP: 0.7301
+  Avg NDCG@10: 0.6136
+  Avg Recall@10: 0.6667
+
+======================================================================
+Testing: η=1.0, steps=6
+======================================================================
+Building energy index: η=1.0, steps=6, optical_tokens=None
+build_energy: Converting numpy array
+build_energy: optical_tokens=None, w_λ=1.00, w_G=0.50, w_D=0.25
+build_energy: Processing 1681 rows × 384 cols
+build_energy complete: nitems=1681, nfeatures=384, graph_nodes=17, lambdas=1681
+Energy build time: 160.56s
+
+Query 1: authenticated arbitrary file read path traversal...
+search_energy: qlen=384, k=25
+  MRR: 1.0000
+  MAP@25: 0.8800
+  Recall@10: 0.8000
+  Recall@20: 0.9000
+  NDCG@10: 0.6168
+
+Query 2: remote code execution in ERP web component...
+search_energy: qlen=384, k=25
+  MRR: 0.5000
+  MAP@25: 0.4739
+  Recall@10: 0.5000
+  Recall@20: 0.9000
+  NDCG@10: 0.5913
+
+Query 3: SQL injection in login endpoint...
+search_energy: qlen=384, k=25
+  MRR: 1.0000
+  MAP@25: 0.8364
+  Recall@10: 0.7000
+  Recall@20: 1.0000
+  NDCG@10: 0.6327
+
+Aggregated metrics:
+  Avg MRR: 0.8333
+  Avg MAP: 0.7301
+  Avg NDCG@10: 0.6136
+  Avg Recall@10: 0.6667
+
+======================================================================
+Testing: η=1.0, steps=8
+======================================================================
+Building energy index: η=1.0, steps=8, optical_tokens=None
+build_energy: Converting numpy array
+build_energy: optical_tokens=None, w_λ=1.00, w_G=0.50, w_D=0.25
+build_energy: Processing 1681 rows × 384 cols
+build_energy complete: nitems=1681, nfeatures=384, graph_nodes=17, lambdas=1681
+Energy build time: 160.77s
+
+Query 1: authenticated arbitrary file read path traversal...
+search_energy: qlen=384, k=25
+  MRR: 1.0000
+  MAP@25: 0.8800
+  Recall@10: 0.8000
+  Recall@20: 0.9000
+  NDCG@10: 0.6168
+
+Query 2: remote code execution in ERP web component...
+search_energy: qlen=384, k=25
+  MRR: 0.5000
+  MAP@25: 0.4739
+  Recall@10: 0.5000
+  Recall@20: 0.9000
+  NDCG@10: 0.5913
+
+Query 3: SQL injection in login endpoint...
+search_energy: qlen=384, k=25
+  MRR: 1.0000
+  MAP@25: 0.8364
+  Recall@10: 0.7000
+  Recall@20: 1.0000
+  NDCG@10: 0.6327
+
+Aggregated metrics:
+  Avg MRR: 0.8333
+  Avg MAP: 0.7301
+  Avg NDCG@10: 0.6136
+  Avg Recall@10: 0.6667
+
+======================================================================
+Testing: η=1.0, steps=10
+======================================================================
+Building energy index: η=1.0, steps=10, optical_tokens=None
+build_energy: Converting numpy array
+build_energy: optical_tokens=None, w_λ=1.00, w_G=0.50, w_D=0.25
+build_energy: Processing 1681 rows × 384 cols
+build_energy complete: nitems=1681, nfeatures=384, graph_nodes=17, lambdas=1681
+Energy build time: 145.74s
+
+Query 1: authenticated arbitrary file read path traversal...
+search_energy: qlen=384, k=25
+  MRR: 1.0000
+  MAP@25: 0.8800
+  Recall@10: 0.8000
+  Recall@20: 0.9000
+  NDCG@10: 0.6168
+
+Query 2: remote code execution in ERP web component...
+search_energy: qlen=384, k=25
+  MRR: 0.5000
+  MAP@25: 0.4739
+  Recall@10: 0.5000
+  Recall@20: 0.9000
+  NDCG@10: 0.5913
+
+Query 3: SQL injection in login endpoint...
+search_energy: qlen=384, k=25
+  MRR: 1.0000
+  MAP@25: 0.8364
+  Recall@10: 0.7000
+  Recall@20: 1.0000
+  NDCG@10: 0.6327
+
+Aggregated metrics:
+  Avg MRR: 0.8333
+  Avg MAP: 0.7301
+  Avg NDCG@10: 0.6136
+  Avg Recall@10: 0.6667
+
+======================================================================
+BEST CONFIGURATIONS
+======================================================================
+
+Best MRR: η=0.22, steps=6
+  MRR: 0.8333
+  MAP: 0.2342
+  NDCG: 0.4254
+
+Best MAP: η=0.535, steps=6
+  MRR: 0.8333
+  MAP: 0.7301
+  NDCG: 0.6136
+Sweep heatmaps saved to diffusion_sweep_heatmaps.png
+Sweep results saved to diffusion_sweep_results.csv
+
+======================================================================
+ANALYSIS COMPLETE
+======================================================================
+Standard build time: 159.46s
+Energy builds tested: 15/15

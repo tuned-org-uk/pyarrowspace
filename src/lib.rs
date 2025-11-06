@@ -9,12 +9,15 @@ use numpy::{PyArray1, PyArray2, PyArrayMethods, PyReadonlyArray1, PyReadonlyArra
 use ::arrowspace::builder::ArrowSpaceBuilder as RustBuilder;
 use ::arrowspace::core::{ArrowItem, ArrowSpace};
 use ::arrowspace::graph::GraphLaplacian;
+use ::arrowspace::motives::Motives;
 
 mod helpers;
 mod energyparams;
+mod sorted_index;
 
 use crate::helpers::*;
 use crate::energyparams::*;
+use crate::sorted_index::*;
 
 #[cfg(test)]
 mod tests;
@@ -102,8 +105,14 @@ impl PyArrowSpace {
         Ok((feats, lam))
     }
 
+    /// return computed lambdas
     fn lambdas<'py>(&self, py: Python<'py>) -> Bound<'py, PyArray1<f64>> {
         PyArray1::from_slice(py, self.inner.lambdas())
+    }
+
+    /// Iterate over (lambda: float, idx: int) in ascending lambda; ties stable by id.
+    pub fn lambdas_sorted(&self) -> Vec<(f64, usize)> {
+        self.inner.lambdas_sorted.to_vec()
     }
 
     /// Get all data as 2D numpy array
@@ -124,6 +133,7 @@ impl PyArrowSpace {
         Ok(arr.reshape(shape)?)
     }
 
+    /// taumode search using eigenmaps (use build)
     fn search(
         &self,
         item: PyReadonlyArray1<f64>,
@@ -196,6 +206,7 @@ impl PyArrowSpace {
         Ok(results)
     }
 
+    /// taumode hybrid search using eigenmaps (use build): cosine + energy
     fn search_hybrid(
         &self,
         item: PyReadonlyArray1<f64>,
@@ -223,6 +234,7 @@ impl PyArrowSpace {
         Ok(self.inner.search_lambda_aware_hybrid(&query, k, tau))
     }
 
+    /// taumode energy search using energymaps (use build_energy)
     fn search_energy(
         &self,
         item: PyReadonlyArray1<f64>,
@@ -239,6 +251,52 @@ impl PyArrowSpace {
         ));
 
         Ok(self.inner.search_energy(v, graph_laplacian, k))
+    }
+
+    /// taumode search using sorted taumode (can be used with both builders)
+    fn search_linear_sorted(
+        &self,
+        item: PyReadonlyArray1<f64>,
+        gl: &PyGraphLaplacian,
+        k: usize,
+    ) -> PyResult<Vec<(usize, f64)>> {
+        let v = item.as_slice()?;
+
+        let graph_laplacian = &gl.inner;
+
+        dbg_println(format!(
+            "search_linear_sorted: qlen={}, k={}",
+            v.len(), k,
+        ));
+
+        Ok(self.inner.search_linear_sorted(v, graph_laplacian, k))
+    }
+
+    /// spot_motives_eigen(cfg: dict) -> List[List[int]]
+    /// Runs triangle-based motif spotting on this Laplacian (EigenMaps build).
+    fn spot_motives_eigen(&self, gl: &PyGraphLaplacian, cfg: Option<&Bound<'_, PyDict>>) -> PyResult<Vec<Vec<usize>>> {
+        let rcfg = parse_motives_config(cfg)?;
+        dbg_println(format!("spot_motives_eigen -- gl.inner.shape: {:?}", gl.inner.shape()));
+        let motifs = gl.inner.spot_motives_eigen(&rcfg);
+        Ok(motifs)
+    }
+
+    /// spot_motives_energy(gl: PyGraphLaplacian, cfg: dict) -> List[List[int]]
+    /// Runs energy-aware motif spotting on the subcentroid graph and returns item-index motifs.
+    fn spot_motives_energy(
+        &self,
+        gl: &PyGraphLaplacian,
+        cfg: Option<&Bound<'_, PyDict>>,
+    ) -> PyResult<Vec<Vec<usize>>> {
+        let rcfg = parse_motives_config(cfg)?;
+        // Ensure mapping exists; if not, return empty or error
+        if self.inner.centroid_map.is_none() {
+            return Err(PyValueError::new_err(
+                "centroid_map is None; build with EnergyMaps to use spot_motives_energy",
+            ));
+        }
+        let motifs = gl.inner.spot_motives_energy(&self.inner, &rcfg);
+        Ok(motifs)
     }
 }
 
@@ -330,6 +388,7 @@ impl PyArrowSpaceBuilder {
             builder = builder
                 .with_lambda_graph(eps, k, topk, p, sigma)
                 .with_dims_reduction(true, Some(eps))
+                .with_extra_dims_reduction(true)
                 .with_seed(999)
                 .with_inline_sampling(Some(SamplerType::Simple(0.6)))
                 .with_spectral(false)
@@ -337,7 +396,7 @@ impl PyArrowSpaceBuilder {
         }
         
         dbg_println(format!("build_energy: Processing {} rows × {} cols", nrows, ncols));
-        let (aspace, gl_energy) = py.allow_threads(|| {
+        let (aspace, gl_energy) = py.detach(|| {
             builder.build_energy(rows, e_params)
         });
         
@@ -358,6 +417,7 @@ pub fn arrowspace(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<PyArrowSpaceBuilder>()?;
     m.add_class::<PyArrowSpace>()?;
     m.add_class::<PyGraphLaplacian>()?;
+    m.add_class::<PyLambdasSortedIter>()?;
     m.add_function(wrap_pyfunction!(set_debug, m)?)?;
     Ok(())
 }

@@ -1,3 +1,9 @@
+"""
+The simplest test for eigenmaps.
+
+builder type: build
+search type: search
+"""
 import numpy as np
 from arrowspace import ArrowSpaceBuilder, GraphLaplacian
 
@@ -19,6 +25,7 @@ graph_params = {
 
 # Returns an ArrowSpace with computed signal graph and lambdas
 aspace, gl = ArrowSpaceBuilder.build(graph_params, items)
+print("aspace sorted lambdas", aspace.lambdas_sorted())
 
 # Search comparable items (defaults: k = nitems, alpha = 1.0, beta = 0.0)
 query1 = np.array(items[2] * 1.05, dtype=np.float64)
@@ -37,9 +44,9 @@ hits = aspace.search(query2, gl, 0.9)  # list[(idx, score)]
 
 print(hits)
 assert(len(hits) == 3)
-assert(hits[0][0] == 1)
+assert(hits[0][0] == 4)
 assert(hits[1][0] == 2)
-assert(hits[2][0] == 0)
+assert(hits[2][0] == 1)
 
 # Search comparable items (defaults: k = nitems, alpha = 0.6, beta = 0.4)
 query3 = np.array(items[2] * 1.05, dtype=np.float64)
@@ -47,15 +54,15 @@ hits = aspace.search(query3, gl, 0.6)  # list[(idx, score)]
 
 print(hits)
 assert(len(hits) == 3)
-assert(hits[0][0] == 1)
-assert(hits[1][0] == 3)
-assert(hits[2][0] == 2)
+assert(hits[0][0] == 4)
+assert(hits[1][0] == 2)
+assert(hits[2][0] == 1)
 
 query4 = np.array(items[2] * 1.05, dtype=np.float64)
 hits = aspace.search(query4, gl, 0.55)  # list[(idx, score)]
 
 print(hits)
 assert(len(hits) == 3)
-assert(hits[0][0] == 1)
-assert(hits[1][0] == 3)
-assert(hits[2][0] == 2)
+assert(hits[0][0] == 4)
+assert(hits[1][0] == 2)
+assert(hits[2][0] == 1)
