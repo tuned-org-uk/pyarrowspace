@@ -26,7 +26,7 @@ set_debug(True)
 
 # Configuration
 START_YEAR = 1999
-END_YEAR = 2025
+END_YEAR = 1999
 K_RESULTS = 25
 K_TAIL_MAX = 25
 
@@ -36,11 +36,11 @@ STEPS_VALUES = [2, 4, 6, 8, 10]
 
 # Standard graph params (used for both standard and energy builds)
 graph_params = {
-    "eps": 1.31,   # eps for 100K
+    "eps": 0.6,   # eps for 100K
     "k": 25,
     "topk": 15,
     "p": 2.0,
-    "sigma": 0.535  # sigma for 100K
+    "sigma": 0.2  # sigma for 100K
 }
 
 # ============================================================================

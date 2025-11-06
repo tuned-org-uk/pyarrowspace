@@ -9,6 +9,7 @@ use numpy::{PyArray1, PyArray2, PyArrayMethods, PyReadonlyArray1, PyReadonlyArra
 use ::arrowspace::builder::ArrowSpaceBuilder as RustBuilder;
 use ::arrowspace::core::{ArrowItem, ArrowSpace};
 use ::arrowspace::graph::GraphLaplacian;
+use ::arrowspace::motives::Motives;
 
 mod helpers;
 mod energyparams;
@@ -270,6 +271,33 @@ impl PyArrowSpace {
 
         Ok(self.inner.search_linear_sorted(v, graph_laplacian, k))
     }
+
+    /// spot_motives_eigen(cfg: dict) -> List[List[int]]
+    /// Runs triangle-based motif spotting on this Laplacian (EigenMaps build).
+    fn spot_motives_eigen(&self, gl: &PyGraphLaplacian, cfg: Option<&Bound<'_, PyDict>>) -> PyResult<Vec<Vec<usize>>> {
+        let rcfg = parse_motives_config(cfg)?;
+        dbg_println(format!("spot_motives_eigen -- gl.inner.shape: {:?}", gl.inner.shape()));
+        let motifs = gl.inner.spot_motives_eigen(&rcfg);
+        Ok(motifs)
+    }
+
+    /// spot_motives_energy(gl: PyGraphLaplacian, cfg: dict) -> List[List[int]]
+    /// Runs energy-aware motif spotting on the subcentroid graph and returns item-index motifs.
+    fn spot_motives_energy(
+        &self,
+        gl: &PyGraphLaplacian,
+        cfg: Option<&Bound<'_, PyDict>>,
+    ) -> PyResult<Vec<Vec<usize>>> {
+        let rcfg = parse_motives_config(cfg)?;
+        // Ensure mapping exists; if not, return empty or error
+        if self.inner.centroid_map.is_none() {
+            return Err(PyValueError::new_err(
+                "centroid_map is None; build with EnergyMaps to use spot_motives_energy",
+            ));
+        }
+        let motifs = gl.inner.spot_motives_energy(&self.inner, &rcfg);
+        Ok(motifs)
+    }
 }
 
 #[pyclass(name = "ArrowSpaceBuilder")]
@@ -360,6 +388,7 @@ impl PyArrowSpaceBuilder {
             builder = builder
                 .with_lambda_graph(eps, k, topk, p, sigma)
                 .with_dims_reduction(true, Some(eps))
+                .with_extra_dims_reduction(true)
                 .with_seed(999)
                 .with_inline_sampling(Some(SamplerType::Simple(0.6)))
                 .with_spectral(false)
@@ -367,7 +396,7 @@ impl PyArrowSpaceBuilder {
         }
         
         dbg_println(format!("build_energy: Processing {} rows × {} cols", nrows, ncols));
-        let (aspace, gl_energy) = py.allow_threads(|| {
+        let (aspace, gl_energy) = py.detach(|| {
             builder.build_energy(rows, e_params)
         });
         
