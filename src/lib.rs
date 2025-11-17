@@ -4,20 +4,24 @@ use ::arrowspace::sampling::SamplerType;
 use pyo3::exceptions::PyValueError;
 use pyo3::prelude::*;
 use pyo3::types::PyDict;
+use smartcore::linalg::basic::arrays::Array;
 
 use numpy::{PyArray1, PyArray2, PyArrayMethods, PyReadonlyArray1, PyReadonlyArray2};
 use ::arrowspace::builder::ArrowSpaceBuilder as RustBuilder;
 use ::arrowspace::core::{ArrowItem, ArrowSpace};
 use ::arrowspace::graph::GraphLaplacian;
 use ::arrowspace::motives::Motives;
+use ::arrowspace::subgraphs::*;
 
 mod helpers;
 mod energyparams;
 mod sorted_index;
+mod subgraphs;
 
 use crate::helpers::*;
 use crate::energyparams::*;
 use crate::sorted_index::*;
+use crate::subgraphs::*;
 
 #[cfg(test)]
 mod tests;
@@ -297,6 +301,106 @@ impl PyArrowSpace {
         }
         let motifs = gl.inner.spot_motives_energy(&self.inner, &rcfg);
         Ok(motifs)
+    }
+
+        /// spot_subg_motives(gl: GraphLaplacian, cfg: dict) -> List[dict]
+    ///
+    /// Runs energy-mode motif-based subgraph extraction and returns a list of
+    /// subgraph dictionaries with:
+    /// - "node_indices": List[int] centroid indices
+    /// - "item_indices": Optional[List[int]] original item indices
+    /// - "rayleigh": Optional[float] Rayleigh cohesion
+    /// - "nnodes": int number of centroids
+    /// - "nfeatures": int feature dimension
+    fn spot_subg_motives(
+        &self,
+        gl: &PyGraphLaplacian,
+        cfg: Option<&Bound<'_, PyDict>>,
+    ) -> PyResult<Vec<PyObject>> {
+        let rcfg = parse_subgraph_config(cfg)?;
+        dbg_println(format!(
+            "spot_subg_motives -- gl.shape={:?}, min_size={}, rayleigh_max={:?}",
+            gl.inner.shape(),
+            rcfg.min_size,
+            rcfg.rayleigh_max
+        ));
+
+        let subgraphs = gl.inner.spot_subg_motives(&self.inner, &rcfg);
+
+        Python::attach(|py| {
+            let mut out = Vec::with_capacity(subgraphs.len());
+            for sg in subgraphs {
+                let dict = PyDict::new(py);
+
+                dict.set_item("node_indices", sg.node_indices)?;
+                if let Some(items) = sg.item_indices {
+                    dict.set_item("item_indices", items)?;
+                } else {
+                    dict.set_item("item_indices", py.None())?;
+                }
+                if let Some(r) = sg.rayleigh {
+                    dict.set_item("rayleigh", r)?;
+                } else {
+                    dict.set_item("rayleigh", py.None())?;
+                }
+
+                let (f_dim, x_dim) = sg.laplacian.init_data.shape();
+                dict.set_item("nnodes", sg.laplacian.nnodes)?;
+                dict.set_item("nfeatures", f_dim)?;
+                dict.set_item("x_dim", x_dim)?;
+
+                out.push(dict.into());
+            }
+            Ok(out)
+        })
+    }
+
+    /// spot_subg_centroids(gl: GraphLaplacian, cfg: dict) -> List[dict]
+    ///
+    /// Builds a centroid hierarchy and returns all centroid-level subgraphs as a
+    /// flat list of dictionaries with:
+    /// - "level": int hierarchy depth
+    /// - "node_indices": List[int] centroid indices (local to that level)
+    /// - "root_indices": List[List[int]] original item indices per centroid
+    /// - "nnodes": int centroid count at this level
+    /// - "nfeatures": int feature dimension
+    fn spot_subg_centroids(
+        &self,
+        gl: &PyGraphLaplacian,
+        cfg: Option<&Bound<'_, PyDict>>,
+    ) -> PyResult<Vec<PyObject>> {
+        let params = parse_centroid_graph_params(cfg)?;
+        dbg_println(format!(
+            "spot_subg_centroids -- gl.shape={:?}, max_depth={}, min_centroids={}",
+            gl.inner.shape(),
+            params.max_depth,
+            params.min_centroids
+        ));
+
+        let hierarchy = gl.inner.build_centroid_hierarchy(&self.inner, params);
+
+        Python::attach(|py| {
+            let mut out = Vec::new();
+
+            for (level_idx, level) in hierarchy.levels.iter().enumerate() {
+                for node in level {
+                    let dict = PyDict::new(py);
+
+                    dict.set_item("level", level_idx)?;
+                    dict.set_item("node_indices", &node.graph.node_indices)?;
+                    dict.set_item("root_indices", &node.root_indices)?;
+
+                    let (f_dim, x_dim) = node.graph.laplacian.init_data.shape();
+                    dict.set_item("nnodes", node.graph.laplacian.nnodes)?;
+                    dict.set_item("nfeatures", f_dim)?;
+                    dict.set_item("x_dim", x_dim)?;
+
+                    out.push(dict.into());
+                }
+            }
+
+            Ok(out)
+        })
     }
 }
 
