@@ -21,7 +21,10 @@ exclude = [
     "*.bib",
     "*.cff",
     "test_data/*",
-    "examples/*"
+    "examples/*",
+    "tests/output",
+    "tests/small_datasets",
+    "visualization_output",
 ]
 
 
