@@ -92,9 +92,9 @@ dependencies = [
 
 [[package]]
 name = "arrowspace"
-version = "0.23.0"
+version = "0.24.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bd566ff87ce454ef29a62c64b60868d207a877ff7ce08d3eec6b9ddacb55b8eb"
+checksum = "7b3ba3afdddb8877d803c478775c4a78cd893e025e5940ed8e8f698593958b1a"
 dependencies = [
  "approx 0.5.1",
  "dashmap",
@@ -516,12 +516,13 @@ dependencies = [
 
 [[package]]
 name = "pyarrowspace"
-version = "0.23.0"
+version = "0.24.0"
 dependencies = [
  "arrowspace",
  "numpy",
  "pyo3",
  "rayon",
+ "smartcore",
 ]
 
 [[package]]
@@ -774,9 +775,9 @@ checksum = "67b1b7a3b5fe4f1376887184045fcf45c69e92af734b7aaddc05fb777b6fbd03"
 
 [[package]]
 name = "smartcore"
-version = "0.4.5"
+version = "0.4.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9e569eba50db04f51f83ad1ad2186cc1cf88bb68de052177bda165f6cdcf8d81"
+checksum = "750e34a2b0dba219ceb802732b1d743ecc82140396b5bd6b3c1e971a09984184"
 dependencies = [
  "approx 0.5.1",
  "cfg-if",
