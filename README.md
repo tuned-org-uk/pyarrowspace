@@ -15,7 +15,7 @@ or any other way of installing a Python library.
 
 If you have cargo installed, to compile the libraries involved (from crates.io): 
 ```
-pip install maturin
+pip install maturin[patchelf]
 maturin develop
 ```
 
