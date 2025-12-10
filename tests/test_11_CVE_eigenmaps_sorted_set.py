@@ -26,13 +26,13 @@ set_debug(True)
 
 # Configuration
 START_YEAR = 1999
-END_YEAR = 1999
+END_YEAR = 2025
 TAU_COSINE = 1.0    # Pure cosine similarity
 
 
 # Build ArrowSpace
 graph_params = {
-    "eps": 0.6,
+    "eps": 1.13,
     "k": 25,
     "topk": 15,
     "p": 2.0,
