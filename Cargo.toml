@@ -42,4 +42,4 @@ arrowspace = { version = "0.24.5", features = ["storage"] } #, path = "../arrows
 pyo3 = { version = "0.27.1", features = ["extension-module"] }
 numpy = "0.27.0"
 rayon = "1.8"
-smartcore = "0.4.6"
+smartcore = "0.4.8"
