@@ -24,19 +24,25 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from tqdm import tqdm
 import genestore
-import tensorflow as tf
-from umap.parametric_umap import ParametricUMAP
 
-# Reuse your existing helper functions directly to ensure consistency
-def iter_cve_json(root_dir, start=2024, end=2025): # Default to recent for speed
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Data helpers (unchanged)
+# ──────────────────────────────────────────────────────────────────────────────
+def iter_cve_json(root_dir, start=2024, end=2025):  # Default to recent for speed
     """Iterate over CVE JSON files in date range."""
     for path in glob.glob(os.path.join(root_dir, "**", "*.json"), recursive=True):
-        if any(str(y) in path for y in range(start, end+1)):
+        if any(str(y) in path for y in range(start, end + 1)):
             with open(path, "r", encoding="utf-8") as f:
                 try:
                     yield path, json.load(f)
                 except Exception:
                     continue
+
 
 def extract_text(j):
     """Extract searchable text from CVE JSON (Same as your module)."""
@@ -48,7 +54,8 @@ def extract_text(j):
     for d in cna.get("descriptions", []) or []:
         if isinstance(d, dict):
             val = d.get("value") or ""
-            if val: descs.append(val)
+            if val:
+                descs.append(val)
     description = " ".join(descs)
     
     products = []
@@ -62,12 +69,13 @@ def extract_text(j):
     text = " | ".join([s for s in [cve_id, title, description, prod_str] if s])
     return cve_id or "(unknown)", title or "(no title)", text
 
+
 def build_embeddings(texts, model_path="./domain_adapted_model"):
     """Generate embeddings using fine-tuned model."""
     print(f"Loading model from: {model_path}")
     try:
         model = SentenceTransformer(model_path)
-    except:
+    except Exception:
         print(f"Warning: {model_path} not found. Falling back to 'all-mpnet-base-v2'")
         model = SentenceTransformer("sentence-transformers/all-mpnet-base-v2")
         
@@ -75,53 +83,147 @@ def build_embeddings(texts, model_path="./domain_adapted_model"):
     X = model.encode(texts, convert_to_numpy=True, show_progress_bar=True)
     return X.astype(np.float64)
 
+
 # ──────────────────────────────────────────────────────────────────────────────
-# Parametric UMAP Logic
+# Simple PyTorch Parametric UMAP implementation
+# ──────────────────────────────────────────────────────────────────────────────
+class ParametricUMAPTorch(nn.Module):
+    """
+    Minimal parametric UMAP-style model in PyTorch.
+
+    - Uses an MLP encoder f: R^D -> R^d
+    - Optimizes to preserve pairwise similarities (cosine-based)
+    """
+
+    def __init__(
+        self,
+        input_dim,
+        output_dim=128,
+        hidden_mult=0.5,
+        n_epochs=5,
+        batch_size=64,
+        lr=1e-3,
+        device=None,
+    ):
+        super().__init__()
+        hidden_dim = max(8, int(input_dim * hidden_mult))
+        self.encoder = nn.Sequential(
+            nn.Linear(input_dim, hidden_dim),
+            nn.ReLU(),
+            nn.Linear(hidden_dim, hidden_dim),
+            nn.ReLU(),
+            nn.Linear(hidden_dim, output_dim),
+        )
+        self.n_epochs = n_epochs
+        self.batch_size = batch_size
+        self.lr = lr
+        self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
+        self.to(self.device)
+
+    def forward(self, x):
+        return self.encoder(x)
+
+    @staticmethod
+    def _pairwise_cosine_similarity(x):
+        # x: (B, d)
+        x_norm = F.normalize(x, dim=1)
+        return x_norm @ x_norm.t()  # (B, B)
+
+    def fit(self, X_np):
+        """
+        X_np: numpy array of shape (N, D)
+        """
+        X = torch.from_numpy(X_np).float().to(self.device)
+        N = X.shape[0]
+        optimizer = torch.optim.Adam(self.parameters(), lr=self.lr)
+
+        indices = torch.arange(N, device=self.device)
+
+        for epoch in range(self.n_epochs):
+            perm = torch.randperm(N, device=self.device)
+            epoch_loss = 0.0
+            num_batches = 0
+
+            for start in range(0, N, self.batch_size):
+                end = min(start + self.batch_size, N)
+                batch_idx = perm[start:end]
+                batch = X[batch_idx]           # (B, D)
+
+                # Original-space similarities (cosine)
+                with torch.no_grad():
+                    orig_sim = self._pairwise_cosine_similarity(batch)  # (B, B)
+
+                # Projected-space similarities
+                z = self.forward(batch)         # (B, d)
+                proj_sim = self._pairwise_cosine_similarity(z)
+
+                # KL-like loss between similarity matrices
+                p = F.softmax(orig_sim, dim=1)
+                q = F.softmax(proj_sim, dim=1)
+                loss = F.kl_div(q.log(), p, reduction="batchmean")
+
+                optimizer.zero_grad()
+                loss.backward()
+                optimizer.step()
+
+                epoch_loss += loss.item()
+                num_batches += 1
+
+            avg_loss = epoch_loss / max(1, num_batches)
+            print(f"[ParametricUMAPTorch] Epoch {epoch+1}/{self.n_epochs}, loss={avg_loss:.4f}")
+
+        # Cache full embedding for transform consistency
+        with torch.no_grad():
+            self._X_train = X
+            self._Z_train = self.forward(X).cpu().numpy()
+
+        return self
+
+    def fit_transform(self, X_np):
+        self.fit(X_np)
+        return self._Z_train
+
+    def transform(self, X_np):
+        X = torch.from_numpy(np.asarray(X_np)).float().to(self.device)
+        with torch.no_grad():
+            Z = self.forward(X).cpu().numpy()
+        return Z
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Wrapper to keep original API
 # ──────────────────────────────────────────────────────────────────────────────
 def train_parametric_umap(embeddings, n_components=128, n_neighbors=15, min_dist=0.1):
     """
     Trains a Parametric UMAP neural network to project embeddings into a 
     topologically optimized space.
-    
+
     Args:
         embeddings: Input vectors (e.g. 768-dim from Transformer)
         n_components: Output dimension (can be same as input or lower)
-        n_neighbors: Controls local topology preservation (key for ArrowSpace)
-        min_dist: Controls how tightly points pack together
+        n_neighbors: Kept for API compatibility (unused here)
+        min_dist: Kept for API compatibility (unused here)
         
     Returns:
-        model: Trained ParametricUMAP model
+        model: Trained ParametricUMAPTorch model
         projected_embeddings: The transformed data
     """
-    print(f"Training Parametric UMAP (Input: {embeddings.shape[1]}d -> Output: {n_components}d)...")
-    
-    # We use a custom encoder definition to keep dimensions high if desired, 
-    # or let UMAP define a default default MLP.
-    # For 'Topology Preserving' re-embedding, we often want to keep dimensions relatively high 
-    # (e.g. 128 or even 768) rather than visualizing in 2D.
-    
-    # Define a custom encoder to ensure we don't compress too hard
-    dims = embeddings.shape[1]
-    encoder = tf.keras.Sequential([
-        tf.keras.layers.InputLayer(input_shape=(dims,)),
-        tf.keras.layers.Dense(dims // 2, activation="relu"),
-        tf.keras.layers.Dense(dims // 2, activation="relu"),
-        tf.keras.layers.Dense(n_components, name="z")
-    ])
-
-    embedder = ParametricUMAP(
-        n_components=n_components,
-        n_neighbors=n_neighbors,
-        min_dist=min_dist,
-        metric='cosine', # ArrowSpace uses cosine/angular logic usually
-        encoder=encoder,
-        verbose=True,
-        batch_size=64, # Larger batch size helps stability
-        n_epochs=5,    # Quick training for demo
+    print(
+        f"Training Parametric UMAP (Input: {embeddings.shape[1]}d -> "
+        f"Output: {n_components}d)..."
     )
-    
-    projected_data = embedder.fit_transform(embeddings)
-    return embedder, projected_data
+
+    input_dim = embeddings.shape[1]
+    model = ParametricUMAPTorch(
+        input_dim=input_dim,
+        output_dim=n_components,
+        n_epochs=5,
+        batch_size=64,
+        lr=1e-3,
+    )
+    projected_data = model.fit_transform(embeddings)
+    return model, projected_data
+
 
 def calculate_trustworthiness(orig_X, new_X, k=15):
     """
@@ -134,8 +236,9 @@ def calculate_trustworthiness(orig_X, new_X, k=15):
     idx = np.random.choice(len(orig_X), n, replace=False)
     return trustworthiness(orig_X[idx], new_X[idx], n_neighbors=k)
 
+
 # ──────────────────────────────────────────────────────────────────────────────
-# Main Test
+# Main Test (same structure as original)
 # ──────────────────────────────────────────────────────────────────────────────
 def main():
     parser = argparse.ArgumentParser(description="Test Parametric UMAP on CVE embeddings")
@@ -172,79 +275,84 @@ def main():
     # 3. Generate Embeddings (Original)
     dataset_name_orig = "cve_embeddings_original"
     
-    # Try to load from cache first
     try:
         print(f"Attempting to load {dataset_name_orig} from cache...")
         emb_orig = storage.load(dataset_name_orig)
         print(f"✓ Loaded from cache. Shape: {emb_orig.shape}")
         
         if len(emb_orig) != len(docs):
-             print(f"⚠ Cache size mismatch. Recomputing...")
-             raise ValueError("Size mismatch")
-             
+            print("⚠ Cache size mismatch. Recomputing...")
+            raise ValueError("Size mismatch")
     except Exception as e:
         print(f"Cache miss ({e}). Computing embeddings...")
         emb_orig = build_embeddings(docs, args.model_path)
         try:
             storage.store(emb_orig, dataset_name_orig)
         except Exception as store_err:
-             print(f"⚠ Failed to store cache: {store_err}")
+            print(f"⚠ Failed to store cache: {store_err}")
 
     # 4. Train Parametric UMAP (Topological Projection)
-    # Note: We don't cache the *model* here (would require saving TF model), 
-    # but we cache the *result vectors*.
-    
     dataset_name_pumap = f"cve_embeddings_pumap_{args.output_dim}d"
     
     try:
         print(f"Attempting to load {dataset_name_pumap} from cache...")
         emb_pumap = storage.load(dataset_name_pumap)
-        print(f"✓ Loaded P-UMAP embeddings from cache.")
-        # We need the model object for new queries, but for this test script 
-        # we will re-train to demonstrate the process if we were just doing static analysis.
-        # In production: Save the 'embedder' object using pickle/tf.save.
+        print("✓ Loaded P-UMAP embeddings from cache.")
+
+        # Sanity check: if cached dim != output_dim, force retrain
+        if emb_pumap.shape[1] != args.output_dim:
+            print("⚠ Cached P-UMAP dim mismatch. Re-training...")
+            raise ValueError("P-UMAP dim mismatch")
+
         print("(Re-training model to transform test queries...)")
         embedder, _ = train_parametric_umap(emb_orig, n_components=args.output_dim)
-        
+
     except Exception:
         print("Cache miss. Training Parametric UMAP...")
         embedder, emb_pumap = train_parametric_umap(emb_orig, n_components=args.output_dim)
+        emb_pumap = np.ascontiguousarray(emb_pumap, dtype=np.float64)
         
         print(f"Caching {dataset_name_pumap}...")
         try:
-            # Ensure float64 and contiguous
             emb_pumap_store = np.ascontiguousarray(emb_pumap, dtype=np.float64)
             path = storage.store(emb_pumap_store, dataset_name_pumap)
             print(f"✓ Stored at: {path}")
         except Exception as store_err:
             print(f"⚠ Failed to store P-UMAP cache: {store_err}")
 
+
     # 5. Metrics & Visualization
-    print("\n" + "="*50)
+    print("\n" + "=" * 50)
     print("TOPOLOGICAL ANALYSIS")
-    print("="*50)
+    print("=" * 50)
     
-    # Trustworthiness: How well are local neighborhoods preserved?
-    # (Higher is better, 1.0 is perfect)
     trust = calculate_trustworthiness(emb_orig, emb_pumap, k=15)
     print(f"Trustworthiness (Neighborhood Preservation): {trust:.4f}")
     
     # Plot Scatter (Use first 2 dims just for a rough look, even if high-dim)
     plt.figure(figsize=(10, 5))
+
+    # Original space (PCA projection)
     plt.subplot(1, 2, 1)
     plt.title("Original (PCA proj)")
     from sklearn.decomposition import PCA
     pca_orig = PCA(n_components=2).fit_transform(emb_orig)
     plt.scatter(pca_orig[:, 0], pca_orig[:, 1], s=1, alpha=0.5)
-    
+    plt.xlabel("PCA 1")
+    plt.ylabel("PCA 2")
+
+    # Parametric UMAP space (PCA projection if >2D)
     plt.subplot(1, 2, 2)
     plt.title(f"Parametric UMAP ({args.output_dim}D proj)")
-    # If output is > 2D, PCA it down for viz
     if args.output_dim > 2:
         pca_pumap = PCA(n_components=2).fit_transform(emb_pumap)
         plt.scatter(pca_pumap[:, 0], pca_pumap[:, 1], s=1, alpha=0.5)
+        plt.xlabel("PCA 1")
+        plt.ylabel("PCA 2")
     else:
         plt.scatter(emb_pumap[:, 0], emb_pumap[:, 1], s=1, alpha=0.5)
+        plt.xlabel("UMAP 1")
+        plt.ylabel("UMAP 2")
         
     plt.savefig("cve_pumap_viz.png")
     print("\n✓ Saved visualization to cve_pumap_viz.png")
@@ -253,26 +361,26 @@ def main():
     test_queries = [
         "sql injection vulnerability",
         "remote code execution",
-        "buffer overflow in kernel"
+        "buffer overflow in kernel",
     ]
     print("\nRunning inference check on queries...")
     
-    # Embed queries using BASE model
     try:
         model = SentenceTransformer(args.model_path)
-    except:
+    except Exception:
         model = SentenceTransformer("sentence-transformers/all-mpnet-base-v2")
     q_emb_orig = model.encode(test_queries)
     
-    # Project queries using P-UMAP Network
     q_emb_pumap = embedder.transform(q_emb_orig)
 
     for i, q in enumerate(test_queries):
-        # Original Top-3
+        # Original Top-3 (384d)
         sims_orig = cosine_similarity([q_emb_orig[i]], emb_orig)[0]
+
+
         top_idx_orig = np.argsort(-sims_orig)[:3]
         
-        # P-UMAP Top-3
+        # P-UMAP Top-3 (128d)
         sims_pumap = cosine_similarity([q_emb_pumap[i]], emb_pumap)[0]
         top_idx_pumap = np.argsort(-sims_pumap)[:3]
         
@@ -283,15 +391,14 @@ def main():
         overlap = len(set(top_idx_orig) & set(top_idx_pumap))
         print(f"  Top-3 Overlap: {overlap}/3")
         
-    # Verify Data Integrity
     print("\nVerifying stored data...")
     try:
         loaded = storage.load(dataset_name_pumap)
-        # Check first 100 rows to save time on large datasets
         if np.allclose(emb_pumap[:100], loaded[:100]):
-             print("✓ Verification PASSED.")
+            print("✓ Verification PASSED.")
     except Exception as e:
         print(f"❌ Verification FAILED: {e}")
+
 
 if __name__ == "__main__":
     main()
