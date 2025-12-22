@@ -724,7 +724,7 @@ def main(dataset_root):
     ]
 
     print(f"\nSearching {len(queries)} queries...")
-    qemb = build_embeddings(queries)
+    qemb = build_embeddings(queries, cache_file="./cve_queries_emb_cache.npy")
 
     tau_labels = ["Cosine (τ=1.0)", "Hybrid (τ=0.8)", "Taumode (τ=0.62)"]
     all_results = []
