@@ -28,6 +28,16 @@ mod tests;
 #[cfg(test)]
 mod tests_python;
 
+use std::sync::Once;
+static INIT: Once = Once::new();
+
+/// Initialize logging for tests
+pub fn init() {
+    INIT.call_once(|| {
+        pyo3_log::init();
+    });
+}
+
 // ------------ Py wrappers ------------
 #[pyclass(name = "GraphLaplacian")]
 pub struct PyGraphLaplacian {
@@ -144,7 +154,6 @@ impl PyArrowSpace {
         gl: &PyGraphLaplacian,
         tau: f64,
     ) -> PyResult<Vec<(usize, f64)>> {
-        pyo3_log::init();
         let v = item.as_slice()?;
         
         if v.len() != self.inner.nfeatures {
@@ -178,7 +187,6 @@ impl PyArrowSpace {
         gl: &PyGraphLaplacian,
         tau: f64,
     ) -> PyResult<Vec<Vec<(usize, f64)>>> {
-        pyo3_log::init();
         let arr = items.as_array();
         let (nqueries, nfeatures) = (arr.shape()[0], arr.shape()[1]);
         
@@ -219,7 +227,6 @@ impl PyArrowSpace {
         gl: &PyGraphLaplacian,
         tau: f64,
     ) -> PyResult<Vec<(usize, f64)>> {
-        pyo3_log::init();
         let v = item.as_slice()?;
         
         if v.len() != self.inner.nfeatures {
@@ -248,7 +255,6 @@ impl PyArrowSpace {
         gl: &PyGraphLaplacian,
         k: usize,
     ) -> PyResult<Vec<(usize, f64)>> {
-        pyo3_log::init();
         let v = item.as_slice()?;
 
         let graph_laplacian = &gl.inner;
@@ -268,7 +274,6 @@ impl PyArrowSpace {
         gl: &PyGraphLaplacian,
         k: usize,
     ) -> PyResult<Vec<(usize, f64)>> {
-        pyo3_log::init();
         let v = item.as_slice()?;
 
         let graph_laplacian = &gl.inner;
@@ -284,7 +289,6 @@ impl PyArrowSpace {
     /// spot_motives_eigen(cfg: dict) -> List[List[int]]
     /// Runs triangle-based motif spotting on this Laplacian (EigenMaps build).
     fn spot_motives_eigen(&self, gl: &PyGraphLaplacian, cfg: Option<&Bound<'_, PyDict>>) -> PyResult<Vec<Vec<usize>>> {
-        pyo3_log::init();
         let rcfg = parse_motives_config(cfg)?;
         dbg_println(format!("spot_motives_eigen -- gl.inner.shape: {:?}", gl.inner.shape()));
         let motifs = gl.inner.spot_motives_eigen(&rcfg);
@@ -298,7 +302,6 @@ impl PyArrowSpace {
         gl: &PyGraphLaplacian,
         cfg: Option<&Bound<'_, PyDict>>,
     ) -> PyResult<Vec<Vec<usize>>> {
-        pyo3_log::init();
         let rcfg = parse_motives_config(cfg)?;
         // Ensure mapping exists; if not, return empty or error
         if self.inner.centroid_map.is_none() {
@@ -324,7 +327,6 @@ impl PyArrowSpace {
         gl: &PyGraphLaplacian,
         cfg: Option<&Bound<'_, PyDict>>,
     ) -> PyResult<Vec<PyObject>> {
-        pyo3_log::init();
         let rcfg = parse_subgraph_config(cfg)?;
         dbg_println(format!(
             "spot_subg_motives -- gl.shape={:?}, min_size={}, rayleigh_max={:?}",
@@ -377,7 +379,6 @@ impl PyArrowSpace {
         gl: &PyGraphLaplacian,
         cfg: Option<&Bound<'_, PyDict>>,
     ) -> PyResult<Vec<PyObject>> {
-        pyo3_log::init();
         let params = parse_centroid_graph_params(cfg)?;
         dbg_println(format!(
             "spot_subg_centroids -- gl.shape={:?}, max_depth={}, min_centroids={}",
@@ -424,7 +425,6 @@ impl PyArrowSpaceBuilder {
         graph_params: Option<&Bound<'_, PyDict>>,
         items: PyReadonlyArray2<f64>,
     ) -> PyResult<(Py<PyArrowSpace>, Py<PyGraphLaplacian>)> {
-        pyo3_log::init();
         dbg_println("build: Converting numpy array to internal format");
         
         let arr = items.as_array();
@@ -477,7 +477,6 @@ impl PyArrowSpaceBuilder {
         energy_params: Option<&Bound<'_, PyDict>>,
         graph_params: Option<&Bound<'_, PyDict>>,
     ) -> PyResult<(Py<PyArrowSpace>, Py<PyGraphLaplacian>)> {
-        pyo3_log::init();
         dbg_println("build_energy: Converting numpy array");
         
         let arr = items.as_array();
