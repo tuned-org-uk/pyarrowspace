@@ -630,7 +630,7 @@ def save_query_comparison(queries, all_results, titles, docs, output_file="query
             f.write("-" * 80 + "\n")
             
             # Compare Top 3 Results
-            k_show = 3
+            k_show = 10
             
             for i in range(k_show):
                 f.write(f"RANK {i+1}:\n")
@@ -654,11 +654,11 @@ def save_query_comparison(queries, all_results, titles, docs, output_file="query
                     idx, score = res_e[i]
                     title = titles[idx]
                     text_snippet = docs[idx][:300].replace('\n', ' ') + "..."
-                    f.write(f"  [Eigen ] Score: {score:.4f}\n")
+                    f.write(f"  [Taumode ] Score: {score:.4f}\n")
                     f.write(f"           Title: {title}\n")
                     f.write(f"           Text:  {text_snippet}\n")
                 else:
-                    f.write("  [Eigen ] No result\n")
+                    f.write("  [Taumode ] No result\n")
                 
                 f.write("-" * 40 + "\n")
             
@@ -722,6 +722,8 @@ def main(dataset_root):
         "denial of service via malformed network packets",
         "sensitive information disclosure in cloud metadata service"
     ]
+    from random import shuffle
+    shuffle(queries)
 
     print(f"\nSearching {len(queries)} queries...")
     qemb = build_embeddings(queries, cache_file="./cve_queries_emb_cache.npy")
@@ -742,8 +744,8 @@ def main(dataset_root):
 
         # Trim to minimum length
         min_len = min(len(results_cosine), len(results_hybrid), len(results_taumode))
-        print(f"Results: cosine={len(results_cosine)}, hybrid={len(results_hybrid)}, "
-              f"taumode={len(results_taumode)}, using min={min_len}")
+        print(f"Results: cosine={len(results_cosine)}, hybrid-{TAU_HYBRID}={len(results_hybrid)}, "
+              f"taumode-{TAU_TAUMODE}={len(results_taumode)}, using min={min_len}")
 
         results_cosine = results_cosine[:min_len]
         results_hybrid = results_hybrid[:min_len]
@@ -784,14 +786,14 @@ def main(dataset_root):
 
         # Print metrics
         print(f"\nCorrelations:")
-        print(f"  Cosine vs Hybrid:   ρ={spear_c_h:.3f}, τ={kendall_c_h:.3f}")
-        print(f"  Cosine vs Taumode:  ρ={spear_c_t:.3f}, τ={kendall_c_t:.3f}")
-        print(f"  Hybrid vs Taumode:  ρ={spear_h_t:.3f}, τ={kendall_h_t:.3f}")
+        print(f"  Cosine vs Hybrid-{TAU_HYBRID}:   ρ={spear_c_h:.3f}, τ={kendall_c_h:.3f}")
+        print(f"  Cosine vs Taumode-{TAU_TAUMODE}:  ρ={spear_c_t:.3f}, τ={kendall_c_t:.3f}")
+        print(f"  Hybrid-{TAU_HYBRID} vs Taumode-{TAU_TAUMODE}:  ρ={spear_h_t:.3f}, τ={kendall_h_t:.3f}")
 
         print(f"\nNDCG@{k_ndcg}:")
-        print(f"  Hybrid vs Cosine:   {ndcg_h_c:.4f}")
-        print(f"  Taumode vs Cosine:  {ndcg_t_c:.4f}")
-        print(f"  Taumode vs Hybrid:  {ndcg_t_h:.4f}")
+        print(f"  Hybrid-{TAU_HYBRID} vs Cosine:   {ndcg_h_c:.4f}")
+        print(f"  Taumode-{TAU_TAUMODE} vs Cosine:  {ndcg_t_c:.4f}")
+        print(f"  Taumode-{TAU_TAUMODE} vs Hybrid-{TAU_HYBRID}:  {ndcg_t_h:.4f}")
 
         if tail_metrics:
             k_tail = tail_metrics[tau_labels[0]]['total_items']
@@ -830,8 +832,8 @@ def main(dataset_root):
     avg_ndcg_t_c = np.mean([m['ndcg'][1] for m in comparison_metrics])
 
     print(f"\nAverage NDCG@10:")
-    print(f"  Hybrid vs Cosine:   {avg_ndcg_h_c:.4f}")
-    print(f"  Taumode vs Cosine:  {avg_ndcg_t_c:.4f}")
+    print(f"  Hybrid-{TAU_HYBRID} vs Cosine:   {avg_ndcg_h_c:.4f}")
+    print(f"  Taumode-{TAU_TAUMODE} vs Cosine:  {avg_ndcg_t_c:.4f}")
 
     valid_tail = [m for m in comparison_metrics if m['tail_metrics']]
     if valid_tail:
