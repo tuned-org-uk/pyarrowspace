@@ -1,4 +1,19 @@
 query_id,query_text,min_length,spearman_cosine_hybrid,spearman_cosine_taumode,spearman_hybrid_taumode,kendall_cosine_hybrid,kendall_cosine_taumode,kendall_hybrid_taumode,ndcg_hybrid_vs_cosine,ndcg_taumode_vs_cosine,ndcg_taumode_vs_hybrid
 1,authenticated arbitrary file read path traversal,15,0.785714,0.714286,0.978022,0.714286,0.619048,0.912088,0.988039,0.972401,0.994659
-2,remote code execution in ERP web component,15,-0.300000,0.000000,0.659341,-0.200000,0.000000,0.512821,0.873916,0.782109,0.951522
+2,remote code execution in ERP web component,15,-0.300000,0.000000,0.648352,-0.200000,0.000000,0.487179,0.873916,0.782109,0.950914
 3,SQL injection in login endpoint,15,0.033333,0.600000,0.745455,0.055556,0.400000,0.636364,0.827183,0.925342,0.982106
+4,stored cross-site scripting XSS in user profile page,15,0.654545,-0.300000,-0.066667,0.600000,-0.200000,0.000000,0.962037,0.430677,0.882327
+5,server-side request forgery SSRF in URL preview feature,15,-0.381818,0.200000,0.816667,-0.200000,0.200000,0.666667,0.713498,0.740726,0.979522
+6,XML external entity XXE injection in SOAP parser,15,-0.063636,0.535714,0.883333,-0.054545,0.428571,0.722222,0.867557,1.000000,0.992258
+7,insecure direct object reference IDOR in invoice download,15,0.690476,0.000000,0.830303,0.571429,0.000000,0.688889,0.962767,0.890072,0.942529
+8,heap buffer overflow in image processing library,15,0.214286,0.800000,0.804196,0.214286,0.600000,0.666667,0.985321,0.970055,0.981303
+9,local privilege escalation via race condition in kernel,15,0.314286,-0.500000,0.369697,0.333333,-0.333333,0.333333,0.762683,0.456323,0.901817
+10,use-after-free vulnerability in browser rendering engine,15,0.500000,1.000000,0.333333,0.400000,1.000000,0.222222,0.927677,0.500000,0.914291
+11,integer overflow leading to heap corruption in video codec,15,0.748252,0.857143,0.945455,0.666667,0.785714,0.890909,0.991620,0.984411,0.986348
+12,authentication bypass via JWT token manipulation,15,0.880952,0.500000,0.633333,0.714286,0.333333,0.500000,0.990443,0.816814,0.826023
+13,unsafe deserialization in Java RMI service,15,0.895604,0.990909,0.994505,0.820513,0.963636,0.974359,0.976420,0.996864,0.997472
+14,improper access control in REST API DELETE method,15,0.950000,0.900000,0.878571,0.888889,0.833333,0.809524,0.997984,1.000000,0.999588
+15,command injection in router web administration interface,15,0.533333,0.200000,0.696970,0.388889,0.200000,0.555556,0.917066,0.848734,0.966381
+16,hardcoded credentials in firmware update mechanism,15,0.238095,1.000000,0.733333,0.142857,1.000000,0.600000,0.964633,1.000000,0.975069
+17,denial of service via malformed network packets,15,0.427273,0.575758,0.934066,0.490909,0.555556,0.868132,0.987907,0.968434,0.992000
+18,sensitive information disclosure in cloud metadata service,15,-0.023810,0.942857,0.939560,0.142857,0.866667,0.871795,0.880933,0.994257,0.992796

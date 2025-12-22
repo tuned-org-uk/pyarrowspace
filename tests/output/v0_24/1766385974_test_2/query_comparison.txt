@@ -1,0 +1,118 @@
+# Configuration
+START_YEAR = 1999
+END_YEAR = 2025
+TAU_COSINE = 1.0    # Pure cosine similarity
+TAU_HYBRID = 0.72    # Hybrid: mostly cosine, some spectral
+TAU_TAUMODE = 0.42  # Spectral-aware (taumode)
+K_TAIL_MAX = 25     # Analyze tail up to rank 25
+
+
+# Build ArrowSpace
+graph_params = {
+    "eps": 1.31,
+    "k": 25,
+    "topk": 15,
+    "p": 1.8,
+    "sigma": 0.535
+}
+
+================================================================================
+ QUERY RESULT COMPARISON: COSINE vs EIGEN (TAUMODE)
+================================================================================
+
+QUERY TYPE: BEST QUERY (Highest Top Score)
+QUERY TEXT: stored cross-site scripting XSS in user profile page
+--------------------------------------------------------------------------------
+RANK 1:
+  [Cosine] Score: 0.7802
+           Title: (no title)
+           Text:  CVE-2014-5276 | Multiple cross-site scripting (XSS) vulnerabilities in Pro Chat Rooms Text Chat Rooms 8.2.0 allow remote authenticated users to inject arbitrary web script or HTML via (1) an uploaded profile picture or (2) the edit parameter to profiles/index.php. | n/a n/a...
+
+  [Eigen ] Score: 0.8809
+           Title: (no title)
+           Text:  CVE-2024-53365 | A stored cross-site scripting (XSS) vulnerability was identified in PHPGURUKUL Vehicle Parking Management System v1.13 in /users/profile.php. This vulnerability allows authenticated users to inject malicious XSS scripts into the profile name field. | n/a n/a...
+----------------------------------------
+RANK 2:
+  [Cosine] Score: 0.7553
+           Title: (no title)
+           Text:  CVE-2012-4384 | letodms has multiple XSS issues: Reflected XSS in Login Page, Stored XSS in Document Owner/User name, Stored XSS in Calendar | letodms letodms...
+
+  [Eigen ] Score: 0.8800
+           Title: (no title)
+           Text:  CVE-2015-4465 | Cross-site scripting (XSS) vulnerability in the zM Ajax Login & Register plugin before 1.1.0 for WordPress allows remote attackers to inject arbitrary web script or HTML via unspecified vectors. | n/a n/a...
+----------------------------------------
+RANK 3:
+  [Cosine] Score: 0.7500
+           Title: (no title)
+           Text:  CVE-2006-2891 | Cross-site scripting (XSS) vulnerability in admin/index.php for Pixelpost 1-5rc1-2 and earlier allows remote attackers to inject arbitrary HTML or web script via the loginmessage parameter. | n/a n/a...
+
+  [Eigen ] Score: 0.8780
+           Title: (no title)
+           Text:  CVE-2012-0932 | Cross-site scripting (XSS) vulnerability in admin/login.php in Lead Capture Page System allows remote attackers to inject arbitrary web script or HTML via the message parameter. | n/a n/a...
+----------------------------------------
+================================================================================
+
+QUERY TYPE: WORST QUERY (Lowest Top Score)
+QUERY TEXT: use-after-free vulnerability in browser rendering engine
+--------------------------------------------------------------------------------
+RANK 1:
+  [Cosine] Score: 0.5889
+           Title: (no title)
+           Text:  CVE-2021-30569 | Use after free in sqlite in Google Chrome prior to 92.0.4515.107 allowed a remote attacker to potentially exploit heap corruption via a crafted HTML page. | Google Chrome...
+
+  [Eigen ] Score: 0.7944
+           Title: (no title)
+           Text:  CVE-2021-21120 | Use after free in WebSQL in Google Chrome prior to 88.0.4324.96 allowed a remote attacker to potentially exploit heap corruption via a crafted HTML page. | Google Chrome...
+----------------------------------------
+RANK 2:
+  [Cosine] Score: 0.5822
+           Title: (no title)
+           Text:  CVE-2011-2353 | Use after free vulnerability in documentloader in WebKit in Google Chrome before Blink M13 in DocumentWriter::replaceDocument function. | Google Chrome...
+
+  [Eigen ] Score: 0.7920
+           Title: (no title)
+           Text:  CVE-2019-13734 | Out of bounds write in SQLite in Google Chrome prior to 79.0.3945.79 allowed a remote attacker to potentially exploit heap corruption via a crafted HTML page. | Google Chrome...
+----------------------------------------
+RANK 3:
+  [Cosine] Score: 0.5753
+           Title: (no title)
+           Text:  CVE-2020-6551 | Use after free in WebXR in Google Chrome prior to 84.0.4147.125 allowed a remote attacker to potentially exploit heap corruption via a crafted HTML page. | Google Chrome...
+
+  [Eigen ] Score: 0.7833
+           Title: (no title)
+           Text:  CVE-2024-3168 | Use after free in DevTools in Google Chrome prior to 122.0.6261.57 allowed a remote attacker to potentially exploit heap corruption via a crafted HTML page. (Chromium security severity: Medium) | Google Chrome...
+----------------------------------------
+================================================================================
+
+QUERY TYPE: SAMPLE QUERY (Median Score)
+QUERY TEXT: unsafe deserialization in Java RMI service
+--------------------------------------------------------------------------------
+RANK 1:
+  [Cosine] Score: 0.6240
+           Title: (no title)
+           Text:  CVE-2017-20189 | In Clojure before 1.9.0, classes can be used to construct a serialized object that executes arbitrary code upon deserialization. This is relevant if a server deserializes untrusted objects. | n/a n/a...
+
+  [Eigen ] Score: 0.8417
+           Title: (no title)
+           Text:  CVE-2017-20189 | In Clojure before 1.9.0, classes can be used to construct a serialized object that executes arbitrary code upon deserialization. This is relevant if a server deserializes untrusted objects. | n/a n/a...
+----------------------------------------
+RANK 2:
+  [Cosine] Score: 0.6097
+           Title: (no title)
+           Text:  CVE-2020-26945 | MyBatis before 3.5.6 mishandles deserialization of object streams. | n/a n/a...
+
+  [Eigen ] Score: 0.8356
+           Title: (no title)
+           Text:  CVE-2020-26945 | MyBatis before 3.5.6 mishandles deserialization of object streams. | n/a n/a...
+----------------------------------------
+RANK 3:
+  [Cosine] Score: 0.6094
+           Title: (no title)
+           Text:  CVE-2021-26914 | NetMotion Mobility before 11.73 and 12.x before 12.02 allows unauthenticated remote attackers to execute arbitrary code as SYSTEM because of Java deserialization in MvcUtil valueStringToObject. | n/a n/a...
+
+  [Eigen ] Score: 0.8308
+           Title: (no title)
+           Text:  CVE-2000-0446 | Buffer overflow in MDBMS database server allows remote attackers to execute arbitrary commands via a long string. | n/a n/a...
+----------------------------------------
+================================================================================
+

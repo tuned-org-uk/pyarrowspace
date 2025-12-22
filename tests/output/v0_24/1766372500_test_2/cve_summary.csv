@@ -1,7 +1,7 @@
 metric_type,metric_name,value,std_dev
-NDCG@10,Hybrid vs Cosine,0.896379,0.067563
-NDCG@10,Taumode vs Cosine,0.893284,0.080926
-NDCG@10,Taumode vs Hybrid,0.976096,0.018116
-Tail/Head Ratio,Cosine (τ=1.0),0.966431,0.005672
-Tail/Head Ratio,Hybrid (τ=0.8),0.963965,0.006847
-Tail/Head Ratio,Taumode (τ=0.62),0.970940,0.002556
+NDCG@10,Hybrid vs Cosine,0.920982,0.081958
+NDCG@10,Taumode vs Cosine,0.848734,0.189969
+NDCG@10,Taumode vs Hybrid,0.958745,0.046795
+Tail/Head Ratio,Cosine (τ=1.0),0.960773,0.015777
+Tail/Head Ratio,Hybrid (τ=0.8),0.964558,0.012372
+Tail/Head Ratio,Taumode (τ=0.62),0.973564,0.010858

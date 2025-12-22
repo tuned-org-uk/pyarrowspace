@@ -24,12 +24,12 @@ logging.basicConfig(level=logging.INFO)
 set_debug(True)
 
 # Configuration
-START_YEAR = 2009
+START_YEAR = 1999
 END_YEAR = 2025
 TAU_COSINE = 1.0    # Pure cosine similarity
-TAU_HYBRID = 0.8    # Hybrid: mostly cosine, some spectral
-TAU_TAUMODE = 0.62  # Spectral-aware (taumode)
-K_TAIL_MAX = 20     # Analyze tail up to rank 20
+TAU_HYBRID = 0.72    # Hybrid: mostly cosine, some spectral
+TAU_TAUMODE = 0.42  # Spectral-aware (taumode)
+K_TAIL_MAX = 25     # Analyze tail up to rank 25
 
 
 # Build ArrowSpace
@@ -37,7 +37,7 @@ graph_params = {
     "eps": 1.31,
     "k": 25,
     "topk": 15,
-    "p": 2.0,
+    "p": 1.8,
     "sigma": 0.535
 }
 
