@@ -5,7 +5,7 @@ domain_adapted_model
 domain_adapted_model_old
 ./cve_*.png
 ./cve_*.csv
-*_cache/
+*_cache*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

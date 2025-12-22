@@ -17,27 +17,9 @@ from arrowspace import ArrowSpaceBuilder, set_debug
 import matplotlib.pyplot as plt
 from scipy.stats import spearmanr, kendalltau
 from sklearn.metrics import ndcg_score
+import logging
 
-set_debug(True)
-"""CVE semantic search with pyarrowspace - Multi-metric comparison with tail analysis
-Requirements:
-    pip install sentence-transformers numpy matplotlib scipy scikit-learn tqdm
-Usage:
-    python tests/test_2_CVE_db.py --dataset <dataset_dir>
-"""
-import os
-import json
-import glob
-import time
-import argparse
-import csv
-import numpy as np
-from tqdm import tqdm
-from sentence_transformers import SentenceTransformer
-from arrowspace import ArrowSpaceBuilder, set_debug
-import matplotlib.pyplot as plt
-from scipy.stats import spearmanr, kendalltau
-from sklearn.metrics import ndcg_score
+logging.basicConfig(level=logging.DEBUG)
 
 set_debug(True)
 
@@ -46,8 +28,8 @@ START_YEAR = 2009
 END_YEAR = 2025
 TAU_COSINE = 1.0    # Pure cosine similarity
 TAU_HYBRID = 0.8    # Hybrid: mostly cosine, some spectral
-TAU_TAUMODE = 0.62  # Spectral-aware (taumode)
-K_TAIL_MAX = 20     # Analyze tail up to rank 20
+TAU_TAUMODE = 0.62  # geometric-topological (taumode)
+K_TAIL_MAX = 25     # Analyze tail up to rank 25
 
 
 # Build ArrowSpace
@@ -164,15 +146,45 @@ def save_parquet(array, filename):
     #    The `compression` parameter is set to 'gzip' for zlib
     pq.write_table(pa_table, f"{filename}.parquet", compression='gzip')
 
-def build_embeddings(texts, model_path="./domain_adapted_model"):
-    """Generate embeddings using fine-tuned model."""
+def build_embeddings(texts, model_path="./domain_adapted_model", cache_file="cve_embeddings_cache.npy"):
+    """
+    Generate embeddings using fine-tuned model.
+    Loads from disk if cache_file exists; otherwise generates and saves.
+    """
+    # 1. Try to load from disk first
+    if os.path.exists(cache_file):
+        print(f"Loading cached embeddings from {cache_file}...")
+        try:
+            X = np.load(cache_file)
+            
+            # Sanity check: ensure the cache matches the current data size
+            if len(X) != len(texts):
+                print(f"Warning: Cache size ({len(X)}) does not match text size ({len(texts)}). Regenerating...")
+            else:
+                print(f"Embeddings loaded. Shape: {X.shape}")
+                # Note: The saved embeddings should already be scaled if they were saved after scaling.
+                # If you save raw embeddings, apply scaling here. 
+                # Assuming we save the FINAL scaled version:
+                return X
+        except Exception as e:
+            print(f"Error loading cache: {e}. Regenerating...")
+
+    # 2. If no cache or load failed, generate new embeddings
+    print(f"Cache not found. Loading model from: {model_path}")
     model = SentenceTransformer(model_path)
-    print(f"Model loaded from: {model_path}")
+    
+    print("Encoding texts...")
     X = model.encode(texts, convert_to_numpy=True, show_progress_bar=True)
-    # if len(X) > 3:
-    #     save_parquet(X.astype(np.float64), f"cve{START_YEAR}-{END_YEAR}")
-    print(f"Embeddings shape: {X.shape}, sample: {X[0][:5]}...")
-    return X.astype(np.float64) * 1.2e1
+    
+    # 3. Apply scaling (preserving your original logic)
+    X_scaled = X.astype(np.float64) * 1.2e1
+    
+    # 4. Save to disk for next time
+    print(f"Saving embeddings to {cache_file}...")
+    np.save(cache_file, X_scaled)
+    
+    print(f"Embeddings generated. Shape: {X_scaled.shape}, sample: {X_scaled[0][:5]}...")
+    return X_scaled
 
 # ============================================================================
 # Metrics
@@ -1235,6 +1247,105 @@ def plot_tail_comparison(queries, all_results, ids, titles, output_file="cve_tai
     print(f"Tail analysis plot saved to {output_file}")
     plt.close()
 
+def save_query_comparison(queries, all_results, titles, docs, output_file="query_comparison.txt"):
+    """
+    Saves a human-readable comparison of results for the Best, Worst, and a Sample query.
+    'Best' and 'Worst' are determined by the confidence score of the top result in the Eigen (Taumode) set.
+    """
+    print(f"Generating human-readable comparison to {output_file}...")
+    
+    # 1. Metric: Get max score for each query to sort them
+    query_metrics = []
+    for qi, q in enumerate(queries):
+        # all_results[qi] = (cosine, hybrid, taumode)
+        res_cosine, _, res_taumode = all_results[qi]
+        
+        # Use top score of Taumode as the "confidence" metric for sorting
+        top_score = res_taumode[0][1] if res_taumode else 0.0
+        query_metrics.append({
+            'qi': qi,
+            'query': q,
+            'score': top_score,
+            'res_cosine': res_cosine,
+            'res_taumode': res_taumode
+        })
+
+    # 2. Sort queries by top score (descending)
+    sorted_queries = sorted(query_metrics, key=lambda x: x['score'], reverse=True)
+    
+    if not sorted_queries:
+        return
+
+    # 3. Select Best, Worst, and Sample
+    selected = []
+    if len(sorted_queries) <= 3:
+        # If we have 3 or fewer, just show all of them
+        labels = ["Best (Highest Confidence)", "Sample (Middle)", "Worst (Lowest Confidence)"]
+        # Handle cases with 1 or 2 queries gracefully
+        for i, q_data in enumerate(sorted_queries):
+            label = labels[i] if i < len(labels) else "Query"
+            selected.append((label, q_data))
+    else:
+        # Pick Top, Bottom, and Median
+        selected.append(("BEST QUERY (Highest Top Score)", sorted_queries[0]))
+        selected.append(("WORST QUERY (Lowest Top Score)", sorted_queries[-1]))
+        mid_idx = len(sorted_queries) // 2
+        selected.append(("SAMPLE QUERY (Median Score)", sorted_queries[mid_idx]))
+
+    # 4. Write to text file
+    with open(output_file, "w", encoding="utf-8") as f:
+        f.write("================================================================================\n")
+        f.write(" QUERY RESULT COMPARISON: COSINE vs EIGEN (TAUMODE)\n")
+        f.write("================================================================================\n\n")
+
+        for label, q_data in selected:
+            qi = q_data['qi']
+            query_text = q_data['query']
+            res_c = q_data['res_cosine']
+            res_e = q_data['res_taumode']
+
+            f.write(f"QUERY TYPE: {label}\n")
+            f.write(f"QUERY TEXT: {query_text}\n")
+            f.write("-" * 80 + "\n")
+            
+            # Compare Top 3 Results
+            k_show = 3
+            
+            for i in range(k_show):
+                f.write(f"RANK {i+1}:\n")
+                
+                # --- Cosine Result ---
+                if i < len(res_c):
+                    idx, score = res_c[i]
+                    title = titles[idx]
+                    # Indent text for readability, limit to ~300 chars
+                    text_snippet = docs[idx][:300].replace('\n', ' ') + "..."
+                    f.write(f"  [Cosine] Score: {score:.4f}\n")
+                    f.write(f"           Title: {title}\n")
+                    f.write(f"           Text:  {text_snippet}\n")
+                else:
+                    f.write("  [Cosine] No result\n")
+                
+                f.write("\n")
+                
+                # --- Eigen Result ---
+                if i < len(res_e):
+                    idx, score = res_e[i]
+                    title = titles[idx]
+                    text_snippet = docs[idx][:300].replace('\n', ' ') + "..."
+                    f.write(f"  [Eigen ] Score: {score:.4f}\n")
+                    f.write(f"           Title: {title}\n")
+                    f.write(f"           Text:  {text_snippet}\n")
+                else:
+                    f.write("  [Eigen ] No result\n")
+                
+                f.write("-" * 40 + "\n")
+            
+            f.write("=" * 80 + "\n\n")
+            
+    print(f"Comparison saved to {output_file}")
+
+
 # ============================================================================
 # Main
 # ============================================================================
@@ -1264,9 +1375,31 @@ def main(dataset_root):
 
     # Queries
     queries = [
+        # -- Web Vulnerabilities --
         "authenticated arbitrary file read path traversal",
         "remote code execution in ERP web component",
         "SQL injection in login endpoint",
+        "stored cross-site scripting XSS in user profile page",
+        "server-side request forgery SSRF in URL preview feature",
+        "XML external entity XXE injection in SOAP parser",
+        "insecure direct object reference IDOR in invoice download",
+        
+        # -- Memory & System --
+        "heap buffer overflow in image processing library",
+        "local privilege escalation via race condition in kernel",
+        "use-after-free vulnerability in browser rendering engine",
+        "integer overflow leading to heap corruption in video codec",
+        
+        # -- API & Logic --
+        "authentication bypass via JWT token manipulation",
+        "unsafe deserialization in Java RMI service",
+        "improper access control in REST API DELETE method",
+        
+        # -- Infrastructure & IoT --
+        "command injection in router web administration interface",
+        "hardcoded credentials in firmware update mechanism",
+        "denial of service via malformed network packets",
+        "sensitive information disclosure in cloud metadata service"
     ]
 
     print(f"\nSearching {len(queries)} queries...")
@@ -1392,6 +1525,9 @@ def main(dataset_root):
 
         print(f"\n→ Higher T/H ratio = Better long-tail quality")
         print(f"→ ArrowSpace (τ<1.0) maintains higher tail scores")
+    
+    print("Saving test queries comparisons")
+    save_query_comparison(queries, all_results, titles, docs)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="CVE search with tail analysis")

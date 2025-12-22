@@ -144,6 +144,7 @@ impl PyArrowSpace {
         gl: &PyGraphLaplacian,
         tau: f64,
     ) -> PyResult<Vec<(usize, f64)>> {
+        pyo3_log::init();
         let v = item.as_slice()?;
         
         if v.len() != self.inner.nfeatures {
@@ -177,6 +178,7 @@ impl PyArrowSpace {
         gl: &PyGraphLaplacian,
         tau: f64,
     ) -> PyResult<Vec<Vec<(usize, f64)>>> {
+        pyo3_log::init();
         let arr = items.as_array();
         let (nqueries, nfeatures) = (arr.shape()[0], arr.shape()[1]);
         
@@ -217,6 +219,7 @@ impl PyArrowSpace {
         gl: &PyGraphLaplacian,
         tau: f64,
     ) -> PyResult<Vec<(usize, f64)>> {
+        pyo3_log::init();
         let v = item.as_slice()?;
         
         if v.len() != self.inner.nfeatures {
@@ -245,6 +248,7 @@ impl PyArrowSpace {
         gl: &PyGraphLaplacian,
         k: usize,
     ) -> PyResult<Vec<(usize, f64)>> {
+        pyo3_log::init();
         let v = item.as_slice()?;
 
         let graph_laplacian = &gl.inner;
@@ -264,6 +268,7 @@ impl PyArrowSpace {
         gl: &PyGraphLaplacian,
         k: usize,
     ) -> PyResult<Vec<(usize, f64)>> {
+        pyo3_log::init();
         let v = item.as_slice()?;
 
         let graph_laplacian = &gl.inner;
@@ -279,6 +284,7 @@ impl PyArrowSpace {
     /// spot_motives_eigen(cfg: dict) -> List[List[int]]
     /// Runs triangle-based motif spotting on this Laplacian (EigenMaps build).
     fn spot_motives_eigen(&self, gl: &PyGraphLaplacian, cfg: Option<&Bound<'_, PyDict>>) -> PyResult<Vec<Vec<usize>>> {
+        pyo3_log::init();
         let rcfg = parse_motives_config(cfg)?;
         dbg_println(format!("spot_motives_eigen -- gl.inner.shape: {:?}", gl.inner.shape()));
         let motifs = gl.inner.spot_motives_eigen(&rcfg);
@@ -292,6 +298,7 @@ impl PyArrowSpace {
         gl: &PyGraphLaplacian,
         cfg: Option<&Bound<'_, PyDict>>,
     ) -> PyResult<Vec<Vec<usize>>> {
+        pyo3_log::init();
         let rcfg = parse_motives_config(cfg)?;
         // Ensure mapping exists; if not, return empty or error
         if self.inner.centroid_map.is_none() {
@@ -303,8 +310,8 @@ impl PyArrowSpace {
         Ok(motifs)
     }
 
-        /// spot_subg_motives(gl: GraphLaplacian, cfg: dict) -> List[dict]
-    ///
+    /// spot_subg_motives(gl: GraphLaplacian, cfg: dict) -> List[dict]
+
     /// Runs energy-mode motif-based subgraph extraction and returns a list of
     /// subgraph dictionaries with:
     /// - "node_indices": List[int] centroid indices
@@ -317,6 +324,7 @@ impl PyArrowSpace {
         gl: &PyGraphLaplacian,
         cfg: Option<&Bound<'_, PyDict>>,
     ) -> PyResult<Vec<PyObject>> {
+        pyo3_log::init();
         let rcfg = parse_subgraph_config(cfg)?;
         dbg_println(format!(
             "spot_subg_motives -- gl.shape={:?}, min_size={}, rayleigh_max={:?}",
@@ -369,6 +377,7 @@ impl PyArrowSpace {
         gl: &PyGraphLaplacian,
         cfg: Option<&Bound<'_, PyDict>>,
     ) -> PyResult<Vec<PyObject>> {
+        pyo3_log::init();
         let params = parse_centroid_graph_params(cfg)?;
         dbg_println(format!(
             "spot_subg_centroids -- gl.shape={:?}, max_depth={}, min_centroids={}",
@@ -415,6 +424,7 @@ impl PyArrowSpaceBuilder {
         graph_params: Option<&Bound<'_, PyDict>>,
         items: PyReadonlyArray2<f64>,
     ) -> PyResult<(Py<PyArrowSpace>, Py<PyGraphLaplacian>)> {
+        pyo3_log::init();
         dbg_println("build: Converting numpy array to internal format");
         
         let arr = items.as_array();
@@ -443,12 +453,16 @@ impl PyArrowSpaceBuilder {
         }
 
         dbg_println(format!("build: Processing {} rows × {} cols", nrows, ncols));
-        let (aspace, gl) = builder.build(rows);
-        
-        dbg_println(format!(
-            "build complete: nitems={}, nfeatures={}, lambdas={}",
-            aspace.nitems, aspace.nfeatures, aspace.lambdas().len()
-        ));
+        let (aspace, gl) = py.detach(|| {
+            let (aspace, gl) = builder.build(rows);
+            
+            dbg_println(format!(
+                "build complete: nitems={}, nfeatures={}, lambdas={}",
+                aspace.nitems, aspace.nfeatures, aspace.lambdas().len()
+            ));
+
+            (aspace, gl)
+        });
 
         Ok((
             Py::new(py, PyArrowSpace { inner: aspace })?,
@@ -463,6 +477,7 @@ impl PyArrowSpaceBuilder {
         energy_params: Option<&Bound<'_, PyDict>>,
         graph_params: Option<&Bound<'_, PyDict>>,
     ) -> PyResult<(Py<PyArrowSpace>, Py<PyGraphLaplacian>)> {
+        pyo3_log::init();
         dbg_println("build_energy: Converting numpy array");
         
         let arr = items.as_array();
@@ -494,20 +509,22 @@ impl PyArrowSpaceBuilder {
                 .with_dims_reduction(true, Some(eps))
                 .with_extra_dims_reduction(true)
                 .with_seed(999)
-                .with_inline_sampling(Some(SamplerType::Simple(0.6)))
+                .with_inline_sampling(Some(SamplerType::Simple(0.99)))
                 .with_spectral(false)
                 .with_sparsity_check(false);
         }
         
         dbg_println(format!("build_energy: Processing {} rows × {} cols", nrows, ncols));
         let (aspace, gl_energy) = py.detach(|| {
-            builder.build_energy(rows, e_params)
+            let (aspace, gl_energy) = builder.build_energy(rows, e_params);
+            
+            dbg_println(format!(
+                "build_energy complete: nitems={}, nfeatures={}, graph_nodes={}, lambdas={}",
+                aspace.nitems, aspace.nfeatures, gl_energy.nnodes, aspace.lambdas().len()
+            ));
+            
+            (aspace, gl_energy)
         });
-        
-        dbg_println(format!(
-            "build_energy complete: nitems={}, nfeatures={}, graph_nodes={}, lambdas={}",
-            aspace.nitems, aspace.nfeatures, gl_energy.nnodes, aspace.lambdas().len()
-        ));
 
         Ok((
             Py::new(py, PyArrowSpace { inner: aspace })?,

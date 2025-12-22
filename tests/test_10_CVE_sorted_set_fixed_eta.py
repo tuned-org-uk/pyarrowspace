@@ -36,7 +36,7 @@ STEPS_VALUES = [4, 6]
 
 # Standard graph params (used for both standard and energy builds)
 graph_params = {
-    "eps": 1.31,   # eps for 100K
+    "eps": 0.8,   # eps for 100K
     "k": 25,
     "topk": 15,
     "p": 2.0,
