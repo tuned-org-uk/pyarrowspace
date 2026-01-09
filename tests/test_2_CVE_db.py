@@ -156,6 +156,22 @@ def build_embeddings(texts, model_path="./domain_adapted_model", cache_file="cve
         print(f"Loading cached embeddings from {cache_file}...")
         try:
             X = np.load(cache_file)
+
+            n_prompts = 50                  # how many prompts to write
+            prompt_len = X.shape[1]         # tokens per prompt (must be <= X.shape[0])
+            out_path = "prompts.jsonl"
+
+            # Turn each 384-d embedding into a stable integer token id (0..vocab_size-1) via argmax
+            vocab_size = 32000
+            token_ids = (np.argmax(X, axis=1) % vocab_size).astype(int)  # shape (N,)
+
+            with open(out_path, "w", encoding="utf-8") as f:
+                for i in range(n_prompts):
+                    start = i * prompt_len
+                    toks = token_ids[start:start + prompt_len].tolist()
+                    f.write(json.dumps({"id": f"p{i+1}", "tokens": toks}) + "\n")
+
+
             
             # Sanity check: ensure the cache matches the current data size
             if len(X) != len(texts):

@@ -1,0 +1,19 @@
+query_id,query_text,min_length,spearman_cosine_hybrid,spearman_cosine_taumode,spearman_hybrid_taumode,kendall_cosine_hybrid,kendall_cosine_taumode,kendall_hybrid_taumode,ndcg_hybrid_vs_cosine,ndcg_taumode_vs_cosine,ndcg_taumode_vs_hybrid
+1,improper access control in REST API DELETE method,15,0.866667,0.542857,0.145455,0.722222,0.466667,0.127273,0.994766,0.896874,0.942862
+2,XML external entity XXE injection in SOAP parser,15,0.500000,0.000000,0.612121,0.333333,0.000000,0.555556,0.388454,0.315465,0.940946
+3,use-after-free vulnerability in browser rendering engine,15,1.000000,1.000000,0.078788,1.000000,1.000000,-0.022222,0.686486,0.333333,0.924847
+4,hardcoded credentials in firmware update mechanism,15,0.428571,0.000000,0.300000,0.428571,0.000000,0.222222,0.843047,0.000000,0.936478
+5,denial of service via malformed network packets,15,-0.885714,-0.500000,0.900000,-0.733333,-0.333333,0.777778,0.654946,0.550086,0.986643
+6,remote code execution in ERP web component,15,0.078788,0.400000,0.785714,0.066667,0.333333,0.642857,0.889288,0.795630,0.959845
+7,authentication bypass via JWT token manipulation,15,0.828571,1.000000,0.547619,0.733333,1.000000,0.428571,0.985901,1.000000,0.961500
+8,unsafe deserialization in Java RMI service,15,0.900000,-0.500000,0.016667,0.800000,-0.333333,0.111111,0.988256,0.762003,0.855772
+9,insecure direct object reference IDOR in invoice download,15,-0.500000,0.000000,0.523810,-0.333333,0.000000,0.428571,0.428739,0.000000,0.960310
+10,local privilege escalation via race condition in kernel,15,0.000000,0.000000,0.485714,0.000000,0.000000,0.333333,0.572751,0.000000,1.000000
+11,authenticated arbitrary file read path traversal,15,0.866667,1.000000,1.000000,0.777778,1.000000,1.000000,1.000000,1.000000,1.000000
+12,command injection in router web administration interface,15,0.571429,0.000000,0.800000,0.428571,0.000000,0.666667,0.947278,0.000000,0.951046
+13,SQL injection in login endpoint,15,0.660606,0.983333,0.991209,0.688889,0.944444,0.956044,0.963976,0.997919,0.998523
+14,sensitive information disclosure in cloud metadata service,15,0.950000,1.000000,0.863636,0.888889,1.000000,0.818182,0.995502,0.956619,0.976938
+15,stored cross-site scripting XSS in user profile page,15,0.300000,-1.000000,0.476190,0.200000,-1.000000,0.428571,0.883318,0.379348,0.882452
+16,integer overflow leading to heap corruption in video codec,15,0.357143,0.028571,0.354545,0.238095,-0.066667,0.236364,0.895365,0.930753,0.959960
+17,server-side request forgery SSRF in URL preview feature,15,0.828571,0.000000,0.841758,0.733333,0.200000,0.824176,0.987396,0.827784,0.942510
+18,heap buffer overflow in image processing library,15,0.942857,1.000000,0.986813,0.866667,1.000000,0.956044,1.000000,1.000000,0.997758
