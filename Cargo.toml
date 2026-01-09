@@ -25,6 +25,7 @@ exclude = [
     "tests/output",
     "tests/small_datasets",
     "visualization_output",
+    "storage/"
 ]
 
 

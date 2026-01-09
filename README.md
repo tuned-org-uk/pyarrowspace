@@ -1,8 +1,8 @@
 # pyarrowspace
 
-Python bindings for [`arrowspace-rs`](https://github.com/Mec-iS/arrowspace-rs). This is experimental software meant for research at current state.
+Python bindings for [`arrowspace-rs`](https://github.com/Mec-iS/arrowspace-rs).
 
-This is the starting repository for `arrowspace`, it is made public as a showcase for the Python interface, to collect feedback and make public some results of the tests run. To run needs the `arrowspace-rs` Rust module in a sibling directory.
+`arrowspace` is a database for vectors supported by a graph representation and a key-value store. The main use-cases targeted are: AI search capabilities as advanced vector similarity, graph characterisation analysis and search, indexing of high-dimensional vectors. Design principles described in [this article](https://www.tuned.org.uk/posts/010_game_changer_unifying_vectors_and_features_graphs).
 
 For labs and tests please see [tests/](https://github.com/tuned-org-uk/pyarrowspace/tree/main/tests)
 
