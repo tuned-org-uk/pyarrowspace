@@ -1,6 +1,6 @@
 [package]
 name = "pyarrowspace"
-version = "0.24.8"
+version = "0.24.9"
 edition = "2024"
 description = "Spectral vector search with taumode (λτ) indexing"
 authors = ["Lorenzo <tunedconsulting@gmail.com>"]

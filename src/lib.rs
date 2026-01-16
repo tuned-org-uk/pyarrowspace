@@ -28,6 +28,26 @@ mod tests;
 #[cfg(test)]
 mod tests_python;
 
+use std::path::PathBuf;
+
+fn get_python_cwd(py: Python) -> PyResult<PathBuf> {
+    // Import the 'os' module
+    let os = PyModule::import(py, "os")?;
+
+    // Call the 'getcwd' function and extract the result as a Rust string
+    let cwd_str: String = os.getattr("getcwd")?.call0()?.extract()?;
+
+    // Convert the Rust string into a PathBuf for easier path manipulation
+    Ok(PathBuf::from(cwd_str))
+}
+
+fn get_uid(py: Python) -> PyResult<String> {
+    let uuid_mod = py.import("uuid")?;
+    // Call uuid.uuid4() and convert to string
+    let uid: String = uuid_mod.call_method0("uuid4")?.to_string();
+    Ok(uid[..6].to_string())
+}
+
 use std::sync::Once;
 static INIT: Once = Once::new();
 
@@ -495,6 +515,13 @@ impl PyArrowSpaceBuilder {
         };
 
         let mut builder = RustBuilder::new();
+
+        let cwd = get_python_cwd(py)?;
+        let full_path = cwd.join("storage");
+        let uuid = get_uid(py)?;
+        let dataset_name = format!("dataset_{}", uuid);
+
+        dbg_println(format!("build: Storing in path {:?}", full_path));
         
         if let Some((eps, k, topk, p, sigma)) = parse_graph_params(graph_params)? {
             builder = builder
@@ -502,7 +529,7 @@ impl PyArrowSpaceBuilder {
                 .with_dims_reduction(true, Some(eps))
                 .with_seed(42)
                 .with_sparsity_check(false)
-                .with_persistence("./storage", "dataset".to_string());
+                .with_persistence(full_path, dataset_name);
         }
 
         dbg_println(format!("build: Processing {} rows × {} cols", nrows, ncols));
