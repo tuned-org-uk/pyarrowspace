@@ -516,12 +516,16 @@ impl PyArrowSpaceBuilder {
 
         let mut builder = RustBuilder::new();
 
-        let cwd = get_python_cwd(py)?;
-        let full_path = cwd.join("storage");
         let uuid = get_uid(py)?;
         let dataset_name = format!("dataset_{}", uuid);
+        let cwd = get_python_cwd(py)?;
+        
+        let dir_path = cwd.join("storage");
 
-        dbg_println(format!("build: Storing in path {:?}", full_path));
+        use std::fs;
+        dbg_println(format!("Creating directory at: {:?}", dir_path.canonicalize().unwrap_or(dir_path.clone())));
+        fs::create_dir_all(&dir_path).expect("Failed to create directory");
+        dbg_println(format!("build: Storing in path {:?}", dir_path));
         
         if let Some((eps, k, topk, p, sigma)) = parse_graph_params(graph_params)? {
             builder = builder
@@ -529,7 +533,7 @@ impl PyArrowSpaceBuilder {
                 .with_dims_reduction(true, Some(eps))
                 .with_seed(42)
                 .with_sparsity_check(false)
-                .with_persistence(full_path, dataset_name);
+                .with_persistence(dir_path, dataset_name);
         }
 
         dbg_println(format!("build: Processing {} rows × {} cols", nrows, ncols));
