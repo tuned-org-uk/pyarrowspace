@@ -2,6 +2,76 @@
 
 ArrowSpace’s λτ-graph is controlled by four parameters: eps (distance cutoff), k (max neighbors), p (kernel sharpness), and sigma (scale in the weight function); in this codebase, distances are built from rectified cosine, weights are 1/(1+(distance/σ)^p), and defaults favor a sparse, stable graph with eps≈1e-3, k≈6, p=2.0, and σ defaulting to eps, so tuning these changes sparsity, stability, and spectral contrast directly. The pipeline pre-normalizes item vectors to unit norm before graph building, so magnitude information in embeddings is intentionally suppressed; this improves cosine comparability but can flatten spectral variation if important cues live in vector norms rather than angular differences, which aligns with the observation about normalization “flattening” spectral information.[^1][^2][^3]
 
+## EPS
+
+Use a **starting `eps` between 0.05 and 0.15** for typical cosine-based graphs with small-magnitude embeddings, but first you must fix a scale mismatch.
+
+The fact that you got `0.0` lambdas at `eps=0.25` strongly suggests your graph is **fully disconnected** (no edges formed). Here is why that happens and how to fix it.
+
+### 1. The Core Issue: Cosine Distance Scale
+
+ArrowSpace's `eps` parameter thresholds the **rectified cosine distance**:
+
+$$
+d(u, v) = \sqrt{2(1 - \cos(u, v))}
+$$
+
+This distance ranges from 0.0 (identical) to 2.0 (opposite).
+
+- If your embeddings are normalized (as `SentenceTransformer` does by default), their dot product is the cosine similarity.
+- **`eps=0.25` is actually huge** for semantic search. A distance of 0.25 corresponds to a cosine similarity of roughly **0.97** ($1 - 0.25^2/2$).
+    - If your graph is disconnected at such a loose threshold, it means **no pairs of points are closer than 0.97 similarity**, which is unlikely for SciFact unless your `k` is too small or the embedding magnitudes are messing up the distance calculation inside ArrowSpace.
+
+**However, you noted your embedding values are `~1e-02`.**
+If you did **not** normalize them, ArrowSpace's internal dot products might be tiny, making the "cosine distance" calculation unstable or effectively huge if magnitudes are small.
+
+### 2. The Fix: Scale Your Embeddings
+
+Your CVE script (file `test_2_CVE_db.py`) explicitly scales embeddings by `1.2e1` (12.0). You should do the same here. ArrowSpace's numerical stability for spectral calculations (Rayleigh quotients) prefers values $\gg 1e-2$.
+
+**Recommendation:**
+
+1. **Normalize \& Scale:** Ensure embeddings are unit-length first, then scale them up.
+
+```python
+# 1. Normalize (cosine distance requires unit vectors for standard dot product behavior)
+X = X / np.linalg.norm(X, axis=1, keepdims=True)
+
+# 2. Scale up (matches your working CVE script)
+X = X * 12.0
+```
+
+2. **Set `eps` for the Scaled Space:**
+Once scaled, the "distance" ArrowSpace sees is effectively scaled too. A good starting heuristic for `eps` with scaled vectors (magnitude ~12) to get a connected but sparse graph is **`1.0` to `1.5`**.
+    * *Why?* Your CVE script used `eps=1.31` with `p=1.8`. This is a proven operating point for this library version.
+
+### 3. Immediate Action Plan
+
+Change your script's embedding prep and `graph_params` to match the working CVE configuration:
+
+1. **Update `encode_texts`:**
+
+```python
+emb = model.encode(..., normalize_embeddings=True) # Ensure unit length
+return emb.astype(np.float64) * 12.0               # Scale up
+```
+
+2. **Update `graph_params`:**
+
+```python
+graph_params = {
+    "eps": 1.2,    # Start near your CVE value (1.31)
+    "k": 25,       # Increase from 15 to ensure connectivity
+    "topk": 15,
+    "p": 1.5,      # Kernel sharpness
+    "sigma": None
+}
+```
+
+3. **Check Lambdas:**
+If `taumode` still returns 0.0, it means your graph is still disconnected. Increase `k` (neighbors) before increasing `eps` further, as increasing `eps` too much makes the graph a dense "hairball" which destroys spectral structure.
+
+
 ### Parameter roles
 
 - eps: Maximum allowed cosine distance per edge; distance is defined as d(i,j)=1−max(0,cos(x_i,x_j)), so edges are kept only if d≤eps prior to capping by k, making eps the primary sparsity/coverage control for candidate neighbors.[^2]
