@@ -605,6 +605,60 @@ impl PyArrowSpaceBuilder {
         ))
     }
 
+
+    /// Like `build(...)` but no dim reduction
+    #[staticmethod]
+    pub fn build_full(
+        py: Python<'_>,
+        graph_params: Option<&Bound<'_, PyDict>>,
+        items: PyReadonlyArray2<f64>,
+    ) -> PyResult<(Py<PyArrowSpace>, Py<PyGraphLaplacian>)> {
+        dbg_println("build: Converting numpy array to internal format");
+        
+        let arr = items.as_array();
+        let (nrows, ncols) = (arr.shape()[0], arr.shape()[1]);
+        
+        let rows: Vec<Vec<f64>> = if nrows > 1000 {
+            use rayon::prelude::*;
+            (0..nrows)
+                .into_par_iter()
+                .map(|i| arr.row(i).to_owned().to_vec())
+                .collect()
+        } else {
+            (0..nrows)
+                .map(|i| arr.row(i).to_owned().to_vec())
+                .collect()
+        };
+
+        let mut builder = RustBuilder::new();
+        
+        if let Some((eps, k, topk, p, sigma)) = parse_graph_params(graph_params)? {
+            builder = builder
+                .with_lambda_graph(eps, k, topk, p, sigma)
+                .with_dims_reduction(false, None)
+                .with_inline_sampling(None)
+                .with_seed(42)
+                .with_sparsity_check(false)
+        }
+
+        dbg_println(format!("build: Processing {} rows × {} cols", nrows, ncols));
+        let (aspace, gl) = py.detach(|| {
+            let (aspace, gl) = builder.build(rows);
+            
+            dbg_println(format!(
+                "build complete: nitems={}, nfeatures={}, lambdas={}",
+                aspace.nitems, aspace.nfeatures, aspace.lambdas().len()
+            ));
+
+            (aspace, gl)
+        });
+
+        Ok((
+            Py::new(py, PyArrowSpace { inner: aspace })?,
+            Py::new(py, PyGraphLaplacian { inner: gl })?,
+        ))
+    }
+
     #[staticmethod]
     pub fn build_energy(
         py: Python<'_>,
