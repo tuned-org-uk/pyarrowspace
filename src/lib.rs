@@ -3,7 +3,7 @@ use ::arrowspace::energymaps::{EnergyMaps, EnergyMapsBuilder};
 use ::arrowspace::sampling::SamplerType;
 use pyo3::exceptions::PyValueError;
 use pyo3::prelude::*;
-use pyo3::types::PyDict;
+use pyo3::types::{PyDict, PyTuple};
 use smartcore::linalg::basic::arrays::Array;
 
 use numpy::{PyArray1, PyArray2, PyArrayMethods, PyReadonlyArray1, PyReadonlyArray2};
@@ -94,6 +94,57 @@ impl PyGraphLaplacian {
         dict.set_item("sigma", params.sigma)?;
 
         Ok(dict)
+    }
+
+    /// Export the sparse matrix in CSR format for NumPy/SciPy (f32).
+    /// Returns (data: np.ndarray[f32], indices: np.ndarray[u64], indptr: np.ndarray[u64], shape: (int, int)).
+    fn to_csr<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyTuple>> {
+        use pyo3::types::PyTuple; // Ensure this is imported
+
+        let matrix = &self.inner.matrix;
+        let (rows, cols) = matrix.shape();
+
+        // Convert data to compatible types
+        let indptr_vec: Vec<u64> = matrix.indptr().raw_storage().iter().map(|&x| x as u64).collect();
+        let indices_vec: Vec<u64> = matrix.indices().iter().map(|&x| x as u64).collect();
+        let data_vec: Vec<f32> = matrix.data().iter().map(|&x| x as f32).collect();
+
+        // Create Bound<PyArray1> objects
+        let py_data = PyArray1::from_vec(py, data_vec);
+        let py_indices = PyArray1::from_vec(py, indices_vec);
+        let py_indptr = PyArray1::from_vec(py, indptr_vec);
+        
+        // Create the shape tuple as a Bound<PyTuple>
+        let py_shape = PyTuple::new(py, [rows, cols]).unwrap();
+
+        // Combine everything into the final tuple.
+        // We convert all items to Bound<PyAny> so they can be stored in the same array.
+        let elements = [
+            py_data.into_any(),
+            py_indices.into_any(),
+            py_indptr.into_any(),
+            py_shape.into_any(),
+        ];
+
+        Ok(PyTuple::new(py, elements).unwrap())
+    }
+
+    /// Export as a dense NumPy array (f32) for direct PyTorch tensor conversion.
+    fn to_dense<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyArray2<f32>>> {
+        let matrix = &self.inner.matrix;
+        let (rows, cols) = matrix.shape();
+        
+        // Initialize dense array
+        let mut dense = vec![0.0f32; rows * cols];
+        for (row_idx, row) in matrix.outer_iterator().enumerate() {
+            for (col_idx, &value) in row.iter() {
+                dense[row_idx * cols + col_idx] = value as f32;
+            }
+        }
+        
+        // Robust 1D -> Reshape pattern to avoid version conflicts with from_vec2
+        let arr = PyArray1::from_vec(py, dense);
+        Ok(arr.reshape((rows, cols))?)
     }
 }
 
