@@ -23,7 +23,7 @@ graph_params_eigen = dict(eps=0.5, k=5, topk=4, p=2.0, sigma=None)
 graph_params_eng = dict(eps=0.4, k=8, topk=4, p=2.0, sigma=None)
 
 # Build EigenMaps
-aspace, gl = ArrowSpaceBuilder.build(graph_params_eigen, items)
+aspace, gl = ArrowSpaceBuilder().build(graph_params_eigen, items)
 # Motives config: relaxed for tiny graphs; avoid double pruning by keeping top_l >= topk
 cfg_eigen = dict(top_l=6, min_triangles=2, min_clust=0.4, max_motif_size=8, max_sets=8, jaccard_dedup=0.8)
 motifs_eig = aspace.spot_motives_eigen(gl, cfg_eigen)
@@ -43,7 +43,7 @@ energy_params = {
     "w_dirichlet": 0.25,
     "candidate_m": 32,
 }
-aspace_e, gl_e = ArrowSpaceBuilder.build_energy(items, energy_params, graph_params_eng)
+aspace_e, gl_e = ArrowSpaceBuilder().build_energy(items, energy_params, graph_params_eng)
 
 # For EnergyMaps on very small graphs
 cfg_eng = dict(

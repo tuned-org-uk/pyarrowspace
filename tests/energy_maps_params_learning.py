@@ -2,7 +2,7 @@
 EnergyMaps Hyperparameter Learner (Seed-agnostic, Uniqueness-Aware, Cached Extrapolation)
 
 Core features:
-- Energy pipeline via ArrowSpaceBuilder.build_energy
+- Energy pipeline via ArrowSpaceBuilder().build_energy
 - Spectrum cost encourages connectivity, dispersion, uniqueness (no duplicates),
   spacing variability, and gentle gap regularization
 - Robust search: scrambled low-discrepancy restarts, two-phase annealing
@@ -296,7 +296,7 @@ def _build_once(
     e: EnergyParams
 ) -> Tuple[List[float], Any, Any, Dict[str, Any]]:
     t0 = time.perf_counter()
-    aspace, gl = ArrowSpaceBuilder.build_energy(
+    aspace, gl = ArrowSpaceBuilder().build_energy(
         X,
         graph_params=asdict(g),
         energy_params=asdict(e)

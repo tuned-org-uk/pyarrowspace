@@ -208,7 +208,7 @@ import time
 print(f"Build space")
 start_time = time.perf_counter()
 try:
-    aspace, gl = ArrowSpaceBuilder.build(graph_params, corpus_subset_norm.astype(np.float64, copy=False))
+    aspace, gl = ArrowSpaceBuilder().build(graph_params, corpus_subset_norm.astype(np.float64, copy=False))
 except:
     end_time = time.perf_counter()
     elapsed_time = end_time - start_time

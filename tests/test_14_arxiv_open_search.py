@@ -474,7 +474,7 @@ def main():
 
     print("Building ArrowSpace...")
     t0 = time.perf_counter()
-    aspace, gl = ArrowSpaceBuilder.build_and_store(GRAPH_PARAMS, corpus_subset_scaled.astype(np.float64))
+    aspace, gl = ArrowSpaceBuilder().build_and_store(GRAPH_PARAMS, corpus_subset_scaled.astype(np.float64))
     print(f"✓ ArrowSpace built in {time.perf_counter() - t0:.2f}s")
 
     # local idx -> categories (for coverage scoring)

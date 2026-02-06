@@ -228,7 +228,7 @@ corpus_subset_scaled = corpus_subset * SCALING
 
 print("Building ArrowSpace...")
 start = time.perf_counter()
-aspace, gl = ArrowSpaceBuilder.build(GRAPH_PARAMS, corpus_subset_scaled.astype(np.float64))
+aspace, gl = ArrowSpaceBuilder().build(GRAPH_PARAMS, corpus_subset_scaled.astype(np.float64))
 elapsed = time.perf_counter() - start
 print(f"ArrowSpace built in {elapsed:.2f}s")
 

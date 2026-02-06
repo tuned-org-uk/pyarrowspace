@@ -707,7 +707,7 @@ def main(dataset_root):
 
     print("Building ArrowSpace...")
     start = time.perf_counter()
-    aspace, gl = ArrowSpaceBuilder.build(graph_params, emb)
+    aspace, gl = ArrowSpaceBuilder().build(graph_params, emb)
     print(f"Build time: {time.perf_counter() - start:.2f}s")
 
     # Queries

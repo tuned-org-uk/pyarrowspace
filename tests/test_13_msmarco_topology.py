@@ -281,7 +281,7 @@ for i in range(len(corpus_subset)):
 
 print("Building ArrowSpace...")
 start = time.perf_counter()
-aspace, gl = ArrowSpaceBuilder.build_and_store(GRAPH_PARAMS, corpus_subset_scaled.astype(np.float64))
+aspace, gl = ArrowSpaceBuilder().build_and_store(GRAPH_PARAMS, corpus_subset_scaled.astype(np.float64))
 elapsed = time.perf_counter() - start
 print(f"ArrowSpace built in {elapsed:.2f}s")
 gc.collect()

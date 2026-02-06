@@ -42,7 +42,7 @@ def build_energy_index(emb, eta, steps, optical_tokens=None):
     
     print(f"Building energy index: η={eta}, steps={steps}, optical_tokens={optical_tokens}")
     start = time.perf_counter()
-    aspace, gl = ArrowSpaceBuilder.build_energy(
+    aspace, gl = ArrowSpaceBuilder().build_energy(
         emb,
         energy_params=energy_params,
         graph_params=graph_params
