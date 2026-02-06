@@ -69,7 +69,7 @@ impl PyGraphLaplacian {
     #[new]
     fn py_new() -> PyResult<Self> {
         Err(PyValueError::new_err(
-            "GraphLaplacian cannot be constructed directly; use ArrowSpaceBuilder.build",
+            "GraphLaplacian cannot be constructed directly; use ArrowSpaceBuilder().build",
         ))
     }
 
@@ -158,7 +158,7 @@ impl PyArrowSpace {
     #[new]
     fn py_new() -> PyResult<Self> {
         Err(PyValueError::new_err(
-            "ArrowSpace cannot be constructed directly; use ArrowSpaceBuilder.build",
+            "ArrowSpace cannot be constructed directly; use ArrowSpaceBuilder().build",
         ))
     }
 
@@ -487,7 +487,7 @@ impl PyArrowSpace {
 
 #[pyclass(name = "ArrowSpaceBuilder")]
 pub struct PyArrowSpaceBuilder {
-    inner: RustBuilder,
+    pub(crate) inner: RustBuilder,
 }
 
 #[pymethods]
@@ -528,8 +528,8 @@ impl PyArrowSpaceBuilder {
         Ok(slf)
     }
 
-    #[staticmethod]
     pub fn build(
+        slf: PyRefMut<Self>,
         py: Python<'_>,
         graph_params: Option<&Bound<'_, PyDict>>,
         items: PyReadonlyArray2<f64>,
@@ -551,13 +551,11 @@ impl PyArrowSpaceBuilder {
                 .collect()
         };
 
-        let mut builder = RustBuilder::new();
+        let mut builder = slf.inner.clone();
         
         if let Some((eps, k, topk, p, sigma)) = parse_graph_params(graph_params)? {
             builder = builder
                 .with_lambda_graph(eps, k, topk, p, sigma)
-                .with_dims_reduction(true, Some(eps))
-                .with_seed(42)
                 .with_sparsity_check(false)
         }
 
@@ -580,8 +578,8 @@ impl PyArrowSpaceBuilder {
     }
 
     /// Same as `build(...)` but save computations on parquet files
-    #[staticmethod]
     pub fn build_and_store(
+        slf: PyRefMut<Self>,
         py: Python<'_>,
         graph_params: Option<&Bound<'_, PyDict>>,
         items: PyReadonlyArray2<f64>,
@@ -603,8 +601,6 @@ impl PyArrowSpaceBuilder {
                 .collect()
         };
 
-        let mut builder = RustBuilder::new();
-
         let uuid = get_uid(py)?;
         let dataset_name = format!("dataset_{}", uuid);
         let cwd = get_python_cwd(py)?;
@@ -616,11 +612,11 @@ impl PyArrowSpaceBuilder {
         fs::create_dir_all(&dir_path).expect("Failed to create directory");
         dbg_println(format!("build: Storing in path {:?}", dir_path));
         
+        let mut builder = slf.inner.clone();
+        
         if let Some((eps, k, topk, p, sigma)) = parse_graph_params(graph_params)? {
             builder = builder
                 .with_lambda_graph(eps, k, topk, p, sigma)
-                .with_dims_reduction(true, Some(eps))
-                .with_seed(42)
                 .with_sparsity_check(false)
                 .with_persistence(dir_path, dataset_name);
         }
@@ -645,8 +641,8 @@ impl PyArrowSpaceBuilder {
 
 
     /// Like `build(...)` but no dim reduction
-    #[staticmethod]
     pub fn build_full(
+        slf: PyRefMut<Self>,
         py: Python<'_>,
         graph_params: Option<&Bound<'_, PyDict>>,
         items: PyReadonlyArray2<f64>,
@@ -668,7 +664,7 @@ impl PyArrowSpaceBuilder {
                 .collect()
         };
 
-        let mut builder = RustBuilder::new();
+        let mut builder = slf.inner.clone();
         
         if let Some((eps, k, topk, p, sigma)) = parse_graph_params(graph_params)? {
             builder = builder
@@ -697,8 +693,8 @@ impl PyArrowSpaceBuilder {
         ))
     }
 
-    #[staticmethod]
     pub fn build_energy(
+        slf: PyRefMut<Self>,
         py: Python<'_>,
         items: PyReadonlyArray2<f64>,
         energy_params: Option<&Bound<'_, PyDict>>,
@@ -727,7 +723,7 @@ impl PyArrowSpaceBuilder {
             e_params.optical_tokens, e_params.w_lambda, e_params.w_disp, e_params.w_dirichlet
         ));
 
-        let mut builder = RustBuilder::new();
+        let mut builder = slf.inner.clone();
         
         if let Some((eps, k, topk, p, sigma)) = parse_graph_params(graph_params)? {
             builder = builder

@@ -240,7 +240,7 @@ def _build_once(
     g: GraphParams
 ) -> Tuple[List[float], Any, Any, Dict[str, Any]]:
     t0 = time.perf_counter()
-    aspace, gl = ArrowSpaceBuilder.build(
+    aspace, gl = ArrowSpaceBuilder().build(
         items=X,
         graph_params=asdict(g)
     )

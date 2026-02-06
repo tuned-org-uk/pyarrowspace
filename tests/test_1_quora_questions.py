@@ -86,7 +86,7 @@ print("item example normalised", emb_ds_norm[0])
 import time
 print(f"Building space")
 start_time = time.perf_counter()
-aspace, gl = ArrowSpaceBuilder.build(graph_params, emb_ds_norm.astype(np.float64, copy=False))
+aspace, gl = ArrowSpaceBuilder().build(graph_params, emb_ds_norm.astype(np.float64, copy=False))
 end_time = time.perf_counter()
 elapsed_time = end_time - start_time
 print(f"Execution time: {elapsed_time:.6f} seconds")

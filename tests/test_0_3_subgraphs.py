@@ -27,7 +27,7 @@ print("Dataset shape:", items.shape)  # (60, 12)
 
 # Build eigen ArrowSpace
 graph_params = dict(eps=0.4, k=10, topk=8, p=2.0, sigma=None)
-aspace, gl = ArrowSpaceBuilder.build(graph_params, items)
+aspace, gl = ArrowSpaceBuilder().build(graph_params, items)
 
 print(f"ArrowSpace built: nitems={aspace.nitems}, centroids={gl.nnodes}")
 

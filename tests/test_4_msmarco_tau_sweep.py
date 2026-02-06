@@ -169,7 +169,7 @@ print(f"Sample embedding shape: {corpus_subset_norm[0].shape}")
 
 start_time = time.perf_counter()
 try:
-    aspace, gl = ArrowSpaceBuilder.build(graph_params, corpus_subset_norm.astype(np.float64, copy=False))
+    aspace, gl = ArrowSpaceBuilder().build(graph_params, corpus_subset_norm.astype(np.float64, copy=False))
 finally:
     end_time = time.perf_counter()
     elapsed_time = end_time - start_time

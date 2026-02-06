@@ -178,7 +178,7 @@ for eps_value in EPS_VALUES:
     
     start_time = time.perf_counter()
     try:
-        aspace, gl = ArrowSpaceBuilder.build(graph_params, corpus_subset_norm.astype(np.float64, copy=False))
+        aspace, gl = ArrowSpaceBuilder().build(graph_params, corpus_subset_norm.astype(np.float64, copy=False))
         end_time = time.perf_counter()
         build_time = end_time - start_time
         

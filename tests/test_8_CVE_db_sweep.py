@@ -181,7 +181,7 @@ def build_energy_index(emb, eta, steps, optical_tokens=None):
     
     print(f"Building energy index: η={eta}, steps={steps}, optical_tokens={optical_tokens}")
     start = time.perf_counter()
-    aspace, gl = ArrowSpaceBuilder.build_energy(
+    aspace, gl = ArrowSpaceBuilder().build_energy(
         emb,
         energy_params=energy_params,
         graph_params=graph_params
@@ -203,7 +203,7 @@ def sweep_diffusion_params(emb, qemb, queries, ids, titles):
     print("Building BASELINE standard index...")
     print("="*70)
     start = time.perf_counter()
-    aspace_std, gl_std = ArrowSpaceBuilder.build(graph_params, emb)
+    aspace_std, gl_std = ArrowSpaceBuilder().build(graph_params, emb)
     std_build_time = time.perf_counter() - start
     print(f"Standard build time: {std_build_time:.2f}s")
     

@@ -51,7 +51,7 @@ graph_params: dict = {
 
 # Create an ArrowSpace instance, returning the computed
 # signal graph and lambdas
-aspace, gl = ArrowSpaceBuilder.build(graph_params, items)
+aspace, gl = ArrowSpaceBuilder().build(graph_params, items)
 
 # Search comparable items
 # defaults: k = nitems, alpha = 0.9, beta = 0.1
