@@ -486,10 +486,48 @@ impl PyArrowSpace {
 }
 
 #[pyclass(name = "ArrowSpaceBuilder")]
-pub struct PyArrowSpaceBuilder;
+pub struct PyArrowSpaceBuilder {
+    inner: RustBuilder,
+}
 
 #[pymethods]
 impl PyArrowSpaceBuilder {
+    #[new]
+    pub fn new() -> Self {
+        Self {
+            inner: RustBuilder::new(),
+        }
+    }
+    
+    pub fn with_seed(mut slf: PyRefMut<Self>, seed: u64) -> PyRefMut<Self> {
+        slf.inner = slf.inner.clone().with_seed(seed);
+        slf
+    }
+    
+    pub fn with_dims_reduction(
+        mut slf: PyRefMut<Self>,
+        enabled: bool,
+        eps: Option<f64>,
+    ) -> PyRefMut<Self> {
+        slf.inner = slf.inner.clone().with_dims_reduction(enabled, eps);
+        slf
+    }
+    
+    pub fn with_sampling<'a>(mut slf: PyRefMut<'a, Self>, sampling: Option<&str>, value: Option<f64>) -> PyResult<PyRefMut<'a, Self>> {
+        if sampling.is_some() || value.is_some() {
+            assert!(sampling.is_some() && value.is_some(), "Should set smapling AND value")
+        };
+        if let Some(s) = sampling {
+            let sampler = match s {
+                "simple" => Some(SamplerType::Simple(value.unwrap())),
+                "adaptive" => Some(SamplerType::DensityAdaptive(value.unwrap())),
+                _ => return Err(PyValueError::new_err(format!("Unknown sampler: {}", s))),
+            };
+            slf.inner = slf.inner.clone().with_inline_sampling(sampler);
+        }
+        Ok(slf)
+    }
+
     #[staticmethod]
     pub fn build(
         py: Python<'_>,
