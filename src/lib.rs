@@ -755,6 +755,70 @@ impl PyArrowSpaceBuilder {
     }
 }
 
+//
+// load_arrowspace function for loading from storage
+//
+
+use ::arrowspace::graph::GraphParams;
+
+
+/// Load ArrowSpace and GraphLaplacian from storage without recomputing.
+/// 
+/// # Arguments
+/// * `storage_path` - Directory containing parquet files (e.g., "storage/")
+/// * `dataset_name` - Prefix of the files (e.g., "dorothea_highdim")
+/// * `graph_params` - Optional dict with graph parameters (eps, k, topk, p, sigma)
+/// 
+/// # Returns
+/// Tuple of (ArrowSpace, GraphLaplacian)
+/// 
+/// # Example
+/// ```python
+/// aspace, gl = pyarrowspace.load_arrowspace(
+///     storage_path="storage/",
+///     dataset_name="dorothea_highdim",
+///     graph_params={"eps": 0.5, "k": 10, "topk": 3, "p": 2.0}
+/// )
+/// ```
+#[pyfunction]
+pub fn load_arrowspace(
+    py: Python,
+    storage_path: String,
+    dataset_name: String,
+    graph_params: &Bound<'_, PyDict>,
+    energy: bool,
+) -> PyResult<(Py<PyArrowSpace>, Py<PyGraphLaplacian>)> {
+    dbg_println(format!("Loading dataset '{}' from '{}'", dataset_name, storage_path));
+
+    // Parse graph parameters
+    let params_tuple = parse_graph_params(Some(graph_params))?;
+    let g_params = if let Some((eps, k, topk, p, sigma)) = params_tuple {
+        GraphParams { eps, k, topk, p, sigma, sparsity_check: false, normalise: false }
+    } else {
+        panic!("Cannot parse GraphParams");
+    };
+
+    // Load ArrowSpace from storage
+    let aspace = py.detach(|| {
+        ArrowSpace::new_from_storage(&storage_path, &dataset_name)
+    }).map_err(|e| PyValueError::new_err(format!("Failed to load ArrowSpace: {}", e)))?;
+
+    // Load GraphLaplacian from storage
+    let gl = py.detach(|| {
+        GraphLaplacian::new_from_storage(&storage_path, &dataset_name, g_params, energy)
+    }).map_err(|e| PyValueError::new_err(format!("Failed to load GraphLaplacian: {}", e)))?;
+
+    dbg_println(format!(
+        "Loaded: {} items × {} features, {} GL nodes",
+        aspace.nitems, aspace.nfeatures, gl.nnodes
+    ));
+
+    Ok((
+        Py::new(py, PyArrowSpace { inner: aspace })?,
+        Py::new(py, PyGraphLaplacian { inner: gl })?,
+    ))
+}
+
 #[pymodule]
 pub fn arrowspace(m: &Bound<'_, PyModule>) -> PyResult<()> {
     pyo3_log::init(); 
@@ -764,5 +828,7 @@ pub fn arrowspace(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<PyGraphLaplacian>()?;
     m.add_class::<PyLambdasSortedIter>()?;
     m.add_function(wrap_pyfunction!(set_debug, m)?)?;
+    m.add_function(wrap_pyfunction!(load_arrowspace, m)?)?;
+
     Ok(())
 }
