@@ -1,6 +1,8 @@
 import numpy as np
 from arrowspace import ArrowSpaceBuilder
 
+import logging
+logging.basicConfig(level=logging.INFO)
 
 def make_two_clusters(seed=7):
     """Generate 60 items: two well-separated clusters of 30 each."""

@@ -8,6 +8,9 @@ import time
 import numpy as np
 from arrowspace import ArrowSpaceBuilder, GraphLaplacian
 
+import logging
+logging.basicConfig(level=logging.INFO)
+
 items = np.array([
 [0.82,0.11,0.43,0.28,0.64,0.32,0.55,0.48,0.19,0.73,0.07,0.36,0.58,0.23,0.44,0.31,0.52,0.16,0.61,0.40,0.27,0.49,0.35,0.29],
 [0.79,0.12,0.45,0.29,0.61,0.33,0.54,0.47,0.21,0.70,0.08,0.37,0.56,0.22,0.46,0.30,0.51,0.18,0.60,0.39,0.26,0.48,0.36,0.30],

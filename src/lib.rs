@@ -757,6 +757,8 @@ impl PyArrowSpaceBuilder {
 
 #[pymodule]
 pub fn arrowspace(m: &Bound<'_, PyModule>) -> PyResult<()> {
+    pyo3_log::init(); 
+
     m.add_class::<PyArrowSpaceBuilder>()?;
     m.add_class::<PyArrowSpace>()?;
     m.add_class::<PyGraphLaplacian>()?;

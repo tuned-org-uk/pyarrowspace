@@ -1,6 +1,9 @@
 import numpy as np
 from arrowspace import ArrowSpaceBuilder
 
+import logging
+logging.basicConfig(level=logging.INFO)
+
 def make_two_motifs_small(seed=7):
     rng = np.random.default_rng(seed)
     d = 12
