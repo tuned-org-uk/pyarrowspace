@@ -357,9 +357,9 @@ dependencies = [
 
 [[package]]
 name = "arrowspace"
-version = "0.25.1"
+version = "0.25.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0a7e561efed8365f5aff418b67262d93d4f96d3521061a918b1a9f4e1e0c817a"
+checksum = "4ea1547effa533bcf1a66dd932cce2bb0dc0c952d3d35ad1e8276f2895872a48"
 dependencies = [
  "approx 0.5.1",
  "arrow",
@@ -1187,7 +1187,7 @@ dependencies = [
 
 [[package]]
 name = "pyarrowspace"
-version = "0.25.1"
+version = "0.25.2"
 dependencies = [
  "arrowspace",
  "numpy",

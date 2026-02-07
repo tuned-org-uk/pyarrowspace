@@ -798,12 +798,16 @@ pub fn load_arrowspace(
         panic!("Cannot parse GraphParams");
     };
 
+    dbg_println(format!("GraphParams {:?}", g_params));
+
     // Load ArrowSpace from storage
+    dbg_println(format!("Loading aspace"));
     let aspace = py.detach(|| {
         ArrowSpace::new_from_storage(&storage_path, &dataset_name)
     }).map_err(|e| PyValueError::new_err(format!("Failed to load ArrowSpace: {}", e)))?;
 
     // Load GraphLaplacian from storage
+    dbg_println(format!("Loading gl"));
     let gl = py.detach(|| {
         GraphLaplacian::new_from_storage(&storage_path, &dataset_name, g_params, energy)
     }).map_err(|e| PyValueError::new_err(format!("Failed to load GraphLaplacian: {}", e)))?;
