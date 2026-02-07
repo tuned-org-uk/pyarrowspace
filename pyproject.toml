@@ -45,9 +45,18 @@ features = ["pyo3/extension-module"]
 exclude = [
     "tests/",           # Exclude the entire 'tests' directory
     ".github/",            # Exclude the 'docs' directory
+    ".venv",
     "**/*.pyc",         # Exclude all compiled Python files
     "TAUMODE.md",
     "NORMALISATION.md",
     "GRAPH_VARIABLES.md",
-    ".gitignore"
+    ".gitignore",
+    "*.npy",
+    "storage",
+    "target",
+    "test_*/",
+    "cve_*/",
+    "arxiv_*/",
+    "domain_adapted_*/",
+    "checkpoints",
 ]
