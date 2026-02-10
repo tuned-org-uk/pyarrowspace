@@ -172,6 +172,11 @@ impl PyArrowSpace {
         self.inner.nfeatures
     }
 
+    #[getter]
+    fn nclusters(&self) -> usize {
+        self.inner.n_clusters
+    }
+
     /// Return (features: np.ndarray[float64], lambda: float) for item at idx.
     fn get_item<'py>(&self, py: Python<'py>, idx: usize) -> PyResult<(Bound<'py, PyArray1<f64>>, f64)> {
         if idx >= self.inner.nitems {
@@ -504,6 +509,7 @@ impl PyArrowSpaceBuilder {
         slf
     }
     
+    /// set dimensionality reduction and eps of the reduction
     pub fn with_dims_reduction(
         mut slf: PyRefMut<Self>,
         enabled: bool,
@@ -513,6 +519,7 @@ impl PyArrowSpaceBuilder {
         slf
     }
     
+    /// set sampling type and percentage
     pub fn with_sampling<'a>(mut slf: PyRefMut<'a, Self>, sampling: Option<&str>, value: Option<f64>) -> PyResult<PyRefMut<'a, Self>> {
         if sampling.is_some() || value.is_some() {
             assert!(sampling.is_some() && value.is_some(), "Should set smapling AND value")
@@ -526,6 +533,50 @@ impl PyArrowSpaceBuilder {
             slf.inner = slf.inner.clone().with_inline_sampling(sampler);
         }
         Ok(slf)
+    }
+
+    /// Set the maximum number of clusters manually.
+    /// 
+    /// If set, this overrides the automatic heuristic calculation.
+    /// Use this to force a richer topology with more centroids.
+    ///
+    /// # Arguments
+    /// * `max_clusters` - Target number of clusters (e.g., 150 for N=1150)
+    ///
+    /// # Example
+    /// ```python
+    /// builder = (ArrowSpaceBuilder()
+    ///     .with_cluster_max_clusters(150)
+    ///     .with_cluster_radius(0.85))
+    /// ```
+    pub fn with_cluster_max_clusters(
+        mut slf: PyRefMut<Self>,
+        max_clusters: usize,
+    ) -> PyRefMut<Self> {
+        slf.inner = slf.inner.clone().with_cluster_max_clusters(max_clusters);
+        slf
+    }
+
+    /// Set the cluster radius (squared L2 threshold) manually.
+    /// 
+    /// Lower values create tighter, more numerous clusters.
+    /// Default is 1.0. Typical range: [0.5, 2.0].
+    ///
+    /// # Arguments
+    /// * `radius` - Squared L2 distance threshold for cluster creation
+    ///
+    /// # Example
+    /// ```python
+    /// builder = (ArrowSpaceBuilder()
+    ///     .with_cluster_radius(0.85)  # Tighter clusters
+    ///     .with_cluster_max_clusters(150))
+    /// ```
+    pub fn with_cluster_radius(
+        mut slf: PyRefMut<Self>,
+        radius: f64,
+    ) -> PyRefMut<Self> {
+        slf.inner = slf.inner.clone().with_cluster_radius(radius);
+        slf
     }
 
     pub fn build(
@@ -729,7 +780,6 @@ impl PyArrowSpaceBuilder {
             builder = builder
                 .with_lambda_graph(eps, k, topk, p, sigma)
                 .with_dims_reduction(true, Some(eps))
-                .with_extra_dims_reduction(true)
                 .with_seed(999)
                 .with_inline_sampling(Some(SamplerType::Simple(0.99)))
                 .with_spectral(false)
