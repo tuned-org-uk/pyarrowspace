@@ -5,15 +5,18 @@ from pathlib import Path
 
 from tqdm import tqdm
 import nltk
-nltk.download('punkt_tab', download_dir="../.venv")
+nltk_data_dir = Path(__file__).parent.parent / ".venv"
+nltk.download('punkt_tab', download_dir=nltk_data_dir)
+nltk.data.path.append(nltk_data_dir)
 
 from test_2_CVE_db import iter_cve_json, extract_text
 
-dataset_root = "../cve-tau-search/dataset/"
+dataset_root = Path(__file__).parent.parent.parent.parent / "datasets/cvelistV5-main"
+print(f"Loading dataset at {dataset_root}")
 
 ids, corpus = [], []
 print("Start JSON iteration")
-for _, j in tqdm(iter_cve_json(dataset_root, 2020, 2025)):
+for _, j in tqdm(iter_cve_json(dataset_root, 2013, 2018)):
     cve_id, title, text = extract_text(j)
     ids.append(cve_id)
     corpus.append(title + "\n" + text)

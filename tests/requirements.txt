@@ -1,7 +1,8 @@
 numpy
 scikit-learn
 datasets
-sentence-transformers
+sentence-transformers==5.1.1
+transformers<5.0
 beir
 tqdm
 matplotlib

@@ -10,6 +10,8 @@ import glob
 import time
 import argparse
 import csv
+from pathlib import Path
+
 import numpy as np
 from tqdm import tqdm
 from sentence_transformers import SentenceTransformer
@@ -35,7 +37,7 @@ K_TAIL_MAX = 25     # Analyze tail up to rank 25
 # Build ArrowSpace
 graph_params = {
     "eps": 1.31,
-    "k": 25,
+    "k": 30,
     "topk": 15,
     "p": 1.8,
     "sigma": 0.535
@@ -49,24 +51,24 @@ print(f"Graph parameters: {graph_params}")
 # ----------------------------------------
 # n_items  |  avg=0.1  |  avg=0.7  |  avg=2.0  |  avg=10.0
 # ---------+-----------+-----------+-----------+----------
-# 1K       |  0.8      |  5.8      |  16.5     |  82.7    
-# 10K      |  1.9      |  13.2     |  37.7     |  188.6   
-# 100K     |  4.2      |  29.6     |  84.7     |  423.3   
-# 1M       |  9.4      |  65.7     |  187.7    |  938.4   
-# 10M      |  20.6     |  144.2    |  411.9    |  2059.6  
+# 1K       |  0.8      |  5.8      |  16.5     |  82.7
+# 10K      |  1.9      |  13.2     |  37.7     |  188.6
+# 100K     |  4.2      |  29.6     |  84.7     |  423.3
+# 1M       |  9.4      |  65.7     |  187.7    |  938.4
+# 10M      |  20.6     |  144.2    |  411.9    |  2059.6
 #
 # # Impact of Data Magnitude
 # For n=10,000 items with f_dimensions=512:
 # avg_value  |  eps     |  scaling  |  sigma   |  eff_bw  |  magnitude_factor  |  Needs Rescaling?
 # -----------+----------+-----------+----------+----------+--------------------+------------------
-# 0.01       |  0.016   |  12.00    |  0.014   |  0.19    |  0.014             |  ⚠️ YES          
-# 0.10       |  0.157   |  12.00    |  0.143   |  1.89    |  0.143             |  ✓ No            
-# 0.70       |  1.100   |  12.00    |  1.000   |  13.20   |  1.000             |  ✓ No            
-# 1.00       |  1.571   |  12.00    |  1.429   |  18.86   |  1.429             |  ✓ No            
-# 2.00       |  3.143   |  12.00    |  2.857   |  37.71   |  2.857             |  ✓ No            
-# 5.00       |  7.857   |  12.00    |  7.143   |  94.29   |  7.143             |  ✓ No            
-# 10.00      |  15.714  |  12.00    |  14.286  |  188.57  |  14.286            |  ✓ No            
-# 50.00      |  78.571  |  12.00    |  71.429  |  942.86  |  71.429            |  ⚠️ YES          
+# 0.01       |  0.016   |  12.00    |  0.014   |  0.19    |  0.014             |  ⚠️ YES
+# 0.10       |  0.157   |  12.00    |  0.143   |  1.89    |  0.143             |  ✓ No
+# 0.70       |  1.100   |  12.00    |  1.000   |  13.20   |  1.000             |  ✓ No
+# 1.00       |  1.571   |  12.00    |  1.429   |  18.86   |  1.429             |  ✓ No
+# 2.00       |  3.143   |  12.00    |  2.857   |  37.71   |  2.857             |  ✓ No
+# 5.00       |  7.857   |  12.00    |  7.143   |  94.29   |  7.143             |  ✓ No
+# 10.00      |  15.714  |  12.00    |  14.286  |  188.57  |  14.286            |  ✓ No
+# 50.00      |  78.571  |  12.00    |  71.429  |  942.86  |  71.429            |  ⚠️ YES
 
 # ============================================================================
 # Data Loading
@@ -146,7 +148,10 @@ def save_parquet(array, filename):
     #    The `compression` parameter is set to 'gzip' for zlib
     pq.write_table(pa_table, f"{filename}.parquet", compression='gzip')
 
-def build_embeddings(texts, model_path="./domain_adapted_model", cache_file="cve_embeddings_cache.npy"):
+def build_embeddings(texts,
+    model_path=str(Path(__file__).parent.parent / "domain_adapted_model"),
+    cache_file="cve_embeddings_cache.npy"
+):
     """
     Generate embeddings using fine-tuned model.
     Loads from disk if cache_file exists; otherwise generates and saves.
@@ -172,14 +177,14 @@ def build_embeddings(texts, model_path="./domain_adapted_model", cache_file="cve
                     f.write(json.dumps({"id": f"p{i+1}", "tokens": toks}) + "\n")
 
 
-            
+
             # Sanity check: ensure the cache matches the current data size
             if len(X) != len(texts):
                 print(f"Warning: Cache size ({len(X)}) does not match text size ({len(texts)}). Regenerating...")
             else:
                 print(f"Embeddings loaded. Shape: {X.shape}")
                 # Note: The saved embeddings should already be scaled if they were saved after scaling.
-                # If you save raw embeddings, apply scaling here. 
+                # If you save raw embeddings, apply scaling here.
                 # Assuming we save the FINAL scaled version:
                 return X
         except Exception as e:
@@ -188,17 +193,17 @@ def build_embeddings(texts, model_path="./domain_adapted_model", cache_file="cve
     # 2. If no cache or load failed, generate new embeddings
     print(f"Cache not found. Loading model from: {model_path}")
     model = SentenceTransformer(model_path)
-    
+
     print("Encoding texts...")
     X = model.encode(texts, convert_to_numpy=True, show_progress_bar=True)
-    
+
     # 3. Apply scaling (preserving your original logic)
     X_scaled = X.astype(np.float64) * 1.2e1
-    
+
     # 4. Save to disk for next time
     print(f"Saving embeddings to {cache_file}...")
     np.save(cache_file, X_scaled)
-    
+
     print(f"Embeddings generated. Shape: {X_scaled.shape}, sample: {X_scaled[0][:5]}...")
     return X_scaled
 
@@ -590,13 +595,13 @@ def save_query_comparison(queries, all_results, titles, docs, output_file="query
     'Best' and 'Worst' are determined by the confidence score of the top result in the Eigen (Taumode) set.
     """
     print(f"Generating human-readable comparison to {output_file}...")
-    
+
     # 1. Metric: Get max score for each query to sort them
     query_metrics = []
     for qi, q in enumerate(queries):
         # all_results[qi] = (cosine, hybrid, taumode)
         res_cosine, _, res_taumode = all_results[qi]
-        
+
         # Use top score of Taumode as the "confidence" metric for sorting
         top_score = res_taumode[0][1] if res_taumode else 0.0
         query_metrics.append({
@@ -609,7 +614,7 @@ def save_query_comparison(queries, all_results, titles, docs, output_file="query
 
     # 2. Sort queries by top score (descending)
     sorted_queries = sorted(query_metrics, key=lambda x: x['score'], reverse=True)
-    
+
     if not sorted_queries:
         return
 
@@ -644,13 +649,13 @@ def save_query_comparison(queries, all_results, titles, docs, output_file="query
             f.write(f"QUERY TYPE: {label}\n")
             f.write(f"QUERY TEXT: {query_text}\n")
             f.write("-" * 80 + "\n")
-            
+
             # Compare Top 3 Results
             k_show = 10
-            
+
             for i in range(k_show):
                 f.write(f"RANK {i+1}:\n")
-                
+
                 # --- Cosine Result ---
                 if i < len(res_c):
                     idx, score = res_c[i]
@@ -662,9 +667,9 @@ def save_query_comparison(queries, all_results, titles, docs, output_file="query
                     f.write(f"           Text:  {text_snippet}\n")
                 else:
                     f.write("  [Cosine] No result\n")
-                
+
                 f.write("\n")
-                
+
                 # --- Eigen Result ---
                 if i < len(res_e):
                     idx, score = res_e[i]
@@ -675,11 +680,11 @@ def save_query_comparison(queries, all_results, titles, docs, output_file="query
                     f.write(f"           Text:  {text_snippet}\n")
                 else:
                     f.write("  [Taumode ] No result\n")
-                
+
                 f.write("-" * 40 + "\n")
-            
+
             f.write("=" * 80 + "\n\n")
-            
+
     print(f"Comparison saved to {output_file}")
 
 
@@ -720,18 +725,18 @@ def main(dataset_root):
         "server-side request forgery SSRF in URL preview feature",
         "XML external entity XXE injection in SOAP parser",
         "insecure direct object reference IDOR in invoice download",
-        
+
         # -- Memory & System --
         "heap buffer overflow in image processing library",
         "local privilege escalation via race condition in kernel",
         "use-after-free vulnerability in browser rendering engine",
         "integer overflow leading to heap corruption in video codec",
-        
+
         # -- API & Logic --
         "authentication bypass via JWT token manipulation",
         "unsafe deserialization in Java RMI service",
         "improper access control in REST API DELETE method",
-        
+
         # -- Infrastructure & IoT --
         "command injection in router web administration interface",
         "hardcoded credentials in firmware update mechanism",
@@ -742,7 +747,9 @@ def main(dataset_root):
     shuffle(queries)
 
     print(f"\nSearching {len(queries)} queries...")
-    qemb = build_embeddings(queries, cache_file="./cve_queries_emb_cache.npy")
+    qemb = build_embeddings(queries,
+        cache_file=Path(__file__).parent.parent / "cve_queries_emb_cache.npy"
+    )
 
     tau_labels = ["Cosine (τ=1.0)", "Hybrid (τ=0.8)", "Taumode (τ=0.62)"]
     all_results = []
@@ -864,7 +871,7 @@ def main(dataset_root):
 
         print(f"\n→ Higher T/H ratio = Better long-tail quality")
         print(f"→ ArrowSpace (τ<1.0) maintains higher tail scores")
-    
+
     print("Saving test queries comparisons")
     save_query_comparison(queries, all_results, titles, docs)
 
