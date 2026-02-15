@@ -1,0 +1,811 @@
+query_id,query_text,tau_method,rank,cve_id,title,score
+1,XML external entity XXE injection in SOAP parser,Cosine,1,CVE-2025-6087,SSRF vulnerability in opennextjs-cloudflare via /_next/image endpoint,0.878183
+1,XML external entity XXE injection in SOAP parser,Cosine,2,CVE-2015-3141,(no title),0.878013
+1,XML external entity XXE injection in SOAP parser,Cosine,3,CVE-2011-3684,(no title),0.876250
+1,XML external entity XXE injection in SOAP parser,Cosine,4,CVE-2025-62427,Server-Side Request Forgery (SSRF) in Angular SSR,0.874320
+1,XML external entity XXE injection in SOAP parser,Cosine,5,CVE-2022-3918,(no title),0.873249
+1,XML external entity XXE injection in SOAP parser,Cosine,6,CVE-2020-11767,(no title),0.873106
+1,XML external entity XXE injection in SOAP parser,Cosine,7,CVE-2015-6509,(no title),0.872469
+1,XML external entity XXE injection in SOAP parser,Cosine,8,CVE-2025-64067,(no title),0.872333
+1,XML external entity XXE injection in SOAP parser,Cosine,9,CVE-2012-3805,(no title),0.872052
+1,XML external entity XXE injection in SOAP parser,Cosine,10,CVE-2007-5403,(no title),0.871974
+1,XML external entity XXE injection in SOAP parser,Cosine,11,CVE-2007-0186,(no title),0.871035
+1,XML external entity XXE injection in SOAP parser,Cosine,12,CVE-2012-3836,(no title),0.869923
+1,XML external entity XXE injection in SOAP parser,Cosine,13,CVE-2014-4309,(no title),0.869407
+1,XML external entity XXE injection in SOAP parser,Cosine,14,CVE-2013-2107,(no title),0.869301
+1,XML external entity XXE injection in SOAP parser,Cosine,15,CVE-2022-35924,Verification requests (magic link) sent to unwanted emails,0.868122
+1,XML external entity XXE injection in SOAP parser,Hybrid,1,CVE-2007-0186,(no title),0.899686
+1,XML external entity XXE injection in SOAP parser,Hybrid,2,CVE-2009-3017,(no title),0.888201
+1,XML external entity XXE injection in SOAP parser,Hybrid,3,CVE-2021-31762,(no title),0.887307
+1,XML external entity XXE injection in SOAP parser,Hybrid,4,CVE-2014-10014,(no title),0.887151
+1,XML external entity XXE injection in SOAP parser,Hybrid,5,CVE-2021-21644,(no title),0.885835
+1,XML external entity XXE injection in SOAP parser,Hybrid,6,CVE-2014-9407,(no title),0.885780
+1,XML external entity XXE injection in SOAP parser,Hybrid,7,CVE-2013-5954,(no title),0.885579
+1,XML external entity XXE injection in SOAP parser,Hybrid,8,CVE-2014-3577,(no title),0.885570
+1,XML external entity XXE injection in SOAP parser,Hybrid,9,CVE-2009-4571,(no title),0.884900
+1,XML external entity XXE injection in SOAP parser,Hybrid,10,CVE-2018-11633,(no title),0.883386
+1,XML external entity XXE injection in SOAP parser,Hybrid,11,CVE-2023-48293,XWiki Admin Tools Application CSRF with QueryOnXWiki allows arbitrary database queries,0.883362
+1,XML external entity XXE injection in SOAP parser,Hybrid,12,CVE-2011-5318,(no title),0.882725
+1,XML external entity XXE injection in SOAP parser,Hybrid,13,CVE-2014-3111,(no title),0.882110
+1,XML external entity XXE injection in SOAP parser,Hybrid,14,CVE-2023-48653,(no title),0.881402
+1,XML external entity XXE injection in SOAP parser,Hybrid,15,CVE-2006-4985,(no title),0.881397
+1,XML external entity XXE injection in SOAP parser,Taumode,1,CVE-2007-0186,(no title),0.916877
+1,XML external entity XXE injection in SOAP parser,Taumode,2,CVE-2009-3017,(no title),0.910446
+1,XML external entity XXE injection in SOAP parser,Taumode,3,CVE-2014-10014,(no title),0.907656
+1,XML external entity XXE injection in SOAP parser,Taumode,4,CVE-2021-21644,(no title),0.907629
+1,XML external entity XXE injection in SOAP parser,Taumode,5,CVE-2023-48293,XWiki Admin Tools Application CSRF with QueryOnXWiki allows arbitrary database queries,0.904725
+1,XML external entity XXE injection in SOAP parser,Taumode,6,CVE-2023-48653,(no title),0.904713
+1,XML external entity XXE injection in SOAP parser,Taumode,7,CVE-2014-9407,(no title),0.904414
+1,XML external entity XXE injection in SOAP parser,Taumode,8,CVE-2021-31762,(no title),0.904359
+1,XML external entity XXE injection in SOAP parser,Taumode,9,CVE-2013-5954,(no title),0.904130
+1,XML external entity XXE injection in SOAP parser,Taumode,10,CVE-2014-3577,(no title),0.904001
+1,XML external entity XXE injection in SOAP parser,Taumode,11,CVE-2018-11633,(no title),0.903794
+1,XML external entity XXE injection in SOAP parser,Taumode,12,CVE-2013-2671,(no title),0.903089
+1,XML external entity XXE injection in SOAP parser,Taumode,13,CVE-2014-3111,(no title),0.902543
+1,XML external entity XXE injection in SOAP parser,Taumode,14,CVE-2018-11586,(no title),0.901125
+1,XML external entity XXE injection in SOAP parser,Taumode,15,CVE-2005-3997,(no title),0.901041
+2,SQL injection in login endpoint,Cosine,1,CVE-2025-68352,spi: ch341: fix out-of-bounds memory access in ch341_transfer_one,0.799507
+2,SQL injection in login endpoint,Cosine,2,CVE-2021-30019,(no title),0.793023
+2,SQL injection in login endpoint,Cosine,3,CVE-2020-14309,(no title),0.788648
+2,SQL injection in login endpoint,Cosine,4,CVE-2018-10540,(no title),0.787972
+2,SQL injection in login endpoint,Cosine,5,CVE-2025-59729,Heap-buffer-overflow read in FFmpeg DHAV get_duration,0.787429
+2,SQL injection in login endpoint,Cosine,6,CVE-2023-53474,x86/MCE/AMD: Use an u64 for bank_map,0.784514
+2,SQL injection in login endpoint,Cosine,7,CVE-2010-3014,(no title),0.783342
+2,SQL injection in login endpoint,Cosine,8,CVE-2017-11640,(no title),0.782572
+2,SQL injection in login endpoint,Cosine,9,CVE-2020-14937,(no title),0.781944
+2,SQL injection in login endpoint,Cosine,10,CVE-2022-28658,(no title),0.781048
+2,SQL injection in login endpoint,Cosine,11,CVE-2022-48665,exfat: fix overflow for large capacity partition,0.780232
+2,SQL injection in login endpoint,Cosine,12,CVE-2022-24795,Buffer Overflow and Integer Overflow in yajl-ruby,0.779991
+2,SQL injection in login endpoint,Cosine,13,CVE-2019-6488,(no title),0.779051
+2,SQL injection in login endpoint,Cosine,14,CVE-2023-53707,drm/amdgpu: Fix integer overflow in amdgpu_cs_pass1,0.778741
+2,SQL injection in login endpoint,Cosine,15,CVE-2018-10539,(no title),0.778653
+2,SQL injection in login endpoint,Hybrid,1,CVE-2025-68352,spi: ch341: fix out-of-bounds memory access in ch341_transfer_one,0.849587
+2,SQL injection in login endpoint,Hybrid,2,CVE-2021-30019,(no title),0.844704
+2,SQL injection in login endpoint,Hybrid,3,CVE-2020-14309,(no title),0.841423
+2,SQL injection in login endpoint,Hybrid,4,CVE-2018-10540,(no title),0.840979
+2,SQL injection in login endpoint,Hybrid,5,CVE-2025-59729,Heap-buffer-overflow read in FFmpeg DHAV get_duration,0.840452
+2,SQL injection in login endpoint,Hybrid,6,CVE-2023-53474,x86/MCE/AMD: Use an u64 for bank_map,0.838317
+2,SQL injection in login endpoint,Hybrid,7,CVE-2010-3014,(no title),0.837445
+2,SQL injection in login endpoint,Hybrid,8,CVE-2017-11640,(no title),0.836912
+2,SQL injection in login endpoint,Hybrid,9,CVE-2020-14937,(no title),0.836419
+2,SQL injection in login endpoint,Hybrid,10,CVE-2022-28658,(no title),0.835784
+2,SQL injection in login endpoint,Hybrid,11,CVE-2022-48665,exfat: fix overflow for large capacity partition,0.835108
+2,SQL injection in login endpoint,Hybrid,12,CVE-2022-24795,Buffer Overflow and Integer Overflow in yajl-ruby,0.834943
+2,SQL injection in login endpoint,Hybrid,13,CVE-2023-53707,drm/amdgpu: Fix integer overflow in amdgpu_cs_pass1,0.834015
+2,SQL injection in login endpoint,Hybrid,14,CVE-2018-10539,(no title),0.833955
+2,SQL injection in login endpoint,Hybrid,15,CVE-2019-13238,(no title),0.833406
+2,SQL injection in login endpoint,Taumode,1,CVE-2025-68352,spi: ch341: fix out-of-bounds memory access in ch341_transfer_one,0.879634
+2,SQL injection in login endpoint,Taumode,2,CVE-2021-30019,(no title),0.875712
+2,SQL injection in login endpoint,Taumode,3,CVE-2020-14309,(no title),0.873088
+2,SQL injection in login endpoint,Taumode,4,CVE-2018-10540,(no title),0.872783
+2,SQL injection in login endpoint,Taumode,5,CVE-2025-59729,Heap-buffer-overflow read in FFmpeg DHAV get_duration,0.872266
+2,SQL injection in login endpoint,Taumode,6,CVE-2023-53474,x86/MCE/AMD: Use an u64 for bank_map,0.870599
+2,SQL injection in login endpoint,Taumode,7,CVE-2010-3014,(no title),0.869907
+2,SQL injection in login endpoint,Taumode,8,CVE-2017-11640,(no title),0.869515
+2,SQL injection in login endpoint,Taumode,9,CVE-2020-14937,(no title),0.869104
+2,SQL injection in login endpoint,Taumode,10,CVE-2022-28658,(no title),0.868626
+2,SQL injection in login endpoint,Taumode,11,CVE-2022-48665,exfat: fix overflow for large capacity partition,0.868033
+2,SQL injection in login endpoint,Taumode,12,CVE-2022-24795,Buffer Overflow and Integer Overflow in yajl-ruby,0.867915
+2,SQL injection in login endpoint,Taumode,13,CVE-2023-53707,drm/amdgpu: Fix integer overflow in amdgpu_cs_pass1,0.867179
+2,SQL injection in login endpoint,Taumode,14,CVE-2018-10539,(no title),0.867136
+2,SQL injection in login endpoint,Taumode,15,CVE-2019-13238,(no title),0.866560
+3,integer overflow leading to heap corruption in video codec,Cosine,1,CVE-2020-36151,(no title),0.776264
+3,integer overflow leading to heap corruption in video codec,Cosine,2,CVE-2025-22920,(no title),0.772808
+3,integer overflow leading to heap corruption in video codec,Cosine,3,CVE-2021-30019,(no title),0.768191
+3,integer overflow leading to heap corruption in video codec,Cosine,4,CVE-2020-36150,(no title),0.760061
+3,integer overflow leading to heap corruption in video codec,Cosine,5,CVE-2024-32620,(no title),0.754219
+3,integer overflow leading to heap corruption in video codec,Cosine,6,CVE-2017-11532,(no title),0.752852
+3,integer overflow leading to heap corruption in video codec,Cosine,7,CVE-2017-13135,(no title),0.751183
+3,integer overflow leading to heap corruption in video codec,Cosine,8,CVE-2021-44920,(no title),0.749102
+3,integer overflow leading to heap corruption in video codec,Cosine,9,CVE-2022-49249,ASoC: codecs: wc938x: fix accessing array out of bounds for enum type,0.748969
+3,integer overflow leading to heap corruption in video codec,Cosine,10,CVE-2025-37816,mei: vsc: Fix fortify-panic caused by invalid counted_by() use,0.746848
+3,integer overflow leading to heap corruption in video codec,Cosine,11,CVE-2024-29161,(no title),0.746383
+3,integer overflow leading to heap corruption in video codec,Cosine,12,CVE-2020-14212,(no title),0.745798
+3,integer overflow leading to heap corruption in video codec,Cosine,13,CVE-2024-32618,(no title),0.745269
+3,integer overflow leading to heap corruption in video codec,Cosine,14,CVE-2019-19959,(no title),0.744722
+3,integer overflow leading to heap corruption in video codec,Cosine,15,CVE-2022-50390,drm/ttm: fix undefined behavior in bit shift for TTM_TT_FLAG_PRIV_POPULATED,0.744253
+3,integer overflow leading to heap corruption in video codec,Hybrid,1,CVE-2020-36151,(no title),0.832045
+3,integer overflow leading to heap corruption in video codec,Hybrid,2,CVE-2025-22920,(no title),0.829542
+3,integer overflow leading to heap corruption in video codec,Hybrid,3,CVE-2021-30019,(no title),0.826013
+3,integer overflow leading to heap corruption in video codec,Hybrid,4,CVE-2020-36150,(no title),0.819831
+3,integer overflow leading to heap corruption in video codec,Hybrid,5,CVE-2017-11532,(no title),0.814416
+3,integer overflow leading to heap corruption in video codec,Hybrid,6,CVE-2017-13135,(no title),0.813275
+3,integer overflow leading to heap corruption in video codec,Hybrid,7,CVE-2021-44920,(no title),0.811579
+3,integer overflow leading to heap corruption in video codec,Hybrid,8,CVE-2022-49249,ASoC: codecs: wc938x: fix accessing array out of bounds for enum type,0.811215
+3,integer overflow leading to heap corruption in video codec,Hybrid,9,CVE-2019-19959,(no title),0.808317
+3,integer overflow leading to heap corruption in video codec,Hybrid,10,CVE-2024-29163,(no title),0.807946
+3,integer overflow leading to heap corruption in video codec,Hybrid,11,CVE-2019-19958,(no title),0.807907
+3,integer overflow leading to heap corruption in video codec,Hybrid,12,CVE-2024-29157,(no title),0.807343
+3,integer overflow leading to heap corruption in video codec,Hybrid,13,CVE-2023-53679,wifi: mt7601u: fix an integer underflow,0.807063
+3,integer overflow leading to heap corruption in video codec,Hybrid,14,CVE-2025-51089,(no title),0.806975
+3,integer overflow leading to heap corruption in video codec,Hybrid,15,CVE-2024-35369,(no title),0.806650
+3,integer overflow leading to heap corruption in video codec,Taumode,1,CVE-2020-36151,(no title),0.865514
+3,integer overflow leading to heap corruption in video codec,Taumode,2,CVE-2025-22920,(no title),0.863582
+3,integer overflow leading to heap corruption in video codec,Taumode,3,CVE-2021-30019,(no title),0.860706
+3,integer overflow leading to heap corruption in video codec,Taumode,4,CVE-2020-36150,(no title),0.855693
+3,integer overflow leading to heap corruption in video codec,Taumode,5,CVE-2017-11532,(no title),0.851354
+3,integer overflow leading to heap corruption in video codec,Taumode,6,CVE-2017-13135,(no title),0.850530
+3,integer overflow leading to heap corruption in video codec,Taumode,7,CVE-2021-44920,(no title),0.849065
+3,integer overflow leading to heap corruption in video codec,Taumode,8,CVE-2022-49249,ASoC: codecs: wc938x: fix accessing array out of bounds for enum type,0.848562
+3,integer overflow leading to heap corruption in video codec,Taumode,9,CVE-2019-19959,(no title),0.846474
+3,integer overflow leading to heap corruption in video codec,Taumode,10,CVE-2024-29163,(no title),0.846197
+3,integer overflow leading to heap corruption in video codec,Taumode,11,CVE-2019-19958,(no title),0.846152
+3,integer overflow leading to heap corruption in video codec,Taumode,12,CVE-2024-29157,(no title),0.845693
+3,integer overflow leading to heap corruption in video codec,Taumode,13,CVE-2023-53679,wifi: mt7601u: fix an integer underflow,0.845528
+3,integer overflow leading to heap corruption in video codec,Taumode,14,CVE-2025-51089,(no title),0.845334
+3,integer overflow leading to heap corruption in video codec,Taumode,15,CVE-2024-35369,(no title),0.845091
+4,server-side request forgery SSRF in URL preview feature,Cosine,1,CVE-2022-50255,tracing: Fix reading strings from synthetic events,0.813032
+4,server-side request forgery SSRF in URL preview feature,Cosine,2,CVE-2008-1736,(no title),0.811578
+4,server-side request forgery SSRF in URL preview feature,Cosine,3,CVE-2007-5042,(no title),0.811060
+4,server-side request forgery SSRF in URL preview feature,Cosine,4,CVE-2007-4969,(no title),0.810605
+4,server-side request forgery SSRF in URL preview feature,Cosine,5,CVE-2023-45503,(no title),0.808389
+4,server-side request forgery SSRF in URL preview feature,Cosine,6,CVE-2012-3000,(no title),0.807924
+4,server-side request forgery SSRF in URL preview feature,Cosine,7,CVE-2006-7160,(no title),0.806407
+4,server-side request forgery SSRF in URL preview feature,Cosine,8,CVE-2012-2090,(no title),0.806368
+4,server-side request forgery SSRF in URL preview feature,Cosine,9,CVE-2006-0120,(no title),0.806021
+4,server-side request forgery SSRF in URL preview feature,Cosine,10,CVE-2025-40362,ceph: fix multifs mds auth caps issue,0.804697
+4,server-side request forgery SSRF in URL preview feature,Cosine,11,CVE-2025-12194,(no title),0.803961
+4,server-side request forgery SSRF in URL preview feature,Cosine,12,CVE-2024-47141,pinmux: Use sequential access to access desc->pinmux data,0.803514
+4,server-side request forgery SSRF in URL preview feature,Cosine,13,CVE-2016-9167,(no title),0.803322
+4,server-side request forgery SSRF in URL preview feature,Cosine,14,CVE-2008-1855,(no title),0.802998
+4,server-side request forgery SSRF in URL preview feature,Cosine,15,CVE-2007-4970,(no title),0.802972
+4,server-side request forgery SSRF in URL preview feature,Hybrid,1,CVE-2009-3163,(no title),0.851408
+4,server-side request forgery SSRF in URL preview feature,Hybrid,2,CVE-2007-5040,(no title),0.840156
+4,server-side request forgery SSRF in URL preview feature,Hybrid,3,CVE-2008-1855,(no title),0.839551
+4,server-side request forgery SSRF in URL preview feature,Hybrid,4,CVE-2024-47141,pinmux: Use sequential access to access desc->pinmux data,0.837063
+4,server-side request forgery SSRF in URL preview feature,Hybrid,5,CVE-2013-6987,(no title),0.836718
+4,server-side request forgery SSRF in URL preview feature,Hybrid,6,CVE-2008-1736,(no title),0.836352
+4,server-side request forgery SSRF in URL preview feature,Hybrid,7,CVE-2011-0959,(no title),0.835025
+4,server-side request forgery SSRF in URL preview feature,Hybrid,8,CVE-2007-4969,(no title),0.833588
+4,server-side request forgery SSRF in URL preview feature,Hybrid,9,CVE-2025-63604,(no title),0.833250
+4,server-side request forgery SSRF in URL preview feature,Hybrid,10,CVE-2024-37026,drm/xe: Only use reserved BCS instances for usm migrate exec queue,0.833130
+4,server-side request forgery SSRF in URL preview feature,Hybrid,11,CVE-2025-12194,(no title),0.832854
+4,server-side request forgery SSRF in URL preview feature,Hybrid,12,CVE-2007-0709,(no title),0.831170
+4,server-side request forgery SSRF in URL preview feature,Hybrid,13,CVE-2022-50255,tracing: Fix reading strings from synthetic events,0.830778
+4,server-side request forgery SSRF in URL preview feature,Hybrid,14,CVE-2023-53501,iommu/amd/iommu_v2: Fix pasid_state refcount dec hit 0 warning on pasid unbind,0.830279
+4,server-side request forgery SSRF in URL preview feature,Hybrid,15,CVE-2024-50281,KEYS: trusted: dcp: fix NULL dereference in AEAD crypto operation,0.829327
+4,server-side request forgery SSRF in URL preview feature,Taumode,1,CVE-2009-3163,(no title),0.880788
+4,server-side request forgery SSRF in URL preview feature,Taumode,2,CVE-2013-6987,(no title),0.866252
+4,server-side request forgery SSRF in URL preview feature,Taumode,3,CVE-2007-5040,(no title),0.864758
+4,server-side request forgery SSRF in URL preview feature,Taumode,4,CVE-2011-0959,(no title),0.864020
+4,server-side request forgery SSRF in URL preview feature,Taumode,5,CVE-2023-53501,iommu/amd/iommu_v2: Fix pasid_state refcount dec hit 0 warning on pasid unbind,0.863800
+4,server-side request forgery SSRF in URL preview feature,Taumode,6,CVE-2024-37026,drm/xe: Only use reserved BCS instances for usm migrate exec queue,0.863779
+4,server-side request forgery SSRF in URL preview feature,Taumode,7,CVE-2025-63604,(no title),0.862407
+4,server-side request forgery SSRF in URL preview feature,Taumode,8,CVE-2004-2542,(no title),0.862171
+4,server-side request forgery SSRF in URL preview feature,Taumode,9,CVE-2008-1855,(no title),0.861483
+4,server-side request forgery SSRF in URL preview feature,Taumode,10,CVE-2011-4153,(no title),0.860724
+4,server-side request forgery SSRF in URL preview feature,Taumode,11,CVE-2024-56539,wifi: mwifiex: Fix memcpy() field-spanning write warning in mwifiex_config_scan(),0.859800
+4,server-side request forgery SSRF in URL preview feature,Taumode,12,CVE-2025-68726,crypto: aead - Fix reqsize handling,0.859778
+4,server-side request forgery SSRF in URL preview feature,Taumode,13,CVE-2015-1028,(no title),0.859766
+4,server-side request forgery SSRF in URL preview feature,Taumode,14,CVE-2009-4742,(no title),0.858745
+4,server-side request forgery SSRF in URL preview feature,Taumode,15,CVE-2009-3051,(no title),0.858391
+5,insecure direct object reference IDOR in invoice download,Cosine,1,CVE-2025-59154,Openfire allows potential identity spoofing via unsafe CN parsing,0.851320
+5,insecure direct object reference IDOR in invoice download,Cosine,2,CVE-2013-2583,(no title),0.848602
+5,insecure direct object reference IDOR in invoice download,Cosine,3,CVE-2009-4780,(no title),0.847581
+5,insecure direct object reference IDOR in invoice download,Cosine,4,CVE-2009-3487,(no title),0.846187
+5,insecure direct object reference IDOR in invoice download,Cosine,5,CVE-2025-66258,Stored Cross-Site Scripting via XML Injection,0.846044
+5,insecure direct object reference IDOR in invoice download,Cosine,6,CVE-2025-24813,Apache Tomcat: Potential RCE and/or information disclosure and/or information corruption with partial PUT,0.845921
+5,insecure direct object reference IDOR in invoice download,Cosine,7,CVE-2013-1646,(no title),0.843747
+5,insecure direct object reference IDOR in invoice download,Cosine,8,CVE-2008-6945,(no title),0.843629
+5,insecure direct object reference IDOR in invoice download,Cosine,9,CVE-2020-25205,(no title),0.842601
+5,insecure direct object reference IDOR in invoice download,Cosine,10,CVE-2023-22456,ViewVC XSS vulnerability in revision view changed paths,0.842224
+5,insecure direct object reference IDOR in invoice download,Cosine,11,CVE-2006-2349,(no title),0.841768
+5,insecure direct object reference IDOR in invoice download,Cosine,12,CVE-2020-5217,Directive injection when using dynamic overrides with user input in RubyGems secure_headers,0.841593
+5,insecure direct object reference IDOR in invoice download,Cosine,13,CVE-2013-4235,(no title),0.840653
+5,insecure direct object reference IDOR in invoice download,Cosine,14,CVE-2009-3237,(no title),0.840327
+5,insecure direct object reference IDOR in invoice download,Cosine,15,CVE-2016-9938,(no title),0.839959
+5,insecure direct object reference IDOR in invoice download,Hybrid,1,CVE-2025-59154,Openfire allows potential identity spoofing via unsafe CN parsing,0.888457
+5,insecure direct object reference IDOR in invoice download,Hybrid,2,CVE-2013-2583,(no title),0.886393
+5,insecure direct object reference IDOR in invoice download,Hybrid,3,CVE-2009-4780,(no title),0.885607
+5,insecure direct object reference IDOR in invoice download,Hybrid,4,CVE-2009-3487,(no title),0.884639
+5,insecure direct object reference IDOR in invoice download,Hybrid,5,CVE-2025-24813,Apache Tomcat: Potential RCE and/or information disclosure and/or information corruption with partial PUT,0.884437
+5,insecure direct object reference IDOR in invoice download,Hybrid,6,CVE-2025-66258,Stored Cross-Site Scripting via XML Injection,0.884419
+5,insecure direct object reference IDOR in invoice download,Hybrid,7,CVE-2013-1646,(no title),0.882752
+5,insecure direct object reference IDOR in invoice download,Hybrid,8,CVE-2008-6945,(no title),0.882705
+5,insecure direct object reference IDOR in invoice download,Hybrid,9,CVE-2020-25205,(no title),0.881900
+5,insecure direct object reference IDOR in invoice download,Hybrid,10,CVE-2023-22456,ViewVC XSS vulnerability in revision view changed paths,0.881631
+5,insecure direct object reference IDOR in invoice download,Hybrid,11,CVE-2006-2349,(no title),0.881237
+5,insecure direct object reference IDOR in invoice download,Hybrid,12,CVE-2020-5217,Directive injection when using dynamic overrides with user input in RubyGems secure_headers,0.881098
+5,insecure direct object reference IDOR in invoice download,Hybrid,13,CVE-2013-4235,(no title),0.880469
+5,insecure direct object reference IDOR in invoice download,Hybrid,14,CVE-2009-3237,(no title),0.880245
+5,insecure direct object reference IDOR in invoice download,Hybrid,15,CVE-2016-9938,(no title),0.879900
+5,insecure direct object reference IDOR in invoice download,Taumode,1,CVE-2025-59154,Openfire allows potential identity spoofing via unsafe CN parsing,0.910740
+5,insecure direct object reference IDOR in invoice download,Taumode,2,CVE-2013-2583,(no title),0.909068
+5,insecure direct object reference IDOR in invoice download,Taumode,3,CVE-2009-4780,(no title),0.908423
+5,insecure direct object reference IDOR in invoice download,Taumode,4,CVE-2009-3487,(no title),0.907710
+5,insecure direct object reference IDOR in invoice download,Taumode,5,CVE-2025-24813,Apache Tomcat: Potential RCE and/or information disclosure and/or information corruption with partial PUT,0.907547
+5,insecure direct object reference IDOR in invoice download,Taumode,6,CVE-2025-66258,Stored Cross-Site Scripting via XML Injection,0.907444
+5,insecure direct object reference IDOR in invoice download,Taumode,7,CVE-2013-1646,(no title),0.906156
+5,insecure direct object reference IDOR in invoice download,Taumode,8,CVE-2008-6945,(no title),0.906151
+5,insecure direct object reference IDOR in invoice download,Taumode,9,CVE-2020-25205,(no title),0.905480
+5,insecure direct object reference IDOR in invoice download,Taumode,10,CVE-2023-22456,ViewVC XSS vulnerability in revision view changed paths,0.905276
+5,insecure direct object reference IDOR in invoice download,Taumode,11,CVE-2006-2349,(no title),0.904918
+5,insecure direct object reference IDOR in invoice download,Taumode,12,CVE-2020-5217,Directive injection when using dynamic overrides with user input in RubyGems secure_headers,0.904801
+5,insecure direct object reference IDOR in invoice download,Taumode,13,CVE-2013-4235,(no title),0.904359
+5,insecure direct object reference IDOR in invoice download,Taumode,14,CVE-2009-3237,(no title),0.904195
+5,insecure direct object reference IDOR in invoice download,Taumode,15,CVE-2016-9938,(no title),0.903864
+6,authentication bypass via JWT token manipulation,Cosine,1,CVE-2014-7864,(no title),0.841434
+6,authentication bypass via JWT token manipulation,Cosine,2,CVE-2023-45503,(no title),0.838989
+6,authentication bypass via JWT token manipulation,Cosine,3,CVE-2005-2865,(no title),0.837860
+6,authentication bypass via JWT token manipulation,Cosine,4,CVE-2019-19034,(no title),0.834496
+6,authentication bypass via JWT token manipulation,Cosine,5,CVE-2012-4347,(no title),0.832503
+6,authentication bypass via JWT token manipulation,Cosine,6,CVE-2015-9226,(no title),0.832000
+6,authentication bypass via JWT token manipulation,Cosine,7,CVE-2019-6716,(no title),0.830758
+6,authentication bypass via JWT token manipulation,Cosine,8,CVE-2023-46350,(no title),0.830623
+6,authentication bypass via JWT token manipulation,Cosine,9,CVE-2012-1289,(no title),0.830047
+6,authentication bypass via JWT token manipulation,Cosine,10,CVE-2013-7216,(no title),0.829915
+6,authentication bypass via JWT token manipulation,Cosine,11,CVE-2025-63390,(no title),0.829451
+6,authentication bypass via JWT token manipulation,Cosine,12,CVE-2006-5303,(no title),0.829080
+6,authentication bypass via JWT token manipulation,Cosine,13,CVE-2025-40659,Insecure Direct Object Reference (IDOR) vulnerability in DM Corporative CMS,0.828624
+6,authentication bypass via JWT token manipulation,Cosine,14,CVE-2012-3469,(no title),0.828519
+6,authentication bypass via JWT token manipulation,Cosine,15,CVE-2019-13382,(no title),0.828228
+6,authentication bypass via JWT token manipulation,Hybrid,1,CVE-2023-45503,(no title),0.879124
+6,authentication bypass via JWT token manipulation,Hybrid,2,CVE-2012-4347,(no title),0.874341
+6,authentication bypass via JWT token manipulation,Hybrid,3,CVE-2023-46350,(no title),0.872855
+6,authentication bypass via JWT token manipulation,Hybrid,4,CVE-2012-1289,(no title),0.872371
+6,authentication bypass via JWT token manipulation,Hybrid,5,CVE-2019-19034,(no title),0.872364
+6,authentication bypass via JWT token manipulation,Hybrid,6,CVE-2013-7216,(no title),0.872270
+6,authentication bypass via JWT token manipulation,Hybrid,7,CVE-2025-63390,(no title),0.871777
+6,authentication bypass via JWT token manipulation,Hybrid,8,CVE-2006-5303,(no title),0.871685
+6,authentication bypass via JWT token manipulation,Hybrid,9,CVE-2025-40659,Insecure Direct Object Reference (IDOR) vulnerability in DM Corporative CMS,0.871355
+6,authentication bypass via JWT token manipulation,Hybrid,10,CVE-2019-13382,(no title),0.870933
+6,authentication bypass via JWT token manipulation,Hybrid,11,CVE-2025-40660,Insecure Direct Object Reference (IDOR) vulnerability in DM Corporative CMS,0.870834
+6,authentication bypass via JWT token manipulation,Hybrid,12,CVE-2009-1553,(no title),0.870325
+6,authentication bypass via JWT token manipulation,Hybrid,13,CVE-2025-40658,Insecure Direct Object Reference (IDOR) vulnerability in DM Corporative CMS,0.868789
+6,authentication bypass via JWT token manipulation,Hybrid,14,CVE-2017-5965,(no title),0.868069
+6,authentication bypass via JWT token manipulation,Hybrid,15,CVE-2016-0492,(no title),0.868025
+6,authentication bypass via JWT token manipulation,Taumode,1,CVE-2023-45503,(no title),0.903204
+6,authentication bypass via JWT token manipulation,Taumode,2,CVE-2012-4347,(no title),0.899443
+6,authentication bypass via JWT token manipulation,Taumode,3,CVE-2023-46350,(no title),0.898195
+6,authentication bypass via JWT token manipulation,Taumode,4,CVE-2012-1289,(no title),0.897765
+6,authentication bypass via JWT token manipulation,Taumode,5,CVE-2013-7216,(no title),0.897682
+6,authentication bypass via JWT token manipulation,Taumode,6,CVE-2006-5303,(no title),0.897248
+6,authentication bypass via JWT token manipulation,Taumode,7,CVE-2025-63390,(no title),0.897173
+6,authentication bypass via JWT token manipulation,Taumode,8,CVE-2025-40659,Insecure Direct Object Reference (IDOR) vulnerability in DM Corporative CMS,0.896993
+6,authentication bypass via JWT token manipulation,Taumode,9,CVE-2019-13382,(no title),0.896555
+6,authentication bypass via JWT token manipulation,Taumode,10,CVE-2025-40660,Insecure Direct Object Reference (IDOR) vulnerability in DM Corporative CMS,0.896530
+6,authentication bypass via JWT token manipulation,Taumode,11,CVE-2009-1553,(no title),0.896183
+6,authentication bypass via JWT token manipulation,Taumode,12,CVE-2019-19034,(no title),0.895084
+6,authentication bypass via JWT token manipulation,Taumode,13,CVE-2025-40658,Insecure Direct Object Reference (IDOR) vulnerability in DM Corporative CMS,0.894923
+6,authentication bypass via JWT token manipulation,Taumode,14,CVE-2016-0492,(no title),0.894342
+6,authentication bypass via JWT token manipulation,Taumode,15,CVE-2017-5965,(no title),0.894326
+7,improper access control in REST API DELETE method,Cosine,1,CVE-2021-44877,(no title),0.848096
+7,improper access control in REST API DELETE method,Cosine,2,CVE-2008-3081,(no title),0.846037
+7,improper access control in REST API DELETE method,Cosine,3,CVE-2020-21524,(no title),0.840079
+7,improper access control in REST API DELETE method,Cosine,4,CVE-2022-31662,(no title),0.839233
+7,improper access control in REST API DELETE method,Cosine,5,CVE-2006-0732,(no title),0.837986
+7,improper access control in REST API DELETE method,Cosine,6,CVE-2019-20437,(no title),0.836804
+7,improper access control in REST API DELETE method,Cosine,7,CVE-2019-1003037,(no title),0.836687
+7,improper access control in REST API DELETE method,Cosine,8,CVE-2023-1203,(no title),0.836655
+7,improper access control in REST API DELETE method,Cosine,9,CVE-2018-20091,(no title),0.834275
+7,improper access control in REST API DELETE method,Cosine,10,CVE-2022-22959,(no title),0.834001
+7,improper access control in REST API DELETE method,Cosine,11,CVE-2024-37293,aws-deployment-framework's potential risk can lead to privilege escalation,0.833533
+7,improper access control in REST API DELETE method,Cosine,12,CVE-2024-10125,Lack of JWT issuer and signer validation,0.833426
+7,improper access control in REST API DELETE method,Cosine,13,CVE-2025-53663,(no title),0.833246
+7,improper access control in REST API DELETE method,Cosine,14,CVE-2022-22954,(no title),0.832167
+7,improper access control in REST API DELETE method,Cosine,15,CVE-2008-6706,(no title),0.831217
+7,improper access control in REST API DELETE method,Hybrid,1,CVE-2012-3469,(no title),0.854189
+7,improper access control in REST API DELETE method,Hybrid,2,CVE-2019-1003067,(no title),0.852204
+7,improper access control in REST API DELETE method,Hybrid,3,CVE-2006-2768,(no title),0.849840
+7,improper access control in REST API DELETE method,Hybrid,4,CVE-2023-7307,Sangfor Behavior Management System XML External Entity Injection,0.848034
+7,improper access control in REST API DELETE method,Hybrid,5,CVE-2006-3172,(no title),0.847249
+7,improper access control in REST API DELETE method,Hybrid,6,CVE-2015-0010,(no title),0.844220
+7,improper access control in REST API DELETE method,Hybrid,7,CVE-2008-0567,(no title),0.842028
+7,improper access control in REST API DELETE method,Hybrid,8,CVE-2012-5367,(no title),0.839766
+7,improper access control in REST API DELETE method,Hybrid,9,CVE-2009-4465,(no title),0.838151
+7,improper access control in REST API DELETE method,Hybrid,10,CVE-2014-9229,(no title),0.837641
+7,improper access control in REST API DELETE method,Hybrid,11,CVE-2008-6777,(no title),0.836535
+7,improper access control in REST API DELETE method,Hybrid,12,CVE-2006-0581,(no title),0.836344
+7,improper access control in REST API DELETE method,Hybrid,13,CVE-2024-7873,Stored XSS in Veribilim Software's Veribase Order Management,0.834667
+7,improper access control in REST API DELETE method,Hybrid,14,CVE-2014-3119,(no title),0.834460
+7,improper access control in REST API DELETE method,Hybrid,15,CVE-2012-3791,(no title),0.834039
+7,improper access control in REST API DELETE method,Taumode,1,CVE-2019-1003067,(no title),0.879498
+7,improper access control in REST API DELETE method,Taumode,2,CVE-2012-3469,(no title),0.877048
+7,improper access control in REST API DELETE method,Taumode,3,CVE-2006-2768,(no title),0.876270
+7,improper access control in REST API DELETE method,Taumode,4,CVE-2015-0010,(no title),0.874661
+7,improper access control in REST API DELETE method,Taumode,5,CVE-2006-3172,(no title),0.872933
+7,improper access control in REST API DELETE method,Taumode,6,CVE-2009-4465,(no title),0.868949
+7,improper access control in REST API DELETE method,Taumode,7,CVE-2006-0581,(no title),0.867531
+7,improper access control in REST API DELETE method,Taumode,8,CVE-2014-9229,(no title),0.867487
+7,improper access control in REST API DELETE method,Taumode,9,CVE-2014-3119,(no title),0.867296
+7,improper access control in REST API DELETE method,Taumode,10,CVE-2012-5367,(no title),0.866287
+7,improper access control in REST API DELETE method,Taumode,11,CVE-2008-0567,(no title),0.866146
+7,improper access control in REST API DELETE method,Taumode,12,CVE-2024-7873,Stored XSS in Veribilim Software's Veribase Order Management,0.865516
+7,improper access control in REST API DELETE method,Taumode,13,CVE-2014-7137,(no title),0.864729
+7,improper access control in REST API DELETE method,Taumode,14,CVE-2024-7248,Comodo Internet Security Pro Directory Traversal Local Privilege Escalation Vulnerability,0.864310
+7,improper access control in REST API DELETE method,Taumode,15,CVE-2019-0996,Azure DevOps Server Spoofing Vulnerability,0.863279
+8,use-after-free vulnerability in browser rendering engine,Cosine,1,CVE-2018-12182,(no title),0.841674
+8,use-after-free vulnerability in browser rendering engine,Cosine,2,CVE-2018-12179,(no title),0.839403
+8,use-after-free vulnerability in browser rendering engine,Cosine,3,CVE-2018-3955,(no title),0.835667
+8,use-after-free vulnerability in browser rendering engine,Cosine,4,CVE-2018-3954,(no title),0.835107
+8,use-after-free vulnerability in browser rendering engine,Cosine,5,CVE-2018-3613,(no title),0.833469
+8,use-after-free vulnerability in browser rendering engine,Cosine,6,CVE-2024-29855,(no title),0.831203
+8,use-after-free vulnerability in browser rendering engine,Cosine,7,CVE-2018-3953,(no title),0.829045
+8,use-after-free vulnerability in browser rendering engine,Cosine,8,CVE-2021-27608,(no title),0.828910
+8,use-after-free vulnerability in browser rendering engine,Cosine,9,CVE-2018-12180,(no title),0.827833
+8,use-after-free vulnerability in browser rendering engine,Cosine,10,CVE-2022-30316,(no title),0.827624
+8,use-after-free vulnerability in browser rendering engine,Cosine,11,CVE-2023-39903,(no title),0.827431
+8,use-after-free vulnerability in browser rendering engine,Cosine,12,CVE-2022-30314,(no title),0.827212
+8,use-after-free vulnerability in browser rendering engine,Cosine,13,CVE-2018-12183,(no title),0.826951
+8,use-after-free vulnerability in browser rendering engine,Cosine,14,CVE-2025-34234,Vasion Print (formerly PrinterLogic) Hardcoded Encryption Private Keys,0.824532
+8,use-after-free vulnerability in browser rendering engine,Cosine,15,CVE-2022-30318,(no title),0.823661
+8,use-after-free vulnerability in browser rendering engine,Hybrid,1,CVE-2018-12182,(no title),0.881198
+8,use-after-free vulnerability in browser rendering engine,Hybrid,2,CVE-2018-12179,(no title),0.879475
+8,use-after-free vulnerability in browser rendering engine,Hybrid,3,CVE-2018-3955,(no title),0.876731
+8,use-after-free vulnerability in browser rendering engine,Hybrid,4,CVE-2024-29855,(no title),0.873375
+8,use-after-free vulnerability in browser rendering engine,Hybrid,5,CVE-2018-3953,(no title),0.871701
+8,use-after-free vulnerability in browser rendering engine,Hybrid,6,CVE-2021-27608,(no title),0.871615
+8,use-after-free vulnerability in browser rendering engine,Hybrid,7,CVE-2018-12180,(no title),0.870806
+8,use-after-free vulnerability in browser rendering engine,Hybrid,8,CVE-2022-30316,(no title),0.870658
+8,use-after-free vulnerability in browser rendering engine,Hybrid,9,CVE-2023-39903,(no title),0.870546
+8,use-after-free vulnerability in browser rendering engine,Hybrid,10,CVE-2022-30314,(no title),0.870368
+8,use-after-free vulnerability in browser rendering engine,Hybrid,11,CVE-2018-12183,(no title),0.870138
+8,use-after-free vulnerability in browser rendering engine,Hybrid,12,CVE-2025-34234,Vasion Print (formerly PrinterLogic) Hardcoded Encryption Private Keys,0.868242
+8,use-after-free vulnerability in browser rendering engine,Hybrid,13,CVE-2018-3954,(no title),0.867837
+8,use-after-free vulnerability in browser rendering engine,Hybrid,14,CVE-2022-30318,(no title),0.867718
+8,use-after-free vulnerability in browser rendering engine,Hybrid,15,CVE-2024-43659,Plaintext default credentials in firmware,0.867179
+8,use-after-free vulnerability in browser rendering engine,Taumode,1,CVE-2018-12182,(no title),0.904913
+8,use-after-free vulnerability in browser rendering engine,Taumode,2,CVE-2018-12179,(no title),0.903518
+8,use-after-free vulnerability in browser rendering engine,Taumode,3,CVE-2018-3955,(no title),0.901369
+8,use-after-free vulnerability in browser rendering engine,Taumode,4,CVE-2024-29855,(no title),0.898679
+8,use-after-free vulnerability in browser rendering engine,Taumode,5,CVE-2018-3953,(no title),0.897295
+8,use-after-free vulnerability in browser rendering engine,Taumode,6,CVE-2021-27608,(no title),0.897238
+8,use-after-free vulnerability in browser rendering engine,Taumode,7,CVE-2018-12180,(no title),0.896591
+8,use-after-free vulnerability in browser rendering engine,Taumode,8,CVE-2022-30316,(no title),0.896478
+8,use-after-free vulnerability in browser rendering engine,Taumode,9,CVE-2023-39903,(no title),0.896416
+8,use-after-free vulnerability in browser rendering engine,Taumode,10,CVE-2022-30314,(no title),0.896261
+8,use-after-free vulnerability in browser rendering engine,Taumode,11,CVE-2018-12183,(no title),0.896050
+8,use-after-free vulnerability in browser rendering engine,Taumode,12,CVE-2025-34234,Vasion Print (formerly PrinterLogic) Hardcoded Encryption Private Keys,0.894467
+8,use-after-free vulnerability in browser rendering engine,Taumode,13,CVE-2022-30318,(no title),0.894152
+8,use-after-free vulnerability in browser rendering engine,Taumode,14,CVE-2024-43659,Plaintext default credentials in firmware,0.893686
+8,use-after-free vulnerability in browser rendering engine,Taumode,15,CVE-2022-30317,(no title),0.893575
+9,authenticated arbitrary file read path traversal,Cosine,1,CVE-2008-4181,(no title),0.871229
+9,authenticated arbitrary file read path traversal,Cosine,2,CVE-2025-40362,ceph: fix multifs mds auth caps issue,0.870200
+9,authenticated arbitrary file read path traversal,Cosine,3,CVE-2018-19204,(no title),0.870102
+9,authenticated arbitrary file read path traversal,Cosine,4,CVE-2007-1057,(no title),0.869459
+9,authenticated arbitrary file read path traversal,Cosine,5,CVE-2006-2868,(no title),0.869233
+9,authenticated arbitrary file read path traversal,Cosine,6,CVE-2019-14969,(no title),0.868975
+9,authenticated arbitrary file read path traversal,Cosine,7,CVE-2019-9745,(no title),0.868813
+9,authenticated arbitrary file read path traversal,Cosine,8,CVE-2008-5776,(no title),0.868539
+9,authenticated arbitrary file read path traversal,Cosine,9,CVE-2009-3702,(no title),0.868477
+9,authenticated arbitrary file read path traversal,Cosine,10,CVE-2006-4258,(no title),0.868369
+9,authenticated arbitrary file read path traversal,Cosine,11,CVE-2022-28005,(no title),0.867756
+9,authenticated arbitrary file read path traversal,Cosine,12,CVE-2020-5846,(no title),0.867544
+9,authenticated arbitrary file read path traversal,Cosine,13,CVE-2021-28374,(no title),0.866510
+9,authenticated arbitrary file read path traversal,Cosine,14,CVE-2002-1469,(no title),0.866377
+9,authenticated arbitrary file read path traversal,Cosine,15,CVE-2007-6233,(no title),0.866272
+9,authenticated arbitrary file read path traversal,Hybrid,1,CVE-2008-4181,(no title),0.903305
+9,authenticated arbitrary file read path traversal,Hybrid,2,CVE-2025-40362,ceph: fix multifs mds auth caps issue,0.902557
+9,authenticated arbitrary file read path traversal,Hybrid,3,CVE-2018-19204,(no title),0.902477
+9,authenticated arbitrary file read path traversal,Hybrid,4,CVE-2007-1057,(no title),0.901970
+9,authenticated arbitrary file read path traversal,Hybrid,5,CVE-2006-2868,(no title),0.901761
+9,authenticated arbitrary file read path traversal,Hybrid,6,CVE-2019-9745,(no title),0.901516
+9,authenticated arbitrary file read path traversal,Hybrid,7,CVE-2008-5776,(no title),0.901300
+9,authenticated arbitrary file read path traversal,Hybrid,8,CVE-2009-3702,(no title),0.901291
+9,authenticated arbitrary file read path traversal,Hybrid,9,CVE-2022-28005,(no title),0.900744
+9,authenticated arbitrary file read path traversal,Hybrid,10,CVE-2020-5846,(no title),0.900581
+9,authenticated arbitrary file read path traversal,Hybrid,11,CVE-2021-28374,(no title),0.899761
+9,authenticated arbitrary file read path traversal,Hybrid,12,CVE-2002-1469,(no title),0.899662
+9,authenticated arbitrary file read path traversal,Hybrid,13,CVE-2007-6233,(no title),0.899641
+9,authenticated arbitrary file read path traversal,Hybrid,14,CVE-2011-4800,(no title),0.899621
+9,authenticated arbitrary file read path traversal,Hybrid,15,CVE-2025-45582,(no title),0.899415
+9,authenticated arbitrary file read path traversal,Taumode,1,CVE-2008-4181,(no title),0.922550
+9,authenticated arbitrary file read path traversal,Taumode,2,CVE-2025-40362,ceph: fix multifs mds auth caps issue,0.921972
+9,authenticated arbitrary file read path traversal,Taumode,3,CVE-2018-19204,(no title),0.921902
+9,authenticated arbitrary file read path traversal,Taumode,4,CVE-2007-1057,(no title),0.921476
+9,authenticated arbitrary file read path traversal,Taumode,5,CVE-2006-2868,(no title),0.921278
+9,authenticated arbitrary file read path traversal,Taumode,6,CVE-2019-9745,(no title),0.921138
+9,authenticated arbitrary file read path traversal,Taumode,7,CVE-2009-3702,(no title),0.920980
+9,authenticated arbitrary file read path traversal,Taumode,8,CVE-2008-5776,(no title),0.920956
+9,authenticated arbitrary file read path traversal,Taumode,9,CVE-2022-28005,(no title),0.920537
+9,authenticated arbitrary file read path traversal,Taumode,10,CVE-2020-5846,(no title),0.920403
+9,authenticated arbitrary file read path traversal,Taumode,11,CVE-2021-28374,(no title),0.919712
+9,authenticated arbitrary file read path traversal,Taumode,12,CVE-2011-4800,(no title),0.919681
+9,authenticated arbitrary file read path traversal,Taumode,13,CVE-2007-6233,(no title),0.919662
+9,authenticated arbitrary file read path traversal,Taumode,14,CVE-2002-1469,(no title),0.919633
+9,authenticated arbitrary file read path traversal,Taumode,15,CVE-2025-45582,(no title),0.919475
+10,remote code execution in ERP web component,Cosine,1,CVE-2025-21688,drm/v3d: Assign job pointer to NULL before signaling the fence,0.866281
+10,remote code execution in ERP web component,Cosine,2,CVE-2021-47223,net: bridge: fix vlan tunnel dst null pointer dereference,0.859420
+10,remote code execution in ERP web component,Cosine,3,CVE-2022-48801,iio: buffer: Fix file related error handling in IIO_BUFFER_GET_FD_IOCTL,0.857942
+10,remote code execution in ERP web component,Cosine,4,CVE-2023-53503,ext4: allow ext4_get_group_info() to fail,0.857794
+10,remote code execution in ERP web component,Cosine,5,CVE-2025-40341,futex: Don't leak robust_list pointer on exec race,0.857630
+10,remote code execution in ERP web component,Cosine,6,CVE-2024-43882,exec: Fix ToCToU between perm check and set-uid/gid usage,0.857394
+10,remote code execution in ERP web component,Cosine,7,CVE-2025-21664,dm thin: make get_first_thin use rcu-safe list first function,0.856757
+10,remote code execution in ERP web component,Cosine,8,CVE-2021-27363,(no title),0.856197
+10,remote code execution in ERP web component,Cosine,9,CVE-2023-4759,Improper handling of case insensitive filesystems in Eclipse JGit allows arbitrary file write,0.856033
+10,remote code execution in ERP web component,Cosine,10,CVE-2024-26585,tls: fix race between tx work scheduling and socket close,0.854876
+10,remote code execution in ERP web component,Cosine,11,CVE-2024-57974,udp: Deal with race between UDP socket address change and rehash,0.854297
+10,remote code execution in ERP web component,Cosine,12,CVE-2024-36024,drm/amd/display: Disable idle reallow as part of command/gpint execution,0.854018
+10,remote code execution in ERP web component,Cosine,13,CVE-2023-53596,drivers: base: Free devm resources when unregistering a device,0.853774
+10,remote code execution in ERP web component,Cosine,14,CVE-2023-53235,drm/tests: helpers: Avoid a driver uaf,0.853761
+10,remote code execution in ERP web component,Cosine,15,CVE-2025-38060,bpf: copy_verifier_state() should copy 'loop_entry' field,0.853629
+10,remote code execution in ERP web component,Hybrid,1,CVE-2025-21688,drm/v3d: Assign job pointer to NULL before signaling the fence,0.899600
+10,remote code execution in ERP web component,Hybrid,2,CVE-2021-47223,net: bridge: fix vlan tunnel dst null pointer dereference,0.894512
+10,remote code execution in ERP web component,Hybrid,3,CVE-2022-48801,iio: buffer: Fix file related error handling in IIO_BUFFER_GET_FD_IOCTL,0.893429
+10,remote code execution in ERP web component,Hybrid,4,CVE-2023-53503,ext4: allow ext4_get_group_info() to fail,0.893302
+10,remote code execution in ERP web component,Hybrid,5,CVE-2025-40341,futex: Don't leak robust_list pointer on exec race,0.893119
+10,remote code execution in ERP web component,Hybrid,6,CVE-2025-21664,dm thin: make get_first_thin use rcu-safe list first function,0.892532
+10,remote code execution in ERP web component,Hybrid,7,CVE-2021-27363,(no title),0.892141
+10,remote code execution in ERP web component,Hybrid,8,CVE-2023-4759,Improper handling of case insensitive filesystems in Eclipse JGit allows arbitrary file write,0.892019
+10,remote code execution in ERP web component,Hybrid,9,CVE-2024-26585,tls: fix race between tx work scheduling and socket close,0.891087
+10,remote code execution in ERP web component,Hybrid,10,CVE-2024-57974,udp: Deal with race between UDP socket address change and rehash,0.890685
+10,remote code execution in ERP web component,Hybrid,11,CVE-2024-36024,drm/amd/display: Disable idle reallow as part of command/gpint execution,0.890450
+10,remote code execution in ERP web component,Hybrid,12,CVE-2023-53596,drivers: base: Free devm resources when unregistering a device,0.890285
+10,remote code execution in ERP web component,Hybrid,13,CVE-2023-53235,drm/tests: helpers: Avoid a driver uaf,0.890271
+10,remote code execution in ERP web component,Hybrid,14,CVE-2025-38060,bpf: copy_verifier_state() should copy 'loop_entry' field,0.890149
+10,remote code execution in ERP web component,Hybrid,15,CVE-2022-50117,vfio: Split migration ops from main device ops,0.889467
+10,remote code execution in ERP web component,Taumode,1,CVE-2025-21688,drm/v3d: Assign job pointer to NULL before signaling the fence,0.919591
+10,remote code execution in ERP web component,Taumode,2,CVE-2021-47223,net: bridge: fix vlan tunnel dst null pointer dereference,0.915567
+10,remote code execution in ERP web component,Taumode,3,CVE-2022-48801,iio: buffer: Fix file related error handling in IIO_BUFFER_GET_FD_IOCTL,0.914720
+10,remote code execution in ERP web component,Taumode,4,CVE-2023-53503,ext4: allow ext4_get_group_info() to fail,0.914606
+10,remote code execution in ERP web component,Taumode,5,CVE-2025-40341,futex: Don't leak robust_list pointer on exec race,0.914412
+10,remote code execution in ERP web component,Taumode,6,CVE-2025-21664,dm thin: make get_first_thin use rcu-safe list first function,0.913997
+10,remote code execution in ERP web component,Taumode,7,CVE-2021-27363,(no title),0.913707
+10,remote code execution in ERP web component,Taumode,8,CVE-2023-4759,Improper handling of case insensitive filesystems in Eclipse JGit allows arbitrary file write,0.913610
+10,remote code execution in ERP web component,Taumode,9,CVE-2024-26585,tls: fix race between tx work scheduling and socket close,0.912814
+10,remote code execution in ERP web component,Taumode,10,CVE-2024-57974,udp: Deal with race between UDP socket address change and rehash,0.912518
+10,remote code execution in ERP web component,Taumode,11,CVE-2024-36024,drm/amd/display: Disable idle reallow as part of command/gpint execution,0.912310
+10,remote code execution in ERP web component,Taumode,12,CVE-2023-53596,drivers: base: Free devm resources when unregistering a device,0.912193
+10,remote code execution in ERP web component,Taumode,13,CVE-2023-53235,drm/tests: helpers: Avoid a driver uaf,0.912176
+10,remote code execution in ERP web component,Taumode,14,CVE-2025-38060,bpf: copy_verifier_state() should copy 'loop_entry' field,0.912062
+10,remote code execution in ERP web component,Taumode,15,CVE-2022-50117,vfio: Split migration ops from main device ops,0.911570
+11,local privilege escalation via race condition in kernel,Cosine,1,CVE-2025-31161,(no title),0.898745
+11,local privilege escalation via race condition in kernel,Cosine,2,CVE-2025-34234,Vasion Print (formerly PrinterLogic) Hardcoded Encryption Private Keys,0.895662
+11,local privilege escalation via race condition in kernel,Cosine,3,CVE-2021-30648,(no title),0.894776
+11,local privilege escalation via race condition in kernel,Cosine,4,CVE-2021-43271,(no title),0.889350
+11,local privilege escalation via race condition in kernel,Cosine,5,CVE-2024-8535,Authenticated user can access unintended user capabilities,0.889224
+11,local privilege escalation via race condition in kernel,Cosine,6,CVE-2008-6706,(no title),0.888550
+11,local privilege escalation via race condition in kernel,Cosine,7,CVE-2025-64429,DuckDB Encryption Crypto implementation is vulnerable,0.888272
+11,local privilege escalation via race condition in kernel,Cosine,8,CVE-2024-39676,Apache Pinot: Unauthorized endpoint exposed sensitive information,0.888118
+11,local privilege escalation via race condition in kernel,Cosine,9,CVE-2024-29737,Apache StreamPark (incubating): maven build params could trigger remote command execution,0.888018
+11,local privilege escalation via race condition in kernel,Cosine,10,CVE-2025-24363,The HL7 FHIR IG publisher may potentially expose GitHub repo user and credential information,0.886457
+11,local privilege escalation via race condition in kernel,Cosine,11,CVE-2024-4536,Eclipse EDC: OAuth2 Credential Exfiltration Vulnerability,0.886428
+11,local privilege escalation via race condition in kernel,Cosine,12,CVE-2021-39155,Authorization Policy Bypass Due to Case Insensitive Host Comparison,0.886413
+11,local privilege escalation via race condition in kernel,Cosine,13,CVE-2019-16097,(no title),0.886223
+11,local privilege escalation via race condition in kernel,Cosine,14,CVE-2019-1010084,(no title),0.886150
+11,local privilege escalation via race condition in kernel,Cosine,15,CVE-2022-39369,Service Hostname Discovery Exploitation in phpCAS,0.886050
+11,local privilege escalation via race condition in kernel,Hybrid,1,CVE-2025-31161,(no title),0.911617
+11,local privilege escalation via race condition in kernel,Hybrid,2,CVE-2025-34234,Vasion Print (formerly PrinterLogic) Hardcoded Encryption Private Keys,0.909378
+11,local privilege escalation via race condition in kernel,Hybrid,3,CVE-2021-30648,(no title),0.908501
+11,local privilege escalation via race condition in kernel,Hybrid,4,CVE-2021-43271,(no title),0.904525
+11,local privilege escalation via race condition in kernel,Hybrid,5,CVE-2024-8535,Authenticated user can access unintended user capabilities,0.904391
+11,local privilege escalation via race condition in kernel,Hybrid,6,CVE-2008-6706,(no title),0.903891
+11,local privilege escalation via race condition in kernel,Hybrid,7,CVE-2025-64429,DuckDB Encryption Crypto implementation is vulnerable,0.903759
+11,local privilege escalation via race condition in kernel,Hybrid,8,CVE-2024-50281,KEYS: trusted: dcp: fix NULL dereference in AEAD crypto operation,0.903683
+11,local privilege escalation via race condition in kernel,Hybrid,9,CVE-2024-39676,Apache Pinot: Unauthorized endpoint exposed sensitive information,0.903650
+11,local privilege escalation via race condition in kernel,Hybrid,10,CVE-2024-29737,Apache StreamPark (incubating): maven build params could trigger remote command execution,0.903586
+11,local privilege escalation via race condition in kernel,Hybrid,11,CVE-2023-24827,Credential disclosure in syft when SYFT_ATTEST_PASSWORD environment variable set in syft,0.903090
+11,local privilege escalation via race condition in kernel,Hybrid,12,CVE-2024-4536,Eclipse EDC: OAuth2 Credential Exfiltration Vulnerability,0.902403
+11,local privilege escalation via race condition in kernel,Hybrid,13,CVE-2025-24363,The HL7 FHIR IG publisher may potentially expose GitHub repo user and credential information,0.902394
+11,local privilege escalation via race condition in kernel,Hybrid,14,CVE-2021-39155,Authorization Policy Bypass Due to Case Insensitive Host Comparison,0.902378
+11,local privilege escalation via race condition in kernel,Hybrid,15,CVE-2019-1010084,(no title),0.902156
+11,local privilege escalation via race condition in kernel,Taumode,1,CVE-2024-50281,KEYS: trusted: dcp: fix NULL dereference in AEAD crypto operation,0.922487
+11,local privilege escalation via race condition in kernel,Taumode,2,CVE-2023-24827,Credential disclosure in syft when SYFT_ATTEST_PASSWORD environment variable set in syft,0.921480
+11,local privilege escalation via race condition in kernel,Taumode,3,CVE-2025-31161,(no title),0.919341
+11,local privilege escalation via race condition in kernel,Taumode,4,CVE-2023-47298,(no title),0.917720
+11,local privilege escalation via race condition in kernel,Taumode,5,CVE-2025-34234,Vasion Print (formerly PrinterLogic) Hardcoded Encryption Private Keys,0.917607
+11,local privilege escalation via race condition in kernel,Taumode,6,CVE-2007-4261,(no title),0.917338
+11,local privilege escalation via race condition in kernel,Taumode,7,CVE-2021-30648,(no title),0.916735
+11,local privilege escalation via race condition in kernel,Taumode,8,CVE-2014-4309,(no title),0.914553
+11,local privilege escalation via race condition in kernel,Taumode,9,CVE-2021-43271,(no title),0.913630
+11,local privilege escalation via race condition in kernel,Taumode,10,CVE-2024-8535,Authenticated user can access unintended user capabilities,0.913492
+11,local privilege escalation via race condition in kernel,Taumode,11,CVE-2008-6706,(no title),0.913096
+11,local privilege escalation via race condition in kernel,Taumode,12,CVE-2025-64429,DuckDB Encryption Crypto implementation is vulnerable,0.913051
+11,local privilege escalation via race condition in kernel,Taumode,13,CVE-2024-39676,Apache Pinot: Unauthorized endpoint exposed sensitive information,0.912969
+11,local privilege escalation via race condition in kernel,Taumode,14,CVE-2024-29737,Apache StreamPark (incubating): maven build params could trigger remote command execution,0.912927
+11,local privilege escalation via race condition in kernel,Taumode,15,CVE-2012-1978,(no title),0.912576
+12,denial of service via malformed network packets,Cosine,1,CVE-2002-0886,(no title),0.841607
+12,denial of service via malformed network packets,Cosine,2,CVE-2003-1250,(no title),0.841362
+12,denial of service via malformed network packets,Cosine,3,CVE-2008-5849,(no title),0.838628
+12,denial of service via malformed network packets,Cosine,4,CVE-2009-0687,(no title),0.837840
+12,denial of service via malformed network packets,Cosine,5,CVE-2002-0952,(no title),0.837810
+12,denial of service via malformed network packets,Cosine,6,CVE-2020-5937,(no title),0.836869
+12,denial of service via malformed network packets,Cosine,7,CVE-2008-1397,(no title),0.836754
+12,denial of service via malformed network packets,Cosine,8,CVE-2005-0039,(no title),0.836326
+12,denial of service via malformed network packets,Cosine,9,CVE-2017-5872,(no title),0.836164
+12,denial of service via malformed network packets,Cosine,10,CVE-2021-0217,Junos OS: EX Series and QFX Series: Memory leak issue processing specific DHCP packets,0.835536
+12,denial of service via malformed network packets,Cosine,11,CVE-2002-1104,(no title),0.835504
+12,denial of service via malformed network packets,Cosine,12,CVE-2004-2549,(no title),0.834945
+12,denial of service via malformed network packets,Cosine,13,CVE-2015-7759,(no title),0.833868
+12,denial of service via malformed network packets,Cosine,14,CVE-2002-0666,(no title),0.833743
+12,denial of service via malformed network packets,Cosine,15,CVE-1999-1201,(no title),0.833618
+12,denial of service via malformed network packets,Hybrid,1,CVE-2002-0886,(no title),0.881065
+12,denial of service via malformed network packets,Hybrid,2,CVE-2003-1250,(no title),0.880915
+12,denial of service via malformed network packets,Hybrid,3,CVE-2008-5849,(no title),0.878915
+12,denial of service via malformed network packets,Hybrid,4,CVE-2009-0687,(no title),0.878266
+12,denial of service via malformed network packets,Hybrid,5,CVE-2002-0952,(no title),0.878211
+12,denial of service via malformed network packets,Hybrid,6,CVE-2020-5937,(no title),0.877622
+12,denial of service via malformed network packets,Hybrid,7,CVE-2008-1397,(no title),0.877512
+12,denial of service via malformed network packets,Hybrid,8,CVE-2005-0039,(no title),0.877211
+12,denial of service via malformed network packets,Hybrid,9,CVE-2017-5872,(no title),0.877019
+12,denial of service via malformed network packets,Hybrid,10,CVE-2021-0217,Junos OS: EX Series and QFX Series: Memory leak issue processing specific DHCP packets,0.876611
+12,denial of service via malformed network packets,Hybrid,11,CVE-2002-1104,(no title),0.876502
+12,denial of service via malformed network packets,Hybrid,12,CVE-2004-2549,(no title),0.876076
+12,denial of service via malformed network packets,Hybrid,13,CVE-2015-7759,(no title),0.875293
+12,denial of service via malformed network packets,Hybrid,14,CVE-2002-0666,(no title),0.875240
+12,denial of service via malformed network packets,Hybrid,15,CVE-1999-1201,(no title),0.875186
+12,denial of service via malformed network packets,Taumode,1,CVE-2002-0886,(no title),0.904740
+12,denial of service via malformed network packets,Taumode,2,CVE-2003-1250,(no title),0.904646
+12,denial of service via malformed network packets,Taumode,3,CVE-2008-5849,(no title),0.903088
+12,denial of service via malformed network packets,Taumode,4,CVE-2009-0687,(no title),0.902522
+12,denial of service via malformed network packets,Taumode,5,CVE-2002-0952,(no title),0.902451
+12,denial of service via malformed network packets,Taumode,6,CVE-2020-5937,(no title),0.902074
+12,denial of service via malformed network packets,Taumode,7,CVE-2008-1397,(no title),0.901966
+12,denial of service via malformed network packets,Taumode,8,CVE-2005-0039,(no title),0.901743
+12,denial of service via malformed network packets,Taumode,9,CVE-2017-5872,(no title),0.901531
+12,denial of service via malformed network packets,Taumode,10,CVE-2021-0217,Junos OS: EX Series and QFX Series: Memory leak issue processing specific DHCP packets,0.901256
+12,denial of service via malformed network packets,Taumode,11,CVE-2002-1104,(no title),0.901101
+12,denial of service via malformed network packets,Taumode,12,CVE-2004-2549,(no title),0.900754
+12,denial of service via malformed network packets,Taumode,13,CVE-2015-7759,(no title),0.900148
+12,denial of service via malformed network packets,Taumode,14,CVE-2002-0666,(no title),0.900138
+12,denial of service via malformed network packets,Taumode,15,CVE-1999-1201,(no title),0.900126
+13,heap buffer overflow in image processing library,Cosine,1,CVE-2012-3836,(no title),0.867117
+13,heap buffer overflow in image processing library,Cosine,2,CVE-2025-57205,(no title),0.866246
+13,heap buffer overflow in image processing library,Cosine,3,CVE-2025-57204,(no title),0.865496
+13,heap buffer overflow in image processing library,Cosine,4,CVE-2018-8811,(no title),0.865072
+13,heap buffer overflow in image processing library,Cosine,5,CVE-2007-0830,(no title),0.864824
+13,heap buffer overflow in image processing library,Cosine,6,CVE-2010-1995,(no title),0.863393
+13,heap buffer overflow in image processing library,Cosine,7,CVE-2009-3581,(no title),0.860103
+13,heap buffer overflow in image processing library,Cosine,8,CVE-2025-62987,WordPress Builderall Builder for WordPress plugin <= 3.0.1 - Cross Site Scripting (XSS) vulnerability,0.859261
+13,heap buffer overflow in image processing library,Cosine,9,CVE-2014-0334,(no title),0.859140
+13,heap buffer overflow in image processing library,Cosine,10,CVE-2020-35676,(no title),0.859019
+13,heap buffer overflow in image processing library,Cosine,11,CVE-2014-3111,(no title),0.858325
+13,heap buffer overflow in image processing library,Cosine,12,CVE-2005-3552,(no title),0.858268
+13,heap buffer overflow in image processing library,Cosine,13,CVE-2012-1898,(no title),0.857593
+13,heap buffer overflow in image processing library,Cosine,14,CVE-2007-4523,(no title),0.857324
+13,heap buffer overflow in image processing library,Cosine,15,CVE-2015-2973,(no title),0.856793
+13,heap buffer overflow in image processing library,Hybrid,1,CVE-2012-1898,(no title),0.893042
+13,heap buffer overflow in image processing library,Hybrid,2,CVE-2005-3552,(no title),0.892661
+13,heap buffer overflow in image processing library,Hybrid,3,CVE-2012-0782,(no title),0.891271
+13,heap buffer overflow in image processing library,Hybrid,4,CVE-2007-0830,(no title),0.890833
+13,heap buffer overflow in image processing library,Hybrid,5,CVE-2017-11611,(no title),0.890613
+13,heap buffer overflow in image processing library,Hybrid,6,CVE-2012-3836,(no title),0.890255
+13,heap buffer overflow in image processing library,Hybrid,7,CVE-2025-57205,(no title),0.889632
+13,heap buffer overflow in image processing library,Hybrid,8,CVE-2025-57204,(no title),0.889086
+13,heap buffer overflow in image processing library,Hybrid,9,CVE-2021-25790,(no title),0.888938
+13,heap buffer overflow in image processing library,Hybrid,10,CVE-2010-1995,(no title),0.887429
+13,heap buffer overflow in image processing library,Hybrid,11,CVE-2018-8811,(no title),0.886794
+13,heap buffer overflow in image processing library,Hybrid,12,CVE-2009-3581,(no title),0.885019
+13,heap buffer overflow in image processing library,Hybrid,13,CVE-2020-35676,(no title),0.884101
+13,heap buffer overflow in image processing library,Hybrid,14,CVE-2025-57665,(no title),0.883425
+13,heap buffer overflow in image processing library,Hybrid,15,CVE-2017-9548,(no title),0.883275
+13,heap buffer overflow in image processing library,Taumode,1,CVE-2012-1898,(no title),0.914312
+13,heap buffer overflow in image processing library,Taumode,2,CVE-2005-3552,(no title),0.913297
+13,heap buffer overflow in image processing library,Taumode,3,CVE-2012-0782,(no title),0.912580
+13,heap buffer overflow in image processing library,Taumode,4,CVE-2017-11611,(no title),0.910985
+13,heap buffer overflow in image processing library,Taumode,5,CVE-2021-25790,(no title),0.908348
+13,heap buffer overflow in image processing library,Taumode,6,CVE-2007-0830,(no title),0.906438
+13,heap buffer overflow in image processing library,Taumode,7,CVE-2012-4484,(no title),0.906391
+13,heap buffer overflow in image processing library,Taumode,8,CVE-2017-9548,(no title),0.904757
+13,heap buffer overflow in image processing library,Taumode,9,CVE-2012-3836,(no title),0.904138
+13,heap buffer overflow in image processing library,Taumode,10,CVE-2025-57205,(no title),0.903664
+13,heap buffer overflow in image processing library,Taumode,11,CVE-2014-8376,(no title),0.903369
+13,heap buffer overflow in image processing library,Taumode,12,CVE-2025-57204,(no title),0.903240
+13,heap buffer overflow in image processing library,Taumode,13,CVE-2010-2536,(no title),0.902714
+13,heap buffer overflow in image processing library,Taumode,14,CVE-2015-1628,(no title),0.902590
+13,heap buffer overflow in image processing library,Taumode,15,CVE-2010-1995,(no title),0.901851
+14,stored cross-site scripting XSS in user profile page,Cosine,1,CVE-2022-50255,tracing: Fix reading strings from synthetic events,0.864759
+14,stored cross-site scripting XSS in user profile page,Cosine,2,CVE-2021-39155,Authorization Policy Bypass Due to Case Insensitive Host Comparison,0.863347
+14,stored cross-site scripting XSS in user profile page,Cosine,3,CVE-2021-32635,Action Commands (run/shell/exec) Against Library URIs Ignore Configured Remote Endpoint,0.861176
+14,stored cross-site scripting XSS in user profile page,Cosine,4,CVE-2022-23653,B2 Command Line Tool TOCTOU application key disclosure ,0.858894
+14,stored cross-site scripting XSS in user profile page,Cosine,5,CVE-2009-3486,(no title),0.858442
+14,stored cross-site scripting XSS in user profile page,Cosine,6,CVE-2023-39903,(no title),0.858245
+14,stored cross-site scripting XSS in user profile page,Cosine,7,CVE-2023-34252,Grav Server-side Template Injection via Insufficient Validation in filterFilter,0.858093
+14,stored cross-site scripting XSS in user profile page,Cosine,8,CVE-2023-50260,Wazuh's vulnerability in host_deny AR script allows arbitrary command execution,0.857537
+14,stored cross-site scripting XSS in user profile page,Cosine,9,CVE-2025-34234,Vasion Print (formerly PrinterLogic) Hardcoded Encryption Private Keys,0.856843
+14,stored cross-site scripting XSS in user profile page,Cosine,10,CVE-2025-62603,FastDDS has Out-of-memory while parsing GenericMessage when DDS Security is enabled,0.856628
+14,stored cross-site scripting XSS in user profile page,Cosine,11,CVE-2021-41090,Instance config inline secret exposure,0.856500
+14,stored cross-site scripting XSS in user profile page,Cosine,12,CVE-2022-50116,tty: n_gsm: fix deadlock and link starvation in outgoing data path,0.856466
+14,stored cross-site scripting XSS in user profile page,Cosine,13,CVE-2024-23805,F5 Application Visibility and Reporting module and BIG-IP Advanced WAF/ASM vulnerability,0.856041
+14,stored cross-site scripting XSS in user profile page,Cosine,14,CVE-2024-32028,Sensitive query parameters logged by default in OpenTelemetry.Instrumentation http and AspNetCore,0.855815
+14,stored cross-site scripting XSS in user profile page,Cosine,15,CVE-2023-24827,Credential disclosure in syft when SYFT_ATTEST_PASSWORD environment variable set in syft,0.855696
+14,stored cross-site scripting XSS in user profile page,Hybrid,1,CVE-2015-5076,(no title),0.849113
+14,stored cross-site scripting XSS in user profile page,Hybrid,2,CVE-2005-1362,(no title),0.841726
+14,stored cross-site scripting XSS in user profile page,Hybrid,3,CVE-2007-4390,(no title),0.835501
+14,stored cross-site scripting XSS in user profile page,Hybrid,4,CVE-2015-9226,(no title),0.830392
+14,stored cross-site scripting XSS in user profile page,Hybrid,5,CVE-2011-5073,(no title),0.829941
+14,stored cross-site scripting XSS in user profile page,Hybrid,6,CVE-2017-14145,(no title),0.823736
+14,stored cross-site scripting XSS in user profile page,Hybrid,7,CVE-2012-4260,(no title),0.823441
+14,stored cross-site scripting XSS in user profile page,Hybrid,8,CVE-2010-0432,(no title),0.823393
+14,stored cross-site scripting XSS in user profile page,Hybrid,9,CVE-2023-53791,md: fix warning for holder mismatch from export_rdev(),0.822609
+14,stored cross-site scripting XSS in user profile page,Hybrid,10,CVE-2014-9613,(no title),0.819738
+14,stored cross-site scripting XSS in user profile page,Hybrid,11,CVE-2007-2540,(no title),0.818013
+14,stored cross-site scripting XSS in user profile page,Hybrid,12,CVE-2009-0541,(no title),0.816123
+14,stored cross-site scripting XSS in user profile page,Hybrid,13,CVE-2008-5210,(no title),0.815695
+14,stored cross-site scripting XSS in user profile page,Hybrid,14,CVE-2006-3172,(no title),0.815667
+14,stored cross-site scripting XSS in user profile page,Hybrid,15,CVE-2006-4448,(no title),0.814507
+14,stored cross-site scripting XSS in user profile page,Taumode,1,CVE-2015-5076,(no title),0.875025
+14,stored cross-site scripting XSS in user profile page,Taumode,2,CVE-2005-1362,(no title),0.872036
+14,stored cross-site scripting XSS in user profile page,Taumode,3,CVE-2007-4390,(no title),0.857623
+14,stored cross-site scripting XSS in user profile page,Taumode,4,CVE-2017-14145,(no title),0.856064
+14,stored cross-site scripting XSS in user profile page,Taumode,5,CVE-2009-0541,(no title),0.849813
+14,stored cross-site scripting XSS in user profile page,Taumode,6,CVE-2012-4260,(no title),0.840680
+14,stored cross-site scripting XSS in user profile page,Taumode,7,CVE-2024-38499,Improper Privilege Management Vulnerability in CA Client Automation 14.5,0.839285
+14,stored cross-site scripting XSS in user profile page,Taumode,8,CVE-2015-9226,(no title),0.838635
+14,stored cross-site scripting XSS in user profile page,Taumode,9,CVE-2011-5073,(no title),0.837238
+14,stored cross-site scripting XSS in user profile page,Taumode,10,CVE-2010-0432,(no title),0.836705
+14,stored cross-site scripting XSS in user profile page,Taumode,11,CVE-2007-2540,(no title),0.836284
+14,stored cross-site scripting XSS in user profile page,Taumode,12,CVE-2012-1835,(no title),0.835564
+14,stored cross-site scripting XSS in user profile page,Taumode,13,CVE-2008-5210,(no title),0.832762
+14,stored cross-site scripting XSS in user profile page,Taumode,14,CVE-2008-2043,(no title),0.822711
+14,stored cross-site scripting XSS in user profile page,Taumode,15,CVE-2014-9613,(no title),0.822557
+15,command injection in router web administration interface,Cosine,1,CVE-2006-3172,(no title),0.843571
+15,command injection in router web administration interface,Cosine,2,CVE-2013-4883,(no title),0.843032
+15,command injection in router web administration interface,Cosine,3,CVE-2009-1553,(no title),0.841626
+15,command injection in router web administration interface,Cosine,4,CVE-2015-6509,(no title),0.839720
+15,command injection in router web administration interface,Cosine,5,CVE-2015-7391,(no title),0.839402
+15,command injection in router web administration interface,Cosine,6,CVE-2022-40145,Apache Karaf: JDBC JAAS LDAP injection,0.837685
+15,command injection in router web administration interface,Cosine,7,CVE-2023-27296,Apache InLong: JDBC Deserialization Vulnerability in InLong,0.836165
+15,command injection in router web administration interface,Cosine,8,CVE-2015-6929,(no title),0.835581
+15,command injection in router web administration interface,Cosine,9,CVE-2016-9554,(no title),0.833516
+15,command injection in router web administration interface,Cosine,10,CVE-2008-6840,(no title),0.833484
+15,command injection in router web administration interface,Cosine,11,CVE-2008-1969,(no title),0.832347
+15,command injection in router web administration interface,Cosine,12,CVE-2009-4237,(no title),0.832213
+15,command injection in router web administration interface,Cosine,13,CVE-2007-5642,(no title),0.831091
+15,command injection in router web administration interface,Cosine,14,CVE-2015-2351,(no title),0.829408
+15,command injection in router web administration interface,Cosine,15,CVE-2008-7092,(no title),0.828519
+15,command injection in router web administration interface,Hybrid,1,CVE-2013-4883,(no title),0.882260
+15,command injection in router web administration interface,Hybrid,2,CVE-2009-1553,(no title),0.880976
+15,command injection in router web administration interface,Hybrid,3,CVE-2015-6509,(no title),0.879505
+15,command injection in router web administration interface,Hybrid,4,CVE-2022-40145,Apache Karaf: JDBC JAAS LDAP injection,0.878189
+15,command injection in router web administration interface,Hybrid,5,CVE-2023-27296,Apache InLong: JDBC Deserialization Vulnerability in InLong,0.876914
+15,command injection in router web administration interface,Hybrid,6,CVE-2015-6929,(no title),0.876560
+15,command injection in router web administration interface,Hybrid,7,CVE-2016-9554,(no title),0.874990
+15,command injection in router web administration interface,Hybrid,8,CVE-2009-4237,(no title),0.873938
+15,command injection in router web administration interface,Hybrid,9,CVE-2023-46302,Apache Submarine: Fix CVE-2022-1471 SnakeYaml unsafe deserialization,0.869890
+15,command injection in router web administration interface,Hybrid,10,CVE-2016-4350,(no title),0.869802
+15,command injection in router web administration interface,Hybrid,11,CVE-2007-3594,(no title),0.869524
+15,command injection in router web administration interface,Hybrid,12,CVE-2007-5642,(no title),0.869513
+15,command injection in router web administration interface,Hybrid,13,CVE-2017-12761,(no title),0.868722
+15,command injection in router web administration interface,Hybrid,14,CVE-2012-4396,(no title),0.868540
+15,command injection in router web administration interface,Hybrid,15,CVE-2023-30465,Apache InLong: SQL injection in apache inLong 1.5.0,0.868256
+15,command injection in router web administration interface,Taumode,1,CVE-2013-4883,(no title),0.905797
+15,command injection in router web administration interface,Taumode,2,CVE-2009-1553,(no title),0.904586
+15,command injection in router web administration interface,Taumode,3,CVE-2015-6509,(no title),0.903376
+15,command injection in router web administration interface,Taumode,4,CVE-2022-40145,Apache Karaf: JDBC JAAS LDAP injection,0.902491
+15,command injection in router web administration interface,Taumode,5,CVE-2023-27296,Apache InLong: JDBC Deserialization Vulnerability in InLong,0.901363
+15,command injection in router web administration interface,Taumode,6,CVE-2015-6929,(no title),0.901148
+15,command injection in router web administration interface,Taumode,7,CVE-2016-9554,(no title),0.899874
+15,command injection in router web administration interface,Taumode,8,CVE-2009-4237,(no title),0.898973
+15,command injection in router web administration interface,Taumode,9,CVE-2023-46302,Apache Submarine: Fix CVE-2022-1471 SnakeYaml unsafe deserialization,0.895837
+15,command injection in router web administration interface,Taumode,10,CVE-2016-4350,(no title),0.895636
+15,command injection in router web administration interface,Taumode,11,CVE-2007-3594,(no title),0.895509
+15,command injection in router web administration interface,Taumode,12,CVE-2017-12761,(no title),0.894910
+15,command injection in router web administration interface,Taumode,13,CVE-2012-4396,(no title),0.894625
+15,command injection in router web administration interface,Taumode,14,CVE-2023-30465,Apache InLong: SQL injection in apache inLong 1.5.0,0.894412
+15,command injection in router web administration interface,Taumode,15,CVE-2007-1723,(no title),0.893625
+16,unsafe deserialization in Java RMI service,Cosine,1,CVE-2025-37736,Elastic Cloud Enterprise Improper Authorization,0.810879
+16,unsafe deserialization in Java RMI service,Cosine,2,CVE-2015-2878,(no title),0.799607
+16,unsafe deserialization in Java RMI service,Cosine,3,CVE-2025-23203,Icinga has rest API endpoints accessible to restricted users,0.792604
+16,unsafe deserialization in Java RMI service,Cosine,4,CVE-2025-61876,(no title),0.789873
+16,unsafe deserialization in Java RMI service,Cosine,5,CVE-2022-35943,SameSite may allow cross-site request forgery (CSRF) protection to be bypassed,0.789108
+16,unsafe deserialization in Java RMI service,Cosine,6,CVE-2024-53355,(no title),0.788724
+16,unsafe deserialization in Java RMI service,Cosine,7,CVE-2008-7092,(no title),0.788226
+16,unsafe deserialization in Java RMI service,Cosine,8,CVE-2024-53354,(no title),0.785674
+16,unsafe deserialization in Java RMI service,Cosine,9,CVE-2025-66490,Traefik doesn't Prevent Path Normalization Bypass in Router + Middleware Rules,0.784823
+16,unsafe deserialization in Java RMI service,Cosine,10,CVE-2008-5518,(no title),0.784627
+16,unsafe deserialization in Java RMI service,Cosine,11,CVE-2025-41039,Stored Cross-Site Scripting vulnerability in appRain CMF,0.782337
+16,unsafe deserialization in Java RMI service,Cosine,12,CVE-2007-2579,(no title),0.780563
+16,unsafe deserialization in Java RMI service,Cosine,13,CVE-2024-53357,(no title),0.779317
+16,unsafe deserialization in Java RMI service,Cosine,14,CVE-2025-14802,LearnPress – WordPress LMS Plugin <= 4.3.2.2 - Insecure Direct Object Reference to Authenticated (Instructor+) Teacher Material Deletion,0.779261
+16,unsafe deserialization in Java RMI service,Cosine,15,CVE-2012-1897,(no title),0.778342
+16,unsafe deserialization in Java RMI service,Hybrid,1,CVE-2025-23203,Icinga has rest API endpoints accessible to restricted users,0.829609
+16,unsafe deserialization in Java RMI service,Hybrid,2,CVE-2024-53354,(no title),0.826386
+16,unsafe deserialization in Java RMI service,Hybrid,3,CVE-2007-6548,(no title),0.825169
+16,unsafe deserialization in Java RMI service,Hybrid,4,CVE-2016-10086,(no title),0.822035
+16,unsafe deserialization in Java RMI service,Hybrid,5,CVE-2008-7092,(no title),0.821250
+16,unsafe deserialization in Java RMI service,Hybrid,6,CVE-2025-41039,Stored Cross-Site Scripting vulnerability in appRain CMF,0.820049
+16,unsafe deserialization in Java RMI service,Hybrid,7,CVE-2017-9767,(no title),0.814086
+16,unsafe deserialization in Java RMI service,Hybrid,8,CVE-2011-5298,(no title),0.813994
+16,unsafe deserialization in Java RMI service,Hybrid,9,CVE-2014-9606,(no title),0.813267
+16,unsafe deserialization in Java RMI service,Hybrid,10,CVE-2007-0373,(no title),0.812603
+16,unsafe deserialization in Java RMI service,Hybrid,11,CVE-2010-1515,(no title),0.810509
+16,unsafe deserialization in Java RMI service,Hybrid,12,CVE-2011-5230,(no title),0.810053
+16,unsafe deserialization in Java RMI service,Hybrid,13,CVE-2025-12030,ACF to REST API <= 3.3.4 - Insecure Direct Object Reference to Authenticated (Contributor+) ACF Field/Option Modification,0.807343
+16,unsafe deserialization in Java RMI service,Hybrid,14,CVE-2011-5287,(no title),0.806900
+16,unsafe deserialization in Java RMI service,Hybrid,15,CVE-2015-8125,(no title),0.806878
+16,unsafe deserialization in Java RMI service,Taumode,1,CVE-2007-6548,(no title),0.859269
+16,unsafe deserialization in Java RMI service,Taumode,2,CVE-2016-10086,(no title),0.855883
+16,unsafe deserialization in Java RMI service,Taumode,3,CVE-2025-23203,Icinga has rest API endpoints accessible to restricted users,0.851811
+16,unsafe deserialization in Java RMI service,Taumode,4,CVE-2024-53354,(no title),0.850813
+16,unsafe deserialization in Java RMI service,Taumode,5,CVE-2017-9767,(no title),0.847786
+16,unsafe deserialization in Java RMI service,Taumode,6,CVE-2007-0373,(no title),0.847301
+16,unsafe deserialization in Java RMI service,Taumode,7,CVE-2014-9606,(no title),0.847141
+16,unsafe deserialization in Java RMI service,Taumode,8,CVE-2011-5298,(no title),0.846135
+16,unsafe deserialization in Java RMI service,Taumode,9,CVE-2011-5230,(no title),0.844590
+16,unsafe deserialization in Java RMI service,Taumode,10,CVE-2025-41039,Stored Cross-Site Scripting vulnerability in appRain CMF,0.842676
+16,unsafe deserialization in Java RMI service,Taumode,11,CVE-2010-4280,(no title),0.841674
+16,unsafe deserialization in Java RMI service,Taumode,12,CVE-2008-7092,(no title),0.841064
+16,unsafe deserialization in Java RMI service,Taumode,13,CVE-2014-10035,(no title),0.840977
+16,unsafe deserialization in Java RMI service,Taumode,14,CVE-2013-6229,(no title),0.840653
+16,unsafe deserialization in Java RMI service,Taumode,15,CVE-2022-35942,loopback-connector-postgresql Vulnerable to Improper Sanitization of `contains` Filter,0.840417
+17,hardcoded credentials in firmware update mechanism,Cosine,1,CVE-2025-4235,User-ID Credential Agent: Cleartext Exposure of Service Account password,0.825831
+17,hardcoded credentials in firmware update mechanism,Cosine,2,CVE-2013-0135,(no title),0.814007
+17,hardcoded credentials in firmware update mechanism,Cosine,3,CVE-2022-39369,Service Hostname Discovery Exploitation in phpCAS,0.812786
+17,hardcoded credentials in firmware update mechanism,Cosine,4,CVE-2024-13301,OAuth & OpenID Connect Single Sign On – SSO (OAuth/OIDC Client) - Critical - Cross Site Scripting - SA-CONTRIB-2024-067,0.810199
+17,hardcoded credentials in firmware update mechanism,Cosine,5,CVE-2006-5303,(no title),0.810116
+17,hardcoded credentials in firmware update mechanism,Cosine,6,CVE-2019-1003037,(no title),0.808873
+17,hardcoded credentials in firmware update mechanism,Cosine,7,CVE-2015-7494,(no title),0.807787
+17,hardcoded credentials in firmware update mechanism,Cosine,8,CVE-2023-50291,Apache Solr: System Property redaction logic inconsistency can lead to leaked passwords,0.806504
+17,hardcoded credentials in firmware update mechanism,Cosine,9,CVE-2024-25106,OpenObserve Unauthorized Access Vulnerability in Users API,0.805902
+17,hardcoded credentials in firmware update mechanism,Cosine,10,CVE-2022-35924,Verification requests (magic link) sent to unwanted emails,0.804790
+17,hardcoded credentials in firmware update mechanism,Cosine,11,CVE-2024-32003,Dusk plugin may allow unfettered user authentication in misconfigured installs,0.804411
+17,hardcoded credentials in firmware update mechanism,Cosine,12,CVE-2006-3172,(no title),0.804020
+17,hardcoded credentials in firmware update mechanism,Cosine,13,CVE-2008-6706,(no title),0.802785
+17,hardcoded credentials in firmware update mechanism,Cosine,14,CVE-2023-1893,Login Configurator <= 2.1 - Reflected Cross-Site Scripting,0.802732
+17,hardcoded credentials in firmware update mechanism,Cosine,15,CVE-2011-5230,(no title),0.801656
+17,hardcoded credentials in firmware update mechanism,Hybrid,1,CVE-2025-4235,User-ID Credential Agent: Cleartext Exposure of Service Account password,0.853821
+17,hardcoded credentials in firmware update mechanism,Hybrid,2,CVE-2024-13301,OAuth & OpenID Connect Single Sign On – SSO (OAuth/OIDC Client) - Critical - Cross Site Scripting - SA-CONTRIB-2024-067,0.851458
+17,hardcoded credentials in firmware update mechanism,Hybrid,3,CVE-2019-6716,(no title),0.842668
+17,hardcoded credentials in firmware update mechanism,Hybrid,4,CVE-2022-35943,SameSite may allow cross-site request forgery (CSRF) protection to be bypassed,0.841862
+17,hardcoded credentials in firmware update mechanism,Hybrid,5,CVE-2014-9145,(no title),0.841763
+17,hardcoded credentials in firmware update mechanism,Hybrid,6,CVE-2013-0135,(no title),0.839549
+17,hardcoded credentials in firmware update mechanism,Hybrid,7,CVE-2023-50291,Apache Solr: System Property redaction logic inconsistency can lead to leaked passwords,0.839164
+17,hardcoded credentials in firmware update mechanism,Hybrid,8,CVE-2022-39369,Service Hostname Discovery Exploitation in phpCAS,0.838536
+17,hardcoded credentials in firmware update mechanism,Hybrid,9,CVE-2006-5303,(no title),0.836574
+17,hardcoded credentials in firmware update mechanism,Hybrid,10,CVE-2019-1003037,(no title),0.835492
+17,hardcoded credentials in firmware update mechanism,Hybrid,11,CVE-2015-7494,(no title),0.834751
+17,hardcoded credentials in firmware update mechanism,Hybrid,12,CVE-2024-25106,OpenObserve Unauthorized Access Vulnerability in Users API,0.833333
+17,hardcoded credentials in firmware update mechanism,Hybrid,13,CVE-2015-2351,(no title),0.833257
+17,hardcoded credentials in firmware update mechanism,Hybrid,14,CVE-2004-2551,(no title),0.832846
+17,hardcoded credentials in firmware update mechanism,Hybrid,15,CVE-2022-35924,Verification requests (magic link) sent to unwanted emails,0.832497
+17,hardcoded credentials in firmware update mechanism,Taumode,1,CVE-2024-13301,OAuth & OpenID Connect Single Sign On – SSO (OAuth/OIDC Client) - Critical - Cross Site Scripting - SA-CONTRIB-2024-067,0.876213
+17,hardcoded credentials in firmware update mechanism,Taumode,2,CVE-2019-6716,(no title),0.871372
+17,hardcoded credentials in firmware update mechanism,Taumode,3,CVE-2014-9145,(no title),0.870762
+17,hardcoded credentials in firmware update mechanism,Taumode,4,CVE-2025-4235,User-ID Credential Agent: Cleartext Exposure of Service Account password,0.870615
+17,hardcoded credentials in firmware update mechanism,Taumode,5,CVE-2022-35943,SameSite may allow cross-site request forgery (CSRF) protection to be bypassed,0.867971
+17,hardcoded credentials in firmware update mechanism,Taumode,6,CVE-2004-2551,(no title),0.864960
+17,hardcoded credentials in firmware update mechanism,Taumode,7,CVE-2012-5648,(no title),0.860974
+17,hardcoded credentials in firmware update mechanism,Taumode,8,CVE-2018-8811,(no title),0.860279
+17,hardcoded credentials in firmware update mechanism,Taumode,9,CVE-2015-2351,(no title),0.859407
+17,hardcoded credentials in firmware update mechanism,Taumode,10,CVE-2024-3150,Privilege Escalation in mintplex-labs/anything-llm,0.859004
+17,hardcoded credentials in firmware update mechanism,Taumode,11,CVE-2023-50291,Apache Solr: System Property redaction logic inconsistency can lead to leaked passwords,0.858760
+17,hardcoded credentials in firmware update mechanism,Taumode,12,CVE-2025-25497,(no title),0.858606
+17,hardcoded credentials in firmware update mechanism,Taumode,13,CVE-2020-22165,(no title),0.858316
+17,hardcoded credentials in firmware update mechanism,Taumode,14,CVE-2023-47298,(no title),0.857587
+17,hardcoded credentials in firmware update mechanism,Taumode,15,CVE-2020-15487,(no title),0.857471
+18,sensitive information disclosure in cloud metadata service,Cosine,1,CVE-2020-2021,PAN-OS: Authentication Bypass in SAML Authentication,0.842057
+18,sensitive information disclosure in cloud metadata service,Cosine,2,CVE-2015-6420,(no title),0.841758
+18,sensitive information disclosure in cloud metadata service,Cosine,3,CVE-2024-21796,(no title),0.836968
+18,sensitive information disclosure in cloud metadata service,Cosine,4,CVE-2019-0804,(no title),0.835718
+18,sensitive information disclosure in cloud metadata service,Cosine,5,CVE-2018-1256,(no title),0.835021
+18,sensitive information disclosure in cloud metadata service,Cosine,6,CVE-2018-0238,(no title),0.834696
+18,sensitive information disclosure in cloud metadata service,Cosine,7,CVE-2008-6706,(no title),0.833542
+18,sensitive information disclosure in cloud metadata service,Cosine,8,CVE-2015-7494,(no title),0.832122
+18,sensitive information disclosure in cloud metadata service,Cosine,9,CVE-2025-20286,ISE on AWS Static Credential,0.832020
+18,sensitive information disclosure in cloud metadata service,Cosine,10,CVE-2022-23670,(no title),0.830778
+18,sensitive information disclosure in cloud metadata service,Cosine,11,CVE-2024-45164,(no title),0.830033
+18,sensitive information disclosure in cloud metadata service,Cosine,12,CVE-2020-26814,(no title),0.829579
+18,sensitive information disclosure in cloud metadata service,Cosine,13,CVE-2022-23671,(no title),0.828902
+18,sensitive information disclosure in cloud metadata service,Cosine,14,CVE-2021-22048,(no title),0.828738
+18,sensitive information disclosure in cloud metadata service,Cosine,15,CVE-2021-30648,(no title),0.828262
+18,sensitive information disclosure in cloud metadata service,Hybrid,1,CVE-2020-2021,PAN-OS: Authentication Bypass in SAML Authentication,0.881466
+18,sensitive information disclosure in cloud metadata service,Hybrid,2,CVE-2015-6420,(no title),0.881297
+18,sensitive information disclosure in cloud metadata service,Hybrid,3,CVE-2024-21796,(no title),0.877725
+18,sensitive information disclosure in cloud metadata service,Hybrid,4,CVE-2019-0804,(no title),0.876787
+18,sensitive information disclosure in cloud metadata service,Hybrid,5,CVE-2018-1256,(no title),0.876249
+18,sensitive information disclosure in cloud metadata service,Hybrid,6,CVE-2018-0238,(no title),0.875959
+18,sensitive information disclosure in cloud metadata service,Hybrid,7,CVE-2008-6706,(no title),0.875077
+18,sensitive information disclosure in cloud metadata service,Hybrid,8,CVE-2015-7494,(no title),0.874033
+18,sensitive information disclosure in cloud metadata service,Hybrid,9,CVE-2025-20286,ISE on AWS Static Credential,0.873965
+18,sensitive information disclosure in cloud metadata service,Hybrid,10,CVE-2022-23670,(no title),0.873016
+18,sensitive information disclosure in cloud metadata service,Hybrid,11,CVE-2024-45164,(no title),0.872459
+18,sensitive information disclosure in cloud metadata service,Hybrid,12,CVE-2020-26814,(no title),0.872047
+18,sensitive information disclosure in cloud metadata service,Hybrid,13,CVE-2022-23671,(no title),0.871612
+18,sensitive information disclosure in cloud metadata service,Hybrid,14,CVE-2021-22048,(no title),0.871508
+18,sensitive information disclosure in cloud metadata service,Hybrid,15,CVE-2021-30648,(no title),0.871177
+18,sensitive information disclosure in cloud metadata service,Taumode,1,CVE-2020-2021,PAN-OS: Authentication Bypass in SAML Authentication,0.905112
+18,sensitive information disclosure in cloud metadata service,Taumode,2,CVE-2015-6420,(no title),0.905020
+18,sensitive information disclosure in cloud metadata service,Taumode,3,CVE-2024-21796,(no title),0.902179
+18,sensitive information disclosure in cloud metadata service,Taumode,4,CVE-2019-0804,(no title),0.901428
+18,sensitive information disclosure in cloud metadata service,Taumode,5,CVE-2018-1256,(no title),0.900986
+18,sensitive information disclosure in cloud metadata service,Taumode,6,CVE-2018-0238,(no title),0.900717
+18,sensitive information disclosure in cloud metadata service,Taumode,7,CVE-2008-6706,(no title),0.899997
+18,sensitive information disclosure in cloud metadata service,Taumode,8,CVE-2015-7494,(no title),0.899180
+18,sensitive information disclosure in cloud metadata service,Taumode,9,CVE-2025-20286,ISE on AWS Static Credential,0.899133
+18,sensitive information disclosure in cloud metadata service,Taumode,10,CVE-2022-23670,(no title),0.898358
+18,sensitive information disclosure in cloud metadata service,Taumode,11,CVE-2024-45164,(no title),0.897915
+18,sensitive information disclosure in cloud metadata service,Taumode,12,CVE-2020-26814,(no title),0.897528
+18,sensitive information disclosure in cloud metadata service,Taumode,13,CVE-2022-23671,(no title),0.897238
+18,sensitive information disclosure in cloud metadata service,Taumode,14,CVE-2021-22048,(no title),0.897171
+18,sensitive information disclosure in cloud metadata service,Taumode,15,CVE-2021-30648,(no title),0.896926
