@@ -1187,7 +1187,7 @@ dependencies = [
 
 [[package]]
 name = "pyarrowspace"
-version = "0.25.14"
+version = "0.25.15"
 dependencies = [
  "arrowspace",
  "numpy",

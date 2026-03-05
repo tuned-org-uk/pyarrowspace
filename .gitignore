@@ -9,6 +9,7 @@ domain_adapted_model_old
 storage/
 cve_corpus/
 tests/corpus/
+analyzer/output
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
