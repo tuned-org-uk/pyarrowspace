@@ -10,6 +10,7 @@ storage/
 cve_corpus/
 tests/corpus/
 analyzer/output
+analyzer/comparison_output
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

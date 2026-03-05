@@ -26,8 +26,12 @@ graph_params = {
     "sigma": 0.05,
 }
 
+builder = (ArrowSpaceBuilder()
+    .with_dims_reduction(False, None)
+    .with_sampling("simple", 1.0)
+)
 # Returns an ArrowSpace with computed signal graph and lambdas
-aspace, gl = ArrowSpaceBuilder().build(graph_params, items)
+aspace, gl = builder.build_and_store(graph_params, items)
 print("aspace sorted lambdas", aspace.lambdas_sorted())
 
 # Search comparable items (defaults: k = nitems, alpha = 1.0, beta = 0.0)
