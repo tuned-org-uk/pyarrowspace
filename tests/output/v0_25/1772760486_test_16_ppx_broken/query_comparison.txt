@@ -1,0 +1,259 @@
+================================================================================
+ QUERY COMPARISON: COSINE vs TAUMODE  [pplx-embed 1B embeddings]
+================================================================================
+
+QUERY TYPE: BEST (Highest Confidence)
+QUERY TEXT: XML external entity XXE injection in SOAP parser
+--------------------------------------------------------------------------------
+RANK 1:
+  [Cosine ] Score: 0.6627
+           Title: Apache SOAP: XML External Entity Injection (XXE) allows unauthenticated users to read arbitrary files via HTTP
+           Text:  CVE-2022-40705 | Apache SOAP: XML External Entity Injection (XXE) allows unauthenticated users to read arbitrary files via HTTP | An Improper Restriction of XML External Entity Reference vulnerability in RPCRouterServlet of Apache SOAP allows an attacker to read arbitrary files over HTTP. This issue...
+  [Taumode] Score: 0.8583
+           Title: Apache SOAP: XML External Entity Injection (XXE) allows unauthenticated users to read arbitrary files via HTTP
+           Text:  CVE-2022-40705 | Apache SOAP: XML External Entity Injection (XXE) allows unauthenticated users to read arbitrary files via HTTP | An Improper Restriction of XML External Entity Reference vulnerability in RPCRouterServlet of Apache SOAP allows an attacker to read arbitrary files over HTTP. This issue...
+----------------------------------------
+RANK 2:
+  [Cosine ] Score: 0.6576
+           Title: An XML external entity (XXE) injection vulnerability exists in Apache Any23 StreamUtils.java
+           Text:  CVE-2021-38555 | An XML external entity (XXE) injection vulnerability exists in Apache Any23 StreamUtils.java | An XML external entity (XXE) injection vulnerability was discovered in the Any23 StreamUtils.java file and is known to affect Any23 versions < 2.5. XML external entity injection (also know...
+  [Taumode] Score: 0.8562
+           Title: An XML external entity (XXE) injection vulnerability exists in Apache Any23 StreamUtils.java
+           Text:  CVE-2021-38555 | An XML external entity (XXE) injection vulnerability exists in Apache Any23 StreamUtils.java | An XML external entity (XXE) injection vulnerability was discovered in the Any23 StreamUtils.java file and is known to affect Any23 versions < 2.5. XML external entity injection (also know...
+----------------------------------------
+RANK 3:
+  [Cosine ] Score: 0.6555
+           Title: An XML external entity (XXE) injection vulnerability exists in the Apache Any23 RDFa XSLTStylesheet extractor
+           Text:  CVE-2022-25312 | An XML external entity (XXE) injection vulnerability exists in the Apache Any23 RDFa XSLTStylesheet extractor | An XML external entity (XXE) injection vulnerability was discovered in the Any23 RDFa XSLTStylesheet extractor and is known to affect Any23 versions < 2.7. XML external en...
+  [Taumode] Score: 0.8553
+           Title: An XML external entity (XXE) injection vulnerability exists in the Apache Any23 RDFa XSLTStylesheet extractor
+           Text:  CVE-2022-25312 | An XML external entity (XXE) injection vulnerability exists in the Apache Any23 RDFa XSLTStylesheet extractor | An XML external entity (XXE) injection vulnerability was discovered in the Any23 RDFa XSLTStylesheet extractor and is known to affect Any23 versions < 2.7. XML external en...
+----------------------------------------
+RANK 4:
+  [Cosine ] Score: 0.6526
+           Title: (no title)
+           Text:  CVE-2022-2458 | XML external entity injection(XXE) is a vulnerability that allows an attacker to interfere with an application's processing of XML data. This attack occurs when XML input containing a reference to an external entity is processed by a weakly configured XML parser. The software process...
+  [Taumode] Score: 0.8541
+           Title: (no title)
+           Text:  CVE-2022-2458 | XML external entity injection(XXE) is a vulnerability that allows an attacker to interfere with an application's processing of XML data. This attack occurs when XML input containing a reference to an external entity is processed by a weakly configured XML parser. The software process...
+----------------------------------------
+RANK 5:
+  [Cosine ] Score: 0.6314
+           Title: An XML external entity (XXE) injection vulnerability exists in the Nutch DmozParser
+           Text:  CVE-2021-23901 | An XML external entity (XXE) injection vulnerability exists in the Nutch DmozParser | An XML external entity (XXE) injection vulnerability was discovered in the Nutch DmozParser and is known to affect Nutch versions < 1.18. XML external entity injection (also known as XXE) is a web ...
+  [Taumode] Score: 0.8452
+           Title: An XML external entity (XXE) injection vulnerability exists in the Nutch DmozParser
+           Text:  CVE-2021-23901 | An XML external entity (XXE) injection vulnerability exists in the Nutch DmozParser | An XML external entity (XXE) injection vulnerability was discovered in the Nutch DmozParser and is known to affect Nutch versions < 1.18. XML external entity injection (also known as XXE) is a web ...
+----------------------------------------
+RANK 6:
+  [Cosine ] Score: 0.6127
+           Title: XML External Entity (XXE) Vulnerability in Multiple WSO2 Products Due to Improper XML Parser Configuration
+           Text:  CVE-2025-10713 | XML External Entity (XXE) Vulnerability in Multiple WSO2 Products Due to Improper XML Parser Configuration | An XML External Entity (XXE) vulnerability exists in multiple WSO2 products due to improper configuration of the XML parser. The application parses user-supplied XML without ...
+  [Taumode] Score: 0.8373
+           Title: XML External Entity (XXE) Vulnerability in Multiple WSO2 Products Due to Improper XML Parser Configuration
+           Text:  CVE-2025-10713 | XML External Entity (XXE) Vulnerability in Multiple WSO2 Products Due to Improper XML Parser Configuration | An XML External Entity (XXE) vulnerability exists in multiple WSO2 products due to improper configuration of the XML parser. The application parses user-supplied XML without ...
+----------------------------------------
+RANK 7:
+  [Cosine ] Score: 0.5817
+           Title: Journyx Unauthenticated XML External Entities Injection
+           Text:  CVE-2024-6893 | Journyx Unauthenticated XML External Entities Injection | The "soap_cgi.pyc" API handler allows the XML body of SOAP requests to contain references to external entities. This allows an unauthenticated attacker to read local files, perform server-side request forgery, and overwhelm th...
+  [Taumode] Score: 0.8243
+           Title: Journyx Unauthenticated XML External Entities Injection
+           Text:  CVE-2024-6893 | Journyx Unauthenticated XML External Entities Injection | The "soap_cgi.pyc" API handler allows the XML body of SOAP requests to contain references to external entities. This allows an unauthenticated attacker to read local files, perform server-side request forgery, and overwhelm th...
+----------------------------------------
+RANK 8:
+  [Cosine ] Score: 0.5775
+           Title: (no title)
+           Text:  CVE-2022-47514 | An XML external entity (XXE) injection vulnerability in XML-RPC.NET before 2.5.0 allows remote authenticated users to conduct server-side request forgery (SSRF) attacks, as demonstrated by a pingback.aspx POST request. | n/a n/a...
+  [Taumode] Score: 0.8226
+           Title: (no title)
+           Text:  CVE-2022-47514 | An XML external entity (XXE) injection vulnerability in XML-RPC.NET before 2.5.0 allows remote authenticated users to conduct server-side request forgery (SSRF) attacks, as demonstrated by a pingback.aspx POST request. | n/a n/a...
+----------------------------------------
+RANK 9:
+  [Cosine ] Score: 0.5761
+           Title: (no title)
+           Text:  CVE-2021-43090 | An XML External Entity (XXE) vulnerability exists in soa-model before 1.6.4 in the WSDLParser function. | n/a n/a...
+  [Taumode] Score: 0.8200
+           Title: (no title)
+           Text:  CVE-2023-38343 | An XXE (XML external entity injection) vulnerability exists in the CSEP component of Ivanti Endpoint Manager before 2022 SU4. External entity references are enabled in the XML parser configuration. Exploitation of this vulnerability can lead to file disclosure or Server Side Request...
+----------------------------------------
+RANK 10:
+  [Cosine ] Score: 0.5721
+           Title: (no title)
+           Text:  CVE-2013-1824 | The SOAP parser in PHP before 5.3.22 and 5.4.x before 5.4.12 allows remote attackers to read arbitrary files via a SOAP WSDL file containing an XML external entity declaration in conjunction with an entity reference, related to an XML External Entity (XXE) issue in the soap_xmlParseF...
+  [Taumode] Score: 0.8187
+           Title: Spring Web Services XML External Entity Injection (XXE)
+           Text:  CVE-2019-3773 | Spring Web Services XML External Entity Injection (XXE) | Spring Web Services, versions 2.4.3, 3.0.4, and older unsupported versions of all three projects, were susceptible to XML External Entity Injection (XXE) when receiving XML data from untrusted sources. | CWE-611 | Spring Sprin...
+----------------------------------------
+================================================================================
+
+QUERY TYPE: WORST (Lowest Confidence)
+QUERY TEXT: sensitive information disclosure in cloud metadata service
+--------------------------------------------------------------------------------
+RANK 1:
+  [Cosine ] Score: 0.5203
+           Title: sensitive data exposure in cloud-init logs
+           Text:  CVE-2023-1786 | sensitive data exposure in cloud-init logs | Sensitive data could be exposed in logs of cloud-init before version 23.1.2. An attacker could use this information to find hashed passwords and possibly escalate their privilege. | CWE-532 | CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N | ...
+  [Taumode] Score: 0.7558
+           Title: Sensitive Data Disclosure Vulnerability
+           Text:  CVE-2021-35251 | Sensitive Data Disclosure Vulnerability | Sensitive information could be displayed when a detailed technical error message is posted. This information could disclose environmental details about the Web Help Desk installation. | CWE-209 | CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N ...
+----------------------------------------
+RANK 2:
+  [Cosine ] Score: 0.5092
+           Title: sensitive data exposure in cloud-init logs
+           Text:  CVE-2022-2084 | sensitive data exposure in cloud-init logs | Sensitive data could be exposed in world readable logs of cloud-init before version 22.3 when schema failures are reported. This leak could include hashed passwords. | CWE-532 | CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N | Canonical Ltd....
+  [Taumode] Score: 0.7179
+           Title: PAN-OS: Improper Access Control Vulnerability Exposing AWS Instance Metadata Endpoint to GlobalProtect Users
+           Text:  CVE-2021-3062 | PAN-OS: Improper Access Control Vulnerability Exposing AWS Instance Metadata Endpoint to GlobalProtect Users | An improper access control vulnerability in PAN-OS software enables an attacker with authenticated access to GlobalProtect portals and gateways to connect to the EC2 instanc...
+----------------------------------------
+RANK 3:
+  [Cosine ] Score: 0.4812
+           Title: Avaya Utility Services Sensitive Information Disclosure Vulnerability
+           Text:  CVE-2021-25649 | Avaya Utility Services Sensitive Information Disclosure Vulnerability | An information disclosure vulnerability was discovered in the directory and file management of Avaya Aura Utility Services. This vulnerability may potentially allow any local user to access system functionality ...
+  [Taumode] Score: 0.7020
+           Title: Information Exposure in DSP Services
+           Text:  CVE-2023-21624 | Information Exposure in DSP Services | Information disclosure in DSP Services while loading dynamic module. | CWE-200 | CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N | Qualcomm, Inc. Snapdragon...
+----------------------------------------
+RANK 4:
+  [Cosine ] Score: 0.4812
+           Title: IBM Cognos Dashboards information disclosure
+           Text:  CVE-2023-38276 | IBM Cognos Dashboards information disclosure | IBM Cognos Dashboards on Cloud Pak for Data 4.7.0 exposes sensitive information in environment variables which could aid in further attacks against the system.  IBM X-Force ID:  260736. | CWE-319 | CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I...
+  [Taumode] Score: 0.6938
+           Title: WordPress elfsight Contact Form widget <= 2.3.1 - Sensitive Data Exposure Vulnerability
+           Text:  CVE-2025-31045 | WordPress elfsight Contact Form widget <= 2.3.1 - Sensitive Data Exposure Vulnerability | Exposure of Sensitive System Information to an Unauthorized Control Sphere vulnerability in elfsight elfsight Contact Form widget allows Retrieve Embedded Sensitive Data. This issue affects elf...
+----------------------------------------
+RANK 5:
+  [Cosine ] Score: 0.4807
+           Title: Sensitive Information Disclosure in SolaX Cloud
+           Text:  CVE-2025-36759 | Sensitive Information Disclosure in SolaX Cloud | Through the provision of user names, SolaX Cloud will suggest (similar) user accounts and thereby leak sensitive information such as user email addresses and phone numbers. | CWE-200 | SolaX Power SolaX Cloud...
+  [Taumode] Score: 0.6837
+           Title: (no title)
+           Text:  CVE-2023-21448 | Path traversal vulnerability in Samsung Cloud prior to version 5.3.0.32 allows attacker to access specific png file. | CWE-22 | CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:C/C:L/I:L/A:N | Samsung Mobile Samsung Cloud...
+----------------------------------------
+RANK 6:
+  [Cosine ] Score: 0.4787
+           Title: Sensitive Data Disclosure Vulnerability
+           Text:  CVE-2022-38107 | Sensitive Data Disclosure Vulnerability | Sensitive information could be displayed when a detailed technical error message is posted. This information could disclose environmental details. | CWE-209 | CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N | SolarWinds SQL Sentry...
+  [Taumode] Score: 0.6802
+           Title: 3D Viewer Information Disclosure Vulnerability
+           Text:  CVE-2021-31944 | 3D Viewer Information Disclosure Vulnerability | 3D Viewer Information Disclosure Vulnerability | CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:U/C:H/I:N/A:N/E:U/RL:O/RC:C | Microsoft 3D Viewer...
+----------------------------------------
+RANK 7:
+  [Cosine ] Score: 0.4779
+           Title: Sensitive Data Disclosure Vulnerability in Connection Configuration Endpoints in Fides
+           Text:  CVE-2024-35189 | Sensitive Data Disclosure Vulnerability in Connection Configuration Endpoints in Fides | Fides is an open-source privacy engineering platform. The Fides webserver has a number of endpoints that retrieve `ConnectionConfiguration` records and their associated `secrets` which _can_ con...
+  [Taumode] Score: 0.6750
+           Title: (no title)
+           Text:  CVE-2017-8951 | A Disclosure of Sensitive Information vulnerability in HPE SiteScope version v11.2x, v11.3x was found. | Hewlett Packard Enterprise SiteScope...
+----------------------------------------
+RANK 8:
+  [Cosine ] Score: 0.4735
+           Title: IBM DataStage on Cloud Pak for Data information disclosure
+           Text:  CVE-2022-38714 | IBM DataStage on Cloud Pak for Data information disclosure | IBM DataStage on Cloud Pak for Data 4.0.6 to 4.5.2 stores sensitive credential information that can be read by a privileged user.  IBM X-Force ID:  235060. | CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:N/A:N | IBM DataStage on ...
+  [Taumode] Score: 0.6724
+           Title: (no title)
+           Text:  CVE-2022-42539 | Information disclosure | Google Android...
+----------------------------------------
+RANK 9:
+  [Cosine ] Score: 0.4727
+           Title: Information Disclosure vulnerability in SAP Commerce Cloud
+           Text:  CVE-2024-47577 | Information Disclosure vulnerability in SAP Commerce Cloud | Webservice API endpoints for Assisted Service Module within SAP Commerce Cloud has information disclosure vulnerability. When an authorized agent searches for customer to manage their accounts, the request url includes cus...
+  [Taumode] Score: 0.6707
+           Title: Sensitive Data Disclosure Vulnerability
+           Text:  CVE-2022-47512 | Sensitive Data Disclosure Vulnerability | Sensitive information was stored in plain text in a file that is accessible by a user with a local account in Hybrid Cloud Observability (HCO)/ SolarWinds Platform 2022.4. No other versions are affected | CWE-312 | CVSS:3.1/AV:L/AC:L/PR:L/UI...
+----------------------------------------
+RANK 10:
+  [Cosine ] Score: 0.4716
+           Title: Sensitive Data Disclosure Vulnerability
+           Text:  CVE-2021-35251 | Sensitive Data Disclosure Vulnerability | Sensitive information could be displayed when a detailed technical error message is posted. This information could disclose environmental details about the Web Help Desk installation. | CWE-209 | CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N ...
+  [Taumode] Score: 0.6676
+           Title: Information Disclosure through external content warning modal dialog box bypass in Splunk Enterprise Dashboard Studio
+           Text:  CVE-2025-20227 | Information Disclosure through external content warning modal dialog box bypass in Splunk Enterprise Dashboard Studio | In Splunk Enterprise versions below 9.4.1, 9.3.3, 9.2.5, and 9.1.8, and Splunk Cloud Platform versions below 9.3.2408.107, 9.2.2406.112, 9.2.2403.115, 9.1.2312.208...
+----------------------------------------
+================================================================================
+
+QUERY TYPE: SAMPLE (Median Score)
+QUERY TEXT: server-side request forgery SSRF in URL preview feature
+--------------------------------------------------------------------------------
+RANK 1:
+  [Cosine ] Score: 0.6323
+           Title: Server-Side Request Forgery (SSRF) in Angular SSR
+           Text:  CVE-2025-62427 | Server-Side Request Forgery (SSRF) in Angular SSR | The Angular SSR is a server-rise rendering tool for Angular applications. The vulnerability is a Server-Side Request Forgery (SSRF) flaw within the URL resolution mechanism of Angular's Server-Side Rendering package (@angular/ssr) ...
+  [Taumode] Score: 0.8314
+           Title: Server-side Request Forgery (SSRF)
+           Text:  CVE-2022-25876 | Server-side Request Forgery (SSRF) | The package link-preview-js before 2.1.16 are vulnerable to Server-side Request Forgery (SSRF) which allows attackers to send arbitrary requests to the local network and read the response. This is due to flawed DNS rebinding protection. | CVSS:3....
+----------------------------------------
+RANK 2:
+  [Cosine ] Score: 0.6284
+           Title: Server-side Request Forgery (SSRF)
+           Text:  CVE-2022-25876 | Server-side Request Forgery (SSRF) | The package link-preview-js before 2.1.16 are vulnerable to Server-side Request Forgery (SSRF) which allows attackers to send arbitrary requests to the local network and read the response. This is due to flawed DNS rebinding protection. | CVSS:3....
+  [Taumode] Score: 0.8279
+           Title: Server-side Request Forgery (SSRF)
+           Text:  CVE-2021-23718 | Server-side Request Forgery (SSRF) | The package ssrf-agent before 1.0.5 are vulnerable to Server-side Request Forgery (SSRF) via the defaultIpChecker function. It fails to properly validate if the IP requested is private. | CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N/E:P | n/a ssr...
+----------------------------------------
+RANK 3:
+  [Cosine ] Score: 0.5940
+           Title: Server-side Request Forgery (SSRF)
+           Text:  CVE-2021-23718 | Server-side Request Forgery (SSRF) | The package ssrf-agent before 1.0.5 are vulnerable to Server-side Request Forgery (SSRF) via the defaultIpChecker function. It fails to properly validate if the IP requested is private. | CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:N/E:P | n/a ssr...
+  [Taumode] Score: 0.8119
+           Title: Server-Side Request Forgery (SSRF) in ionicabizau/parse-url
+           Text:  CVE-2022-2900 | Server-Side Request Forgery (SSRF) in ionicabizau/parse-url | Server-Side Request Forgery (SSRF) in GitHub repository ionicabizau/parse-url prior to 8.1.0. | CWE-918 | ionicabizau ionicabizau/parse-url...
+----------------------------------------
+RANK 4:
+  [Cosine ] Score: 0.5909
+           Title: Server-side Request Forgery (SSRF)
+           Text:  CVE-2022-25850 | Server-side Request Forgery (SSRF) | The package github.com/hoppscotch/proxyscotch before 1.0.0 are vulnerable to Server-side Request Forgery (SSRF) when interceptor mode is set to proxy. It occurs when an HTTP request is made by a backend server to an untrusted URL submitted by a u...
+  [Taumode] Score: 0.8115
+           Title: LinkAce: Limited Server-Side Request Forgery (SSRF) in Keyword Fetching Functionality
+           Text:  CVE-2025-62719 | LinkAce: Limited Server-Side Request Forgery (SSRF) in Keyword Fetching Functionality | LinkAce is a self-hosted archive to collect website links. In versions 2.3.0 and below, the htmlKeywordsFromUrl function in the FetchController class accepts user-provided URLs and makes HTTP req...
+----------------------------------------
+RANK 5:
+  [Cosine ] Score: 0.5703
+           Title: Server-Side Request Forgery (SSRF) in binary-husky/gpt_academic
+           Text:  CVE-2024-12392 | Server-Side Request Forgery (SSRF) in binary-husky/gpt_academic | A Server-Side Request Forgery (SSRF) vulnerability exists in binary-husky/gpt_academic version git 310122f. The application has a functionality to download papers from arxiv.org, but the URL validation is incomplete. ...
+  [Taumode] Score: 0.8074
+           Title: Server-Side Request Forgery in Apache ShenYu
+           Text:  CVE-2023-25753 | Server-Side Request Forgery in Apache ShenYu |  There exists an SSRF (Server-Side Request Forgery) vulnerability located at the /sandbox/proxyGateway endpoint. This vulnerability allows us to manipulate arbitrary requests and retrieve corresponding responses by inputting any URL int...
+----------------------------------------
+RANK 6:
+  [Cosine ] Score: 0.5683
+           Title: WordPress WP Link Preview plugin <= 1.4.1 - Server Side Request Forgery (SSRF) vulnerability
+           Text:  CVE-2025-31527 | WordPress WP Link Preview plugin <= 1.4.1 - Server Side Request Forgery (SSRF) vulnerability | Server-Side Request Forgery (SSRF) vulnerability in Kishan WP Link Preview allows Server Side Request Forgery. This issue affects WP Link Preview: from n/a through 1.4.1. | CWE-918 | CVSS:...
+  [Taumode] Score: 0.8048
+           Title: WordPress Link Library plugin <= 7.8.4 - Server Side Request Forgery (SSRF) vulnerability
+           Text:  CVE-2025-68600 | WordPress Link Library plugin <= 7.8.4 - Server Side Request Forgery (SSRF) vulnerability | Server-Side Request Forgery (SSRF) vulnerability in Yannick Lefebvre Link Library link-library allows Server Side Request Forgery.This issue affects Link Library: from n/a through <= 7.8.4. |...
+----------------------------------------
+RANK 7:
+  [Cosine ] Score: 0.5669
+           Title: Server-Side Request Forgery (SSRF) vulnerability found in embedded web server
+           Text:  CVE-2025-9269 | Server-Side Request Forgery (SSRF) vulnerability found in embedded web server | A Server-Side Request Forgery (SSRF) vulnerability has been identified in the embedded web server in various Lexmark devices. This vulnerability can be leveraged by an attacker to force the device to send...
+  [Taumode] Score: 0.8039
+           Title: Server-Side Request Forgery (SSRF) in ionicabizau/parse-url
+           Text:  CVE-2022-2216 | Server-Side Request Forgery (SSRF) in ionicabizau/parse-url | Server-Side Request Forgery (SSRF) in GitHub repository ionicabizau/parse-url prior to 7.0.0. | CWE-918 | ionicabizau ionicabizau/parse-url...
+----------------------------------------
+RANK 8:
+  [Cosine ] Score: 0.5660
+           Title: There is a Server-Side Request Forgery (SSRF) vulnerability in Esri ArcGIS Server Manager version 10.8.1 and below.
+           Text:  CVE-2021-29102 | There is a Server-Side Request Forgery (SSRF) vulnerability in Esri ArcGIS Server Manager version 10.8.1 and below. | A Server-Side Request Forgery (SSRF) vulnerability in ArcGIS Server Manager version 10.8.1 and below may allow a remote, unauthenticated attacker to forge GET reques...
+  [Taumode] Score: 0.7974
+           Title: (no title)
+           Text:  CVE-2025-52362 | Server-Side Request Forgery (SSRF) vulnerability exists in the URL processing functionality of PHProxy version 1.1.1 and prior. The input validation for the _proxurl parameter can be bypassed, allowing a remote, unauthenticated attacker to submit a specially crafted URL | n/a n/a...
+----------------------------------------
+RANK 9:
+  [Cosine ] Score: 0.5611
+           Title: LinkAce: Limited Server-Side Request Forgery (SSRF) in Keyword Fetching Functionality
+           Text:  CVE-2025-62719 | LinkAce: Limited Server-Side Request Forgery (SSRF) in Keyword Fetching Functionality | LinkAce is a self-hosted archive to collect website links. In versions 2.3.0 and below, the htmlKeywordsFromUrl function in the FetchController class accepts user-provided URLs and makes HTTP req...
+  [Taumode] Score: 0.7963
+           Title: Server-Side Request Forgery (SSRF) in GitLab
+           Text:  CVE-2024-8635 | Server-Side Request Forgery (SSRF) in GitLab | A server-side request forgery issue has been discovered in GitLab EE affecting all versions starting from 16.8 prior to 17.1.7, from 17.2 prior to 17.2.5, and from 17.3 prior to 17.3.2. It was possible for an attacker to make requests to...
+----------------------------------------
+RANK 10:
+  [Cosine ] Score: 0.5595
+           Title: Server-Side Request Forgery in Apache ShenYu
+           Text:  CVE-2023-25753 | Server-Side Request Forgery in Apache ShenYu |  There exists an SSRF (Server-Side Request Forgery) vulnerability located at the /sandbox/proxyGateway endpoint. This vulnerability allows us to manipulate arbitrary requests and retrieve corresponding responses by inputting any URL int...
+  [Taumode] Score: 0.7952
+           Title: (no title)
+           Text:  CVE-2023-25609 | A server-side request forgery (SSRF) vulnerability [CWE-918] in FortiManager and FortiAnalyzer GUI 7.2.0 through 7.2.1, 7.0.0 through 7.0.6, 6.4.8 through 6.4.11 may allow a remote and authenticated attacker to access unauthorized files and services on the system via specially craft...
+----------------------------------------
+================================================================================
+
