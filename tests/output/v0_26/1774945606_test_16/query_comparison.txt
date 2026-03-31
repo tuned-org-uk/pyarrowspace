@@ -1,0 +1,259 @@
+================================================================================
+ QUERY COMPARISON: COSINE vs TAUMODE  [pplx-embed 1B embeddings]
+================================================================================
+
+QUERY TYPE: BEST (Highest Confidence)
+QUERY TEXT: authenticated arbitrary file read path traversal
+--------------------------------------------------------------------------------
+RANK 1:
+  [Cosine ] Score: 0.6627
+           Title: Apache SOAP: XML External Entity Injection (XXE) allows unauthenticated users to read arbitrary files via HTTP
+           Text:  CVE-2022-40705 | Apache SOAP: XML External Entity Injection (XXE) allows unauthenticated users to read arbitrary files via HTTP | An Improper Restriction of XML External Entity Reference vulnerability in RPCRouterServlet of Apache SOAP allows an attacker to read arbitrary files over HTTP. This issue...
+  [Taumode] Score: 0.8583
+           Title: Apache SOAP: XML External Entity Injection (XXE) allows unauthenticated users to read arbitrary files via HTTP
+           Text:  CVE-2022-40705 | Apache SOAP: XML External Entity Injection (XXE) allows unauthenticated users to read arbitrary files via HTTP | An Improper Restriction of XML External Entity Reference vulnerability in RPCRouterServlet of Apache SOAP allows an attacker to read arbitrary files over HTTP. This issue...
+----------------------------------------
+RANK 2:
+  [Cosine ] Score: 0.6576
+           Title: An XML external entity (XXE) injection vulnerability exists in Apache Any23 StreamUtils.java
+           Text:  CVE-2021-38555 | An XML external entity (XXE) injection vulnerability exists in Apache Any23 StreamUtils.java | An XML external entity (XXE) injection vulnerability was discovered in the Any23 StreamUtils.java file and is known to affect Any23 versions < 2.5. XML external entity injection (also know...
+  [Taumode] Score: 0.8562
+           Title: An XML external entity (XXE) injection vulnerability exists in Apache Any23 StreamUtils.java
+           Text:  CVE-2021-38555 | An XML external entity (XXE) injection vulnerability exists in Apache Any23 StreamUtils.java | An XML external entity (XXE) injection vulnerability was discovered in the Any23 StreamUtils.java file and is known to affect Any23 versions < 2.5. XML external entity injection (also know...
+----------------------------------------
+RANK 3:
+  [Cosine ] Score: 0.6555
+           Title: An XML external entity (XXE) injection vulnerability exists in the Apache Any23 RDFa XSLTStylesheet extractor
+           Text:  CVE-2022-25312 | An XML external entity (XXE) injection vulnerability exists in the Apache Any23 RDFa XSLTStylesheet extractor | An XML external entity (XXE) injection vulnerability was discovered in the Any23 RDFa XSLTStylesheet extractor and is known to affect Any23 versions < 2.7. XML external en...
+  [Taumode] Score: 0.8553
+           Title: An XML external entity (XXE) injection vulnerability exists in the Apache Any23 RDFa XSLTStylesheet extractor
+           Text:  CVE-2022-25312 | An XML external entity (XXE) injection vulnerability exists in the Apache Any23 RDFa XSLTStylesheet extractor | An XML external entity (XXE) injection vulnerability was discovered in the Any23 RDFa XSLTStylesheet extractor and is known to affect Any23 versions < 2.7. XML external en...
+----------------------------------------
+RANK 4:
+  [Cosine ] Score: 0.6526
+           Title: (no title)
+           Text:  CVE-2022-2458 | XML external entity injection(XXE) is a vulnerability that allows an attacker to interfere with an application's processing of XML data. This attack occurs when XML input containing a reference to an external entity is processed by a weakly configured XML parser. The software process...
+  [Taumode] Score: 0.8541
+           Title: (no title)
+           Text:  CVE-2022-2458 | XML external entity injection(XXE) is a vulnerability that allows an attacker to interfere with an application's processing of XML data. This attack occurs when XML input containing a reference to an external entity is processed by a weakly configured XML parser. The software process...
+----------------------------------------
+RANK 5:
+  [Cosine ] Score: 0.6314
+           Title: An XML external entity (XXE) injection vulnerability exists in the Nutch DmozParser
+           Text:  CVE-2021-23901 | An XML external entity (XXE) injection vulnerability exists in the Nutch DmozParser | An XML external entity (XXE) injection vulnerability was discovered in the Nutch DmozParser and is known to affect Nutch versions < 1.18. XML external entity injection (also known as XXE) is a web ...
+  [Taumode] Score: 0.8452
+           Title: An XML external entity (XXE) injection vulnerability exists in the Nutch DmozParser
+           Text:  CVE-2021-23901 | An XML external entity (XXE) injection vulnerability exists in the Nutch DmozParser | An XML external entity (XXE) injection vulnerability was discovered in the Nutch DmozParser and is known to affect Nutch versions < 1.18. XML external entity injection (also known as XXE) is a web ...
+----------------------------------------
+RANK 6:
+  [Cosine ] Score: 0.6127
+           Title: XML External Entity (XXE) Vulnerability in Multiple WSO2 Products Due to Improper XML Parser Configuration
+           Text:  CVE-2025-10713 | XML External Entity (XXE) Vulnerability in Multiple WSO2 Products Due to Improper XML Parser Configuration | An XML External Entity (XXE) vulnerability exists in multiple WSO2 products due to improper configuration of the XML parser. The application parses user-supplied XML without ...
+  [Taumode] Score: 0.8373
+           Title: XML External Entity (XXE) Vulnerability in Multiple WSO2 Products Due to Improper XML Parser Configuration
+           Text:  CVE-2025-10713 | XML External Entity (XXE) Vulnerability in Multiple WSO2 Products Due to Improper XML Parser Configuration | An XML External Entity (XXE) vulnerability exists in multiple WSO2 products due to improper configuration of the XML parser. The application parses user-supplied XML without ...
+----------------------------------------
+RANK 7:
+  [Cosine ] Score: 0.5817
+           Title: Journyx Unauthenticated XML External Entities Injection
+           Text:  CVE-2024-6893 | Journyx Unauthenticated XML External Entities Injection | The "soap_cgi.pyc" API handler allows the XML body of SOAP requests to contain references to external entities. This allows an unauthenticated attacker to read local files, perform server-side request forgery, and overwhelm th...
+  [Taumode] Score: 0.8243
+           Title: Journyx Unauthenticated XML External Entities Injection
+           Text:  CVE-2024-6893 | Journyx Unauthenticated XML External Entities Injection | The "soap_cgi.pyc" API handler allows the XML body of SOAP requests to contain references to external entities. This allows an unauthenticated attacker to read local files, perform server-side request forgery, and overwhelm th...
+----------------------------------------
+RANK 8:
+  [Cosine ] Score: 0.5775
+           Title: (no title)
+           Text:  CVE-2022-47514 | An XML external entity (XXE) injection vulnerability in XML-RPC.NET before 2.5.0 allows remote authenticated users to conduct server-side request forgery (SSRF) attacks, as demonstrated by a pingback.aspx POST request. | n/a n/a...
+  [Taumode] Score: 0.8226
+           Title: (no title)
+           Text:  CVE-2022-47514 | An XML external entity (XXE) injection vulnerability in XML-RPC.NET before 2.5.0 allows remote authenticated users to conduct server-side request forgery (SSRF) attacks, as demonstrated by a pingback.aspx POST request. | n/a n/a...
+----------------------------------------
+RANK 9:
+  [Cosine ] Score: 0.5761
+           Title: (no title)
+           Text:  CVE-2021-43090 | An XML External Entity (XXE) vulnerability exists in soa-model before 1.6.4 in the WSDLParser function. | n/a n/a...
+  [Taumode] Score: 0.8200
+           Title: (no title)
+           Text:  CVE-2023-38343 | An XXE (XML external entity injection) vulnerability exists in the CSEP component of Ivanti Endpoint Manager before 2022 SU4. External entity references are enabled in the XML parser configuration. Exploitation of this vulnerability can lead to file disclosure or Server Side Request...
+----------------------------------------
+RANK 10:
+  [Cosine ] Score: 0.5721
+           Title: (no title)
+           Text:  CVE-2013-1824 | The SOAP parser in PHP before 5.3.22 and 5.4.x before 5.4.12 allows remote attackers to read arbitrary files via a SOAP WSDL file containing an XML external entity declaration in conjunction with an entity reference, related to an XML External Entity (XXE) issue in the soap_xmlParseF...
+  [Taumode] Score: 0.8187
+           Title: Spring Web Services XML External Entity Injection (XXE)
+           Text:  CVE-2019-3773 | Spring Web Services XML External Entity Injection (XXE) | Spring Web Services, versions 2.4.3, 3.0.4, and older unsupported versions of all three projects, were susceptible to XML External Entity Injection (XXE) when receiving XML data from untrusted sources. | CWE-611 | Spring Sprin...
+----------------------------------------
+================================================================================
+
+QUERY TYPE: WORST (Lowest Confidence)
+QUERY TEXT: integer overflow leading to heap corruption in video codec
+--------------------------------------------------------------------------------
+RANK 1:
+  [Cosine ] Score: 0.6075
+           Title: Python-jwt subject to Authentication Bypass by Spoofing
+           Text:  CVE-2022-39227 | Python-jwt subject to Authentication Bypass by Spoofing | python-jwt is a module for generating and verifying JSON Web Tokens. Versions prior to 3.3.4 are subject to Authentication Bypass by Spoofing, resulting in identity spoofing, session hijacking or authentication bypass. An att...
+  [Taumode] Score: 0.7651
+           Title: (no title)
+           Text:  CVE-2017-2864 | An exploitable vulnerability exists in the generation of authentication token functionality of Circle with Disney. Specially crafted network packets can cause a valid authentication token to be returned to the attacker resulting in authentication bypass. An attacker can send a series...
+----------------------------------------
+RANK 2:
+  [Cosine ] Score: 0.5533
+           Title: Authorization Bypass During JWT Issuer Validation with spring-security
+           Text:  CVE-2018-15801 | Authorization Bypass During JWT Issuer Validation with spring-security | Spring Security versions 5.1.x prior to 5.1.2 contain an authorization bypass vulnerability during JWT issuer validation. In order to be impacted, the same private key for an honest issuer and a malicious user ...
+  [Taumode] Score: 0.7599
+           Title: Authentication Bypass in gaizhenbiao/ChuanhuChatGPT
+           Text:  CVE-2024-9216 | Authentication Bypass in gaizhenbiao/ChuanhuChatGPT | An authentication bypass vulnerability exists in gaizhenbiao/ChuanhuChatGPT, as of commit 3856d4f, allowing any user to read and delete other users' chat history. The vulnerability arises because the username is provided via an HT...
+----------------------------------------
+RANK 3:
+  [Cosine ] Score: 0.5525
+           Title: JWT authentication bypass with unknown issuer token
+           Text:  CVE-2021-21378 | JWT authentication bypass with unknown issuer token | Envoy is a cloud-native high-performance edge/middle/service proxy. In Envoy version 1.17.0 an attacker can bypass authentication by presenting a JWT token with an issuer that is not in the provider list when Envoy's JWT Authenti...
+  [Taumode] Score: 0.7567
+           Title: OwnID Passwordless Login <= 1.3.4 - Authentication Bypass
+           Text:  CVE-2025-10294 | OwnID Passwordless Login <= 1.3.4 - Authentication Bypass | The OwnID Passwordless Login plugin for WordPress is vulnerable to Authentication Bypass in all versions up to, and including, 1.3.4. This is due to the plugin not properly checking if the ownid_shared_secret value is empty...
+----------------------------------------
+RANK 4:
+  [Cosine ] Score: 0.5512
+           Title: (no title)
+           Text:  CVE-2021-4314 | It is possible to manipulate the JWT token without the knowledge of the JWT secret and authenticate without valid JWT token as any user. This is happening only in the situation when zOSMF doesn’t have the APAR PH12143 applied. This issue affects: 1.16 versions to 1.19. What happens i...
+  [Taumode] Score: 0.7543
+           Title: (no title)
+           Text:  CVE-2020-12477 | The REST API functions in TeamPass 2.1.27.36 allow any user with a valid API token to bypass IP address whitelist restrictions via an X-Forwarded-For client HTTP header to the getIp function. | n/a n/a...
+----------------------------------------
+RANK 5:
+  [Cosine ] Score: 0.5483
+           Title: (no title)
+           Text:  CVE-2023-51774 | The json-jwt (aka JSON::JWT) gem 1.16.3 for Ruby sometimes allows bypass of identity checks via a sign/encryption confusion attack. For example, JWE can sometimes be used to bypass JSON::JWT.decode. | n/a n/a...
+  [Taumode] Score: 0.7518
+           Title: Access Control Bypass
+           Text:  CVE-2021-23803 | Access Control Bypass | This affects the package latte/latte before 2.10.6. There is a way to bypass allowFunctions that will affect the security of the application. When the template is set to allow/disallow the use of certain functions, adding control characters (x00-x08) after th...
+----------------------------------------
+RANK 6:
+  [Cosine ] Score: 0.5390
+           Title: OneLogin AD Connector JWT Authentication Bypass via Exposed Signing Key
+           Text:  CVE-2025-34063 | OneLogin AD Connector JWT Authentication Bypass via Exposed Signing Key | A cryptographic authentication bypass vulnerability exists in OneLogin AD Connector prior to 6.1.5 due to the exposure of a tenant’s SSO JWT signing key via the /api/adc/v4/configuration endpoint. An attacker ...
+  [Taumode] Score: 0.7517
+           Title: (no title)
+           Text:  CVE-2024-47574 | A authentication bypass using an alternate path or channel in Fortinet FortiClientWindows version 7.4.0, versions 7.2.4 through 7.2.0, versions 7.0.12 through 7.0.0, and 6.4.10 through 6.4.0 allows low privilege attacker to execute arbitrary code with high privilege via spoofed name...
+----------------------------------------
+RANK 7:
+  [Cosine ] Score: 0.5366
+           Title: (no title)
+           Text:  CVE-2025-65730 | Authentication Bypass via Hardcoded Credentials GoAway up to v0.62.18, fixed in 0.62.19, uses a hardcoded secret for signing JWT tokens used for authentication. | n/a n/a...
+  [Taumode] Score: 0.7511
+           Title: (no title)
+           Text:  CVE-2022-32747 | A CWE-290: Authentication Bypass by Spoofing vulnerability exists that could cause legitimate users to be locked out of devices or facilitate backdoor account creation by spoofing a device on the local network. Affected Products: EcoStruxure™ Cybersecurity Admin Expert (CAE) (Versio...
+----------------------------------------
+RANK 8:
+  [Cosine ] Score: 0.5227
+           Title: jsonwebtoken vulnerable to signature validation bypass due to insecure default algorithm in jwt.verify()
+           Text:  CVE-2022-23540 | jsonwebtoken vulnerable to signature validation bypass due to insecure default algorithm in jwt.verify() | In versions `<=8.5.1` of `jsonwebtoken` library, lack of algorithm definition in the `jwt.verify()` function can lead to signature validation bypass due to defaulting to the `n...
+  [Taumode] Score: 0.7476
+           Title: Possibility to generate a session for any user via the "ex:action" parameter after obtaining access to the JWT key
+           Text:  CVE-2025-30064 | Possibility to generate a session for any user via the "ex:action" parameter after obtaining access to the JWT key | An insufficiently secured internal function allows session generation for arbitrary users. The decodeParam function checks the JWT but does not verify which signing a...
+----------------------------------------
+RANK 9:
+  [Cosine ] Score: 0.5150
+           Title: (no title)
+           Text:  CVE-2024-57491 | Authentication Bypass vulnerability in jobx up to v1.0.1-RELEASE allows an attacker can exploit this vulnerability to access sensitive API without any token via the preHandle function. | n/a n/a...
+  [Taumode] Score: 0.7469
+           Title: Cisco Catalyst SD-WAN Controller Authentication Bypass Vulnerability
+           Text:  CVE-2026-20127 | Cisco Catalyst SD-WAN Controller Authentication Bypass Vulnerability | A vulnerability in the peering authentication in Cisco Catalyst SD-WAN Controller, formerly SD-WAN vSmart, and Cisco Catalyst SD-WAN Manager, formerly SD-WAN vManage, could allow an unauthenticated, remote attack...
+----------------------------------------
+RANK 10:
+  [Cosine ] Score: 0.5150
+           Title: Authentication Bypass in OpenMetadata
+           Text:  CVE-2024-28255 | Authentication Bypass in OpenMetadata | OpenMetadata is a unified platform for discovery, observability, and governance powered by a central metadata repository, in-depth lineage, and seamless team collaboration. The `JwtFilter` handles the API authentication by requiring and verify...
+  [Taumode] Score: 0.7450
+           Title: Cisco IOS XE Software Consent Token Bypass Vulnerability
+           Text:  CVE-2019-12671 | Cisco IOS XE Software Consent Token Bypass Vulnerability | A vulnerability in the CLI of Cisco IOS XE Software could allow an authenticated, local attacker to gain shell access on an affected device and execute commands on the underlying operating system (OS). The vulnerability is d...
+----------------------------------------
+================================================================================
+
+QUERY TYPE: SAMPLE (Median Score)
+QUERY TEXT: SQL injection in login endpoint
+--------------------------------------------------------------------------------
+RANK 1:
+  [Cosine ] Score: 0.5910
+           Title: Quantico Tecnologia PRMV Login Endpoint login.php sql injection
+           Text:  CVE-2025-2118 | Quantico Tecnologia PRMV Login Endpoint login.php sql injection | A vulnerability was found in Quantico Tecnologia PRMV 6.48. It has been classified as critical. This affects an unknown part of the file /admin/login.php of the component Login Endpoint. The manipulation of the argumen...
+  [Taumode] Score: 0.8282
+           Title: Quantico Tecnologia PRMV Login Endpoint login.php sql injection
+           Text:  CVE-2025-2118 | Quantico Tecnologia PRMV Login Endpoint login.php sql injection | A vulnerability was found in Quantico Tecnologia PRMV 6.48. It has been classified as critical. This affects an unknown part of the file /admin/login.php of the component Login Endpoint. The manipulation of the argumen...
+----------------------------------------
+RANK 2:
+  [Cosine ] Score: 0.5818
+           Title: AT Software Solutions ATSVD Login Endpoint login.aspx sql injection
+           Text:  CVE-2025-1811 | AT Software Solutions ATSVD Login Endpoint login.aspx sql injection | A vulnerability was found in AT Software Solutions ATSVD up to 3.4.1. It has been declared as critical. Affected by this vulnerability is an unknown functionality of the file /login.aspx of the component Login Endp...
+  [Taumode] Score: 0.8227
+           Title: SourceCodester Engineers Online Portal Admin Login sql injection
+           Text:  CVE-2024-0182 | SourceCodester Engineers Online Portal Admin Login sql injection | A vulnerability was found in SourceCodester Engineers Online Portal 1.0 and classified as critical. Affected by this issue is some unknown functionality of the file /admin/ of the component Admin Login. The manipulati...
+----------------------------------------
+RANK 3:
+  [Cosine ] Score: 0.5778
+           Title: SourceCodester Engineers Online Portal Admin Login sql injection
+           Text:  CVE-2024-0182 | SourceCodester Engineers Online Portal Admin Login sql injection | A vulnerability was found in SourceCodester Engineers Online Portal 1.0 and classified as critical. Affected by this issue is some unknown functionality of the file /admin/ of the component Admin Login. The manipulati...
+  [Taumode] Score: 0.8212
+           Title: itsourcecode Open Source Job Portal login.php sql injection
+           Text:  CVE-2025-10834 | itsourcecode Open Source Job Portal login.php sql injection | A vulnerability was identified in itsourcecode Open Source Job Portal 1.0. This affects an unknown function of the file /jobportal/admin/login.php. Such manipulation of the argument user_email leads to sql injection. It i...
+----------------------------------------
+RANK 4:
+  [Cosine ] Score: 0.5743
+           Title: itsourcecode Open Source Job Portal login.php sql injection
+           Text:  CVE-2025-10834 | itsourcecode Open Source Job Portal login.php sql injection | A vulnerability was identified in itsourcecode Open Source Job Portal 1.0. This affects an unknown function of the file /jobportal/admin/login.php. Such manipulation of the argument user_email leads to sql injection. It i...
+  [Taumode] Score: 0.8199
+           Title: (no title)
+           Text:  CVE-2008-0487 | Multiple SQL injection vulnerabilities in login.asp in ASPired2Protect allow remote attackers to execute arbitrary SQL commands via the (1) username and (2) password parameters.  NOTE: some of these details are obtained from third party information. | n/a n/a...
+----------------------------------------
+RANK 5:
+  [Cosine ] Score: 0.5711
+           Title: (no title)
+           Text:  CVE-2008-0487 | Multiple SQL injection vulnerabilities in login.asp in ASPired2Protect allow remote attackers to execute arbitrary SQL commands via the (1) username and (2) password parameters.  NOTE: some of these details are obtained from third party information. | n/a n/a...
+  [Taumode] Score: 0.8190
+           Title: (no title)
+           Text:  CVE-2008-6950 | Multiple SQL injection vulnerabilities in login.asp in Bankoi WebHosting Control Panel 1.20 allow remote attackers to execute arbitrary SQL commands via the (1) username or (2) password field. | n/a n/a...
+----------------------------------------
+RANK 6:
+  [Cosine ] Score: 0.5689
+           Title: (no title)
+           Text:  CVE-2008-6950 | Multiple SQL injection vulnerabilities in login.asp in Bankoi WebHosting Control Panel 1.20 allow remote attackers to execute arbitrary SQL commands via the (1) username or (2) password field. | n/a n/a...
+  [Taumode] Score: 0.8175
+           Title: (no title)
+           Text:  CVE-2006-6260 | SQL injection vulnerability in login.asp in Redbinaria Sistema Integrado de Administracion de Portales (SIAP) allows remote attackers to execute arbitrary SQL commands via the username parameter. | n/a n/a...
+----------------------------------------
+RANK 7:
+  [Cosine ] Score: 0.5655
+           Title: (no title)
+           Text:  CVE-2006-6260 | SQL injection vulnerability in login.asp in Redbinaria Sistema Integrado de Administracion de Portales (SIAP) allows remote attackers to execute arbitrary SQL commands via the username parameter. | n/a n/a...
+  [Taumode] Score: 0.8161
+           Title: (no title)
+           Text:  CVE-2006-4857 | SQL injection vulnerability in default.asp (aka the login page) in ClickTech ClickBlog 2.0 allows remote attackers to execute arbitrary SQL commands via the (1) username and (2) form_codeword (aka the Password field) parameters. | n/a n/a...
+----------------------------------------
+RANK 8:
+  [Cosine ] Score: 0.5621
+           Title: (no title)
+           Text:  CVE-2006-4857 | SQL injection vulnerability in default.asp (aka the login page) in ClickTech ClickBlog 2.0 allows remote attackers to execute arbitrary SQL commands via the (1) username and (2) form_codeword (aka the Password field) parameters. | n/a n/a...
+  [Taumode] Score: 0.8147
+           Title: (no title)
+           Text:  CVE-2018-18242 | youke365 v1.1.5 has SQL injection via admin/login.html, as demonstrated by username=admin&pass=123456&code=9823&act=login&submit=%E7%99%BB+%E9%99%86. | n/a n/a...
+----------------------------------------
+RANK 9:
+  [Cosine ] Score: 0.5588
+           Title: (no title)
+           Text:  CVE-2018-18242 | youke365 v1.1.5 has SQL injection via admin/login.html, as demonstrated by username=admin&pass=123456&code=9823&act=login&submit=%E7%99%BB+%E9%99%86. | n/a n/a...
+  [Taumode] Score: 0.8142
+           Title: SourceCodester Best Online News Portal Login Page sql injection
+           Text:  CVE-2023-0784 | SourceCodester Best Online News Portal Login Page sql injection | A vulnerability classified as critical has been found in SourceCodester Best Online News Portal 1.0. Affected is an unknown function of the component Login Page. The manipulation of the argument username leads to sql i...
+----------------------------------------
+RANK 10:
+  [Cosine ] Score: 0.5577
+           Title: SourceCodester Best Online News Portal Login Page sql injection
+           Text:  CVE-2023-0784 | SourceCodester Best Online News Portal Login Page sql injection | A vulnerability classified as critical has been found in SourceCodester Best Online News Portal 1.0. Affected is an unknown function of the component Login Page. The manipulation of the argument username leads to sql i...
+  [Taumode] Score: 0.8142
+           Title: SourceCodester Simple Company Website Login.php sql injection
+           Text:  CVE-2025-6871 | SourceCodester Simple Company Website Login.php sql injection | A vulnerability classified as critical has been found in SourceCodester Simple Company Website 1.0. This affects an unknown part of the file /classes/Login.php. The manipulation of the argument Username leads to sql inje...
+----------------------------------------
+================================================================================
+

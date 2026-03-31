@@ -1,4 +1,4 @@
-use ::arrowspace::energymaps::EnergyParams;
+use ::arrowspace::maps::energymaps::EnergyParams;
 use pyo3::prelude::*;
 use pyo3::types::PyDict;
 

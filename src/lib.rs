@@ -1,5 +1,5 @@
 #![allow(non_local_definitions)]
-use ::arrowspace::energymaps::{EnergyMaps, EnergyMapsBuilder};
+use ::arrowspace::maps::energymaps::{EnergyMaps, EnergyMapsBuilder};
 use ::arrowspace::sampling::SamplerType;
 use pyo3::exceptions::PyValueError;
 use pyo3::prelude::*;
@@ -10,8 +10,8 @@ use numpy::{PyArray1, PyArray2, PyArrayMethods, PyReadonlyArray1, PyReadonlyArra
 use ::arrowspace::builder::ArrowSpaceBuilder as RustBuilder;
 use ::arrowspace::core::{ArrowItem, ArrowSpace};
 use ::arrowspace::graph::GraphLaplacian;
-use ::arrowspace::motives::Motives;
-use ::arrowspace::subgraphs::*;
+use ::arrowspace::analysis::motives::Motives;
+use ::arrowspace::analysis::subgraphs::*;
 
 mod helpers;
 mod energyparams;
