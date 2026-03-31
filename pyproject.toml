@@ -8,6 +8,9 @@ readme = "README.md"
 description = "Python bindings for ArrowSpace (Rust) providing graph-based similarity search, signal graphs, and spectral methods for vector data."
 license = "MIT OR Apache-2.0"
 license-files = ["LICENSE"]
+authors = [
+    { name = "Lorenzo", email = "tunedconsulting@gmail.com" },
+]
 requires-python = ">=3.12"
 keywords = ["vector-search", "spectral-analysis", "graph-signal", "similarity-search", "machine-learning"]
 classifiers = [
@@ -45,7 +48,7 @@ dependencies = [
     "pyarrow>=23.0.0",
     "scikit-learn>=1.8.0",
     "seaborn>=0.13.2",
-    "sentence-transformers==5.1.1",
+    "sentence-transformers>=5.2.0",
     "tqdm>=4.67.3",
     "transformers[torch]<5.0",
     "tsdae>=1.1.0",

@@ -3,6 +3,7 @@
 checkpoints
 domain_adapted_model
 domain_adapted_model_old
+domain_adapted_model_ppx*
 ./cve_*.png
 ./cve_*.csv
 *_cache*
@@ -11,6 +12,8 @@ cve_corpus/
 tests/corpus/
 analyzer/output
 analyzer/comparison_output
+*.npy
+notebooks/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

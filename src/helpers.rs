@@ -61,9 +61,9 @@ pub fn pyarray2_to_vecvec(arr: PyReadonlyArray2<f64>) -> PyResult<Vec<Vec<f64>>>
 }
 
 pub fn parse_motives_config(cfg: Option<&Bound<'_, PyDict>>)
-    -> PyResult<::arrowspace::motives::MotiveConfig>
+    -> PyResult<::arrowspace::analysis::motives::MotiveConfig>
 {
-    use ::arrowspace::motives::MotiveConfig as RCfg;
+    use ::arrowspace::analysis::motives::MotiveConfig as RCfg;
     if let Some(d) = cfg {
         let top_l          = d.get_item("top_l")?.and_then(|v| v.extract::<usize>().ok()).unwrap_or(16);
         let min_triangles  = d.get_item("min_triangles")?.and_then(|v| v.extract::<usize>().ok()).unwrap_or(2);

@@ -2,7 +2,7 @@
 use pyo3::prelude::*;
 use pyo3::types::PyDict;
 
-use ::arrowspace::subgraphs::{
+use ::arrowspace::analysis::subgraphs::{
     SubgraphConfig, CentroidGraphParams,
 };
 
