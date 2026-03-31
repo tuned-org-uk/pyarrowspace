@@ -78,5 +78,6 @@ exclude = [
     "arxiv_*/",
     "domain_adapted_*/",
     "checkpoints",
-    "analyzer"
+    "analyzer",
+    "notebooks"
 ]
