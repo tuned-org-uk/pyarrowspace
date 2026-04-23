@@ -1,0 +1,19 @@
+query_id,query_text,min_length,spearman_cosine_hybrid,spearman_cosine_taumode,spearman_hybrid_taumode,kendall_cosine_hybrid,kendall_cosine_taumode,kendall_hybrid_taumode,ndcg_hybrid_vs_cosine,ndcg_taumode_vs_cosine,ndcg_taumode_vs_hybrid
+1,command injection in router web administration interface,15,0.000000,0.000000,0.763636,0.000000,0.000000,0.636364,0.000000,0.000000,0.960097
+2,authenticated arbitrary file read path traversal,15,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000
+3,SQL injection in login endpoint,15,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000
+4,authentication bypass via JWT token manipulation,15,-0.771429,0.000000,0.500000,-0.600000,0.000000,0.357143,0.403542,0.000000,0.941586
+5,local privilege escalation via race condition in kernel,15,1.000000,0.996429,0.996429,1.000000,0.980952,0.980952,1.000000,1.000000,1.000000
+6,heap buffer overflow in image processing library,15,0.927273,0.563636,0.900000,0.866667,0.644444,0.866667,0.966699,1.000000,1.000000
+7,remote code execution in ERP web component,15,0.000000,0.000000,0.762238,0.000000,0.000000,0.575758,0.000000,0.000000,0.977788
+8,unsafe deserialization in Java RMI service,15,0.802198,1.000000,1.000000,0.802198,1.000000,1.000000,1.000000,1.000000,1.000000
+9,hardcoded credentials in firmware update mechanism,15,1.000000,0.994505,0.996429,1.000000,0.974359,0.980952,1.000000,0.999363,0.999404
+10,stored cross-site scripting XSS in user profile page,15,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000
+11,integer overflow leading to heap corruption in video codec,15,1.000000,1.000000,0.237762,1.000000,1.000000,0.424242,1.000000,0.603296,0.634242
+12,server-side request forgery SSRF in URL preview feature,15,1.000000,0.996429,0.996429,1.000000,0.980952,0.980952,1.000000,1.000000,1.000000
+13,sensitive information disclosure in cloud metadata service,15,-0.127273,-0.500000,0.772727,0.022222,-0.333333,0.672727,0.542023,0.407524,0.974664
+14,XML external entity XXE injection in SOAP parser,15,0.000000,0.000000,0.755245,0.000000,0.000000,0.636364,0.000000,0.000000,0.967781
+15,use-after-free vulnerability in browser rendering engine,15,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000,1.000000
+16,improper access control in REST API DELETE method,15,0.800000,0.400000,0.563636,0.666667,0.333333,0.345455,0.938002,0.524879,0.938195
+17,insecure direct object reference IDOR in invoice download,15,0.830303,0.500000,0.714286,0.733333,0.333333,0.500000,0.877761,0.784293,0.961940
+18,denial of service via malformed network packets,15,1.000000,0.996429,0.996429,1.000000,0.980952,0.980952,1.000000,0.998977,0.998977
