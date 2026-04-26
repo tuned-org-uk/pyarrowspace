@@ -60,6 +60,7 @@ Repository = "https://github.com/tuned-org-uk/pyarrowspace.git"
 
 [tool.maturin]
 features = ["pyo3/extension-module"]
+sdist-include = ["LICENSE", "README.md"]
 
 exclude = [
     "tests/",           # Exclude the entire 'tests' directory
