@@ -13,10 +13,13 @@ pip install arrowspace
 ```
 or any other way of installing a Python library.
 
-If you have cargo installed, to compile the libraries involved (from crates.io): 
+If you have cargo installed, to compile from source: 
 ```
 pip install maturin[patchelf]
+# quick building
 maturin develop
+# release building, needed for large datasets
+maturin build --release
 ```
 
 ## Tests
