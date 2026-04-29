@@ -80,5 +80,6 @@ exclude = [
     "domain_adapted_*/",
     "checkpoints",
     "analyzer",
-    "notebooks"
+    "notebooks",
+    "neurips",
 ]

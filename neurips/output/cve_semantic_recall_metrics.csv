@@ -1,0 +1,151 @@
+query_id,query_text,tau_method,traditional_recall,semantic_recall,tolerant_recall,n_semantic_neighbors,tolerance_pct_used,semantic_minus_traditional
+1,directory traversal in backup restore endpoint,Cosine,1.000000,1.000000,1.000000,7,0.3891,0.000000
+1,directory traversal in backup restore endpoint,Hybrid,0.280000,0.714286,1.000000,7,0.3891,0.434286
+1,directory traversal in backup restore endpoint,Taumode,0.120000,0.285714,1.000000,7,0.3891,0.165714
+2,improper signature verification in software update channel,Cosine,1.000000,1.000000,1.000000,7,0.2176,0.000000
+2,improper signature verification in software update channel,Hybrid,0.080000,0.000000,1.000000,7,0.2176,-0.080000
+2,improper signature verification in software update channel,Taumode,0.000000,0.000000,1.000000,7,0.2176,0.000000
+3,stack-based buffer overflow in DHCP client,Cosine,1.000000,1.000000,1.000000,7,0.6182,0.000000
+3,stack-based buffer overflow in DHCP client,Hybrid,1.000000,1.000000,1.000000,7,0.6182,0.000000
+3,stack-based buffer overflow in DHCP client,Taumode,0.960000,1.000000,1.000000,7,0.6182,0.040000
+4,local privilege escalation via race condition in kernel,Cosine,1.000000,1.000000,1.000000,7,0.2151,0.000000
+4,local privilege escalation via race condition in kernel,Hybrid,0.920000,1.000000,1.000000,7,0.2151,0.080000
+4,local privilege escalation via race condition in kernel,Taumode,0.880000,0.857143,1.000000,7,0.2151,-0.022857
+5,stored cross-site scripting XSS in user profile page,Cosine,1.000000,1.000000,1.000000,7,0.2682,0.000000
+5,stored cross-site scripting XSS in user profile page,Hybrid,0.040000,0.000000,1.000000,7,0.2682,-0.040000
+5,stored cross-site scripting XSS in user profile page,Taumode,0.000000,0.000000,1.000000,7,0.2682,0.000000
+6,heap buffer overflow in image processing library,Cosine,1.000000,1.000000,1.000000,7,0.2446,0.000000
+6,heap buffer overflow in image processing library,Hybrid,0.960000,1.000000,1.000000,7,0.2446,0.040000
+6,heap buffer overflow in image processing library,Taumode,0.960000,1.000000,1.000000,7,0.2446,0.040000
+7,use-after-free vulnerability in browser rendering engine,Cosine,1.000000,1.000000,1.000000,7,0.2390,0.000000
+7,use-after-free vulnerability in browser rendering engine,Hybrid,0.040000,0.000000,1.000000,7,0.2390,-0.040000
+7,use-after-free vulnerability in browser rendering engine,Taumode,0.000000,0.000000,1.000000,7,0.2390,0.000000
+8,improper access control in REST API DELETE method,Cosine,1.000000,1.000000,1.000000,7,0.2930,0.000000
+8,improper access control in REST API DELETE method,Hybrid,0.000000,0.000000,0.520000,7,0.2930,0.000000
+8,improper access control in REST API DELETE method,Taumode,0.000000,0.000000,1.000000,7,0.2930,0.000000
+9,format string vulnerability in logging daemon,Cosine,1.000000,1.000000,1.000000,7,0.8526,0.000000
+9,format string vulnerability in logging daemon,Hybrid,0.240000,0.428571,1.000000,7,0.8526,0.188571
+9,format string vulnerability in logging daemon,Taumode,0.080000,0.000000,1.000000,7,0.8526,-0.080000
+10,SQL injection in login endpoint,Cosine,1.000000,1.000000,1.000000,7,0.4099,0.000000
+10,SQL injection in login endpoint,Hybrid,0.880000,1.000000,1.000000,7,0.4099,0.120000
+10,SQL injection in login endpoint,Taumode,0.840000,0.857143,1.000000,7,0.4099,0.017143
+11,LDAP injection in enterprise directory search feature,Cosine,1.000000,1.000000,1.000000,7,0.1520,0.000000
+11,LDAP injection in enterprise directory search feature,Hybrid,0.880000,1.000000,1.000000,7,0.1520,0.120000
+11,LDAP injection in enterprise directory search feature,Taumode,0.880000,1.000000,1.000000,7,0.1520,0.120000
+12,race condition in temporary file creation,Cosine,1.000000,1.000000,1.000000,7,0.2702,0.000000
+12,race condition in temporary file creation,Hybrid,0.920000,0.857143,1.000000,7,0.2702,-0.062857
+12,race condition in temporary file creation,Taumode,0.920000,0.857143,1.000000,7,0.2702,-0.062857
+13,improper neutralization of CRLF in mail gateway,Cosine,1.000000,1.000000,1.000000,7,0.6266,0.000000
+13,improper neutralization of CRLF in mail gateway,Hybrid,0.200000,0.142857,1.000000,7,0.6266,-0.057143
+13,improper neutralization of CRLF in mail gateway,Taumode,0.000000,0.000000,1.000000,7,0.6266,0.000000
+14,NoSQL injection in user search API,Cosine,1.000000,1.000000,1.000000,7,0.2800,0.000000
+14,NoSQL injection in user search API,Hybrid,0.040000,0.000000,1.000000,7,0.2800,-0.040000
+14,NoSQL injection in user search API,Taumode,0.000000,0.000000,1.000000,7,0.2800,0.000000
+15,prototype pollution in Node.js configuration merge utility,Cosine,1.000000,1.000000,1.000000,7,0.5424,0.000000
+15,prototype pollution in Node.js configuration merge utility,Hybrid,0.960000,0.857143,1.000000,7,0.5424,-0.102857
+15,prototype pollution in Node.js configuration merge utility,Taumode,0.920000,0.714286,1.000000,7,0.5424,-0.205714
+16,host header injection in password reset workflow,Cosine,1.000000,1.000000,1.000000,7,0.2792,0.000000
+16,host header injection in password reset workflow,Hybrid,0.920000,0.857143,1.000000,7,0.2792,-0.062857
+16,host header injection in password reset workflow,Taumode,0.920000,0.857143,1.000000,7,0.2792,-0.062857
+17,heap use-after-free in media streaming server,Cosine,1.000000,1.000000,1.000000,7,0.2533,0.000000
+17,heap use-after-free in media streaming server,Hybrid,0.000000,0.000000,0.040000,7,0.2533,0.000000
+17,heap use-after-free in media streaming server,Taumode,0.000000,0.000000,0.640000,7,0.2533,0.000000
+18,hardcoded credentials in firmware update mechanism,Cosine,1.000000,1.000000,1.000000,7,0.5816,0.000000
+18,hardcoded credentials in firmware update mechanism,Hybrid,0.560000,1.000000,1.000000,7,0.5816,0.440000
+18,hardcoded credentials in firmware update mechanism,Taumode,0.120000,0.285714,1.000000,7,0.5816,0.165714
+19,unsafe deserialization in Java RMI service,Cosine,1.000000,1.000000,1.000000,7,0.2080,0.000000
+19,unsafe deserialization in Java RMI service,Hybrid,0.920000,1.000000,1.000000,7,0.2080,0.080000
+19,unsafe deserialization in Java RMI service,Taumode,0.920000,1.000000,1.000000,7,0.2080,0.080000
+20,cross-tenant data exposure in multi-tenant storage service,Cosine,1.000000,1.000000,1.000000,7,0.2375,0.000000
+20,cross-tenant data exposure in multi-tenant storage service,Hybrid,0.040000,0.142857,1.000000,7,0.2375,0.102857
+20,cross-tenant data exposure in multi-tenant storage service,Taumode,0.000000,0.000000,1.000000,7,0.2375,0.000000
+21,double free vulnerability in archive extraction library,Cosine,1.000000,1.000000,1.000000,7,0.4073,0.000000
+21,double free vulnerability in archive extraction library,Hybrid,0.960000,1.000000,1.000000,7,0.4073,0.040000
+21,double free vulnerability in archive extraction library,Taumode,0.440000,1.000000,1.000000,7,0.4073,0.560000
+22,memory disclosure via uninitialized stack buffer,Cosine,1.000000,1.000000,1.000000,7,0.4408,0.000000
+22,memory disclosure via uninitialized stack buffer,Hybrid,0.080000,0.000000,1.000000,7,0.4408,-0.080000
+22,memory disclosure via uninitialized stack buffer,Taumode,0.040000,0.000000,1.000000,7,0.4408,-0.040000
+23,command injection in router web administration interface,Cosine,1.000000,1.000000,1.000000,7,0.5780,0.000000
+23,command injection in router web administration interface,Hybrid,0.160000,0.142857,1.000000,7,0.5780,-0.017143
+23,command injection in router web administration interface,Taumode,0.000000,0.000000,1.000000,7,0.5780,0.000000
+24,authenticated arbitrary file read path traversal,Cosine,1.000000,1.000000,1.000000,7,0.3100,0.000000
+24,authenticated arbitrary file read path traversal,Hybrid,0.120000,0.000000,1.000000,7,0.3100,-0.120000
+24,authenticated arbitrary file read path traversal,Taumode,0.080000,0.000000,1.000000,7,0.3100,-0.080000
+25,insecure direct object reference IDOR in invoice download,Cosine,1.000000,1.000000,1.000000,7,0.2884,0.000000
+25,insecure direct object reference IDOR in invoice download,Hybrid,0.040000,0.000000,1.000000,7,0.2884,-0.040000
+25,insecure direct object reference IDOR in invoice download,Taumode,0.000000,0.000000,1.000000,7,0.2884,0.000000
+26,remote code execution in ERP web component,Cosine,1.000000,1.000000,1.000000,7,0.3296,0.000000
+26,remote code execution in ERP web component,Hybrid,0.680000,0.857143,1.000000,7,0.3296,0.177143
+26,remote code execution in ERP web component,Taumode,0.680000,0.857143,1.000000,7,0.3296,0.177143
+27,authentication bypass via JWT token manipulation,Cosine,1.000000,1.000000,1.000000,7,0.1000,0.000000
+27,authentication bypass via JWT token manipulation,Hybrid,0.880000,1.000000,1.000000,7,0.1000,0.120000
+27,authentication bypass via JWT token manipulation,Taumode,0.000000,0.000000,1.000000,7,0.1000,0.000000
+28,symlink attack in installer cleanup routine,Cosine,1.000000,1.000000,1.000000,7,0.5880,0.000000
+28,symlink attack in installer cleanup routine,Hybrid,0.360000,0.428571,1.000000,7,0.5880,0.068571
+28,symlink attack in installer cleanup routine,Taumode,0.040000,0.000000,1.000000,7,0.5880,-0.040000
+29,improper certificate validation in mobile banking application,Cosine,1.000000,1.000000,1.000000,7,0.3035,0.000000
+29,improper certificate validation in mobile banking application,Hybrid,0.760000,0.428571,1.000000,7,0.3035,-0.331429
+29,improper certificate validation in mobile banking application,Taumode,0.760000,0.428571,1.000000,7,0.3035,-0.331429
+30,sandbox escape in browser extension messaging interface,Cosine,1.000000,1.000000,1.000000,7,0.2647,0.000000
+30,sandbox escape in browser extension messaging interface,Hybrid,1.000000,1.000000,1.000000,7,0.2647,0.000000
+30,sandbox escape in browser extension messaging interface,Taumode,0.960000,1.000000,1.000000,7,0.2647,0.040000
+31,server-side request forgery SSRF in URL preview feature,Cosine,1.000000,1.000000,1.000000,7,0.4655,0.000000
+31,server-side request forgery SSRF in URL preview feature,Hybrid,0.560000,0.571429,1.000000,7,0.4655,0.011429
+31,server-side request forgery SSRF in URL preview feature,Taumode,0.520000,0.428571,1.000000,7,0.4655,-0.091429
+32,null pointer dereference in Bluetooth service,Cosine,1.000000,1.000000,1.000000,7,0.3176,0.000000
+32,null pointer dereference in Bluetooth service,Hybrid,0.040000,0.142857,1.000000,7,0.3176,0.102857
+32,null pointer dereference in Bluetooth service,Taumode,0.000000,0.000000,1.000000,7,0.3176,0.000000
+33,insecure default permissions in container runtime socket,Cosine,1.000000,1.000000,1.000000,7,0.3688,0.000000
+33,insecure default permissions in container runtime socket,Hybrid,0.920000,1.000000,1.000000,7,0.3688,0.080000
+33,insecure default permissions in container runtime socket,Taumode,0.920000,1.000000,1.000000,7,0.3688,0.080000
+34,cross-site request forgery CSRF in admin password change form,Cosine,1.000000,1.000000,1.000000,7,0.2304,0.000000
+34,cross-site request forgery CSRF in admin password change form,Hybrid,0.200000,0.285714,1.000000,7,0.2304,0.085714
+34,cross-site request forgery CSRF in admin password change form,Taumode,0.080000,0.000000,1.000000,7,0.2304,-0.080000
+35,business logic bypass in coupon redemption API,Cosine,1.000000,1.000000,1.000000,7,0.4475,0.000000
+35,business logic bypass in coupon redemption API,Hybrid,0.520000,1.000000,1.000000,7,0.4475,0.480000
+35,business logic bypass in coupon redemption API,Taumode,0.040000,0.000000,1.000000,7,0.4475,-0.040000
+36,denial of service via malformed network packets,Cosine,1.000000,1.000000,1.000000,7,0.3513,0.000000
+36,denial of service via malformed network packets,Hybrid,0.080000,0.142857,0.960000,7,0.3513,0.062857
+36,denial of service via malformed network packets,Taumode,0.040000,0.142857,1.000000,7,0.3513,0.102857
+37,XML external entity XXE injection in SOAP parser,Cosine,1.000000,1.000000,1.000000,7,0.4225,0.000000
+37,XML external entity XXE injection in SOAP parser,Hybrid,0.040000,0.000000,1.000000,7,0.4225,-0.040000
+37,XML external entity XXE injection in SOAP parser,Taumode,0.000000,0.000000,1.000000,7,0.4225,0.000000
+38,improper input validation in SAML assertion processing,Cosine,1.000000,1.000000,1.000000,7,0.1580,0.000000
+38,improper input validation in SAML assertion processing,Hybrid,0.880000,0.714286,1.000000,7,0.1580,-0.165714
+38,improper input validation in SAML assertion processing,Taumode,0.880000,0.714286,1.000000,7,0.1580,-0.165714
+39,request smuggling in reverse proxy parser,Cosine,1.000000,1.000000,1.000000,7,0.2146,0.000000
+39,request smuggling in reverse proxy parser,Hybrid,0.920000,0.857143,1.000000,7,0.2146,-0.062857
+39,request smuggling in reverse proxy parser,Taumode,0.920000,0.857143,1.000000,7,0.2146,-0.062857
+40,OS command injection in diagnostic CGI script,Cosine,1.000000,1.000000,1.000000,7,0.3388,0.000000
+40,OS command injection in diagnostic CGI script,Hybrid,0.920000,1.000000,1.000000,7,0.3388,0.080000
+40,OS command injection in diagnostic CGI script,Taumode,0.920000,1.000000,1.000000,7,0.3388,0.080000
+41,privilege escalation via writable system service configuration,Cosine,1.000000,1.000000,1.000000,7,0.3124,0.000000
+41,privilege escalation via writable system service configuration,Hybrid,0.720000,0.714286,1.000000,7,0.3124,-0.005714
+41,privilege escalation via writable system service configuration,Taumode,0.720000,0.714286,1.000000,7,0.3124,-0.005714
+42,integer overflow leading to heap corruption in video codec,Cosine,1.000000,1.000000,1.000000,7,0.5065,0.000000
+42,integer overflow leading to heap corruption in video codec,Hybrid,1.000000,1.000000,1.000000,7,0.5065,0.000000
+42,integer overflow leading to heap corruption in video codec,Taumode,0.960000,1.000000,1.000000,7,0.5065,0.040000
+43,sensitive information disclosure in cloud metadata service,Cosine,1.000000,1.000000,1.000000,7,0.3128,0.000000
+43,sensitive information disclosure in cloud metadata service,Hybrid,0.840000,0.714286,1.000000,7,0.3128,-0.125714
+43,sensitive information disclosure in cloud metadata service,Taumode,0.840000,0.714286,1.000000,7,0.3128,-0.125714
+44,open redirect in single sign-on logout flow,Cosine,1.000000,1.000000,1.000000,7,0.3427,0.000000
+44,open redirect in single sign-on logout flow,Hybrid,0.040000,0.000000,1.000000,7,0.3427,-0.040000
+44,open redirect in single sign-on logout flow,Taumode,0.000000,0.000000,1.000000,7,0.3427,0.000000
+45,buffer underflow in font parsing component,Cosine,1.000000,1.000000,1.000000,7,0.4051,0.000000
+45,buffer underflow in font parsing component,Hybrid,0.000000,0.000000,0.200000,7,0.4051,0.000000
+45,buffer underflow in font parsing component,Taumode,0.000000,0.000000,1.000000,7,0.4051,0.000000
+46,path canonicalization bypass in file download servlet,Cosine,1.000000,1.000000,1.000000,7,0.3010,0.000000
+46,path canonicalization bypass in file download servlet,Hybrid,1.000000,1.000000,1.000000,7,0.3010,0.000000
+46,path canonicalization bypass in file download servlet,Taumode,1.000000,1.000000,1.000000,7,0.3010,0.000000
+47,arbitrary file upload leading to remote code execution,Cosine,1.000000,1.000000,1.000000,7,0.1819,0.000000
+47,arbitrary file upload leading to remote code execution,Hybrid,0.720000,1.000000,1.000000,7,0.1819,0.280000
+47,arbitrary file upload leading to remote code execution,Taumode,0.200000,0.000000,1.000000,7,0.1819,-0.200000
+48,authorization bypass in GraphQL mutation resolver,Cosine,1.000000,1.000000,1.000000,7,0.2240,0.000000
+48,authorization bypass in GraphQL mutation resolver,Hybrid,0.960000,0.857143,1.000000,7,0.2240,-0.102857
+48,authorization bypass in GraphQL mutation resolver,Taumode,0.960000,0.857143,1.000000,7,0.2240,-0.102857
+49,out-of-bounds read in PDF rendering engine,Cosine,1.000000,1.000000,1.000000,7,0.3843,0.000000
+49,out-of-bounds read in PDF rendering engine,Hybrid,0.520000,0.714286,1.000000,7,0.3843,0.194286
+49,out-of-bounds read in PDF rendering engine,Taumode,0.480000,0.714286,1.000000,7,0.3843,0.234286
+50,authentication brute force due to missing rate limiting,Cosine,1.000000,1.000000,1.000000,7,0.1570,0.000000
+50,authentication brute force due to missing rate limiting,Hybrid,0.080000,0.142857,1.000000,7,0.1570,0.062857
+50,authentication brute force due to missing rate limiting,Taumode,0.000000,0.000000,1.000000,7,0.1570,0.000000

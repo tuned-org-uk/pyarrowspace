@@ -14,6 +14,7 @@ analyzer/output
 analyzer/comparison_output
 *.npy
 notebooks/
+neurips/cveV5
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
