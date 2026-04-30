@@ -1,0 +1,16 @@
+metric_type,metric_name,value,std_dev
+NDCG@25,hybrid vs Cosine,0.778507,0.310098
+NDCG@25,taumode vs Cosine,0.602100,0.451790
+NDCG@25,taumode vs hybrid,0.962832,0.059215
+Tail/Head Ratio,Cosine (τ=1.0),0.986001,0.004602
+Tail/Head Ratio,hybrid (τ=0.72),0.986391,0.006379
+Tail/Head Ratio,taumode (τ=0.42),0.990890,0.006768
+Traditional Recall@k,Cosine,1.000000,0.000000
+Semantic Recall@k,Cosine,1.000000,0.000000
+Tolerant Recall@k,Cosine,1.000000,0.000000
+Traditional Recall@k,Hybrid,0.517600,0.392115
+Semantic Recall@k,Hybrid,0.554286,0.416634
+Tolerant Recall@k,Hybrid,0.954400,0.183828
+Traditional Recall@k,Taumode,0.420000,0.419390
+Semantic Recall@k,Taumode,0.422857,0.431381
+Tolerant Recall@k,Taumode,0.992800,0.050400

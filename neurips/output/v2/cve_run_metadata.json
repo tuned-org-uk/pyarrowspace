@@ -1,0 +1,34 @@
+{
+  "test_name": "test_17_CVE_semantic_recall",
+  "timestamp_unix": 1777568959.2799842,
+  "dataset_root": "cveV5/",
+  "start_year": 1999,
+  "end_year": 2026,
+  "n_cve_documents_loaded": 347113,
+  "embedding_model_path": "/Users/tuned-silicon/code/pyarrowspace/domain_adapted_model",
+  "tau_values": {
+    "Cosine": 1.0,
+    "Hybrid": 0.72,
+    "Taumode": 0.42
+  },
+  "head_k": 3,
+  "head_k_sweep": [
+    3,
+    5,
+    10
+  ],
+  "neighbour_K": 30,
+  "graph_params": {
+    "eps": 1.31,
+    "k": 30,
+    "topk": 25,
+    "p": 1.8,
+    "sigma": 0.535
+  },
+  "query_count": 50,
+  "ndcg_k": 25,
+  "results_k": 25,
+  "min_result_length_observed": 25,
+  "max_result_length_observed": 25,
+  "note": "Cosine ranking is used as the internal reference ranking for recall-style comparisons. Existing CSV and plot outputs are preserved for compatibility."
+}
