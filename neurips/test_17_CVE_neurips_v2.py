@@ -8,7 +8,7 @@ This test compares three ranking modes on a CVE corpus:
 
 The benchmark evaluates:
 1. Ranking agreement metrics (Spearman, Kendall)
-2. NDCG@25 against cosine reference
+2. NDCG@10 against cosine reference
 3. Head-tail quality metrics
 4. Semantic recall style metrics inspired by:
    Kuffo et al., "Semantic Recall for Vector Search"
