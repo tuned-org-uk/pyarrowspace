@@ -1,0 +1,11 @@
+{
+  "eval_k": 10,
+  "head_k": 3,
+  "reference_tau": 1.0,
+  "semantic_percentile": 25.0,
+  "relevance_recall_definition": "qrel_hits_at_k_divided_by_k",
+  "semantic_uplift_internal": "tolerant_recall_minus_traditional_recall_vs_tau1_reference",
+  "semantic_uplift_qrel": "tolerant_recall_minus_qrel_hits_at_k_divided_by_k",
+  "csv_dir": "Test-clean/trec-covid/no_finetune_minilm/scale100_full_tau_report/k_10/logs",
+  "plot_dir": "Test-clean/trec-covid/no_finetune_minilm/scale100_full_tau_report/k_10/plots"
+}

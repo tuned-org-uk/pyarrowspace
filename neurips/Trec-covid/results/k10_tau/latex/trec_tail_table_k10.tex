@@ -1,0 +1,13 @@
+\begin{table}[h]
+\centering
+\caption{Mean tail-shape metrics at $k=10$ from TREC logs.}
+\begin{tabular}{lrrrrr}
+\toprule
+Method & Head mean & Tail mean & T/H Ratio & Tail CV & Tail Decay \\
+\midrule
+Cosine (tau=1.0) & 0.802 & 0.761 & 0.94862 & 0.01362 & 0.004203 \\
+hybrid (tau=0.7) & 0.849 & 0.820 & 0.96616 & 0.00886 & 0.002964 \\
+taumode (tau=0.4) & 0.908 & 0.890 & \textbf{0.98009} & \textbf{0.00459} & \textbf{0.001647} \\
+\bottomrule
+\end{tabular}
+\end{table}

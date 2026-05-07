@@ -1,0 +1,401 @@
+query_id,query_text,tau,k,ndcg
+1,what is the origin of COVID-19,0.4,10,0.09949667842558517
+1,what is the origin of COVID-19,0.5,10,0.09781856279914673
+1,what is the origin of COVID-19,0.55,10,0.09781856279914673
+1,what is the origin of COVID-19,0.6,10,0.09781856279914673
+1,what is the origin of COVID-19,0.65,10,0.09781856279914673
+1,what is the origin of COVID-19,0.7,10,0.09781856279914673
+1,what is the origin of COVID-19,0.8,10,0.09544866325082307
+1,what is the origin of COVID-19,1.0,10,0.07336392209936006
+10,has social distancing had an impact on slowing the spread of COVID-19?,0.4,10,0.07336392209936006
+10,has social distancing had an impact on slowing the spread of COVID-19?,0.5,10,0.14201905717762703
+10,has social distancing had an impact on slowing the spread of COVID-19?,0.55,10,0.085143117641621
+10,has social distancing had an impact on slowing the spread of COVID-19?,0.6,10,0.085143117641621
+10,has social distancing had an impact on slowing the spread of COVID-19?,0.65,10,0.085143117641621
+10,has social distancing had an impact on slowing the spread of COVID-19?,0.7,10,0.085143117641621
+10,has social distancing had an impact on slowing the spread of COVID-19?,0.8,10,0.07839826897867534
+10,has social distancing had an impact on slowing the spread of COVID-19?,1.0,10,0.13305201013572895
+11,what are the guidelines for triaging patients infected with coronavirus?,0.4,10,0.37642513073830514
+11,what are the guidelines for triaging patients infected with coronavirus?,0.5,10,0.37642513073830514
+11,what are the guidelines for triaging patients infected with coronavirus?,0.55,10,0.37642513073830514
+11,what are the guidelines for triaging patients infected with coronavirus?,0.6,10,0.37642513073830514
+11,what are the guidelines for triaging patients infected with coronavirus?,0.65,10,0.37642513073830514
+11,what are the guidelines for triaging patients infected with coronavirus?,0.7,10,0.37642513073830514
+11,what are the guidelines for triaging patients infected with coronavirus?,0.8,10,0.37642513073830514
+11,what are the guidelines for triaging patients infected with coronavirus?,1.0,10,0.37642513073830514
+12,what are best practices in hospitals and at home in maintaining quarantine?,0.4,10,0.3855413434232143
+12,what are best practices in hospitals and at home in maintaining quarantine?,0.5,10,0.3855413434232143
+12,what are best practices in hospitals and at home in maintaining quarantine?,0.55,10,0.3855413434232143
+12,what are best practices in hospitals and at home in maintaining quarantine?,0.6,10,0.3855413434232143
+12,what are best practices in hospitals and at home in maintaining quarantine?,0.65,10,0.40674827282286485
+12,what are best practices in hospitals and at home in maintaining quarantine?,0.7,10,0.40674827282286485
+12,what are best practices in hospitals and at home in maintaining quarantine?,0.8,10,0.4089369846288715
+12,what are best practices in hospitals and at home in maintaining quarantine?,1.0,10,0.3949690772806039
+13,what are the transmission routes of coronavirus?,0.4,10,0.29063766404148417
+13,what are the transmission routes of coronavirus?,0.5,10,0.29063766404148417
+13,what are the transmission routes of coronavirus?,0.55,10,0.28301500362672605
+13,what are the transmission routes of coronavirus?,0.6,10,0.26180807422707547
+13,what are the transmission routes of coronavirus?,0.65,10,0.2567737273477602
+13,what are the transmission routes of coronavirus?,0.7,10,0.2567737273477602
+13,what are the transmission routes of coronavirus?,0.8,10,0.23187096184034112
+13,what are the transmission routes of coronavirus?,1.0,10,0.2153829792769871
+14,what evidence is there related to COVID-19 super spreaders,0.4,10,0.13886244387355454
+14,what evidence is there related to COVID-19 super spreaders,0.5,10,0.3647442587311446
+14,what evidence is there related to COVID-19 super spreaders,0.55,10,0.3785988060390612
+14,what evidence is there related to COVID-19 super spreaders,0.6,10,0.3836331529183765
+14,what evidence is there related to COVID-19 super spreaders,0.65,10,0.3836331529183765
+14,what evidence is there related to COVID-19 super spreaders,0.7,10,0.40002324830925196
+14,what evidence is there related to COVID-19 super spreaders,0.8,10,0.47338717040861206
+14,what evidence is there related to COVID-19 super spreaders,1.0,10,0.3843113526044082
+15,how long can the coronavirus live outside the body,0.4,10,0.27460556183817897
+15,how long can the coronavirus live outside the body,0.5,10,0.27460556183817897
+15,how long can the coronavirus live outside the body,0.55,10,0.27460556183817897
+15,how long can the coronavirus live outside the body,0.6,10,0.27460556183817897
+15,how long can the coronavirus live outside the body,0.65,10,0.27460556183817897
+15,how long can the coronavirus live outside the body,0.7,10,0.27460556183817897
+15,how long can the coronavirus live outside the body,0.8,10,0.27292744621174053
+15,how long can the coronavirus live outside the body,1.0,10,0.2676901476434593
+16,how long does coronavirus remain stable  on surfaces?,0.4,10,0.9048032373092418
+16,how long does coronavirus remain stable  on surfaces?,0.5,10,0.9048032373092418
+16,how long does coronavirus remain stable  on surfaces?,0.55,10,0.9048032373092418
+16,how long does coronavirus remain stable  on surfaces?,0.6,10,0.9048032373092418
+16,how long does coronavirus remain stable  on surfaces?,0.65,10,0.901447006056365
+16,how long does coronavirus remain stable  on surfaces?,0.7,10,0.901447006056365
+16,how long does coronavirus remain stable  on surfaces?,0.8,10,0.901447006056365
+16,how long does coronavirus remain stable  on surfaces?,1.0,10,0.901447006056365
+17,are there any clinical trials available for the coronavirus,0.4,10,0.4168431006209653
+17,are there any clinical trials available for the coronavirus,0.5,10,0.4740344401999901
+17,are there any clinical trials available for the coronavirus,0.55,10,0.4740344401999901
+17,are there any clinical trials available for the coronavirus,0.6,10,0.4740344401999901
+17,are there any clinical trials available for the coronavirus,0.65,10,0.4740344401999901
+17,are there any clinical trials available for the coronavirus,0.7,10,0.4740344401999901
+17,are there any clinical trials available for the coronavirus,0.8,10,0.4821236137550592
+17,are there any clinical trials available for the coronavirus,1.0,10,0.49738113253454846
+18,what are the best masks for preventing infection by Covid-19?,0.4,10,0.3706355185414171
+18,what are the best masks for preventing infection by Covid-19?,0.5,10,0.48188093557966816
+18,what are the best masks for preventing infection by Covid-19?,0.55,10,0.7254521107352792
+18,what are the best masks for preventing infection by Covid-19?,0.6,10,0.7524694738727552
+18,what are the best masks for preventing infection by Covid-19?,0.65,10,0.8610421533275232
+18,what are the best masks for preventing infection by Covid-19?,0.7,10,0.7952054789678341
+18,what are the best masks for preventing infection by Covid-19?,0.8,10,0.8033707757487327
+18,what are the best masks for preventing infection by Covid-19?,1.0,10,0.7241528458281338
+19,what type of hand sanitizer is needed to destroy Covid-19?,0.4,10,0.525811120619521
+19,what type of hand sanitizer is needed to destroy Covid-19?,0.5,10,0.525811120619521
+19,what type of hand sanitizer is needed to destroy Covid-19?,0.55,10,0.525811120619521
+19,what type of hand sanitizer is needed to destroy Covid-19?,0.6,10,0.525811120619521
+19,what type of hand sanitizer is needed to destroy Covid-19?,0.65,10,0.525811120619521
+19,what type of hand sanitizer is needed to destroy Covid-19?,0.7,10,0.525811120619521
+19,what type of hand sanitizer is needed to destroy Covid-19?,0.8,10,0.525811120619521
+19,what type of hand sanitizer is needed to destroy Covid-19?,1.0,10,0.44076371802248066
+2,how does the coronavirus respond to changes in the weather,0.4,10,0.2874476364692017
+2,how does the coronavirus respond to changes in the weather,0.5,10,0.2874476364692017
+2,how does the coronavirus respond to changes in the weather,0.55,10,0.2874476364692017
+2,how does the coronavirus respond to changes in the weather,0.6,10,0.2874476364692017
+2,how does the coronavirus respond to changes in the weather,0.65,10,0.3510684246681534
+2,how does the coronavirus respond to changes in the weather,0.7,10,0.4115325995630326
+2,how does the coronavirus respond to changes in the weather,0.8,10,0.49276192198755825
+2,how does the coronavirus respond to changes in the weather,1.0,10,0.4193979998881982
+20,are patients taking Angiotensin-converting enzyme inhibitors (ACE) at increased risk for COVID-19?,0.4,10,1.0
+20,are patients taking Angiotensin-converting enzyme inhibitors (ACE) at increased risk for COVID-19?,0.5,10,1.0
+20,are patients taking Angiotensin-converting enzyme inhibitors (ACE) at increased risk for COVID-19?,0.55,10,1.0
+20,are patients taking Angiotensin-converting enzyme inhibitors (ACE) at increased risk for COVID-19?,0.6,10,1.0
+20,are patients taking Angiotensin-converting enzyme inhibitors (ACE) at increased risk for COVID-19?,0.65,10,1.0
+20,are patients taking Angiotensin-converting enzyme inhibitors (ACE) at increased risk for COVID-19?,0.7,10,1.0
+20,are patients taking Angiotensin-converting enzyme inhibitors (ACE) at increased risk for COVID-19?,0.8,10,0.8899541168509599
+20,are patients taking Angiotensin-converting enzyme inhibitors (ACE) at increased risk for COVID-19?,1.0,10,0.7799082337019199
+21,what are the mortality rates overall and in specific populations,0.4,10,0.30315953217404545
+21,what are the mortality rates overall and in specific populations,0.5,10,0.30315953217404545
+21,what are the mortality rates overall and in specific populations,0.55,10,0.30315953217404545
+21,what are the mortality rates overall and in specific populations,0.6,10,0.30315953217404545
+21,what are the mortality rates overall and in specific populations,0.65,10,0.30315953217404545
+21,what are the mortality rates overall and in specific populations,0.7,10,0.30315953217404545
+21,what are the mortality rates overall and in specific populations,0.8,10,0.3005260969186081
+21,what are the mortality rates overall and in specific populations,1.0,10,0.21947411463941097
+22,are cardiac complications likely in patients with COVID-19?,0.4,10,0.44409732781325567
+22,are cardiac complications likely in patients with COVID-19?,0.5,10,0.522495596791931
+22,are cardiac complications likely in patients with COVID-19?,0.55,10,0.6168295842361273
+22,are cardiac complications likely in patients with COVID-19?,0.6,10,0.6300426811446146
+22,are cardiac complications likely in patients with COVID-19?,0.65,10,0.6300426811446146
+22,are cardiac complications likely in patients with COVID-19?,0.7,10,0.5637884576902256
+22,are cardiac complications likely in patients with COVID-19?,0.8,10,0.5637884576902256
+22,are cardiac complications likely in patients with COVID-19?,1.0,10,0.5077181160122074
+23,what kinds of complications related to COVID-19 are associated with hypertension?,0.4,10,0.7525454865568887
+23,what kinds of complications related to COVID-19 are associated with hypertension?,0.5,10,0.7525454865568887
+23,what kinds of complications related to COVID-19 are associated with hypertension?,0.55,10,0.6862912631024997
+23,what kinds of complications related to COVID-19 are associated with hypertension?,0.6,10,0.6791815644575286
+23,what kinds of complications related to COVID-19 are associated with hypertension?,0.65,10,0.6775034488310903
+23,what kinds of complications related to COVID-19 are associated with hypertension?,0.7,10,0.6775034488310903
+23,what kinds of complications related to COVID-19 are associated with hypertension?,0.8,10,0.6678582021031605
+23,what kinds of complications related to COVID-19 are associated with hypertension?,1.0,10,0.6286087797783882
+24,what kinds of complications related to COVID-19 are associated with diabetes,0.4,10,0.1930291708061196
+24,what kinds of complications related to COVID-19 are associated with diabetes,0.5,10,0.1930291708061196
+24,what kinds of complications related to COVID-19 are associated with diabetes,0.55,10,0.1930291708061196
+24,what kinds of complications related to COVID-19 are associated with diabetes,0.6,10,0.1930291708061196
+24,what kinds of complications related to COVID-19 are associated with diabetes,0.65,10,0.1930291708061196
+24,what kinds of complications related to COVID-19 are associated with diabetes,0.7,10,0.1930291708061196
+24,what kinds of complications related to COVID-19 are associated with diabetes,0.8,10,0.1956626060615569
+24,what kinds of complications related to COVID-19 are associated with diabetes,1.0,10,0.19778060504981573
+25,which biomarkers predict the severe clinical course of 2019-nCOV infection?,0.4,10,0.0
+25,which biomarkers predict the severe clinical course of 2019-nCOV infection?,0.5,10,0.0
+25,which biomarkers predict the severe clinical course of 2019-nCOV infection?,0.55,10,0.0
+25,which biomarkers predict the severe clinical course of 2019-nCOV infection?,0.6,10,0.0
+25,which biomarkers predict the severe clinical course of 2019-nCOV infection?,0.65,10,0.0
+25,which biomarkers predict the severe clinical course of 2019-nCOV infection?,0.7,10,0.0
+25,which biomarkers predict the severe clinical course of 2019-nCOV infection?,0.8,10,0.0
+25,which biomarkers predict the severe clinical course of 2019-nCOV infection?,1.0,10,0.0
+26,what are the initial symptoms of Covid-19?,0.4,10,0.2742654694553681
+26,what are the initial symptoms of Covid-19?,0.5,10,0.26462022272743835
+26,what are the initial symptoms of Covid-19?,0.55,10,0.24936270394794904
+26,what are the initial symptoms of Covid-19?,0.6,10,0.24936270394794904
+26,what are the initial symptoms of Covid-19?,0.65,10,0.24936270394794904
+26,what are the initial symptoms of Covid-19?,0.7,10,0.24618570546556082
+26,what are the initial symptoms of Covid-19?,0.8,10,0.22979561007468538
+26,what are the initial symptoms of Covid-19?,1.0,10,0.2304738097607171
+27,what is known about those infected with Covid-19 but are asymptomatic?,0.4,10,0.7497414058546006
+27,what is known about those infected with Covid-19 but are asymptomatic?,0.5,10,0.7998230467886543
+27,what is known about those infected with Covid-19 but are asymptomatic?,0.55,10,0.8062532112739409
+27,what is known about those infected with Covid-19 but are asymptomatic?,0.6,10,0.8062532112739409
+27,what is known about those infected with Covid-19 but are asymptomatic?,0.65,10,0.8062532112739409
+27,what is known about those infected with Covid-19 but are asymptomatic?,0.7,10,0.8062532112739409
+27,what is known about those infected with Covid-19 but are asymptomatic?,0.8,10,0.8062532112739409
+27,what is known about those infected with Covid-19 but are asymptomatic?,1.0,10,0.8062532112739409
+28,what evidence is there for the value of hydroxychloroquine in treating Covid-19?,0.4,10,0.6366587127404281
+28,what evidence is there for the value of hydroxychloroquine in treating Covid-19?,0.5,10,0.6366587127404281
+28,what evidence is there for the value of hydroxychloroquine in treating Covid-19?,0.55,10,0.6366587127404281
+28,what evidence is there for the value of hydroxychloroquine in treating Covid-19?,0.6,10,0.6366587127404281
+28,what evidence is there for the value of hydroxychloroquine in treating Covid-19?,0.65,10,0.6366587127404281
+28,what evidence is there for the value of hydroxychloroquine in treating Covid-19?,0.7,10,0.6366587127404281
+28,what evidence is there for the value of hydroxychloroquine in treating Covid-19?,0.8,10,0.6366587127404281
+28,what evidence is there for the value of hydroxychloroquine in treating Covid-19?,1.0,10,0.6366587127404281
+29,which SARS-CoV-2 proteins-human proteins interactions indicate potential for drug targets. Are there approved drugs that can be repurposed based on this information?,0.4,10,0.6242322474067891
+29,which SARS-CoV-2 proteins-human proteins interactions indicate potential for drug targets. Are there approved drugs that can be repurposed based on this information?,0.5,10,0.6242322474067891
+29,which SARS-CoV-2 proteins-human proteins interactions indicate potential for drug targets. Are there approved drugs that can be repurposed based on this information?,0.55,10,0.6242322474067891
+29,which SARS-CoV-2 proteins-human proteins interactions indicate potential for drug targets. Are there approved drugs that can be repurposed based on this information?,0.6,10,0.6242322474067891
+29,which SARS-CoV-2 proteins-human proteins interactions indicate potential for drug targets. Are there approved drugs that can be repurposed based on this information?,0.65,10,0.6242322474067891
+29,which SARS-CoV-2 proteins-human proteins interactions indicate potential for drug targets. Are there approved drugs that can be repurposed based on this information?,0.7,10,0.6242322474067891
+29,which SARS-CoV-2 proteins-human proteins interactions indicate potential for drug targets. Are there approved drugs that can be repurposed based on this information?,0.8,10,0.6242322474067891
+29,which SARS-CoV-2 proteins-human proteins interactions indicate potential for drug targets. Are there approved drugs that can be repurposed based on this information?,1.0,10,0.6242322474067891
+3,will SARS-CoV2 infected people develop immunity? Is cross protection possible?,0.4,10,0.10990826949013656
+3,will SARS-CoV2 infected people develop immunity? Is cross protection possible?,0.5,10,0.1196514033905449
+3,will SARS-CoV2 infected people develop immunity? Is cross protection possible?,0.55,10,0.046287481291184845
+3,will SARS-CoV2 infected people develop immunity? Is cross protection possible?,0.6,10,0.046287481291184845
+3,will SARS-CoV2 infected people develop immunity? Is cross protection possible?,0.65,10,0.1260799251496615
+3,will SARS-CoV2 infected people develop immunity? Is cross protection possible?,0.7,10,0.14346126924222904
+3,will SARS-CoV2 infected people develop immunity? Is cross protection possible?,0.8,10,0.1526772548188814
+3,will SARS-CoV2 infected people develop immunity? Is cross protection possible?,1.0,10,0.13147032541923082
+30,is remdesivir an effective treatment for COVID-19,0.4,10,0.8285229673188254
+30,is remdesivir an effective treatment for COVID-19,0.5,10,0.8285229673188254
+30,is remdesivir an effective treatment for COVID-19,0.55,10,0.8285229673188254
+30,is remdesivir an effective treatment for COVID-19,0.6,10,0.8285229673188254
+30,is remdesivir an effective treatment for COVID-19,0.65,10,0.8285229673188254
+30,is remdesivir an effective treatment for COVID-19,0.7,10,0.8302785908224501
+30,is remdesivir an effective treatment for COVID-19,0.8,10,0.8379347378101539
+30,is remdesivir an effective treatment for COVID-19,1.0,10,0.8863992957602966
+31,How does the coronavirus differ from seasonal flu?,0.4,10,0.12182507869130102
+31,How does the coronavirus differ from seasonal flu?,0.5,10,0.12182507869130102
+31,How does the coronavirus differ from seasonal flu?,0.55,10,0.12182507869130102
+31,How does the coronavirus differ from seasonal flu?,0.6,10,0.12182507869130102
+31,How does the coronavirus differ from seasonal flu?,0.65,10,0.1912563006280783
+31,How does the coronavirus differ from seasonal flu?,0.7,10,0.24885683430874678
+31,How does the coronavirus differ from seasonal flu?,0.8,10,0.24885683430874678
+31,How does the coronavirus differ from seasonal flu?,1.0,10,0.431882610760354
+32,"Does SARS-CoV-2 have any subtypes, and if so what are they?",0.4,10,0.0
+32,"Does SARS-CoV-2 have any subtypes, and if so what are they?",0.5,10,0.0
+32,"Does SARS-CoV-2 have any subtypes, and if so what are they?",0.55,10,0.0
+32,"Does SARS-CoV-2 have any subtypes, and if so what are they?",0.6,10,0.0
+32,"Does SARS-CoV-2 have any subtypes, and if so what are they?",0.65,10,0.0
+32,"Does SARS-CoV-2 have any subtypes, and if so what are they?",0.7,10,0.0
+32,"Does SARS-CoV-2 have any subtypes, and if so what are they?",0.8,10,0.0
+32,"Does SARS-CoV-2 have any subtypes, and if so what are they?",1.0,10,0.0
+33,What vaccine candidates are being tested for Covid-19?,0.4,10,0.5406049905582082
+33,What vaccine candidates are being tested for Covid-19?,0.5,10,0.550250237286138
+33,What vaccine candidates are being tested for Covid-19?,0.55,10,0.5655077560656273
+33,What vaccine candidates are being tested for Covid-19?,0.6,10,0.629128544264579
+33,What vaccine candidates are being tested for Covid-19?,0.65,10,0.6298251682740744
+33,What vaccine candidates are being tested for Covid-19?,0.7,10,0.5772869516078882
+33,What vaccine candidates are being tested for Covid-19?,0.8,10,0.6512496105442652
+33,What vaccine candidates are being tested for Covid-19?,1.0,10,0.49827103097054365
+34,What are the longer-term complications of those who recover from COVID-19?,0.4,10,0.022084741151463014
+34,What are the longer-term complications of those who recover from COVID-19?,0.5,10,0.0
+34,What are the longer-term complications of those who recover from COVID-19?,0.55,10,0.0
+34,What are the longer-term complications of those who recover from COVID-19?,0.6,10,0.0
+34,What are the longer-term complications of those who recover from COVID-19?,0.65,10,0.0
+34,What are the longer-term complications of those who recover from COVID-19?,0.7,10,0.0
+34,What are the longer-term complications of those who recover from COVID-19?,0.8,10,0.0
+34,What are the longer-term complications of those who recover from COVID-19?,1.0,10,0.0
+35,What new public datasets are available related to COVID-19?,0.4,10,0.024454640699786683
+35,What new public datasets are available related to COVID-19?,0.5,10,0.024454640699786683
+35,What new public datasets are available related to COVID-19?,0.55,10,0.024454640699786683
+35,What new public datasets are available related to COVID-19?,0.6,10,0.024454640699786683
+35,What new public datasets are available related to COVID-19?,0.65,10,0.024454640699786683
+35,What new public datasets are available related to COVID-19?,0.7,10,0.023143740645592423
+35,What new public datasets are available related to COVID-19?,0.8,10,0.023143740645592423
+35,What new public datasets are available related to COVID-19?,1.0,10,0.0
+36,What is the protein structure of the SARS-CoV-2 spike?,0.4,10,0.6906478832608418
+36,What is the protein structure of the SARS-CoV-2 spike?,0.5,10,0.6906478832608418
+36,What is the protein structure of the SARS-CoV-2 spike?,0.55,10,0.6906478832608418
+36,What is the protein structure of the SARS-CoV-2 spike?,0.6,10,0.6906478832608418
+36,What is the protein structure of the SARS-CoV-2 spike?,0.65,10,0.6906478832608418
+36,What is the protein structure of the SARS-CoV-2 spike?,0.7,10,0.6906478832608418
+36,What is the protein structure of the SARS-CoV-2 spike?,0.8,10,0.6906478832608418
+36,What is the protein structure of the SARS-CoV-2 spike?,1.0,10,0.6906478832608418
+37,What is the result of phylogenetic analysis of SARS-CoV-2 genome sequence?,0.4,10,0.24387301140866022
+37,What is the result of phylogenetic analysis of SARS-CoV-2 genome sequence?,0.5,10,0.29995010097396085
+37,What is the result of phylogenetic analysis of SARS-CoV-2 genome sequence?,0.55,10,0.31520761975345013
+37,What is the result of phylogenetic analysis of SARS-CoV-2 genome sequence?,0.6,10,0.4252535029024902
+37,What is the result of phylogenetic analysis of SARS-CoV-2 genome sequence?,0.65,10,0.4252535029024902
+37,What is the result of phylogenetic analysis of SARS-CoV-2 genome sequence?,0.7,10,0.4252535029024902
+37,What is the result of phylogenetic analysis of SARS-CoV-2 genome sequence?,0.8,10,0.4252535029024902
+37,What is the result of phylogenetic analysis of SARS-CoV-2 genome sequence?,1.0,10,0.4284377147196725
+38,What is the mechanism of inflammatory response and pathogenesis of COVID-19 cases?,0.4,10,0.3087829099709258
+38,What is the mechanism of inflammatory response and pathogenesis of COVID-19 cases?,0.5,10,0.3087829099709258
+38,What is the mechanism of inflammatory response and pathogenesis of COVID-19 cases?,0.55,10,0.3087829099709258
+38,What is the mechanism of inflammatory response and pathogenesis of COVID-19 cases?,0.6,10,0.3087829099709258
+38,What is the mechanism of inflammatory response and pathogenesis of COVID-19 cases?,0.65,10,0.3087829099709258
+38,What is the mechanism of inflammatory response and pathogenesis of COVID-19 cases?,0.7,10,0.3087829099709258
+38,What is the mechanism of inflammatory response and pathogenesis of COVID-19 cases?,0.8,10,0.3087829099709258
+38,What is the mechanism of inflammatory response and pathogenesis of COVID-19 cases?,1.0,10,0.3087829099709258
+39,What is the mechanism of cytokine storm syndrome on the COVID-19?,0.4,10,0.9537125187088151
+39,What is the mechanism of cytokine storm syndrome on the COVID-19?,0.5,10,0.9477344873475498
+39,What is the mechanism of cytokine storm syndrome on the COVID-19?,0.55,10,0.9477344873475498
+39,What is the mechanism of cytokine storm syndrome on the COVID-19?,0.6,10,0.9477344873475498
+39,What is the mechanism of cytokine storm syndrome on the COVID-19?,0.65,10,0.9477344873475498
+39,What is the mechanism of cytokine storm syndrome on the COVID-19?,0.7,10,0.9477344873475498
+39,What is the mechanism of cytokine storm syndrome on the COVID-19?,0.8,10,0.9477344873475498
+39,What is the mechanism of cytokine storm syndrome on the COVID-19?,1.0,10,0.9477344873475498
+4,what causes death from Covid-19?,0.4,10,0.18340980524840014
+4,what causes death from Covid-19?,0.5,10,0.23835912229913972
+4,what causes death from Covid-19?,0.55,10,0.2438224874294315
+4,what causes death from Covid-19?,0.6,10,0.2438224874294315
+4,what causes death from Covid-19?,0.65,10,0.2489083270225946
+4,what causes death from Covid-19?,0.7,10,0.31252911522154636
+4,what causes death from Covid-19?,0.8,10,0.3030612086389451
+4,what causes death from Covid-19?,1.0,10,0.29958288540171674
+40,What are the observed mutations in the SARS-CoV-2 genome and how often do the mutations occur?,0.4,10,0.8648396525935773
+40,What are the observed mutations in the SARS-CoV-2 genome and how often do the mutations occur?,0.5,10,0.9008240627729516
+40,What are the observed mutations in the SARS-CoV-2 genome and how often do the mutations occur?,0.55,10,0.9008240627729516
+40,What are the observed mutations in the SARS-CoV-2 genome and how often do the mutations occur?,0.6,10,0.9008240627729516
+40,What are the observed mutations in the SARS-CoV-2 genome and how often do the mutations occur?,0.65,10,0.9008240627729516
+40,What are the observed mutations in the SARS-CoV-2 genome and how often do the mutations occur?,0.7,10,0.9008240627729516
+40,What are the observed mutations in the SARS-CoV-2 genome and how often do the mutations occur?,0.8,10,0.9008240627729516
+40,What are the observed mutations in the SARS-CoV-2 genome and how often do the mutations occur?,1.0,10,0.9432379215722527
+41,What are the impacts of COVID-19 among African-Americans that differ from the rest of the U.S. population?,0.4,10,0.933745776545611
+41,What are the impacts of COVID-19 among African-Americans that differ from the rest of the U.S. population?,0.5,10,0.933745776545611
+41,What are the impacts of COVID-19 among African-Americans that differ from the rest of the U.S. population?,0.55,10,0.933745776545611
+41,What are the impacts of COVID-19 among African-Americans that differ from the rest of the U.S. population?,0.6,10,0.9363792118010482
+41,What are the impacts of COVID-19 among African-Americans that differ from the rest of the U.S. population?,0.65,10,0.9363792118010482
+41,What are the impacts of COVID-19 among African-Americans that differ from the rest of the U.S. population?,0.7,10,0.9363792118010482
+41,What are the impacts of COVID-19 among African-Americans that differ from the rest of the U.S. population?,0.8,10,0.9363792118010482
+41,What are the impacts of COVID-19 among African-Americans that differ from the rest of the U.S. population?,1.0,10,0.9363792118010482
+42,Does Vitamin D impact COVID-19 prevention and treatment?,0.4,10,0.92663607790064
+42,Does Vitamin D impact COVID-19 prevention and treatment?,0.5,10,0.92663607790064
+42,Does Vitamin D impact COVID-19 prevention and treatment?,0.55,10,0.92663607790064
+42,Does Vitamin D impact COVID-19 prevention and treatment?,0.6,10,0.92663607790064
+42,Does Vitamin D impact COVID-19 prevention and treatment?,0.65,10,0.92663607790064
+42,Does Vitamin D impact COVID-19 prevention and treatment?,0.7,10,0.92663607790064
+42,Does Vitamin D impact COVID-19 prevention and treatment?,0.8,10,0.92663607790064
+42,Does Vitamin D impact COVID-19 prevention and treatment?,1.0,10,0.92663607790064
+43,"How has the COVID-19 pandemic impacted violence in society, including violent crimes?",0.4,10,0.11004588314904008
+43,"How has the COVID-19 pandemic impacted violence in society, including violent crimes?",0.5,10,0.5670429581667766
+43,"How has the COVID-19 pandemic impacted violence in society, including violent crimes?",0.55,10,0.7859162856301584
+43,"How has the COVID-19 pandemic impacted violence in society, including violent crimes?",0.6,10,0.8006937664098819
+43,"How has the COVID-19 pandemic impacted violence in society, including violent crimes?",0.65,10,0.8006937664098819
+43,"How has the COVID-19 pandemic impacted violence in society, including violent crimes?",0.7,10,0.8643145546088337
+43,"How has the COVID-19 pandemic impacted violence in society, including violent crimes?",0.8,10,0.866947989864271
+43,"How has the COVID-19 pandemic impacted violence in society, including violent crimes?",1.0,10,0.9363792118010482
+44,How much impact do masks have on preventing the spread of the COVID-19?,0.4,10,0.8454256604216017
+44,How much impact do masks have on preventing the spread of the COVID-19?,0.5,10,0.8454256604216017
+44,How much impact do masks have on preventing the spread of the COVID-19?,0.55,10,0.8454256604216017
+44,How much impact do masks have on preventing the spread of the COVID-19?,0.6,10,0.8454256604216017
+44,How much impact do masks have on preventing the spread of the COVID-19?,0.65,10,0.84860265890399
+44,How much impact do masks have on preventing the spread of the COVID-19?,0.7,10,0.8553475075669356
+44,How much impact do masks have on preventing the spread of the COVID-19?,0.8,10,0.8097566502852462
+44,How much impact do masks have on preventing the spread of the COVID-19?,1.0,10,0.7822334175085679
+45,How has the COVID-19 pandemic impacted mental health?,0.4,10,0.5315796557430238
+45,How has the COVID-19 pandemic impacted mental health?,0.5,10,0.5315796557430238
+45,How has the COVID-19 pandemic impacted mental health?,0.55,10,0.5315796557430238
+45,How has the COVID-19 pandemic impacted mental health?,0.6,10,0.5315796557430238
+45,How has the COVID-19 pandemic impacted mental health?,0.65,10,0.5315796557430238
+45,How has the COVID-19 pandemic impacted mental health?,0.7,10,0.5315796557430238
+45,How has the COVID-19 pandemic impacted mental health?,0.8,10,0.5315796557430238
+45,How has the COVID-19 pandemic impacted mental health?,1.0,10,0.5315796557430238
+46,what evidence is there for dexamethasone as a treatment for COVID-19?,0.4,10,0.8006937664098819
+46,what evidence is there for dexamethasone as a treatment for COVID-19?,0.5,10,0.866947989864271
+46,what evidence is there for dexamethasone as a treatment for COVID-19?,0.55,10,0.933745776545611
+46,what evidence is there for dexamethasone as a treatment for COVID-19?,0.6,10,0.9363792118010482
+46,what evidence is there for dexamethasone as a treatment for COVID-19?,0.65,10,0.9363792118010482
+46,what evidence is there for dexamethasone as a treatment for COVID-19?,0.7,10,0.9363792118010482
+46,what evidence is there for dexamethasone as a treatment for COVID-19?,0.8,10,0.9363792118010482
+46,what evidence is there for dexamethasone as a treatment for COVID-19?,1.0,10,0.8643145546088337
+47,what are the health outcomes for children who contract COVID-19?,0.4,10,0.26855292289002114
+47,what are the health outcomes for children who contract COVID-19?,0.5,10,0.26855292289002114
+47,what are the health outcomes for children who contract COVID-19?,0.55,10,0.26855292289002114
+47,what are the health outcomes for children who contract COVID-19?,0.6,10,0.26855292289002114
+47,what are the health outcomes for children who contract COVID-19?,0.65,10,0.26855292289002114
+47,what are the health outcomes for children who contract COVID-19?,0.7,10,0.26855292289002114
+47,what are the health outcomes for children who contract COVID-19?,0.8,10,0.26855292289002114
+47,what are the health outcomes for children who contract COVID-19?,1.0,10,0.26855292289002114
+48,what are the benefits and risks of re-opening schools in the midst of the COVID-19 pandemic?,0.4,10,0.9363792118010482
+48,what are the benefits and risks of re-opening schools in the midst of the COVID-19 pandemic?,0.5,10,0.9363792118010482
+48,what are the benefits and risks of re-opening schools in the midst of the COVID-19 pandemic?,0.55,10,0.9363792118010482
+48,what are the benefits and risks of re-opening schools in the midst of the COVID-19 pandemic?,0.6,10,0.9575861412006988
+48,what are the benefits and risks of re-opening schools in the midst of the COVID-19 pandemic?,0.65,10,0.9477344873475498
+48,what are the benefits and risks of re-opening schools in the midst of the COVID-19 pandemic?,0.7,10,0.9477344873475498
+48,what are the benefits and risks of re-opening schools in the midst of the COVID-19 pandemic?,0.8,10,0.9432379215722527
+48,what are the benefits and risks of re-opening schools in the midst of the COVID-19 pandemic?,1.0,10,0.8532721558012799
+49,"do individuals who recover from COVID-19 show sufficient immune response, including antibody levels and T-cell mediated immunity, to prevent re-infection?",0.4,10,0.19435800765585845
+49,"do individuals who recover from COVID-19 show sufficient immune response, including antibody levels and T-cell mediated immunity, to prevent re-infection?",0.5,10,0.19435800765585845
+49,"do individuals who recover from COVID-19 show sufficient immune response, including antibody levels and T-cell mediated immunity, to prevent re-infection?",0.55,10,0.19435800765585845
+49,"do individuals who recover from COVID-19 show sufficient immune response, including antibody levels and T-cell mediated immunity, to prevent re-infection?",0.6,10,0.19435800765585845
+49,"do individuals who recover from COVID-19 show sufficient immune response, including antibody levels and T-cell mediated immunity, to prevent re-infection?",0.65,10,0.19435800765585845
+49,"do individuals who recover from COVID-19 show sufficient immune response, including antibody levels and T-cell mediated immunity, to prevent re-infection?",0.7,10,0.19435800765585845
+49,"do individuals who recover from COVID-19 show sufficient immune response, including antibody levels and T-cell mediated immunity, to prevent re-infection?",0.8,10,0.19435800765585845
+49,"do individuals who recover from COVID-19 show sufficient immune response, including antibody levels and T-cell mediated immunity, to prevent re-infection?",1.0,10,0.20904936749052638
+5,what drugs have been active against SARS-CoV or SARS-CoV-2 in animal studies?,0.4,10,0.253051744996279
+5,what drugs have been active against SARS-CoV or SARS-CoV-2 in animal studies?,0.5,10,0.253051744996279
+5,what drugs have been active against SARS-CoV or SARS-CoV-2 in animal studies?,0.55,10,0.253051744996279
+5,what drugs have been active against SARS-CoV or SARS-CoV-2 in animal studies?,0.6,10,0.253051744996279
+5,what drugs have been active against SARS-CoV or SARS-CoV-2 in animal studies?,0.65,10,0.253051744996279
+5,what drugs have been active against SARS-CoV or SARS-CoV-2 in animal studies?,0.7,10,0.253051744996279
+5,what drugs have been active against SARS-CoV or SARS-CoV-2 in animal studies?,0.8,10,0.253051744996279
+5,what drugs have been active against SARS-CoV or SARS-CoV-2 in animal studies?,1.0,10,0.3356389352596491
+50,what is known about an mRNA vaccine for the SARS-CoV-2 virus?,0.4,10,0.42257499837058643
+50,what is known about an mRNA vaccine for the SARS-CoV-2 virus?,0.5,10,0.42257499837058643
+50,what is known about an mRNA vaccine for the SARS-CoV-2 virus?,0.55,10,0.42257499837058643
+50,what is known about an mRNA vaccine for the SARS-CoV-2 virus?,0.6,10,0.42257499837058643
+50,what is known about an mRNA vaccine for the SARS-CoV-2 virus?,0.65,10,0.42257499837058643
+50,what is known about an mRNA vaccine for the SARS-CoV-2 virus?,0.7,10,0.42257499837058643
+50,what is known about an mRNA vaccine for the SARS-CoV-2 virus?,0.8,10,0.42257499837058643
+50,what is known about an mRNA vaccine for the SARS-CoV-2 virus?,1.0,10,0.42838543210841196
+6,what types of rapid testing for Covid-19 have been developed?,0.4,10,0.12398310123713109
+6,what types of rapid testing for Covid-19 have been developed?,0.5,10,0.12398310123713109
+6,what types of rapid testing for Covid-19 have been developed?,0.55,10,0.12398310123713109
+6,what types of rapid testing for Covid-19 have been developed?,0.6,10,0.12398310123713109
+6,what types of rapid testing for Covid-19 have been developed?,0.65,10,0.12398310123713109
+6,what types of rapid testing for Covid-19 have been developed?,0.7,10,0.12398310123713109
+6,what types of rapid testing for Covid-19 have been developed?,0.8,10,0.12398310123713109
+6,what types of rapid testing for Covid-19 have been developed?,1.0,10,0.12398310123713109
+7,are there serological tests that detect antibodies to coronavirus?,0.4,10,0.47215670662474735
+7,are there serological tests that detect antibodies to coronavirus?,0.5,10,0.47215670662474735
+7,are there serological tests that detect antibodies to coronavirus?,0.55,10,0.47215670662474735
+7,are there serological tests that detect antibodies to coronavirus?,0.6,10,0.47215670662474735
+7,are there serological tests that detect antibodies to coronavirus?,0.65,10,0.47215670662474735
+7,are there serological tests that detect antibodies to coronavirus?,0.7,10,0.47215670662474735
+7,are there serological tests that detect antibodies to coronavirus?,0.8,10,0.47215670662474735
+7,are there serological tests that detect antibodies to coronavirus?,1.0,10,0.47215670662474735
+8,how has lack of testing availability led to underreporting of true incidence of Covid-19?,0.4,10,0.07839826897867534
+8,how has lack of testing availability led to underreporting of true incidence of Covid-19?,0.5,10,0.07839826897867534
+8,how has lack of testing availability led to underreporting of true incidence of Covid-19?,0.55,10,0.07839826897867534
+8,how has lack of testing availability led to underreporting of true incidence of Covid-19?,0.6,10,0.07839826897867534
+8,how has lack of testing availability led to underreporting of true incidence of Covid-19?,0.65,10,0.07839826897867534
+8,how has lack of testing availability led to underreporting of true incidence of Covid-19?,0.7,10,0.07839826897867534
+8,how has lack of testing availability led to underreporting of true incidence of Covid-19?,0.8,10,0.07839826897867534
+8,how has lack of testing availability led to underreporting of true incidence of Covid-19?,1.0,10,0.07336392209936006
+9,how has COVID-19 affected Canada,0.4,10,0.06943122193677727
+9,how has COVID-19 affected Canada,0.5,10,0.06625422345438904
+9,how has COVID-19 affected Canada,0.55,10,0.06625422345438904
+9,how has COVID-19 affected Canada,0.6,10,0.0636207881989517
+9,how has COVID-19 affected Canada,0.65,10,0.0636207881989517
+9,how has COVID-19 affected Canada,0.7,10,0.0636207881989517
+9,how has COVID-19 affected Canada,0.8,10,0.0
+9,how has COVID-19 affected Canada,1.0,10,0.0

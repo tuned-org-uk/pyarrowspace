@@ -1,0 +1,51 @@
+query_id,query_text,tol_cosine,tol_hybrid,tol_taumode,uplift_hybrid_vs_cosine,uplift_taumode_vs_cosine
+1,what is the origin of COVID-19,1.0,1.0,1.0,0.0,0.0
+2,how does the coronavirus respond to changes in the weather,1.0,1.0,1.0,0.0,0.0
+3,will SARS-CoV2 infected people develop immunity? Is cross protection possible?,1.0,1.0,1.0,0.0,0.0
+4,what causes death from Covid-19?,1.0,1.0,1.0,0.0,0.0
+5,what drugs have been active against SARS-CoV or SARS-CoV-2 in animal studies?,1.0,1.0,1.0,0.0,0.0
+6,what types of rapid testing for Covid-19 have been developed?,1.0,1.0,1.0,0.0,0.0
+7,are there serological tests that detect antibodies to coronavirus?,1.0,1.0,1.0,0.0,0.0
+8,how has lack of testing availability led to underreporting of true incidence of Covid-19?,1.0,1.0,1.0,0.0,0.0
+9,how has COVID-19 affected Canada,1.0,1.0,1.0,0.0,0.0
+10,has social distancing had an impact on slowing the spread of COVID-19?,1.0,1.0,1.0,0.0,0.0
+11,what are the guidelines for triaging patients infected with coronavirus?,1.0,1.0,1.0,0.0,0.0
+12,what are best practices in hospitals and at home in maintaining quarantine?,1.0,1.0,1.0,0.0,0.0
+13,what are the transmission routes of coronavirus?,1.0,1.0,1.0,0.0,0.0
+14,what evidence is there related to COVID-19 super spreaders,1.0,1.0,1.0,0.0,0.0
+15,how long can the coronavirus live outside the body,1.0,1.0,1.0,0.0,0.0
+16,how long does coronavirus remain stable  on surfaces?,1.0,1.0,1.0,0.0,0.0
+17,are there any clinical trials available for the coronavirus,1.0,1.0,1.0,0.0,0.0
+18,what are the best masks for preventing infection by Covid-19?,1.0,0.5,1.0,-0.5,0.0
+19,what type of hand sanitizer is needed to destroy Covid-19?,1.0,1.0,1.0,0.0,0.0
+20,are patients taking Angiotensin-converting enzyme inhibitors (ACE) at increased risk for COVID-19?,1.0,1.0,1.0,0.0,0.0
+21,what are the mortality rates overall and in specific populations,1.0,1.0,1.0,0.0,0.0
+22,are cardiac complications likely in patients with COVID-19?,1.0,1.0,1.0,0.0,0.0
+23,what kinds of complications related to COVID-19 are associated with hypertension?,1.0,1.0,1.0,0.0,0.0
+24,what kinds of complications related to COVID-19 are associated with diabetes,1.0,1.0,1.0,0.0,0.0
+25,which biomarkers predict the severe clinical course of 2019-nCOV infection?,1.0,1.0,1.0,0.0,0.0
+26,what are the initial symptoms of Covid-19?,1.0,1.0,1.0,0.0,0.0
+27,what is known about those infected with Covid-19 but are asymptomatic?,1.0,1.0,1.0,0.0,0.0
+28,what evidence is there for the value of hydroxychloroquine in treating Covid-19?,1.0,1.0,1.0,0.0,0.0
+29,which SARS-CoV-2 proteins-human proteins interactions indicate potential for drug targets. Are there approved drugs that can be repurposed based on this information?,1.0,1.0,1.0,0.0,0.0
+30,is remdesivir an effective treatment for COVID-19,1.0,1.0,1.0,0.0,0.0
+31,How does the coronavirus differ from seasonal flu?,1.0,1.0,1.0,0.0,0.0
+32,"Does SARS-CoV-2 have any subtypes, and if so what are they?",1.0,1.0,1.0,0.0,0.0
+33,What vaccine candidates are being tested for Covid-19?,1.0,1.0,1.0,0.0,0.0
+34,What are the longer-term complications of those who recover from COVID-19?,1.0,1.0,1.0,0.0,0.0
+35,What new public datasets are available related to COVID-19?,1.0,1.0,1.0,0.0,0.0
+36,What is the protein structure of the SARS-CoV-2 spike?,1.0,1.0,1.0,0.0,0.0
+37,What is the result of phylogenetic analysis of SARS-CoV-2 genome sequence?,1.0,1.0,1.0,0.0,0.0
+38,What is the mechanism of inflammatory response and pathogenesis of COVID-19 cases?,1.0,1.0,1.0,0.0,0.0
+39,What is the mechanism of cytokine storm syndrome on the COVID-19?,1.0,1.0,1.0,0.0,0.0
+40,What are the observed mutations in the SARS-CoV-2 genome and how often do the mutations occur?,1.0,1.0,1.0,0.0,0.0
+41,What are the impacts of COVID-19 among African-Americans that differ from the rest of the U.S. population?,1.0,1.0,1.0,0.0,0.0
+42,Does Vitamin D impact COVID-19 prevention and treatment?,1.0,1.0,1.0,0.0,0.0
+43,"How has the COVID-19 pandemic impacted violence in society, including violent crimes?",1.0,1.0,1.0,0.0,0.0
+44,How much impact do masks have on preventing the spread of the COVID-19?,1.0,1.0,1.0,0.0,0.0
+45,How has the COVID-19 pandemic impacted mental health?,1.0,1.0,1.0,0.0,0.0
+46,what evidence is there for dexamethasone as a treatment for COVID-19?,1.0,1.0,1.0,0.0,0.0
+47,what are the health outcomes for children who contract COVID-19?,1.0,1.0,1.0,0.0,0.0
+48,what are the benefits and risks of re-opening schools in the midst of the COVID-19 pandemic?,1.0,1.0,1.0,0.0,0.0
+49,"do individuals who recover from COVID-19 show sufficient immune response, including antibody levels and T-cell mediated immunity, to prevent re-infection?",1.0,1.0,1.0,0.0,0.0
+50,what is known about an mRNA vaccine for the SARS-CoV-2 virus?,1.0,1.0,1.0,0.0,0.0
