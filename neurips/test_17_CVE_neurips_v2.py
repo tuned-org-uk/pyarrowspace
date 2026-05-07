@@ -83,7 +83,6 @@ RESULTS_K = 25
 NEIGHBOUR_K = 30
 HEAD_K = 3
 HEAD_K_SWEEP = [3, 5, 10]
-QUERY_EMB_CACHE = Path(__file__).parent.parent / "cve_queries_emb_cache.npy"
 OUTPUT_DIR = Path(__file__).parent / "output"
 
 # as computed by the script 02
@@ -1527,7 +1526,7 @@ def main(dataset_root):
     shuffle(queries)
 
     print(f"\nSearching {len(queries)} queries...")
-    qemb = build_embeddings(queries, cache_file=QUERY_EMB_CACHE)
+    qemb = build_embeddings(queries)
 
     tau_labels = [
         TAU_DISPLAY["Cosine"],
