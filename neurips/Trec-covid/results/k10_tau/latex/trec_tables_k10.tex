@@ -1,0 +1,69 @@
+\begin{table}[h]
+\centering
+\caption{Mean tail-shape metrics at $k=10$ from TREC logs.}
+\begin{tabular}{lrrrrr}
+\toprule
+Method & Head mean & Tail mean & T/H Ratio & Tail CV & Tail Decay \\
+\midrule
+Cosine (tau=1.0) & 0.802 & 0.761 & 0.94862 & 0.01362 & 0.004203 \\
+hybrid (tau=0.7) & 0.849 & 0.820 & 0.96616 & 0.00886 & 0.002964 \\
+taumode (tau=0.4) & 0.908 & 0.890 & \textbf{0.98009} & \textbf{0.00459} & \textbf{0.001647} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Per-query winners over 50 queries at $k=10$.}
+\begin{tabular}{lrrr}
+\toprule
+Metric & Cosine wins & hybrid wins & taumode wins \\
+\midrule
+T/H Ratio & 0 & 1 & \textbf{49} \\
+Tail CV & 0 & 2 & \textbf{48} \\
+Tail Decay & 0 & 2 & \textbf{48} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Recall metrics at $k=10$ (mean $\pm$ std over queries).}
+\begin{tabular}{lrrr}
+\toprule
+Recall variant & Cosine & hybrid & taumode \\
+\midrule
+Traditional Recall@10 & $\mathbf{1.000\pm0.000}$ & $0.806\pm0.186$ & $0.666\pm0.280$ \\
+Semantic Recall@10 & $\mathbf{1.000\pm0.000}$ & $0.860\pm0.253$ & $0.647\pm0.377$ \\
+Tolerant Recall@10 & $\mathbf{1.000\pm0.000}$ & $0.990\pm0.071$ & $\mathbf{1.000\pm0.000}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Qrels-based quality at $k=10$ (mean $\pm$ std over queries).}
+\begin{tabular}{lrr}
+\toprule
+Method & nDCG@k & Relevance Recall@k \\
+\midrule
+Cosine (tau=1.0) & $0.455\pm0.304$ & $0.508\pm0.313$ \\
+hybrid (tau=0.7) & $\mathbf{0.467\pm0.313}$ & $\mathbf{0.520\pm0.312}$ \\
+taumode (tau=0.4) & $0.420\pm0.309$ & $0.478\pm0.309$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Pairwise Spearman/Kendall on per-query nDCG at $k=10$.}
+\begin{tabular}{lrr}
+\toprule
+Method Pair & Spearman & Kendall \\
+\midrule
+Cosine vs Hybrid & 0.973 & 0.890 \\
+Cosine vs Taumode & 0.869 & 0.744 \\
+Hybrid vs Taumode & 0.913 & 0.830 \\
+\bottomrule
+\end{tabular}
+\end{table}
