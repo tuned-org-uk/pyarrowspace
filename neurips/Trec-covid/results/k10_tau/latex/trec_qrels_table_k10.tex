@@ -1,0 +1,13 @@
+\begin{table}[h]
+\centering
+\caption{Qrels-based quality at $k=10$ (mean $\pm$ std over queries).}
+\begin{tabular}{lrr}
+\toprule
+Method & nDCG@k & Relevance Recall@k \\
+\midrule
+Cosine (tau=1.0) & $0.455\pm0.304$ & $0.508\pm0.313$ \\
+hybrid (tau=0.7) & $\mathbf{0.467\pm0.313}$ & $\mathbf{0.520\pm0.312}$ \\
+taumode (tau=0.4) & $0.420\pm0.309$ & $0.478\pm0.309$ \\
+\bottomrule
+\end{tabular}
+\end{table}
