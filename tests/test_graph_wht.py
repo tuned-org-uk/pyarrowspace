@@ -232,7 +232,7 @@ class TestGraphWHTFromArrowSpace:
         filt.fit()
 
         query = np.array(ITEMS[2] * 1.05, dtype=np.float64)
-        query_smooth = filt.apply(query, h=heat_kernel(t=0.1))
+        query_smooth = filt.apply(query, h=heat_kernel(t=0.01))
 
         hits = aspace.search(query_smooth, gl, 1.0)
         assert len(hits) == 3

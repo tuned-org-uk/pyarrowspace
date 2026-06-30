@@ -54,7 +54,7 @@ from sklearn.metrics import ndcg_score
 from tqdm import tqdm
 
 # Graph-WHT filter — Python-layer, no Rust changes
-from graph_wht_spectral_filter import GraphWHTFilter, heat_kernel, ideal_lowpass
+from graph_wht_spectral_filter import GraphWHTFilter, heat_kernel
 
 logging.basicConfig(level=logging.INFO)
 set_debug(True)
@@ -518,7 +518,7 @@ def plot_wht_spectral_energy(
     if n == 1:
         axes = axes.reshape(1, -1)
 
-    h = heat_kernel(WH T_T)
+    h = heat_kernel(WHT_T)
     for qi in range(n):
         q_raw = sample_embeddings[qi]
         lam, e_raw = wht_filter.spectral_energy(q_raw)
@@ -536,7 +536,7 @@ def plot_wht_spectral_energy(
         # (b) filtered
         ax = axes[qi, 1]
         ax.semilogy(lam, e_filt + 1e-30, lw=1.0, color="#55a868")
-        ax.set_title(f"Q{qi+1} WHT energy after heat-kernel (t={WH T_T})", fontsize=9)
+        ax.set_title(f"Q{qi+1} WHT energy after heat-kernel (t={WHT_T})", fontsize=9)
         ax.set_xlabel("λ (WHT approx)"); ax.set_ylabel("energy"); ax.grid(alpha=0.3)
 
         # (c) delta
