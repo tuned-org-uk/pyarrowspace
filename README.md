@@ -2,36 +2,77 @@
 
 Python bindings for [`arrowspace-rs`](https://github.com/Mec-iS/arrowspace-rs).
 
-`arrowspace` is a database for vectors supported by a graph representation and a key-value store. The main use-cases targeted are: AI search capabilities as advanced vector similarity, graph characterisation analysis and search, indexing of high-dimensional vectors. Design principles described in [this article](https://www.tuned.org.uk/posts/010_game_changer_unifying_vectors_and_features_graphs).
+`arrowspace` is a graph-based analytics library for vector spaces, supported by a graph representation and a key-value store. The main use-cases targeted are: AI search capabilities as advanced vector similarity, graph characterisation analysis and search, indexing of high-dimensional vectors. Design principles described in [this article](https://www.tuned.org.uk/posts/010_game_changer_unifying_vectors_and_features_graphs).
 
 For labs and tests please see [tests/](https://github.com/tuned-org-uk/pyarrowspace/tree/main/tests)
 
 ## Installation
-From PyPi:
+
+### Core library
+
+The core library ships as a compiled Rust extension. It only requires `numpy`, `pyarrow`, `pandas`, and `scikit-learn`:
+
 ```
 pip install arrowspace
 ```
-or any other way of installing a Python library.
 
-If you have cargo installed, to compile from source and use locally: 
+### Optional extras
+
+Additional capabilities are available as optional extras:
+
+| Extra | Packages included | Use case |
+|---|---|---|
+| `embeddings` | `datasets`, `sentence-transformers`, `transformers[torch]<5.0`, `tsdae` | Generating embeddings from text via HuggingFace models; required for `test_1_quora_questions.py` and all tests above |
+| `benchmarks` | `beir`, `nltk` | Running BEIR/MS-MARCO benchmark suites and NLP preprocessing |
+| `viz` | `matplotlib`, `seaborn`, `tqdm` | Plotting results and progress bars in test scripts |
+| `full` | all of the above | Full development and research environment |
+
+Install with one or more extras:
+
+```bash
+# Required to run test_1_quora_questions.py and above
+pip install arrowspace[embeddings]
+
+# Benchmarking + visualisation
+pip install arrowspace[benchmarks,viz]
+
+# Everything (for running the full test suite)
+pip install arrowspace[full]
 ```
+
+> **Note:** `tests/test_0_*.py` only require the core install. All tests numbered `test_1` and above require at minimum `arrowspace[embeddings]`.
+
+### Build from source
+
+If you have Cargo installed, you can compile and install locally using [maturin](https://github.com/PyO3/maturin):
+
+```bash
 pip install maturin[patchelf]
-# quick building
+# quick development build
 maturin develop
-# release building, needed for large datasets
+# optimised release build (recommended for large datasets)
 maturin develop --release
 ```
 
 ## Tests
-Simple test:
+
+`test_0_*.py` scripts only require the core install:
 ```
-python tests/test_0.py
+python tests/test_0_0.py
 ```
-Test with public QA dataset:
+
+`test_1` and above require the `embeddings` extra (`pip install arrowspace[embeddings]`):
 ```
 python tests/test_1_quora_questions.py
 ```
-There are other tests but they require downloadin a dataset separately or fine-tuning the embeddings on a given dataset. Give it a try and let me know!
+
+Higher-numbered tests (`test_3` and above) additionally require `benchmarks` and `viz`:
+```
+pip install arrowspace[full]
+python tests/test_3_beir.py
+```
+
+Some tests require downloading a dataset separately or fine-tuning embeddings on a given dataset.
 
 ## Simplest Example
 
