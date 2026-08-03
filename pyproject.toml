@@ -38,20 +38,34 @@ classifiers = [
 ]
 dynamic = ["version"]
 dependencies = [
-    "beir>=2.2.0",
-    "datasets>=4.5.0",
-    "matplotlib>=3.10.8",
-    "maturin>=1.12.0",
-    "nltk>=3.10.0",
     "numpy>=2.4.2",
-    "pandas>=3.0.0",
     "pyarrow>=23.0.0",
+    "pandas>=3.0.0",
     "scikit-learn>=1.8.0",
-    "seaborn>=0.13.2",
+]
+
+[project.optional-dependencies]
+# Embedding model support (sentence-transformers, TSDAE, HuggingFace)
+embeddings = [
     "sentence-transformers>=5.2.0",
-    "tqdm>=4.67.3",
     "transformers[torch]<5.0",
     "tsdae>=1.1.0",
+]
+# Benchmark and dataset utilities (BEIR, HuggingFace datasets, NLTK)
+benchmarks = [
+    "beir>=2.2.0",
+    "datasets>=4.5.0",
+    "nltk>=3.10.0",
+]
+# Visualisation and progress utilities
+viz = [
+    "matplotlib>=3.10.8",
+    "seaborn>=0.13.2",
+    "tqdm>=4.67.3",
+]
+# Convenience: install everything (e.g. for running the full test suite)
+full = [
+    "arrowspace[embeddings,benchmarks,viz]",
 ]
 
 [project.urls]
