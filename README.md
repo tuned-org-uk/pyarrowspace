@@ -2,7 +2,7 @@
 
 Python bindings for [`arrowspace-rs`](https://github.com/Mec-iS/arrowspace-rs).
 
-`arrowspace` is a database for vectors supported by a graph representation and a key-value store. The main use-cases targeted are: AI search capabilities as advanced vector similarity, graph characterisation analysis and search, indexing of high-dimensional vectors. Design principles described in [this article](https://www.tuned.org.uk/posts/010_game_changer_unifying_vectors_and_features_graphs).
+`arrowspace` is a graph-based analytics library for vector spaces, supported by a graph representation and a key-value store. The main use-cases targeted are: AI search capabilities as advanced vector similarity, graph characterisation analysis and search, indexing of high-dimensional vectors. Design principles described in [this article](https://www.tuned.org.uk/posts/010_game_changer_unifying_vectors_and_features_graphs).
 
 For labs and tests please see [tests/](https://github.com/tuned-org-uk/pyarrowspace/tree/main/tests)
 
