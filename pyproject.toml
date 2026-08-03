@@ -46,15 +46,16 @@ dependencies = [
 
 [project.optional-dependencies]
 # Embedding model support (sentence-transformers, TSDAE, HuggingFace)
+# Required for tests >= test_1_quora_questions.py
 embeddings = [
+    "datasets>=4.5.0",
     "sentence-transformers>=5.2.0",
     "transformers[torch]<5.0",
     "tsdae>=1.1.0",
 ]
-# Benchmark and dataset utilities (BEIR, HuggingFace datasets, NLTK)
+# Benchmark and dataset utilities (BEIR, NLTK)
 benchmarks = [
     "beir>=2.2.0",
-    "datasets>=4.5.0",
     "nltk>=3.10.0",
 ]
 # Visualisation and progress utilities
