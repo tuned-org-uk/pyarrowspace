@@ -41,7 +41,7 @@ name = "arrowspace"
 crate-type = ["cdylib"]
 
 [dependencies]
-arrowspace = { version = "0.26.3", features = ["storage"] } #, path = "../arrowspace-rs"}
+arrowspace = { version = "0.26.2", features = ["storage"] } #, path = "../arrowspace-rs"}
 pyo3 = { version = "0.27.1", features = ["extension-module"] }
 pyo3-log = "0.13"
 numpy = "0.27.0"
