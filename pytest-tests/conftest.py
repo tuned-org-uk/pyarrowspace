@@ -40,3 +40,19 @@ def build_graph(small_corpus):
         assert gl is not None
         return aspace, gl
     return _build
+
+
+@pytest.fixture(scope="session")
+def normal_index():
+    """A normal eigen-mode index (no subcentroids) for batch/search tests that
+    must NOT hit the energy/subcentroid degenerate path. Shared across modules
+    so tests for #123 can assert the eigen batch path still works."""
+    items = np.random.default_rng(0).standard_normal((120, 48))
+    items /= np.linalg.norm(items, axis=1, keepdims=True)
+    a, gl = (
+        ArrowSpaceBuilder()
+        .with_seed(42)
+        .with_dims_reduction(False, None)
+        .with_sampling("simple", 1.0)
+    ).build({"eps": 1.29, "k": 29, "topk": 14, "p": 2.0, "sigma": None}, items)
+    return a, gl, items

@@ -1,7 +1,7 @@
 #![allow(non_local_definitions)]
 use ::arrowspace::maps::energymaps::{EnergyMaps, EnergyMapsBuilder};
 use ::arrowspace::sampling::SamplerType;
-use pyo3::exceptions::{PyOSError, PyTypeError, PyValueError};
+use pyo3::exceptions::{PyNotImplementedError, PyOSError, PyTypeError, PyValueError};
 use pyo3::prelude::*;
 use pyo3::types::{PyDict, PyTuple};
 use smartcore::linalg::basic::arrays::Array;
@@ -321,7 +321,15 @@ impl PyArrowSpace {
         let query = ArrowItem::new(v, lambda_q);
         let k = k.unwrap_or(graph_laplacian.graph_params.topk);
 
-        Ok(self.inner.search_lambda_aware(&query, k, tau))
+        // Fallible variant: the subcentroid path of `try_prepare_query_item`
+        // can return `Ok(0.0)` (a stored subcentroid lambda of 0, no zero-guard
+        // upstream), so the degeneracy surfaces here, not at prepare time. Use
+        // `try_search_lambda_aware` and map to a catchable ValueError instead of
+        // letting the infallible wrapper `.expect()` into a PanicException (#123).
+        Ok(self
+            .inner
+            .try_search_lambda_aware(&query, k, tau)
+            .map_err(map_arrow_error)?)
     }
 
     /// Batch taumode search. Degenerate rows (lambda ~0) yield `None` in that
@@ -332,6 +340,18 @@ impl PyArrowSpace {
     /// `k` overrides the retrieved-neighbour count (defaults to `topk`). See
     /// `search`. Non-finite or dimension-mismatched batches still raise (those
     /// are caller bugs affecting every row, not per-row degeneracy).
+    ///
+    /// # Energy / subcentroid indexes
+    ///
+    /// `search_batch` is **not implemented** for indexes built with
+    /// `build_energy`: in that mode `try_prepare_query_item` maps the query to
+    /// the nearest subcentroid and returns its *stored* lambda, which can be 0
+    /// with no upstream guard (arrowspace-rs core.rs subcentroid branch). That
+    /// makes per-row degeneracy undetectable at prepare time and would panic
+    /// inside `search_lambda_aware`. Rather than ship a panic-prone batch path,
+    /// we refuse energy-mode batches with `NotImplementedError` — use
+    /// `search` (single) per row, or `search_hybrid` / `search_linear_sorted`,
+    /// which tolerate the degenerate case. See #123.
     #[pyo3(signature = (items, gl, tau, k=None))]
     fn search_batch(
         &self,
@@ -340,6 +360,16 @@ impl PyArrowSpace {
         tau: f64,
         k: Option<usize>,
     ) -> PyResult<Vec<Option<Vec<(usize, f64)>>>> {
+        if self.inner.sub_centroids.is_some() {
+            return Err(PyNotImplementedError::new_err(
+                "search_batch is not implemented for energy/subcentroid indexes \
+                 (built with build_energy): the subcentroid path can return a \
+                 degenerate lambda with no upstream guard, which would panic. \
+                 Use search (single), search_hybrid, or search_linear_sorted. \
+                 See #123.",
+            ));
+        }
+
         let arr = items.as_array();
         let (nqueries, nfeatures) = (arr.shape()[0], arr.shape()[1]);
 
@@ -362,7 +392,18 @@ impl PyArrowSpace {
             match self.inner.try_prepare_query_item(v, graph_laplacian) {
                 Ok(lambda_q) => {
                     let query = ArrowItem::new(v, lambda_q);
-                    results.push(Some(self.inner.search_lambda_aware(&query, k, tau)));
+                    // `try_prepare_query_item` can return `Ok(0.0)` via the
+                    // subcentroid path (no zero-guard upstream), so the
+                    // degeneracy surfaces inside `try_search_lambda_aware`.
+                    // Treat it as a per-row None instead of panicking the
+                    // whole batch (#123).
+                    match self.inner.try_search_lambda_aware(&query, k, tau) {
+                        Ok(res) => results.push(Some(res)),
+                        Err(ArrowSpaceError::DegenerateLambda { .. }) => {
+                            results.push(None);
+                        }
+                        Err(e) => return Err(map_arrow_error(e)),
+                    }
                 }
                 Err(ArrowSpaceError::DegenerateLambda { .. }) => {
                     // Skip this row, keep the rest of the batch.
