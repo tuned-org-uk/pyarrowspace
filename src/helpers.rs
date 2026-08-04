@@ -1,5 +1,6 @@
 use pyo3::prelude::*;
 use pyo3::{Bound, types::PyDict};
+use pyo3::exceptions::PyTypeError;
 use numpy::PyReadonlyArray2;
 
 use std::sync::atomic::{AtomicBool, Ordering};
@@ -18,29 +19,75 @@ pub fn dbg_println(s: impl AsRef<str>) {
     }
 }
 
+/// Extract an integer count (`usize`) from a Python value, accepting either a
+/// Python `int` or a float whose value is integral (e.g. `29.0` → `29`).
+///
+/// This exists because Python tuners (Optuna `trial.params`, JSON round-trips)
+/// frequently deliver integer parameters as floats. Previously
+/// `extract::<usize>()` rejected floats and the caller silently substituted a
+/// default — see issue #23.
+///
+/// Behaviour:
+///   * `int`           → returned as-is
+///   * `29.0` (float)  → `29`, no warning (integral float is unambiguous)
+///   * `29.5` (float)  → `PyTypeError` (non-integral counts are a caller bug)
+///   * other types      → `PyTypeError`
+fn extract_count(v: &Bound<'_, PyAny>, field: &str) -> PyResult<usize> {
+    if let Ok(u) = v.extract::<usize>() {
+        return Ok(u);
+    }
+    if let Ok(f) = v.extract::<f64>() {
+        if f.is_finite() && f.fract() == 0.0 && f >= 0.0 {
+            return Ok(f as usize);
+        }
+        return Err(PyTypeError::new_err(format!(
+            "graph_params '{}': expected an integer count, got non-integral float {}",
+            field, f
+        )));
+    }
+    Err(PyTypeError::new_err(format!(
+        "graph_params '{}': expected an integer or integral float, got {}",
+        field,
+        v.get_type().name()?
+    )))
+}
+
+/// Parse a graph-params dict into the `(eps, k, topk, p, sigma)` tuple the
+/// builder consumes, or `None` when no dict was supplied.
+///
+/// Defaults are applied **only for missing keys**. A key that is present but
+/// unparseable raises `TypeError` — it is never silently dropped. Integral
+/// floats (e.g. `29.0`) are accepted and coerced for `k`/`topk`; non-integral
+/// floats (`29.5`) raise. `eps` and `p` are extracted as `f64` and accept
+/// floats natively.
 pub fn parse_graph_params(dict_opt: Option<&Bound<'_, PyDict>>) -> PyResult<Option<(f64, usize, usize, f64, Option<f64>)>> {
     let Some(d) = dict_opt else {
         return Ok(None);
     };
 
-    let eps = d
-        .get_item("eps")?
-        .and_then(|v| v.extract::<f64>().ok())
-        .unwrap_or(0.2);
-    let k = d
-        .get_item("k")?
-        .and_then(|v| v.extract::<usize>().ok())
-        .unwrap_or(8);
-    let topk = d
-        .get_item("topk")?
-        .and_then(|v| v.extract::<usize>().ok())
-        .unwrap_or(3);
-    let p = d
-        .get_item("p")?
-        .and_then(|v| v.extract::<f64>().ok())
-        .unwrap_or(2.0);
+    let eps = match d.get_item("eps")? {
+        Some(v) => v.extract::<f64>()
+            .map_err(|e| PyTypeError::new_err(format!("graph_params 'eps': {}", e)))?,
+        None => 0.2,
+    };
+    let k = match d.get_item("k")? {
+        Some(v) => extract_count(&v, "k")?,
+        None => 8,
+    };
+    let topk = match d.get_item("topk")? {
+        Some(v) => extract_count(&v, "topk")?,
+        None => 3,
+    };
+    let p = match d.get_item("p")? {
+        Some(v) => v.extract::<f64>()
+            .map_err(|e| PyTypeError::new_err(format!("graph_params 'p': {}", e)))?,
+        None => 2.0,
+    };
     let sigma = match d.get_item("sigma")? {
-        Some(v) => v.extract::<f64>().ok(),
+        Some(v) => match v.extract::<f64>() {
+            Ok(f) => Some(f),
+            Err(_) => None,
+        },
         None => None,
     };
 
