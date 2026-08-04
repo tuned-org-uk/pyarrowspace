@@ -145,11 +145,31 @@ jobs:
           name: wheels-sdist
           path: dist
 
+  test:
+    name: pytest
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+      - name: Build and install
+        uses: PyO3/maturin-action@v1
+        with:
+          args: --release
+          manylinux: auto
+      - name: Install test dependencies
+        run: |
+          pip install --upgrade pip
+          pip install . numpy pytest
+      - name: Run pytest suite
+        run: pytest pytest-tests/ -v
+
   release:
     name: Release
     runs-on: ubuntu-latest
     if: ${{ startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch' }}
-    needs: [linux, musllinux, windows, macos, sdist]
+    needs: [linux, musllinux, windows, macos, sdist, test]
     permissions:
       # Use to sign the release artifacts
       id-token: write

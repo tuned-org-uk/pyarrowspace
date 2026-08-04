@@ -23,16 +23,21 @@ pub fn dbg_println(s: impl AsRef<str>) {
 /// Python `int` or a float whose value is integral (e.g. `29.0` → `29`).
 ///
 /// This exists because Python tuners (Optuna `trial.params`, JSON round-trips)
-/// frequently deliver integer parameters as floats. Previously
-/// `extract::<usize>()` rejected floats and the caller silently substituted a
-/// default — see issue #23.
+/// frequently deliver integer parameters as floats. The previous parsers either
+/// rejected floats and silently substituted a default (`parse_graph_params`,
+/// `parse_motives_config`) — see issue #23 — or raised with an opaque
+/// downstream `TypeError` (`parse_subgraph_config`,
+/// `parse_centroid_graph_params`). `extract_count` unifies the contract.
+///
+/// `scope` prefixes the error message so the caller knows which config the
+/// offending key belongs to (e.g. `"graph_params"`, `"motives config"`).
 ///
 /// Behaviour:
 ///   * `int`           → returned as-is
 ///   * `29.0` (float)  → `29`, no warning (integral float is unambiguous)
 ///   * `29.5` (float)  → `PyTypeError` (non-integral counts are a caller bug)
 ///   * other types      → `PyTypeError`
-fn extract_count(v: &Bound<'_, PyAny>, field: &str) -> PyResult<usize> {
+pub(crate) fn extract_count(v: &Bound<'_, PyAny>, scope: &str, field: &str) -> PyResult<usize> {
     if let Ok(u) = v.extract::<usize>() {
         return Ok(u);
     }
@@ -41,12 +46,13 @@ fn extract_count(v: &Bound<'_, PyAny>, field: &str) -> PyResult<usize> {
             return Ok(f as usize);
         }
         return Err(PyTypeError::new_err(format!(
-            "graph_params '{}': expected an integer count, got non-integral float {}",
-            field, f
+            "{} '{}': expected an integer count, got non-integral float {}",
+            scope, field, f
         )));
     }
     Err(PyTypeError::new_err(format!(
-        "graph_params '{}': expected an integer or integral float, got {}",
+        "{} '{}': expected an integer or integral float, got {}",
+        scope,
         field,
         v.get_type().name()?
     )))
@@ -71,11 +77,11 @@ pub fn parse_graph_params(dict_opt: Option<&Bound<'_, PyDict>>) -> PyResult<Opti
         None => 0.2,
     };
     let k = match d.get_item("k")? {
-        Some(v) => extract_count(&v, "k")?,
+        Some(v) => extract_count(&v, "graph_params", "k")?,
         None => 8,
     };
     let topk = match d.get_item("topk")? {
-        Some(v) => extract_count(&v, "topk")?,
+        Some(v) => extract_count(&v, "graph_params", "topk")?,
         None => 3,
     };
     let p = match d.get_item("p")? {
@@ -107,17 +113,44 @@ pub fn pyarray2_to_vecvec(arr: PyReadonlyArray2<f64>) -> PyResult<Vec<Vec<f64>>>
     Ok(rows)
 }
 
+/// Parse a motives config dict into a `MotiveConfig`.
+///
+/// Defaults are applied **only for missing keys**. A present-but-unparseable
+/// integer field raises `TypeError` — it is never silently dropped. Integral
+/// floats are coerced for the `usize` fields (`top_l`, `min_triangles`,
+/// `max_motif_size`, `max_sets`); non-integral floats raise. The `f64` fields
+/// (`min_clust`, `jaccard_dedup`) accept floats natively.
 pub fn parse_motives_config(cfg: Option<&Bound<'_, PyDict>>)
     -> PyResult<::arrowspace::analysis::motives::MotiveConfig>
 {
     use ::arrowspace::analysis::motives::MotiveConfig as RCfg;
     if let Some(d) = cfg {
-        let top_l          = d.get_item("top_l")?.and_then(|v| v.extract::<usize>().ok()).unwrap_or(16);
-        let min_triangles  = d.get_item("min_triangles")?.and_then(|v| v.extract::<usize>().ok()).unwrap_or(2);
-        let min_clust      = d.get_item("min_clust")?.and_then(|v| v.extract::<f64>().ok()).unwrap_or(0.4);
-        let max_motif_size = d.get_item("max_motif_size")?.and_then(|v| v.extract::<usize>().ok()).unwrap_or(32);
-        let max_sets       = d.get_item("max_sets")?.and_then(|v| v.extract::<usize>().ok()).unwrap_or(256);
-        let jaccard_dedup  = d.get_item("jaccard_dedup")?.and_then(|v| v.extract::<f64>().ok()).unwrap_or(0.8);
+        let top_l          = match d.get_item("top_l")? {
+            Some(v) => extract_count(&v, "motives config", "top_l")?,
+            None => 16,
+        };
+        let min_triangles  = match d.get_item("min_triangles")? {
+            Some(v) => extract_count(&v, "motives config", "min_triangles")?,
+            None => 2,
+        };
+        let min_clust      = match d.get_item("min_clust")? {
+            Some(v) => v.extract::<f64>()
+                .map_err(|e| PyTypeError::new_err(format!("motives config 'min_clust': {}", e)))?,
+            None => 0.4,
+        };
+        let max_motif_size = match d.get_item("max_motif_size")? {
+            Some(v) => extract_count(&v, "motives config", "max_motif_size")?,
+            None => 32,
+        };
+        let max_sets       = match d.get_item("max_sets")? {
+            Some(v) => extract_count(&v, "motives config", "max_sets")?,
+            None => 256,
+        };
+        let jaccard_dedup  = match d.get_item("jaccard_dedup")? {
+            Some(v) => v.extract::<f64>()
+                .map_err(|e| PyTypeError::new_err(format!("motives config 'jaccard_dedup': {}", e)))?,
+            None => 0.8,
+        };
         Ok(RCfg {
             top_l,
             min_triangles,
