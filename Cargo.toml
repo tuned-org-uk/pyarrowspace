@@ -48,3 +48,8 @@ numpy = "0.27.0"
 rayon = "1.8"
 smartcore = "0.5"
 sprs = "0.11.4"
+
+[profile.release]
+strip = "symbols"
+lto = "thin"
+codegen-units = 1
