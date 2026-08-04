@@ -65,7 +65,7 @@ builder = (
 )
 
 # Build using ONLY the data matrix
-aspace, gl = builder.build(dict(eps=0.8, k=10, topk=8, p=2.0, sigma_override=None), items)
+aspace, gl = builder.build(dict(eps=0.8, k=10, topk=8, p=2.0, sigma=None), items)
 
 print(f"\nbuild complete: nitems={aspace.nitems}, nfeatures={aspace.nfeatures}, lambdas={len(aspace.lambdas())}")
 print(f"ArrowSpace built: nitems={aspace.nitems}, centroids={gl.nnodes}")

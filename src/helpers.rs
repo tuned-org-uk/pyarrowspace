@@ -66,10 +66,33 @@ pub(crate) fn extract_count(v: &Bound<'_, PyAny>, scope: &str, field: &str) -> P
 /// floats (e.g. `29.0`) are accepted and coerced for `k`/`topk`; non-integral
 /// floats (`29.5`) raise. `eps` and `p` are extracted as `f64` and accept
 /// floats natively.
+///
+/// **Unknown keys raise `TypeError`** listing the offenders — a typo like
+/// `top_k` instead of `topk` no longer silently falls back to the default
+/// (#25 item 2). The accepted keys are: `eps`, `k`, `topk`, `p`, `sigma`.
 pub fn parse_graph_params(dict_opt: Option<&Bound<'_, PyDict>>) -> PyResult<Option<(f64, usize, usize, f64, Option<f64>)>> {
     let Some(d) = dict_opt else {
         return Ok(None);
     };
+
+    // Reject unknown / misspelled keys up front — same failure family as the
+    // silent float-drop fixed in #23. A typo'd `top_k` previously fell back to
+    // the default `topk=3`, silently producing a different index.
+    const KNOWN: &[&str] = &["eps", "k", "topk", "p", "sigma"];
+    let mut unknown: Vec<String> = Vec::new();
+    for key in d.keys() {
+        let key_str: String = key.extract().unwrap_or_default();
+        if !KNOWN.contains(&key_str.as_str()) {
+            unknown.push(key_str);
+        }
+    }
+    if !unknown.is_empty() {
+        return Err(PyTypeError::new_err(format!(
+            "graph_params: unknown key(s) {} — accepted keys are {:?}",
+            unknown.iter().map(|s| format!("'{}'", s)).collect::<Vec<_>>().join(", "),
+            KNOWN
+        )));
+    }
 
     let eps = match d.get_item("eps")? {
         Some(v) => v.extract::<f64>()
