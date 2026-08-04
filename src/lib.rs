@@ -1,7 +1,7 @@
 #![allow(non_local_definitions)]
 use ::arrowspace::maps::energymaps::{EnergyMaps, EnergyMapsBuilder};
 use ::arrowspace::sampling::SamplerType;
-use pyo3::exceptions::PyValueError;
+use pyo3::exceptions::{PyOSError, PyTypeError, PyValueError};
 use pyo3::prelude::*;
 use pyo3::types::{PyDict, PyTuple};
 use smartcore::linalg::basic::arrays::Array;
@@ -9,6 +9,7 @@ use smartcore::linalg::basic::arrays::Array;
 use numpy::{PyArray1, PyArray2, PyArrayMethods, PyReadonlyArray1, PyReadonlyArray2};
 use ::arrowspace::builder::ArrowSpaceBuilder as RustBuilder;
 use ::arrowspace::core::{ArrowItem, ArrowSpace};
+use ::arrowspace::error::ArrowSpaceError;
 use ::arrowspace::graph::GraphLaplacian;
 use ::arrowspace::analysis::motives::Motives;
 use ::arrowspace::analysis::subgraphs::*;
@@ -29,6 +30,24 @@ mod tests;
 mod tests_python;
 
 use std::path::PathBuf;
+
+/// Map a fallible `ArrowSpaceError` from `try_prepare_query_item` to a typed,
+/// catchable Python exception — never a `PanicException` (#25 item 4).
+///
+/// `DegenerateLambda` → `ValueError` (the guard `lib.rs` already wanted to
+/// raise), `NonFiniteQuery` → `ValueError`, `DimensionMismatch` → `ValueError`.
+fn map_arrow_error(e: ArrowSpaceError) -> PyErr {
+    match e {
+        ArrowSpaceError::DegenerateLambda { .. } => {
+            PyValueError::new_err(format!("{}", e))
+        }
+        ArrowSpaceError::NonFiniteQuery => PyValueError::new_err(format!("{}", e)),
+        ArrowSpaceError::DimensionMismatch { .. } => {
+            PyValueError::new_err(format!("{}", e))
+        }
+        ArrowSpaceError::EmptyItems => PyValueError::new_err(format!("{}", e)),
+    }
+}
 
 fn get_python_cwd(py: Python) -> PyResult<PathBuf> {
     // Import the 'os' module
@@ -62,6 +81,8 @@ pub fn init() {
 #[pyclass(name = "GraphLaplacian")]
 pub struct PyGraphLaplacian {
     inner: GraphLaplacian,
+    storage_path: Option<String>,
+    dataset_name: Option<String>,
 }
 
 #[pymethods]
@@ -76,6 +97,26 @@ impl PyGraphLaplacian {
     #[getter]
     fn nnodes(&self) -> usize {
         self.inner.nnodes
+    }
+
+    /// Resolved persistence directory set by `build_and_store` / `with_persistence`
+    /// builds (None for in-memory builds). See #25 item 5 / #17.
+    #[getter]
+    fn storage_path<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        match &self.storage_path {
+            Some(s) => Ok(s.into_pyobject(py)?.into_any()),
+            None => Ok(py.None().into_bound(py).into_any()),
+        }
+    }
+
+    /// Resolved dataset name set by `build_and_store` / `with_persistence` builds
+    /// (None for in-memory builds). Required by `load_arrowspace`.
+    #[getter]
+    fn dataset_name<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        match &self.dataset_name {
+            Some(s) => Ok(s.into_pyobject(py)?.into_any()),
+            None => Ok(py.None().into_bound(py).into_any()),
+        }
     }
 
     fn shape(&self) -> (usize, usize) {
@@ -151,6 +192,10 @@ impl PyGraphLaplacian {
 #[pyclass(name = "ArrowSpace")]
 pub struct PyArrowSpace {
     inner: ArrowSpace,
+    /// Resolved persistence addressing set by `build_and_store` / `with_persistence`
+    /// builds, so the caller can reload its own artifacts (#25 item 5 / #17).
+    storage_path: Option<String>,
+    dataset_name: Option<String>,
 }
 
 #[pymethods]
@@ -170,6 +215,27 @@ impl PyArrowSpace {
     #[getter]
     fn nfeatures(&self) -> usize {
         self.inner.nfeatures
+    }
+
+    /// Resolved persistence directory set by `build_and_store` / `with_persistence`
+    /// builds (None for in-memory builds). Lets the caller reload its own
+    /// artifacts without guessing — see #25 item 5 / #17.
+    #[getter]
+    fn storage_path<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        match &self.storage_path {
+            Some(s) => Ok(s.into_pyobject(py)?.into_any()),
+            None => Ok(py.None().into_bound(py).into_any()),
+        }
+    }
+
+    /// Resolved dataset name set by `build_and_store` / `with_persistence` builds
+    /// (None for in-memory builds). Required by `load_arrowspace`.
+    #[getter]
+    fn dataset_name<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
+        match &self.dataset_name {
+            Some(s) => Ok(s.into_pyobject(py)?.into_any()),
+            None => Ok(py.None().into_bound(py).into_any()),
+        }
     }
 
     #[getter]
@@ -223,49 +289,60 @@ impl PyArrowSpace {
         Ok(arr.reshape(shape)?)
     }
 
-    /// taumode search using eigenmaps (use build)
+    /// taumode search using eigenmaps (use build).
+    ///
+    /// `k` overrides the number of retrieved neighbours (defaults to the index's
+    /// `topk`). Passing `k=None` keeps the build-time `topk`. Separating the
+    /// retrieval `k` from the construction `topk` avoids rebuilding the whole
+    /// index for k-sweep experiments — see #25 item 3.
+    ///
+    /// Raises `ValueError` (not `PanicException`) for degenerate queries
+    /// (lambda ~0), non-finite queries, or dimension mismatch — see #25 item 4.
+    #[pyo3(signature = (item, gl, tau, k=None))]
     fn search(
         &self,
         item: PyReadonlyArray1<f64>,
         gl: &PyGraphLaplacian,
         tau: f64,
+        k: Option<usize>,
     ) -> PyResult<Vec<(usize, f64)>> {
         let v = item.as_slice()?;
-        
-        if v.len() != self.inner.nfeatures {
-            return Err(PyValueError::new_err(format!(
-                "query length {} must match nfeatures {}",
-                v.len(),
-                self.inner.nfeatures
-            )));
-        }
 
         let graph_laplacian = &gl.inner;
-        let lambda_q = self.inner.prepare_query_item(v, graph_laplacian);
-
-        if lambda_q == 0.0 {
-            return Err(PyValueError::new_err(
-                "Lambda is zero - check item magnitude and eps parameter"
-            ));
-        }
+        // Fallible variant: surface a typed ValueError instead of letting the
+        // upstream panic cross the FFI as an opaque PanicException (#25 item 4).
+        let lambda_q = self
+            .inner
+            .try_prepare_query_item(v, graph_laplacian)
+            .map_err(map_arrow_error)?;
 
         dbg_println(format!("search: qlen={}, lambda_q={:.6}", v.len(), lambda_q));
 
         let query = ArrowItem::new(v, lambda_q);
-        let k = graph_laplacian.graph_params.topk;
+        let k = k.unwrap_or(graph_laplacian.graph_params.topk);
 
         Ok(self.inner.search_lambda_aware(&query, k, tau))
     }
 
+    /// Batch taumode search. Degenerate rows (lambda ~0) yield `None` in that
+    /// slot instead of aborting the whole batch — partial-failure tolerant, so
+    /// whole-corpus work survives a single bad row. Valid rows are never
+    /// discarded because of a later degenerate one. See #25 item 1.
+    ///
+    /// `k` overrides the retrieved-neighbour count (defaults to `topk`). See
+    /// `search`. Non-finite or dimension-mismatched batches still raise (those
+    /// are caller bugs affecting every row, not per-row degeneracy).
+    #[pyo3(signature = (items, gl, tau, k=None))]
     fn search_batch(
         &self,
         items: PyReadonlyArray2<f64>,
         gl: &PyGraphLaplacian,
         tau: f64,
-    ) -> PyResult<Vec<Vec<(usize, f64)>>> {
+        k: Option<usize>,
+    ) -> PyResult<Vec<Option<Vec<(usize, f64)>>>> {
         let arr = items.as_array();
         let (nqueries, nfeatures) = (arr.shape()[0], arr.shape()[1]);
-        
+
         if nfeatures != self.inner.nfeatures {
             return Err(PyValueError::new_err(format!(
                 "query features {} must match nfeatures {}",
@@ -274,29 +351,32 @@ impl PyArrowSpace {
         }
 
         let graph_laplacian = &gl.inner;
-        let k = graph_laplacian.graph_params.topk;
-        
-        let mut results = Vec::with_capacity(nqueries);
-        
+        let k = k.unwrap_or(graph_laplacian.graph_params.topk);
+
+        let mut results: Vec<Option<Vec<(usize, f64)>>> = Vec::with_capacity(nqueries);
+
         for i in 0..nqueries {
             let row = arr.row(i);
             let v = row.to_slice().unwrap();
-            
-            let lambda_q = self.inner.prepare_query_item(v, graph_laplacian);
-            if lambda_q == 0.0 {
-                return Err(PyValueError::new_err(format!(
-                    "Lambda is zero for query {} - check item magnitude and eps", i
-                )));
+
+            match self.inner.try_prepare_query_item(v, graph_laplacian) {
+                Ok(lambda_q) => {
+                    let query = ArrowItem::new(v, lambda_q);
+                    results.push(Some(self.inner.search_lambda_aware(&query, k, tau)));
+                }
+                Err(ArrowSpaceError::DegenerateLambda { .. }) => {
+                    // Skip this row, keep the rest of the batch.
+                    results.push(None);
+                }
+                Err(e) => return Err(map_arrow_error(e)),
             }
-            
-            let query = ArrowItem::new(v, lambda_q);
-            results.push(self.inner.search_lambda_aware(&query, k, tau));
         }
-        
+
         Ok(results)
     }
 
-    /// taumode hybrid search using eigenmaps (use build): cosine + energy
+    /// taumode hybrid search using eigenmaps (use build): cosine + energy.
+    /// Raises `ValueError` for degenerate/non-finite/mismatched queries (#25 item 4).
     fn search_hybrid(
         &self,
         item: PyReadonlyArray1<f64>,
@@ -304,17 +384,12 @@ impl PyArrowSpace {
         tau: f64,
     ) -> PyResult<Vec<(usize, f64)>> {
         let v = item.as_slice()?;
-        
-        if v.len() != self.inner.nfeatures {
-            return Err(PyValueError::new_err(format!(
-                "query length {} must match nfeatures {}",
-                v.len(),
-                self.inner.nfeatures
-            )));
-        }
 
         let graph_laplacian = &gl.inner;
-        let lambda_q = self.inner.prepare_query_item(v, graph_laplacian);
+        let lambda_q = self
+            .inner
+            .try_prepare_query_item(v, graph_laplacian)
+            .map_err(map_arrow_error)?;
 
         dbg_println(format!("search_hybrid: qlen={}, lambda_q={:.6}", v.len(), lambda_q));
 
@@ -493,6 +568,11 @@ impl PyArrowSpace {
 #[pyclass(name = "ArrowSpaceBuilder")]
 pub struct PyArrowSpaceBuilder {
     pub(crate) inner: RustBuilder,
+    /// Tracking copy of persistence addressing (dataset_name, storage_path) set
+    /// via `with_persistence`, so `build()` can surface it on the returned
+    /// objects. `RustBuilder.persistence` is `pub(crate)` in the upstream crate
+    /// and therefore not readable here.
+    persistence_info: Option<(String, String)>,
 }
 
 #[pymethods]
@@ -501,6 +581,7 @@ impl PyArrowSpaceBuilder {
     pub fn new() -> Self {
         Self {
             inner: RustBuilder::new(),
+            persistence_info: None,
         }
     }
     
@@ -519,6 +600,30 @@ impl PyArrowSpaceBuilder {
         slf
     }
     
+    /// Set persistence addressing so `build(...)` writes Parquet files the caller
+    /// can later reload via `load_arrowspace`. Without this, `build()` is
+    /// in-memory only and `build_and_store()` picks a random unaddressable name.
+    ///
+    /// Exposed to Python for #17 (Option A): the adapter can now call
+    /// `with_persistence(settings.index_store, slug)` so the write and reload
+    /// paths agree on `dataset_name` and base directory, instead of the
+    /// hardcoded CWD/`storage` + UUID that `build_and_store` used to generate.
+    ///
+    /// The resolved `(storage_path, dataset_name)` are surfaced as attributes on
+    /// the returned `ArrowSpace` / `GraphLaplacian`.
+    pub fn with_persistence(
+        mut slf: PyRefMut<Self>,
+        storage_path: String,
+        dataset_name: String,
+    ) -> PyRefMut<Self> {
+        slf.persistence_info = Some((dataset_name.clone(), storage_path.clone()));
+        slf.inner = slf
+            .inner
+            .clone()
+            .with_persistence(PathBuf::from(&storage_path), dataset_name);
+        slf
+    }
+
     /// set sampling type and percentage
     pub fn with_sampling<'a>(mut slf: PyRefMut<'a, Self>, sampling: Option<&str>, value: Option<f64>) -> PyResult<PyRefMut<'a, Self>> {
         if sampling.is_some() || value.is_some() {
@@ -603,6 +708,7 @@ impl PyArrowSpaceBuilder {
         };
 
         let mut builder = slf.inner.clone();
+        let persist_info = slf.persistence_info.clone();
         
         if let Some((eps, k, topk, p, sigma)) = parse_graph_params(graph_params)? {
             builder = builder
@@ -622,24 +728,49 @@ impl PyArrowSpaceBuilder {
             (aspace, gl)
         });
 
+        let (storage_path, dataset_name) = match persist_info {
+            Some((name, path)) => (Some(path), Some(name)),
+            None => (None, None),
+        };
         Ok((
-            Py::new(py, PyArrowSpace { inner: aspace })?,
-            Py::new(py, PyGraphLaplacian { inner: gl })?,
+            Py::new(py, PyArrowSpace {
+                inner: aspace,
+                storage_path: storage_path.clone(),
+                dataset_name: dataset_name.clone(),
+            })?,
+            Py::new(py, PyGraphLaplacian {
+                inner: gl,
+                storage_path,
+                dataset_name,
+            })?,
         ))
     }
 
-    /// Same as `build(...)` but save computations on parquet files
+    /// Same as `build(...)` but save computations on parquet files.
+    ///
+    /// `storage_path` / `dataset_name` make the write addressable so the caller
+    /// can reload its own artifacts via `load_arrowspace` — previously the name
+    /// was a random `dataset_<uuid>` surfaced only via `dbg_println`, and the
+    /// path was a hardcoded CWD/`storage` (#25 item 5, #17). When omitted, the
+    /// legacy behaviour (CWD/`storage`, random UUID) is preserved for backwards
+    /// compatibility.
+    ///
+    /// The resolved `(storage_path, dataset_name)` are exposed as attributes on
+    /// the returned `ArrowSpace` / `GraphLaplacian`.
+    #[pyo3(signature = (graph_params, items, storage_path=None, dataset_name=None))]
     pub fn build_and_store(
         slf: PyRefMut<Self>,
         py: Python<'_>,
         graph_params: Option<&Bound<'_, PyDict>>,
         items: PyReadonlyArray2<f64>,
+        storage_path: Option<String>,
+        dataset_name: Option<String>,
     ) -> PyResult<(Py<PyArrowSpace>, Py<PyGraphLaplacian>)> {
         dbg_println("build: Converting numpy array to internal format");
-        
+
         let arr = items.as_array();
         let (nrows, ncols) = (arr.shape()[0], arr.shape()[1]);
-        
+
         let rows: Vec<Vec<f64>> = if nrows > 1000 {
             use rayon::prelude::*;
             (0..nrows)
@@ -652,30 +783,41 @@ impl PyArrowSpaceBuilder {
                 .collect()
         };
 
-        let uuid = get_uid(py)?;
-        let dataset_name = format!("dataset_{}", uuid);
-        let cwd = get_python_cwd(py)?;
-        
-        let dir_path = cwd.join("storage");
+        let dir_path = match &storage_path {
+            Some(p) => PathBuf::from(p),
+            None => {
+                // Legacy default: CWD/storage
+                let cwd = get_python_cwd(py)?;
+                cwd.join("storage")
+            }
+        };
+        let dataset_name = match dataset_name {
+            Some(n) => n,
+            None => format!("dataset_{}", get_uid(py)?),
+        };
 
         use std::fs;
         dbg_println(format!("Creating directory at: {:?}", dir_path.canonicalize().unwrap_or(dir_path.clone())));
-        fs::create_dir_all(&dir_path).expect("Failed to create directory");
-        dbg_println(format!("build: Storing in path {:?}", dir_path));
-        
+        // Raise a catchable OSError instead of panicking across the FFI when the
+        // target directory is not writable (#25 item 4 minor).
+        fs::create_dir_all(&dir_path).map_err(|e| {
+            PyOSError::new_err(format!("Failed to create storage directory {:?}: {}", dir_path, e))
+        })?;
+        dbg_println(format!("build: Storing in path {:?} as {}", dir_path, dataset_name));
+
         let mut builder = slf.inner.clone();
-        
+
         if let Some((eps, k, topk, p, sigma)) = parse_graph_params(graph_params)? {
             builder = builder
                 .with_lambda_graph(eps, k, topk, p, sigma)
                 .with_sparsity_check(false)
-                .with_persistence(dir_path, dataset_name);
+                .with_persistence(dir_path.clone(), dataset_name.clone());
         }
 
         dbg_println(format!("build: Processing {} rows × {} cols", nrows, ncols));
         let (aspace, gl) = py.detach(|| {
             let (aspace, gl) = builder.build(rows);
-            
+
             dbg_println(format!(
                 "build complete: nitems={}, nfeatures={}, lambdas={}",
                 aspace.nitems, aspace.nfeatures, aspace.lambdas().len()
@@ -684,9 +826,18 @@ impl PyArrowSpaceBuilder {
             (aspace, gl)
         });
 
+        let storage_path_str = dir_path.to_string_lossy().to_string();
         Ok((
-            Py::new(py, PyArrowSpace { inner: aspace })?,
-            Py::new(py, PyGraphLaplacian { inner: gl })?,
+            Py::new(py, PyArrowSpace {
+                inner: aspace,
+                storage_path: Some(storage_path_str.clone()),
+                dataset_name: Some(dataset_name.clone()),
+            })?,
+            Py::new(py, PyGraphLaplacian {
+                inner: gl,
+                storage_path: Some(storage_path_str),
+                dataset_name: Some(dataset_name),
+            })?,
         ))
     }
 
@@ -739,8 +890,8 @@ impl PyArrowSpaceBuilder {
         });
 
         Ok((
-            Py::new(py, PyArrowSpace { inner: aspace })?,
-            Py::new(py, PyGraphLaplacian { inner: gl })?,
+            Py::new(py, PyArrowSpace { inner: aspace, storage_path: None, dataset_name: None })?,
+            Py::new(py, PyGraphLaplacian { inner: gl, storage_path: None, dataset_name: None })?,
         ))
     }
 
@@ -799,8 +950,8 @@ impl PyArrowSpaceBuilder {
         });
 
         Ok((
-            Py::new(py, PyArrowSpace { inner: aspace })?,
-            Py::new(py, PyGraphLaplacian { inner: gl_energy })?,
+            Py::new(py, PyArrowSpace { inner: aspace, storage_path: None, dataset_name: None })?,
+            Py::new(py, PyGraphLaplacian { inner: gl_energy, storage_path: None, dataset_name: None })?,
         ))
     }
 }
@@ -845,7 +996,9 @@ pub fn load_arrowspace(
     let g_params = if let Some((eps, k, topk, p, sigma)) = params_tuple {
         GraphParams { eps, k, topk, p, sigma, sparsity_check: false, normalise: false }
     } else {
-        panic!("Cannot parse GraphParams");
+        return Err(PyValueError::new_err(
+            "Cannot parse GraphParams: graph_params dict is required for load_arrowspace"
+        ));
     };
 
     dbg_println(format!("GraphParams {:?}", g_params));
@@ -868,8 +1021,16 @@ pub fn load_arrowspace(
     ));
 
     Ok((
-        Py::new(py, PyArrowSpace { inner: aspace })?,
-        Py::new(py, PyGraphLaplacian { inner: gl })?,
+        Py::new(py, PyArrowSpace {
+            inner: aspace,
+            storage_path: Some(storage_path.clone()),
+            dataset_name: Some(dataset_name.clone()),
+        })?,
+        Py::new(py, PyGraphLaplacian {
+            inner: gl,
+            storage_path: Some(storage_path),
+            dataset_name: Some(dataset_name),
+        })?,
     ))
 }
 
