@@ -18,11 +18,13 @@ mod helpers;
 mod energyparams;
 mod sorted_index;
 mod subgraphs;
+mod sequencing;
 
 use crate::helpers::*;
 use crate::energyparams::*;
 use crate::sorted_index::*;
 use crate::subgraphs::*;
+use crate::sequencing::*;
 
 #[cfg(test)]
 mod tests;
@@ -1083,8 +1085,11 @@ pub fn arrowspace(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<PyArrowSpace>()?;
     m.add_class::<PyGraphLaplacian>()?;
     m.add_class::<PyLambdasSortedIter>()?;
+    m.add_class::<PySequence>()?;
     m.add_function(wrap_pyfunction!(set_debug, m)?)?;
     m.add_function(wrap_pyfunction!(load_arrowspace, m)?)?;
+    m.add_function(wrap_pyfunction!(sequence_by_lambda, m)?)?;
+    m.add_function(wrap_pyfunction!(sequence_by_graph, m)?)?;
 
     Ok(())
 }
