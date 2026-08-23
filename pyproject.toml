@@ -38,7 +38,7 @@ classifiers = [
 ]
 dynamic = ["version"]
 dependencies = [
-    "numpy>=2.4.2",
+    "numpy>=2.5.0",
     "pyarrow>=23.0.0",
     "pandas>=3.0.0",
     "scikit-learn>=1.8.0",
