@@ -1,6 +1,6 @@
 [package]
 name = "pyarrowspace"
-version = "0.26.14"
+version = "0.27.0"
 edition = "2024"
 description = "Spectral vector search with taumode (λτ) indexing"
 authors = ["Lorenzo <tunedconsulting@gmail.com>"]
@@ -41,7 +41,7 @@ name = "arrowspace"
 crate-type = ["cdylib"]
 
 [dependencies]
-arrowspace = { version = "0.26.14", features = ["storage"] } #, path = "../arrowspace-rs"}
+arrowspace = { version = "0.27.0", features = ["storage"] } #, path = "../arrowspace-rs"}
 pyo3 = { version = "0.27.1", features = ["extension-module"] }
 pyo3-log = "0.13"
 numpy = "0.27.0"
