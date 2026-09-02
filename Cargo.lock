@@ -361,9 +361,9 @@ dependencies = [
 
 [[package]]
 name = "arrowspace"
-version = "0.27.2"
+version = "0.27.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "33407182812d2c49dcc8f40ba48e9c26f6721eb4672b179fc292a79e211f5ebf"
+checksum = "0b070b4644f47f8da02a5f95916ce9ee85bdf57ca84657e574cefcd76beebb79"
 dependencies = [
  "approx 0.5.1",
  "arrow",

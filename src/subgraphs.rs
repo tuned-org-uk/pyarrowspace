@@ -1,12 +1,39 @@
 #![allow(non_local_definitions, dead_code)]
 use pyo3::prelude::*;
 use pyo3::types::PyDict;
+use pyo3::exceptions::PyTypeError;
 
 use ::arrowspace::analysis::subgraphs::{
     SubgraphConfig, CentroidGraphParams,
 };
 
 use crate::helpers::extract_count;
+
+/// Reject unknown / misspelled keys in a cfg dict — same failure family as
+/// `parse_graph_params` (#25 item 2, applied to the subgraph cfg parsers in
+/// #35 finding 3): a typo'd knob previously fell back to the default silently.
+fn reject_unknown_keys(d: &Bound<'_, PyDict>, known: &[&str], scope: &str) -> PyResult<()> {
+    let mut unknown: Vec<String> = Vec::new();
+    for key in d.keys() {
+        let key_str: String = key.extract().unwrap_or_default();
+        if !known.contains(&key_str.as_str()) {
+            unknown.push(key_str);
+        }
+    }
+    if !unknown.is_empty() {
+        return Err(PyTypeError::new_err(format!(
+            "{}: unknown key(s) {} — accepted keys are {:?}",
+            scope,
+            unknown
+                .iter()
+                .map(|s| format!("'{}'", s))
+                .collect::<Vec<_>>()
+                .join(", "),
+            known
+        )));
+    }
+    Ok(())
+}
 
 pub fn parse_subgraph_config(cfg: Option<&Bound<'_, PyDict>>) -> PyResult<SubgraphConfig> {
     // Lightweight parser: start from defaults and override if present.
@@ -15,6 +42,20 @@ pub fn parse_subgraph_config(cfg: Option<&Bound<'_, PyDict>>) -> PyResult<Subgra
     let mut s = SubgraphConfig::default();
 
     if let Some(d) = cfg {
+        // Reject unknown keys up front — same contract as `parse_graph_params`
+        // since 0.26.5 (#35 finding 3): a typo'd knob must not silently no-op.
+        const KNOWN: &[&str] = &[
+            "min_size",
+            "rayleigh_max",
+            "top_l",
+            "min_triangles",
+            "min_clust",
+            "max_motif_size",
+            "max_sets",
+            "jaccard_dedup",
+        ];
+        reject_unknown_keys(d, KNOWN, "subgraph config")?;
+
         if let Some(v) = d.get_item("min_size")? {
             s.min_size = extract_count(&v, "subgraph config", "min_size")?;
         }
@@ -53,6 +94,21 @@ pub fn parse_centroid_graph_params(cfg: Option<&Bound<'_, PyDict>>) -> PyResult<
     let mut p = CentroidGraphParams::default();
 
     if let Some(d) = cfg {
+        // Same unknown-key contract as `parse_graph_params` (#35 finding 3).
+        const KNOWN: &[&str] = &[
+            "eps",
+            "k",
+            "topk",
+            "p",
+            "sigma",
+            "normalise",
+            "sparsitycheck",
+            "min_centroids",
+            "max_depth",
+            "seed",
+        ];
+        reject_unknown_keys(d, KNOWN, "centroid graph params")?;
+
         if let Some(v) = d.get_item("eps")? {
             p.eps = v.extract()?;
         }
