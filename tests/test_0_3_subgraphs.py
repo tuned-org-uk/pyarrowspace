@@ -93,24 +93,53 @@ for i, sg in enumerate(subg_centroids):
 
 
 # ────────────────────────────────────────────────────────────────────────────
-# 2. Motif-based subgraphs (on eigen centroid graph)
+# 2. Motif-based subgraphs (energy build — required since #35 / arrowspace-rs
+#    0.27.3: on EigenMaps builds spot_subg_motives raises ValueError instead
+#    of returning feature-space indices mislabelled as item indices)
 # ────────────────────────────────────────────────────────────────────────────
-print(f"\nspot_subg_motives -- gl.shape={gl.shape}, min_size=1, rayleigh_max=None")
+print(f"\nspot_subg_motives -- energy build, min_size=1, rayleigh_max=None")
+energy_params = dict(
+    optical_tokens=None,
+    trim_quantile=0.0,
+    eta=0.06,
+    steps=6,
+    split_quantile=0.9,
+    neighbor_k=6,
+    split_tau=0.12,
+    w_lambda=1.0,
+    w_disp=0.5,
+    w_dirichlet=0.25,
+    candidate_m=32,
+)
+graph_params_eng = dict(eps=0.8, k=8, topk=4, p=2.0, sigma=None)  # eps in 0.6..4.0 for subcentroid rebuilds
+aspace_e, gl_e = ArrowSpaceBuilder().with_seed(42).build_energy(
+    items, energy_params, graph_params_eng
+)
 cfg_motives = dict(
     top_l=8,              # use fewer eigenvectors (centroids < 10)
     min_triangles=1,      # allow sparse motifs
-    min_clust=0.10,       # lowered from 0.15 for more permissive clustering
+    min_clust=0.0,        # permissive: small subcentroid graphs rarely cluster
     max_motif_size=10,    # can cover most centroids
     max_sets=20,
     jaccard_dedup=0.25,   # lowered from 0.3 for less aggressive dedup
     min_size=1,           # allow singleton motifs to pass filter
     rayleigh_max=None,
 )
-subg_motives = aspace.spot_subg_motives(gl, cfg_motives)
-print(f"\n✓ Motif subgraphs (eigen): {len(subg_motives)}")
+subg_motives = aspace_e.spot_subg_motives(gl_e, cfg_motives)
+print(f"\n✓ Motif subgraphs (energy): {len(subg_motives)}")
 for i, sg in enumerate(subg_motives):
     items_i = sg.get("item_indices", []) or []
     print(f"  M{i}: nnodes={sg['nnodes']}, items={len(items_i)}, rayleigh={sg['rayleigh']}")
+    assert all(0 <= it < items.shape[0] for it in items_i), (
+        f"item_indices leaked outside item space: {items_i}"
+    )
+
+# The EigenMaps path must now be rejected loudly (#35):
+try:
+    aspace.spot_subg_motives(gl, cfg_motives)
+    raise SystemExit("expected ValueError on EigenMaps build")
+except ValueError as e:
+    print(f"✓ EigenMaps build correctly rejected with ValueError: {e}")
 
 
 # ────────────────────────────────────────────────────────────────────────────

@@ -33,21 +33,20 @@ mod tests_python;
 
 use std::path::PathBuf;
 
-/// Map a fallible `ArrowSpaceError` from `try_prepare_query_item` to a typed,
+/// Map a fallible `ArrowSpaceError` from `try_*` variants to a typed,
 /// catchable Python exception — never a `PanicException` (#25 item 4).
 ///
 /// `DegenerateLambda` → `ValueError` (the guard `lib.rs` already wanted to
-/// raise), `NonFiniteQuery` → `ValueError`, `DimensionMismatch` → `ValueError`.
+/// raise), `NonFiniteQuery` → `ValueError`, `DimensionMismatch` → `ValueError`,
+/// `EnergyModeRequired` → `ValueError` (motives/subgraph APIs on EigenMaps
+/// builds, #35 finding 1).
 fn map_arrow_error(e: ArrowSpaceError) -> PyErr {
     match e {
-        ArrowSpaceError::DegenerateLambda { .. } => {
-            PyValueError::new_err(format!("{}", e))
-        }
+        ArrowSpaceError::DegenerateLambda { .. } => PyValueError::new_err(format!("{}", e)),
         ArrowSpaceError::NonFiniteQuery => PyValueError::new_err(format!("{}", e)),
-        ArrowSpaceError::DimensionMismatch { .. } => {
-            PyValueError::new_err(format!("{}", e))
-        }
+        ArrowSpaceError::DimensionMismatch { .. } => PyValueError::new_err(format!("{}", e)),
         ArrowSpaceError::EmptyItems => PyValueError::new_err(format!("{}", e)),
+        ArrowSpaceError::EnergyModeRequired { .. } => PyValueError::new_err(format!("{}", e)),
     }
 }
 
@@ -480,7 +479,7 @@ impl PyArrowSpace {
         Ok(self.inner.search_linear_sorted(v, graph_laplacian, k))
     }
 
-    /// spot_motives_eigen(cfg: dict) -> List[List[int]]
+    /// spot_motives_eigen(gl: GraphLaplacian, cfg: dict) -> List[List[int]]
     /// Runs triangle-based motif spotting on this Laplacian (EigenMaps build).
     fn spot_motives_eigen(&self, gl: &PyGraphLaplacian, cfg: Option<&Bound<'_, PyDict>>) -> PyResult<Vec<Vec<usize>>> {
         let rcfg = parse_motives_config(cfg)?;
@@ -489,33 +488,36 @@ impl PyArrowSpace {
         Ok(motifs)
     }
 
-    /// spot_motives_energy(gl: PyGraphLaplacian, cfg: dict) -> List[List[int]]
+    /// spot_motives_energy(gl: GraphLaplacian, cfg: dict) -> List[List[int]]
     /// Runs energy-aware motif spotting on the subcentroid graph and returns item-index motifs.
+    ///
+    /// Requires an EnergyMaps build (`build_energy`); raises `ValueError`
+    /// otherwise (mapped from `ArrowSpaceError::EnergyModeRequired`, #35).
     fn spot_motives_energy(
         &self,
         gl: &PyGraphLaplacian,
         cfg: Option<&Bound<'_, PyDict>>,
     ) -> PyResult<Vec<Vec<usize>>> {
         let rcfg = parse_motives_config(cfg)?;
-        // Ensure mapping exists; if not, return empty or error
-        if self.inner.centroid_map.is_none() {
-            return Err(PyValueError::new_err(
-                "centroid_map is None; build with EnergyMaps to use spot_motives_energy",
-            ));
-        }
-        let motifs = gl.inner.spot_motives_energy(&self.inner, &rcfg);
+        let motifs = gl
+            .inner
+            .try_spot_motives_energy(&self.inner, &rcfg)
+            .map_err(map_arrow_error)?;
         Ok(motifs)
     }
 
     /// spot_subg_motives(gl: GraphLaplacian, cfg: dict) -> List[dict]
-
     /// Runs energy-mode motif-based subgraph extraction and returns a list of
     /// subgraph dictionaries with:
     /// - "node_indices": List[int] centroid indices
-    /// - "item_indices": Optional[List[int]] original item indices
-    /// - "rayleigh": Optional[float] Rayleigh cohesion
+    /// - "item_indices": List[int] original item indices (energy builds only)
+    /// - "rayleigh": Optional[float] Rayleigh cohesion — computed only when
+    ///   cfg sets "rayleigh_max"; None otherwise (#35 finding 2)
     /// - "nnodes": int number of centroids
     /// - "nfeatures": int feature dimension
+    ///
+    /// Requires an EnergyMaps build (`build_energy`); raises `ValueError`
+    /// otherwise (mapped from `ArrowSpaceError::EnergyModeRequired`, #35).
     fn spot_subg_motives(
         &self,
         gl: &PyGraphLaplacian,
@@ -529,7 +531,10 @@ impl PyArrowSpace {
             rcfg.rayleigh_max
         ));
 
-        let subgraphs = gl.inner.spot_subg_motives(&self.inner, &rcfg);
+        let subgraphs = gl
+            .inner
+            .try_spot_subg_motives(&self.inner, &rcfg)
+            .map_err(map_arrow_error)?;
 
         Python::attach(|py| {
             let mut out = Vec::with_capacity(subgraphs.len());
