@@ -1,7 +1,7 @@
 #![allow(non_local_definitions)]
 use ::arrowspace::maps::energymaps::{EnergyMaps, EnergyMapsBuilder};
 use ::arrowspace::sampling::SamplerType;
-use pyo3::exceptions::{PyNotImplementedError, PyOSError, PyTypeError, PyValueError};
+use pyo3::exceptions::{PyNotImplementedError, PyOSError, PyValueError};
 use pyo3::prelude::*;
 use pyo3::types::{PyDict, PyTuple};
 use smartcore::linalg::basic::arrays::Array;
@@ -520,7 +520,7 @@ impl PyArrowSpace {
         &self,
         gl: &PyGraphLaplacian,
         cfg: Option<&Bound<'_, PyDict>>,
-    ) -> PyResult<Vec<PyObject>> {
+    ) -> PyResult<Vec<Py<PyAny>>> {
         let rcfg = parse_subgraph_config(cfg)?;
         dbg_println(format!(
             "spot_subg_motives -- gl.shape={:?}, min_size={}, rayleigh_max={:?}",
@@ -572,7 +572,7 @@ impl PyArrowSpace {
         &self,
         gl: &PyGraphLaplacian,
         cfg: Option<&Bound<'_, PyDict>>,
-    ) -> PyResult<Vec<PyObject>> {
+    ) -> PyResult<Vec<Py<PyAny>>> {
         let params = parse_centroid_graph_params(cfg)?;
         dbg_println(format!(
             "spot_subg_centroids -- gl.shape={:?}, max_depth={}, min_centroids={}",
