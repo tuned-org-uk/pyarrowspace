@@ -500,7 +500,7 @@ impl PyArrowSpace {
         Ok(motifs)
     }
 
-    /// spot_motives_eigen_items(aspace, gl: GraphLaplacian, cfg: dict) -> List[List[int]]
+    /// aspace.spot_motives_eigen_items(gl: GraphLaplacian, cfg: dict) -> List[List[int]]
     /// Item-space motif spotting on the EigenMaps track (arrowspace #165),
     /// mirroring `spot_motives_energy`:
     ///

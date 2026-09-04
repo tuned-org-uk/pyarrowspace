@@ -82,7 +82,12 @@ for seed in (0, 500, 900):        # one query per planted cluster
         assert(hits == hits_again)                      # deterministic
         scores = [s for _, s in hits]
         assert(scores == sorted(scores))                # lambda-ascending
-        assert(max(scores) - min(scores) <= 0.2)        # spectrally tight band
+        # Hits share the query's lambda band (std_dev / 2^p around lambda_q,
+        # p=2 here), so any two hits differ by at most twice that width.
+        # On this fixture every observed hit lands in a single lambda bucket
+        # (spread 0.0); 0.2 is a deliberately loose ceiling that still catches
+        # band leakage into the clusters' disjoint lambda ranges.
+        assert(max(scores) - min(scores) <= 0.2)
         hit_clusters = set(labels[idx] for idx, _ in hits)
         assert(len(hit_clusters) == 1)                  # one subcentroid's bucket
 

@@ -15,6 +15,11 @@ Contract pinned here:
     mislabelled result;
   * EnergyMaps build → ValueError (`EigenModeRequired`): the energy track
     already owns item-space motifs via `spot_motives_energy`.
+
+Note on message matching: the `"eigen mode required"` substring below is
+the upstream `ArrowSpaceError::EigenModeRequired` Display prefix (it names
+the variant itself, not any wording around it) and is treated as part of
+the upstream API contract.
 """
 from pathlib import Path
 
@@ -120,8 +125,10 @@ def test_item_space_motifs_refused_on_energy_build(energy_build):
         aspace.spot_motives_eigen_items(gl, dict(MOTIVES_CFG))
 
 
-def test_item_space_motives_guard_fires_without_cfg(energy_build):
-    """The guard fires before any cfg parsing — even a None cfg is rejected."""
+def test_item_space_motives_refused_without_cfg(energy_build):
+    """Even a None cfg is rejected: cfg parsing (None -> defaults) happens
+    first in the binding, then the eigen-mode guard fires before any motif
+    work — no degraded or mislabelled result is ever produced."""
     aspace, gl = energy_build
     with pytest.raises(ValueError, match="eigen mode required"):
         aspace.spot_motives_eigen_items(gl, None)
