@@ -7,7 +7,7 @@ search type: search
 dataset: tests/data/eigenmaps_controlled.parquet — 1000 items x 128 dims,
 3 orthonormal clusters of increasing sparsity (see tests/data/CALIBRATION.md)
 
-Semantics under arrowspace 0.27.x: search returns `topk` hits (5 here); the
+Semantics under arrowspace 0.28.x: search returns `topk` hits (5 here); the
 query drawn from the dense cluster is answered exclusively inside it, and the
 self item always ranks first.
 """

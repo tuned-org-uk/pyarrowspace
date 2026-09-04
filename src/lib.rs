@@ -39,14 +39,19 @@ use std::path::PathBuf;
 /// `DegenerateLambda` → `ValueError` (the guard `lib.rs` already wanted to
 /// raise), `NonFiniteQuery` → `ValueError`, `DimensionMismatch` → `ValueError`,
 /// `EnergyModeRequired` → `ValueError` (motives/subgraph APIs on EigenMaps
-/// builds, #35 finding 1).
+/// builds, #35 finding 1), `EigenModeRequired` → `ValueError` (item-space
+/// eigen motifs on builds lacking the item→cluster bookkeeping, arrowspace
+/// #165), `InvalidConfig` → `ValueError` (build_energy misconfiguration,
+/// arrowspace #155).
 fn map_arrow_error(e: ArrowSpaceError) -> PyErr {
     match e {
         ArrowSpaceError::DegenerateLambda { .. } => PyValueError::new_err(format!("{}", e)),
         ArrowSpaceError::NonFiniteQuery => PyValueError::new_err(format!("{}", e)),
         ArrowSpaceError::DimensionMismatch { .. } => PyValueError::new_err(format!("{}", e)),
         ArrowSpaceError::EmptyItems => PyValueError::new_err(format!("{}", e)),
+        ArrowSpaceError::InvalidConfig { .. } => PyValueError::new_err(format!("{}", e)),
         ArrowSpaceError::EnergyModeRequired { .. } => PyValueError::new_err(format!("{}", e)),
+        ArrowSpaceError::EigenModeRequired { .. } => PyValueError::new_err(format!("{}", e)),
     }
 }
 
@@ -481,10 +486,48 @@ impl PyArrowSpace {
 
     /// spot_motives_eigen(gl: GraphLaplacian, cfg: dict) -> List[List[int]]
     /// Runs triangle-based motif spotting on this Laplacian (EigenMaps build).
+    ///
+    /// Node-space contract (arrowspace #165): the returned ids are the nodes
+    /// of `gl.matrix` as built — on pipeline EigenMaps graphs that is the
+    /// F×F bootstrap Laplacian, so the ids enumerate **feature dimensions,
+    /// not items**, even though `gl.nnodes` reports the item count. For
+    /// item-space motifs use `spot_motives_eigen_items`.
+    #[allow(deprecated)] // deprecated in arrowspace 0.27.4; kept as the compatibility surface
     fn spot_motives_eigen(&self, gl: &PyGraphLaplacian, cfg: Option<&Bound<'_, PyDict>>) -> PyResult<Vec<Vec<usize>>> {
         let rcfg = parse_motives_config(cfg)?;
         dbg_println(format!("spot_motives_eigen -- gl.inner.shape: {:?}", gl.inner.shape()));
         let motifs = gl.inner.spot_motives_eigen(&rcfg);
+        Ok(motifs)
+    }
+
+    /// aspace.spot_motives_eigen_items(gl: GraphLaplacian, cfg: dict) -> List[List[int]]
+    /// Item-space motif spotting on the EigenMaps track (arrowspace #165),
+    /// mirroring `spot_motives_energy`:
+    ///
+    /// 1. Rebuilds the X×X Laplacian over cluster centroids from the index's
+    ///    own rows and the item→cluster bookkeeping.
+    /// 2. Detects motifs on the centroid graph.
+    /// 3. Expands each centroid set to **item indices** and deduplicates.
+    ///
+    /// Requirements (enforced — raises `ValueError` mapped from
+    /// `ArrowSpaceError::EigenModeRequired` instead of degrading):
+    /// - `gl` must be an EigenMaps build (EnergyMaps graphs already have the
+    ///   finer-grained `spot_motives_energy`)
+    /// - every item carries an in-range cluster assignment
+    /// - `n_clusters >= 2`
+    ///
+    /// Returned ids live in `0..n_items`; every motif is a union of whole
+    /// clusters.
+    fn spot_motives_eigen_items(
+        &self,
+        gl: &PyGraphLaplacian,
+        cfg: Option<&Bound<'_, PyDict>>,
+    ) -> PyResult<Vec<Vec<usize>>> {
+        let rcfg = parse_motives_config(cfg)?;
+        let motifs = gl
+            .inner
+            .try_spot_motives_eigen(&self.inner, &rcfg)
+            .map_err(map_arrow_error)?;
         Ok(motifs)
     }
 
