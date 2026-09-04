@@ -32,8 +32,14 @@ from arrowspace import ArrowSpaceBuilder, sequence_by_graph, sequence_by_lambda
 # --- helpers -------------------------------------------------------------
 
 def _build(items, gp=None):
-    """Build (aspace, gl) from a small deterministic corpus."""
-    params = gp or {"eps": 1.0, "k": 3, "topk": 3, "p": 2.0, "sigma": None}
+    """Build (aspace, gl) from a small deterministic corpus.
+
+    eps=1.5 (not 1.0): under arrowspace 0.28.0's corrected DenseMatrix
+    layout (#167) the bootstrap feature graph at eps=1.0 leaves one feature
+    just outside the |Δλ| band, splitting the MST in two. 1.5 is inside the
+    documented 0.5–4.0 regime and yields a genuinely connected graph.
+    """
+    params = gp or {"eps": 1.5, "k": 3, "topk": 3, "p": 2.0, "sigma": None}
     aspace, gl = (
         ArrowSpaceBuilder()
         .with_seed(3407)
