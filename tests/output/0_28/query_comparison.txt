@@ -1,0 +1,289 @@
+================================================================================
+ QUERY RESULT COMPARISON: COSINE vs EIGEN (TAUMODE)
+================================================================================
+
+QUERY TYPE: BEST QUERY (Highest Top Score)
+QUERY TEXT: authentication bypass via JWT token manipulation
+--------------------------------------------------------------------------------
+RANK 1:
+  [Cosine] Score: 0.8987
+           Title: (no title)
+           Text:  CVE-2025-31161 | CrushFTP 10 before 10.8.4 and 11 before 11.3.1 allows authentication bypass and takeover of the crushadmin account (unless a DMZ proxy instance is used), as exploited in the wild in March and April 2025, aka "Unauthenticated HTTP(S) port access." A race condition exists in the AWS4-...
+
+  [Taumode] Score: 0.9224
+            Title: KEYS: trusted: dcp: fix NULL dereference in AEAD crypto operation
+            Text:  CVE-2024-50281 | KEYS: trusted: dcp: fix NULL dereference in AEAD crypto operation | In the Linux kernel, the following vulnerability has been resolved:  KEYS: trusted: dcp: fix NULL dereference in AEAD crypto operation  When sealing or unsealing a key blob we currently do not wait for the AEAD ciph...
+----------------------------------------
+RANK 2:
+  [Cosine] Score: 0.8957
+           Title: Vasion Print (formerly PrinterLogic) Hardcoded Encryption Private Keys
+           Text:  CVE-2025-34234 | Vasion Print (formerly PrinterLogic) Hardcoded Encryption Private Keys | Vasion Print (formerly PrinterLogic) Virtual Appliance Host prior to version 25.1.102 and Application prior to version 25.1.1413 (VA/SaaS deployments) contain two hardcoded private keys that are shipped in the ...
+
+  [Taumode] Score: 0.9217
+            Title: Credential disclosure in syft when SYFT_ATTEST_PASSWORD environment variable set in syft
+            Text:  CVE-2023-24827 | Credential disclosure in syft when SYFT_ATTEST_PASSWORD environment variable set in syft | syft is a a CLI tool and Go library for generating a Software Bill of Materials (SBOM) from container images and filesystems. A password disclosure flaw was found in Syft versions v0.69.0 and ...
+----------------------------------------
+RANK 3:
+  [Cosine] Score: 0.8948
+           Title: (no title)
+           Text:  CVE-2021-30648 | The Symantec Advanced Secure Gateway (ASG) and ProxySG web management consoles are susceptible to an authentication bypass vulnerability. An unauthenticated attacker can execute arbitrary CLI commands, view/modify the appliance configuration and policy, and shutdown/restart the appl...
+
+  [Taumode] Score: 0.9197
+            Title: (no title)
+            Text:  CVE-2025-31161 | CrushFTP 10 before 10.8.4 and 11 before 11.3.1 allows authentication bypass and takeover of the crushadmin account (unless a DMZ proxy instance is used), as exploited in the wild in March and April 2025, aka "Unauthenticated HTTP(S) port access." A race condition exists in the AWS4-...
+----------------------------------------
+RANK 4:
+  [Cosine] Score: 0.8933
+           Title: Flux Operator Web UI Impersonation Bypass via Empty OIDC Claims
+           Text:  CVE-2026-23990 | Flux Operator Web UI Impersonation Bypass via Empty OIDC Claims | The Flux Operator is a Kubernetes CRD controller that manages the lifecycle of CNCF Flux CD and the ControlPlane enterprise distribution. Starting in version 0.36.0 and prior to version 0.40.0, a privilege escalation ...
+
+  [Taumode] Score: 0.9179
+            Title: (no title)
+            Text:  CVE-2023-47298 | An issue in NCR Terminal Handler 1.5.1 allows a low-level privileged authenticated attacker to query the SOAP API endpoint to obtain information about all of the users of the application including their usernames, roles, security groups and account statuses. | n/a n/a...
+----------------------------------------
+RANK 5:
+  [Cosine] Score: 0.8894
+           Title: (no title)
+           Text:  CVE-2021-43271 | Riverbed AppResponse 11.8.0, 11.8.5, 11.8.5a, 11.9.0, 11.9.0a, 11.10.0, 11.11.0, 11.11.0a, 11.11.1, 11.11.1a, 11.11.5, and 11.11.5a (when configured to use local, RADIUS, or TACACS authentication) logs usernames and passwords if either is entered incorrectly. If a user enters an inc...
+
+  [Taumode] Score: 0.9177
+            Title: Vasion Print (formerly PrinterLogic) Hardcoded Encryption Private Keys
+            Text:  CVE-2025-34234 | Vasion Print (formerly PrinterLogic) Hardcoded Encryption Private Keys | Vasion Print (formerly PrinterLogic) Virtual Appliance Host prior to version 25.1.102 and Application prior to version 25.1.1413 (VA/SaaS deployments) contain two hardcoded private keys that are shipped in the ...
+----------------------------------------
+RANK 6:
+  [Cosine] Score: 0.8892
+           Title: Authenticated user can access unintended user capabilities
+           Text:  CVE-2024-8535 | Authenticated user can access unintended user capabilities | Authenticated user can access unintended user capabilities in NetScaler ADC and NetScaler Gateway if the appliance must be configured as a Gateway (SSL VPN, ICA Proxy, CVPN, RDP Proxy) with KCDAccount configuration for Kerb...
+
+  [Taumode] Score: 0.9175
+            Title: (no title)
+            Text:  CVE-2021-30648 | The Symantec Advanced Secure Gateway (ASG) and ProxySG web management consoles are susceptible to an authentication bypass vulnerability. An unauthenticated attacker can execute arbitrary CLI commands, view/modify the appliance configuration and policy, and shutdown/restart the appl...
+----------------------------------------
+RANK 7:
+  [Cosine] Score: 0.8885
+           Title: (no title)
+           Text:  CVE-2008-6706 | Multiple unspecified vulnerabilities in the Web management interface in Avaya SIP Enablement Services (SES) 3.x and 4.0, as used with Avaya Communication Manager 3.1.x, allow remote attackers to obtain (1) application server configuration, (2) database server configuration including ...
+
+  [Taumode] Score: 0.9173
+            Title: (no title)
+            Text:  CVE-2007-4261 | EZPhotoSales 1.9.3 and earlier stores sensitive information under the web root with insufficient access control, which allows remote attackers to download (1) a file containing cleartext passwords via a direct request for OnlineViewing/data/galleries.txt, or (2) a file containing use...
+----------------------------------------
+RANK 8:
+  [Cosine] Score: 0.8883
+           Title: DuckDB Encryption Crypto implementation is vulnerable
+           Text:  CVE-2025-64429 | DuckDB Encryption Crypto implementation is vulnerable | DuckDB is a SQL database management system. DuckDB implemented block-based encryption of DB on the filesystem starting with DuckDB 1.4.0. There are a few issues related to this implementation. The DuckDB can fall back to an ins...
+
+  [Taumode] Score: 0.9163
+            Title: Flux Operator Web UI Impersonation Bypass via Empty OIDC Claims
+            Text:  CVE-2026-23990 | Flux Operator Web UI Impersonation Bypass via Empty OIDC Claims | The Flux Operator is a Kubernetes CRD controller that manages the lifecycle of CNCF Flux CD and the ControlPlane enterprise distribution. Starting in version 0.36.0 and prior to version 0.40.0, a privilege escalation ...
+----------------------------------------
+RANK 9:
+  [Cosine] Score: 0.8881
+           Title: Apache Pinot: Unauthorized endpoint exposed sensitive information
+           Text:  CVE-2024-39676 | Apache Pinot: Unauthorized endpoint exposed sensitive information | Exposure of Sensitive Information to an Unauthorized Actor vulnerability in Apache Pinot.  This issue affects Apache Pinot: from 0.1 before 1.0.0.  Users are recommended to upgrade to version 1.0.0 and configure RBA...
+
+  [Taumode] Score: 0.9144
+            Title: (no title)
+            Text:  CVE-2014-4309 | Multiple cross-site scripting (XSS) vulnerabilities in Openfiler 2.99 allow remote attackers to inject arbitrary web script or HTML via the (1) TinkerAjax parameter to uptime.html, or remote authenticated users to inject arbitrary web script or HTML via the (2) MaxInstances, (3) Pass...
+----------------------------------------
+RANK 10:
+  [Cosine] Score: 0.8880
+           Title: Apache StreamPark (incubating): maven build params could trigger remote command execution
+           Text:  CVE-2024-29737 | Apache StreamPark (incubating): maven build params could trigger remote command execution | In streampark, the project module integrates Maven's compilation capabilities. The input parameter validation is not strict, allowing attackers to insert commands for remote command execution...
+
+  [Taumode] Score: 0.9141
+            Title: Authenticated user can access unintended user capabilities
+            Text:  CVE-2024-8535 | Authenticated user can access unintended user capabilities | Authenticated user can access unintended user capabilities in NetScaler ADC and NetScaler Gateway if the appliance must be configured as a Gateway (SSL VPN, ICA Proxy, CVPN, RDP Proxy) with KCDAccount configuration for Kerb...
+----------------------------------------
+================================================================================
+
+QUERY TYPE: WORST QUERY (Lowest Top Score)
+QUERY TEXT: improper access control in REST API DELETE method
+--------------------------------------------------------------------------------
+RANK 1:
+  [Cosine] Score: 0.8109
+           Title: Elastic Cloud Enterprise Improper Authorization
+           Text:  CVE-2025-37736 | Elastic Cloud Enterprise Improper Authorization | Improper Authorization in Elastic Cloud Enterprise can lead to Privilege Escalation where the built-in readonly user can call APIs that should not be allowed. The list of APIs that are affected by this issue is:      post:/platform/c...
+
+  [Taumode] Score: 0.8589
+            Title: (no title)
+            Text:  CVE-2007-6548 | Multiple direct static code injection vulnerabilities in RunCMS before 1.6.1 allow remote authenticated administrators to inject arbitrary PHP code via the (1) header and (2) footer parameters to modules/system/admin.php in a meta-generator action, (3) the disclaimer parameter to mod...
+----------------------------------------
+RANK 2:
+  [Cosine] Score: 0.7996
+           Title: (no title)
+           Text:  CVE-2015-2878 | Multiple cross-site request forgery (CSRF) vulnerabilities in Hexis HawkEye G 3.0.1.4912 allow remote attackers to hijack the authentication of administrators for requests that (1) add arbitrary accounts via the name parameter to interface/rest/accounts/json; turn off the (2) Url mat...
+
+  [Taumode] Score: 0.8558
+            Title: (no title)
+            Text:  CVE-2016-10086 | RESTful web services in CA Service Desk Manager 12.9 and CA Service Desk Management 14.1 might allow remote authenticated users to read or modify task information by leveraging incorrect permissions applied to a RESTful request. | n/a n/a...
+----------------------------------------
+RANK 3:
+  [Cosine] Score: 0.7926
+           Title: Icinga has rest API endpoints accessible to restricted users
+           Text:  CVE-2025-23203 | Icinga has rest API endpoints accessible to restricted users | Icinga Director is an Icinga config deployment tool. A Security vulnerability has been found starting in version 1.0.0 and prior to 1.10.4 and 1.11.4 on several director endpoints of REST API. To reproduce this vulnerabi...
+
+  [Taumode] Score: 0.8514
+            Title: Icinga has rest API endpoints accessible to restricted users
+            Text:  CVE-2025-23203 | Icinga has rest API endpoints accessible to restricted users | Icinga Director is an Icinga config deployment tool. A Security vulnerability has been found starting in version 1.0.0 and prior to 1.10.4 and 1.11.4 on several director endpoints of REST API. To reproduce this vulnerabi...
+----------------------------------------
+RANK 4:
+  [Cosine] Score: 0.7899
+           Title: (no title)
+           Text:  CVE-2025-61876 | Insecure Direct Object Reference (IDOR) in /tenants/{id} API endpoint in Inforcer Platform version 2.0.153 allows an authenticated user with low privileges to enumerate and access tenant information belonging to other clients via modification of the tenant ID in the request URL. | n...
+
+  [Taumode] Score: 0.8505
+            Title: (no title)
+            Text:  CVE-2024-53354 | Multiple SQL injection vulnerabilities in EasyVirt DCScope <= 8.6.0 and CO2Scope <= 1.3.0 allows remote authenticated attackers to execute arbitrary SQL commands via the (1) user parameter to /api/management/findfilterlist; the (2) user or (3) filter parameter to /api/audit/findmeta...
+----------------------------------------
+RANK 5:
+  [Cosine] Score: 0.7891
+           Title: SameSite may allow cross-site request forgery (CSRF) protection to be bypassed
+           Text:  CVE-2022-35943 | SameSite may allow cross-site request forgery (CSRF) protection to be bypassed | Shield is an authentication and authorization framework for CodeIgniter 4. This vulnerability may allow [SameSite Attackers](https://canitakeyoursubdomain.name/) to bypass the [CodeIgniter4 CSRF protect...
+
+  [Taumode] Score: 0.8477
+            Title: (no title)
+            Text:  CVE-2014-9606 | Multiple cross-site scripting (XSS) vulnerabilities in Netsweeper before 3.1.10, 4.0.x before 4.0.9, and 4.1.x before 4.1.2 allow remote attackers to inject arbitrary web script or HTML via the (1) server parameter to remotereporter/load_logfiles.php, (2) customctid parameter to weba...
+----------------------------------------
+RANK 6:
+  [Cosine] Score: 0.7887
+           Title: (no title)
+           Text:  CVE-2024-53355 | Multiple incorrect access control issues in EasyVirt DCScope <= 8.6.0 and CO2Scope <= 1.3.0 allows remote authenticated attackers, with low privileges, to (1) add an admin user via the /api/user/addalias route; (2) modifiy a user via the /api/user/updatealias route; (4) delete users...
+
+  [Taumode] Score: 0.8474
+            Title: (no title)
+            Text:  CVE-2017-9767 | Multiple cross-site scripting (XSS) vulnerabilities in Quali CloudShell before 8 allow remote authenticated users to inject arbitrary web script or HTML via the (1) Name or (2) Description parameter to RM/Reservation/ReserveNew; the (3) Description parameter to RM/Topology/Update; th...
+----------------------------------------
+RANK 7:
+  [Cosine] Score: 0.7882
+           Title: (no title)
+           Text:  CVE-2008-7092 | Multiple cross-site scripting (XSS) vulnerabilities in Unica Affinium Campaign 7.2.1.0.55 allow remote attackers to inject arbitrary web script or HTML via a Javascript event in the (1) url, (2) PageName, and (3) title parameters in a CustomBookMarkLink action to Campaign/Campaign; (...
+
+  [Taumode] Score: 0.8469
+            Title: (no title)
+            Text:  CVE-2007-0373 | Multiple SQL injection vulnerabilities in Joomla! 1.5.0 Beta allow remote attackers to execute arbitrary SQL commands via (1) the searchword parameter in certain files; the where parameter in (2) plugins/search/content.php or (3) plugins/search/weblinks.php; the text parameter in (4)...
+----------------------------------------
+RANK 8:
+  [Cosine] Score: 0.7878
+           Title: (no title)
+           Text:  CVE-2025-70146 | Missing authentication in multiple administrative action scripts under /admin/ in ProjectWorlds Online Time Table Generator 1.0 allows remote attackers to perform unauthorized administrative operations (e.g.,adding records, deleting records) via direct HTTP requests to affected endp...
+
+  [Taumode] Score: 0.8464
+            Title: (no title)
+            Text:  CVE-2011-5298 | Multiple cross-site request forgery (CSRF) vulnerabilities in Argyle Social 2011-04-26 allow remote attackers to hijack the authentication of administrators for requests that (1) modify credentials via the role parameter to users/create/, (2) modify rules via the terms field in strea...
+----------------------------------------
+RANK 9:
+  [Cosine] Score: 0.7857
+           Title: (no title)
+           Text:  CVE-2024-53354 | Multiple SQL injection vulnerabilities in EasyVirt DCScope <= 8.6.0 and CO2Scope <= 1.3.0 allows remote authenticated attackers to execute arbitrary SQL commands via the (1) user parameter to /api/management/findfilterlist; the (2) user or (3) filter parameter to /api/audit/findmeta...
+
+  [Taumode] Score: 0.8443
+            Title: (no title)
+            Text:  CVE-2011-5230 | Multiple SQL injection vulnerabilities in the selectUserIdByLoginPass function in seotoaster_core/application/models/LoginModel.php in Seotoaster 1.9 and earlier allow remote attackers to execute arbitrary SQL commands via the (1) login parameter to sys/login/index or (2) memberLogin...
+----------------------------------------
+RANK 10:
+  [Cosine] Score: 0.7848
+           Title: Traefik doesn't Prevent Path Normalization Bypass in Router + Middleware Rules
+           Text:  CVE-2025-66490 | Traefik doesn't Prevent Path Normalization Bypass in Router + Middleware Rules | Traefik is an HTTP reverse proxy and load balancer. For versions prior to 2.11.32 and 2.11.31 through 3.6.2, requests using PathPrefix, Path or PathRegex matchers can bypass path normalization. When Tra...
+
+  [Taumode] Score: 0.8424
+            Title: Stored Cross-Site Scripting vulnerability in appRain CMF
+            Text:  CVE-2025-41039 | Stored Cross-Site Scripting vulnerability in appRain CMF | A vulnerability has been discovered in appRain CMF version 4.0.5, consisting of a stored authenticated XSS due to a lack of proper validation of user input, through the 'data[sconfig][admin_landing_page]', 'data[sconfig][cur...
+----------------------------------------
+================================================================================
+
+QUERY TYPE: SAMPLE QUERY (Median Score)
+QUERY TEXT: denial of service via malformed network packets
+--------------------------------------------------------------------------------
+RANK 1:
+  [Cosine] Score: 0.8416
+           Title: (no title)
+           Text:  CVE-2002-0886 | Cisco DSL CPE devices running CBOS 2.4.4 and earlier allows remote attackers to cause a denial of service (hang or memory consumption) via (1) a large packet to the DHCP port, (2) a large packet to the Telnet port, or (3) a flood of large packets to the CPE, which causes the TCP/IP s...
+
+  [Taumode] Score: 0.9048
+            Title: (no title)
+            Text:  CVE-2002-0886 | Cisco DSL CPE devices running CBOS 2.4.4 and earlier allows remote attackers to cause a denial of service (hang or memory consumption) via (1) a large packet to the DHCP port, (2) a large packet to the Telnet port, or (3) a flood of large packets to the CPE, which causes the TCP/IP s...
+----------------------------------------
+RANK 2:
+  [Cosine] Score: 0.8414
+           Title: (no title)
+           Text:  CVE-2003-1250 | Efficient Networks 5861 DSL router, when running firmware 5.3.80 configured to block incoming TCP SYN, packets allows remote attackers to cause a denial of service (crash) via a flood of TCP SYN packets to the WAN interface using a port scanner such as nmap. | n/a n/a...
+
+  [Taumode] Score: 0.9047
+            Title: (no title)
+            Text:  CVE-2003-1250 | Efficient Networks 5861 DSL router, when running firmware 5.3.80 configured to block incoming TCP SYN, packets allows remote attackers to cause a denial of service (crash) via a flood of TCP SYN packets to the WAN interface using a port scanner such as nmap. | n/a n/a...
+----------------------------------------
+RANK 3:
+  [Cosine] Score: 0.8386
+           Title: (no title)
+           Text:  CVE-2008-5849 | Check Point VPN-1 R55, R65, and other versions, when Port Address Translation (PAT) is used, allows remote attackers to discover intranet IP addresses via a packet with a small TTL, which triggers an ICMP_TIMXCEED_INTRANS (aka ICMP time exceeded in-transit) response containing an enc...
+
+  [Taumode] Score: 0.9031
+            Title: (no title)
+            Text:  CVE-2008-5849 | Check Point VPN-1 R55, R65, and other versions, when Port Address Translation (PAT) is used, allows remote attackers to discover intranet IP addresses via a packet with a small TTL, which triggers an ICMP_TIMXCEED_INTRANS (aka ICMP time exceeded in-transit) response containing an enc...
+----------------------------------------
+RANK 4:
+  [Cosine] Score: 0.8378
+           Title: (no title)
+           Text:  CVE-2009-0687 | The pf_test_rule function in OpenBSD Packet Filter (PF), as used in OpenBSD 4.2 through 4.5, NetBSD 5.0 before RC3, MirOS 10 and earlier, and MidnightBSD 0.3-current allows remote attackers to cause a denial of service (panic) via crafted IP packets that trigger a NULL pointer derefe...
+
+  [Taumode] Score: 0.9026
+            Title: (no title)
+            Text:  CVE-2002-0952 | Cisco ONS15454 optical transport platform running ONS 3.1.0 to 3.2.0 allows remote attackers to cause a denial of service (reset) by sending IP packets with non-zero Type of Service (TOS) bits to the Timing Control Card (TCC) LAN interface. | n/a n/a...
+----------------------------------------
+RANK 5:
+  [Cosine] Score: 0.8378
+           Title: (no title)
+           Text:  CVE-2002-0952 | Cisco ONS15454 optical transport platform running ONS 3.1.0 to 3.2.0 allows remote attackers to cause a denial of service (reset) by sending IP packets with non-zero Type of Service (TOS) bits to the Timing Control Card (TCC) LAN interface. | n/a n/a...
+
+  [Taumode] Score: 0.9022
+            Title: (no title)
+            Text:  CVE-2009-0687 | The pf_test_rule function in OpenBSD Packet Filter (PF), as used in OpenBSD 4.2 through 4.5, NetBSD 5.0 before RC3, MirOS 10 and earlier, and MidnightBSD 0.3-current allows remote attackers to cause a denial of service (panic) via crafted IP packets that trigger a NULL pointer derefe...
+----------------------------------------
+RANK 6:
+  [Cosine] Score: 0.8369
+           Title: (no title)
+           Text:  CVE-2020-5937 | On BIG-IP AFM 15.1.0-15.1.0.5, the Traffic Management Microkernel (TMM) may produce a core file while processing layer 4 (L4) behavioral denial-of-service (DoS) traffic. | n/a BIG-IP AFM...
+
+  [Taumode] Score: 0.9021
+            Title: (no title)
+            Text:  CVE-2020-5937 | On BIG-IP AFM 15.1.0-15.1.0.5, the Traffic Management Microkernel (TMM) may produce a core file while processing layer 4 (L4) behavioral denial-of-service (DoS) traffic. | n/a BIG-IP AFM...
+----------------------------------------
+RANK 7:
+  [Cosine] Score: 0.8368
+           Title: (no title)
+           Text:  CVE-2008-1397 | Check Point VPN-1 Power/UTM, with NGX R60 through R65 and NG AI R55 software, allows remote authenticated users to cause a denial of service (site-to-site VPN tunnel outage), and possibly intercept network traffic, by configuring the local RFC1918 IP address to be the same as one of ...
+
+  [Taumode] Score: 0.9020
+            Title: (no title)
+            Text:  CVE-2008-1397 | Check Point VPN-1 Power/UTM, with NGX R60 through R65 and NG AI R55 software, allows remote authenticated users to cause a denial of service (site-to-site VPN tunnel outage), and possibly intercept network traffic, by configuring the local RFC1918 IP address to be the same as one of ...
+----------------------------------------
+RANK 8:
+  [Cosine] Score: 0.8363
+           Title: (no title)
+           Text:  CVE-2005-0039 | Certain configurations of IPsec, when using Encapsulating Security Payload (ESP) in tunnel mode, integrity protection at a higher layer, or Authentication Header (AH), allow remote attackers to decrypt IPSec communications by modifying the outer packet in ways that cause plaintext da...
+
+  [Taumode] Score: 0.9016
+            Title: (no title)
+            Text:  CVE-2005-0039 | Certain configurations of IPsec, when using Encapsulating Security Payload (ESP) in tunnel mode, integrity protection at a higher layer, or Authentication Header (AH), allow remote attackers to decrypt IPSec communications by modifying the outer packet in ways that cause plaintext da...
+----------------------------------------
+RANK 9:
+  [Cosine] Score: 0.8362
+           Title: (no title)
+           Text:  CVE-2017-5872 | The TCP/IP networking module in Unisys ClearPath MCP systems with TCP-IP-SW 57.1 before 57.152, 58.1 before 58.142, or 59.1 before 59.172, when running a TLS 1.2 service, allows remote attackers to cause a denial of service (network connectivity disruption) via a client hello with a ...
+
+  [Taumode] Score: 0.9013
+            Title: (no title)
+            Text:  CVE-2017-5872 | The TCP/IP networking module in Unisys ClearPath MCP systems with TCP-IP-SW 57.1 before 57.152, 58.1 before 58.142, or 59.1 before 59.172, when running a TLS 1.2 service, allows remote attackers to cause a denial of service (network connectivity disruption) via a client hello with a ...
+----------------------------------------
+RANK 10:
+  [Cosine] Score: 0.8355
+           Title: Junos OS: EX Series and QFX Series: Memory leak issue processing specific DHCP packets
+           Text:  CVE-2021-0217 | Junos OS: EX Series and QFX Series: Memory leak issue processing specific DHCP packets | A vulnerability in processing of certain DHCP packets from adjacent clients on EX Series and QFX Series switches running Juniper Networks Junos OS with DHCP local/relay server configured may lead...
+
+  [Taumode] Score: 0.9011
+            Title: Junos OS: EX Series and QFX Series: Memory leak issue processing specific DHCP packets
+            Text:  CVE-2021-0217 | Junos OS: EX Series and QFX Series: Memory leak issue processing specific DHCP packets | A vulnerability in processing of certain DHCP packets from adjacent clients on EX Series and QFX Series switches running Juniper Networks Junos OS with DHCP local/relay server configured may lead...
+----------------------------------------
+================================================================================
+
