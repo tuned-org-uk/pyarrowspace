@@ -1,5 +1,5 @@
 # .github/workflows/publish.yml
-# Publishes pyarrowspace Python package to PyPI using maturin when a release is created
+# Publishes the arrowspace Python package to PyPI when a release is created
 
 name: Publish to PyPI
 
@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         target: [x86_64, aarch64]
-        python-version: ["3.11", "3.12", "3.13"]
+        python-version: ["3.12", "3.13", "3.14"]
     steps:
       - uses: actions/checkout@v4
       
@@ -44,7 +44,7 @@ jobs:
     strategy:
       matrix:
         target: [x64]
-        python-version: ["3.11", "3.12", "3.13"]
+        python-version: ["3.12", "3.13", "3.14"]
     steps:
       - uses: actions/checkout@v4
       
@@ -71,7 +71,7 @@ jobs:
     strategy:
       matrix:
         target: [x86_64, aarch64]
-        python-version: ["3.11", "3.12", "3.13"]
+        python-version: ["3.12", "3.13", "3.14"]
     steps:
       - uses: actions/checkout@v4
       
@@ -116,9 +116,12 @@ jobs:
     permissions:
       # IMPORTANT: mandatory for trusted publishing
       id-token: write
+      # Needed to download wheel artifacts produced by this workflow
+      actions: read
+      contents: read
     environment:
       name: pypi
-      url: https://pypi.org/project/pyarrowspace
+      url: https://pypi.org/project/arrowspace
     steps:
       - name: Download all artifacts
         uses: actions/download-artifact@v4
