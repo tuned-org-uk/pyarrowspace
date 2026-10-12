@@ -17,13 +17,12 @@ jobs:
     strategy:
       matrix:
         target: [x86_64, aarch64]
-        python-version: ["3.12", "3.13", "3.14"]
     steps:
       - uses: actions/checkout@v4
-      
+
       - uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: '3.14'
       
       - name: Build wheels
         uses: PyO3/maturin-action@v1
@@ -36,7 +35,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels-linux-${{ matrix.target }}-py${{ matrix.python-version }}
+          name: wheels-linux-${{ matrix.target }}
           path: dist
 
   windows:
@@ -44,13 +43,12 @@ jobs:
     strategy:
       matrix:
         target: [x64]
-        python-version: ["3.12", "3.13", "3.14"]
     steps:
       - uses: actions/checkout@v4
-      
+
       - uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: '3.14'
           architecture: ${{ matrix.target }}
       
       - name: Build wheels
@@ -63,7 +61,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels-windows-${{ matrix.target }}-py${{ matrix.python-version }}
+          name: wheels-windows-${{ matrix.target }}
           path: dist
 
   macos:
@@ -71,13 +69,12 @@ jobs:
     strategy:
       matrix:
         target: [x86_64, aarch64]
-        python-version: ["3.12", "3.13", "3.14"]
     steps:
       - uses: actions/checkout@v4
-      
+
       - uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: '3.14'
       
       - name: Build wheels
         uses: PyO3/maturin-action@v1
@@ -89,7 +86,7 @@ jobs:
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
-          name: wheels-macos-${{ matrix.target }}-py${{ matrix.python-version }}
+          name: wheels-macos-${{ matrix.target }}
           path: dist
 
   sdist:
@@ -132,7 +129,37 @@ jobs:
       
       - name: List distributions
         run: ls -lh dist/
-      
+
+      - name: Validate wheel archives
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import sys
+          import zipfile
+
+          failed = False
+          for wheel in sorted(Path("dist").glob("*.whl")):
+              data = wheel.read_bytes()
+              sig = b"PK\x05\x06"
+              idx = data.rfind(sig)
+              if idx < 0:
+                  print(f"missing end-of-central-directory: {wheel}")
+                  failed = True
+                  continue
+              comment_len = int.from_bytes(data[idx + 20:idx + 22], "little")
+              trailing = len(data) - (idx + 22 + comment_len)
+              if trailing:
+                  print(f"trailing data ({trailing} bytes): {wheel}")
+                  failed = True
+              with zipfile.ZipFile(wheel) as zf:
+                  bad_member = zf.testzip()
+              if bad_member is not None:
+                  print(f"bad zip member {bad_member}: {wheel}")
+                  failed = True
+          if failed:
+              sys.exit(1)
+          PY
+
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
