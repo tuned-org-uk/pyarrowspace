@@ -10,6 +10,7 @@ use numpy::{PyArray1, PyArray2, PyArrayMethods, PyReadonlyArray1, PyReadonlyArra
 use ::arrowspace::builder::ArrowSpaceBuilder as RustBuilder;
 use ::arrowspace::core::{ArrowItem, ArrowSpace};
 use ::arrowspace::error::ArrowSpaceError;
+use ::arrowspace::filter_bank::{BandEdges, FilterBankConfig};
 use ::arrowspace::graph::GraphLaplacian;
 use ::arrowspace::analysis::motives::Motives;
 use ::arrowspace::analysis::subgraphs::*;
@@ -71,6 +72,45 @@ fn get_uid(py: Python) -> PyResult<String> {
     // Call uuid.uuid4() and convert to string
     let uid: String = uuid_mod.call_method0("uuid4")?.to_string();
     Ok(uid[..6].to_string())
+}
+
+fn filter_bank_config(num_bands: usize, edges: Option<Vec<f64>>) -> PyResult<FilterBankConfig> {
+    if num_bands == 0 {
+        return Err(PyValueError::new_err(
+            "filter bank needs at least one band",
+        ));
+    }
+
+    match edges {
+        None => Ok(FilterBankConfig::uniform(num_bands)),
+        Some(edges) => {
+            if edges.len() != num_bands + 1 {
+                return Err(PyValueError::new_err(format!(
+                    "custom filter-bank edges must have num_bands + 1 entries; got {} edges for {} bands",
+                    edges.len(), num_bands
+                )));
+            }
+            if (edges[0] - 0.0).abs() > 1e-12 {
+                return Err(PyValueError::new_err(
+                    "custom filter-bank edges must start at 0.0",
+                ));
+            }
+            if (edges[edges.len() - 1] - 1.0).abs() > 1e-12 {
+                return Err(PyValueError::new_err(
+                    "custom filter-bank edges must end at 1.0",
+                ));
+            }
+            for pair in edges.windows(2) {
+                if !(pair[0].is_finite() && pair[1].is_finite() && pair[0] < pair[1]) {
+                    return Err(PyValueError::new_err(
+                        "custom filter-bank edges must be finite and strictly increasing",
+                    ));
+                }
+            }
+
+            Ok(FilterBankConfig::new(num_bands, BandEdges::Custom(edges)))
+        }
+    }
 }
 
 use std::sync::Once;
@@ -270,6 +310,51 @@ impl PyArrowSpace {
     /// return computed lambdas
     fn lambdas<'py>(&self, py: Python<'py>) -> Bound<'py, PyArray1<f64>> {
         PyArray1::from_slice(py, self.inner.lambdas())
+    }
+
+    /// Return the number of configured Rayleigh filter-bank bands.
+    /// Zero means the index was built without `ArrowSpaceBuilder.with_filter_bank`.
+    fn filter_bank_bands(&self) -> usize {
+        self.inner.filter_bank_bands()
+    }
+
+    /// Return all Rayleigh filter-bank energies as an `nitems × nbands` array.
+    fn band_energies<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyArray2<f64>>> {
+        let band_count = self.inner.filter_bank_bands();
+        let arr = PyArray1::from_slice(py, self.inner.band_energies());
+        Ok(arr.reshape((self.inner.nitems, band_count))?)
+    }
+
+    /// Return the Rayleigh filter-bank energies for one item.
+    fn band_energies_for_item<'py>(&self, py: Python<'py>, idx: usize) -> PyResult<Bound<'py, PyArray1<f64>>> {
+        if idx >= self.inner.nitems {
+            return Err(PyValueError::new_err(format!(
+                "index {} out of range [0, {})",
+                idx, self.inner.nitems
+            )));
+        }
+
+        Ok(PyArray1::from_slice(py, self.inner.band_energies_for_item(idx)))
+    }
+
+    /// Prepare a query and return `(lambda, band_energies)`.
+    /// If the index has no filter bank, `band_energies` is an empty array.
+    fn prepare_query_with_bands<'py>(
+        &self,
+        py: Python<'py>,
+        item: PyReadonlyArray1<f64>,
+        gl: &PyGraphLaplacian,
+    ) -> PyResult<(f64, Bound<'py, PyArray1<f64>>)> {
+        let v = item.as_slice()?;
+        let prepared = self
+            .inner
+            .try_prepare_query_item_with_bands(v, &gl.inner)
+            .map_err(map_arrow_error)?;
+
+        Ok((
+            prepared.lambda,
+            PyArray1::from_vec(py, prepared.band_energies),
+        ))
     }
 
     /// Iterate over (lambda: float, idx: int) in ascending lambda; ties stable by id.
@@ -728,6 +813,22 @@ impl PyArrowSpaceBuilder {
             };
             slf.inner = slf.inner.clone().with_inline_sampling(sampler);
         }
+        Ok(slf)
+    }
+
+    /// Enable optional per-item Rayleigh filter-bank outputs.
+    ///
+    /// `edges=None` uses uniform bands. Custom edges must start at `0.0`, end at
+    /// `1.0`, have `num_bands + 1` entries, and be finite and strictly
+    /// increasing.
+    #[pyo3(signature = (num_bands, edges=None))]
+    pub fn with_filter_bank(
+        mut slf: PyRefMut<Self>,
+        num_bands: usize,
+        edges: Option<Vec<f64>>,
+    ) -> PyResult<PyRefMut<Self>> {
+        let config = filter_bank_config(num_bands, edges)?;
+        slf.inner = slf.inner.clone().with_filter_bank(config);
         Ok(slf)
     }
 
