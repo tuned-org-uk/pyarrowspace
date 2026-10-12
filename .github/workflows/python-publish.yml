@@ -68,10 +68,7 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        # macOS x86_64 wheels from this workflow are rejected by PyPI as ZIPs
-        # with trailing data. Keep arm64 in the release path until the Intel
-        # wheel build is fixed separately.
-        target: [aarch64]
+        target: [x86_64, aarch64]
     steps:
       - uses: actions/checkout@v4
 
