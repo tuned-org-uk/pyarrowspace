@@ -29,7 +29,8 @@ def test_trec_covid_colab_notebook_pins_source_and_inputs():
     assert '"rev-parse"' in source
     assert "trec_covid_colab.py" in source
     assert "--expected-source" in source
-    assert "https://github.com/genefold-ai/pyarrowspace.git" in source
+    assert "https://github.com/tuned-org-uk/pyarrowspace.git" in source
+    assert "refs/tags/trec-covid-colab-runner" in source
     assert "manifest.json" in source
     assert "real_trec_covid_results" in source
     assert "Test-clean/trec-covid" not in source
