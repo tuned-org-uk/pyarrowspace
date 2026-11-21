@@ -20,13 +20,15 @@ def test_trec_covid_colab_notebook_pins_source_and_inputs():
         "".join(cell["source"])
         for cell in notebook["cells"]
         if cell["cell_type"] in {"code", "markdown"}
-    )
+    ) + RUNNER.read_text()
 
-    assert "875073ccfe15e0f53214bf830a647f72a98caf26" in source
+    assert "e408abf9c84d8abea3699175fdf23e2c7705e322" in source
     assert "ce62140cb23feb9becf6270d0d1fe6d1" in source
     assert "1110a243fdf4706b3f48f1d95db1a4f5529b4d41" in source
     assert '"fetch"' in source
     assert '"rev-parse"' in source
+    assert "trec_covid_colab.py" in source
+    assert "--expected-source" in source
     assert "manifest.json" in source
     assert "real_trec_covid_results" in source
     assert "Test-clean/trec-covid" not in source
