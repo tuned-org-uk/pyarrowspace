@@ -22,7 +22,7 @@ def test_trec_covid_colab_notebook_pins_source_and_inputs():
         if cell["cell_type"] in {"code", "markdown"}
     ) + RUNNER.read_text()
 
-    assert "e408abf9c84d8abea3699175fdf23e2c7705e322" in source
+    assert "e408abf46c727ede0415cec9b7d96274a71ad47a" in source
     assert "ce62140cb23feb9becf6270d0d1fe6d1" in source
     assert "1110a243fdf4706b3f48f1d95db1a4f5529b4d41" in source
     assert '"fetch"' in source
